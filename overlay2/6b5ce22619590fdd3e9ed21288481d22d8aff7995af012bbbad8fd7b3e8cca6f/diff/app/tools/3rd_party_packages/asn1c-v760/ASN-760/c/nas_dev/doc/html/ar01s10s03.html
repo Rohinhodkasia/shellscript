@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Standard L3 Formatted messages</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s10.html" title="Working with GERAN RRC Messages" />
+    <link rel="prev" href="ar01s10s02.html" title="L2 Pseudo Length" />
+    <link rel="next" href="ar01s10s04.html" title="Tips" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Standard L3 Formatted messages</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s10s02.html">Prev</a> </td>
+          <th width="60%" align="center">Working with GERAN RRC Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s10s04.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Standard L3 Formatted messages">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644200684"></a>Standard L3 Formatted messages</h3>
+          </div>
+        </div>
+      </div>
+      <p>For messages using the standard L3 format, you must choose the PDU type based on the channel and/or direction.  There are three PDU types,
+        all basically the same except that they have different sets of messages allowed.
+        In each case, the fields <code class="literal">protoDiscr</code> and <code class="literal">msgType</code> determine the type of the value in <code class="literal">data</code>.
+        </p>
+      <p>For downlink messages on the main DCCH: </p>
+      <pre class="screen">DL-DCCH-PDU ::= SEQUENCE {
+    l3HdrOpts  L3HdrOptions, -- L3 header, octet 1, bits 5 thru 8
+    protoDiscr NAS-PROTOCOL-CLASS.&amp;protoDiscr ({DL-DCCH-Messages}), 
+    msgType NAS-PROTOCOL-CLASS.&amp;msgType ({DL-DCCH-Messages}), 
+    data    NAS-PROTOCOL-CLASS.&amp;Value ({DL-DCCH-Messages}{@protoDiscr,@msgType})
+    }</pre>
+      <p>For uplink messages on the main DCCH: </p>
+      <pre class="screen">UL-DCCH-PDU ::= SEQUENCE {
+  l3HdrOpts  L3HdrOptions, -- L3 header, octet 1, bits 5 thru 8
+  protoDiscr NAS-PROTOCOL-CLASS.&amp;protoDiscr ({UL-DCCH-Messages}), 
+  msgType NAS-PROTOCOL-CLASS.&amp;msgType ({UL-DCCH-Messages}), 
+  data    NAS-PROTOCOL-CLASS.&amp;Value ({UL-DCCH-Messages}{@protoDiscr,@msgType})
+}</pre>
+      <p>For uplink messages on the SACCH: </p>
+      <pre class="screen">UL-SACCH-PDU ::= SEQUENCE {
+    l3HdrOpts  L3HdrOptions, -- L3 header, octet 1, bits 5 thru 8
+    protoDiscr NAS-PROTOCOL-CLASS.&amp;protoDiscr ({UL-SACCH-Messages}), 
+    msgType NAS-PROTOCOL-CLASS.&amp;msgType ({UL-SACCH-Messages}), 
+    data    NAS-PROTOCOL-CLASS.&amp;Value ({UL-SACCH-Messages}{@protoDiscr,@msgType})
+}</pre>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s10s02.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s10.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s10s04.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">L2 Pseudo Length </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> Tips</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

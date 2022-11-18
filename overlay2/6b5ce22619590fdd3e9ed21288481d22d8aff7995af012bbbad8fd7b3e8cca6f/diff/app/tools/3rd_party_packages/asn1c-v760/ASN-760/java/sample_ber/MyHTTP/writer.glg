@@ -1,0 +1,15 @@
+Encoding was successful
+Hex dump of encoded record:
+30 1a 80 01 ff 81 01 00 a2 04 80 02 04 c0 83 0c  0...............
+77 77 77 2e 61 73 6e 31 2e 63 6f 6d              www.asn1.com
+Binary dump:
+0000 : 30 1a                               : C [UNIVERSAL 16] 26
+0002 : 80 01                               : P [0] 1
+0004 : ff                                  : .
+0005 : 81 01                               : P [1] 1
+0007 : 00                                  : .
+0008 : a2 04                               : C [2] 4
+0010 : 80 02                               : P [0] 2
+0012 : 04 c0                               : ..
+0014 : 83 0c                               : P [3] 12
+0016 : 77 77 77 2e 61 73 6e 31 2e 63 6f 6d : www.asn1.com

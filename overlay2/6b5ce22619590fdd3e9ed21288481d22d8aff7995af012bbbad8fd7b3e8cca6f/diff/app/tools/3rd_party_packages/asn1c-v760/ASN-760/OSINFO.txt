@@ -1,0 +1,4 @@
+The ASN1C compiler was built on the following machine:
+
+O/S:     Ubuntu 16.04 (x64)
+compiler: GNU g++ 4.9.4 / 9.3.0 / 10.3.0 / 11.2.0

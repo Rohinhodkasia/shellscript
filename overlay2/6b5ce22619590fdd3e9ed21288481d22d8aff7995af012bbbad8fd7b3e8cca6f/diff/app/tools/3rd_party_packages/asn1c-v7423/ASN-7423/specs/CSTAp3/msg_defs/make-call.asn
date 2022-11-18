@@ -1,0 +1,70 @@
+CSTA-make-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) make-call( 10) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+AutoOriginate, CallCharacteristics, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) } 
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+ConnectionInformation, MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+makeCall OPERATION ::=
+{ 	ARGUMENT 		MakeCallArgument
+	RESULT 			MakeCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 10 }
+
+MakeCallArgument ::= SEQUENCE
+{ 	callingDevice 			DeviceID,
+	calledDirectoryNumber 		DeviceID,
+	accountCode 			[0] IMPLICIT AccountInfo 		OPTIONAL,
+	authCode 			[1] IMPLICIT AuthCode 			OPTIONAL,
+	autoOriginate 			[3] IMPLICIT AutoOriginate 		DEFAULT prompt,
+	correlatorData 			[2] IMPLICIT CorrelatorData 		OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	callCharacteristics 		CallCharacteristics 			OPTIONAL,
+	mediaCallCharacteristics 	[4] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	callingConnectionInfo 		[5] IMPLICIT ConnectionInformation 	OPTIONAL,
+	subjectOfCall			[6] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[7] IMPLICIT LanguagePreferences	OPTIONAL,
+	reason				[8] IMPLICIT EventCause			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+MakeCallResult ::= SEQUENCE
+{ 	callingDevice 			ConnectionID,
+	mediaCallCharacteristics	[0] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	initiatedCallInfo 		[1] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageData 		[2] IMPLICIT CallLinkageData 		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-make-call

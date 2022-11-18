@@ -1,0 +1,27 @@
+# makefile to build generated files
+
+include ../../platform.mk
+
+OSROOTDIR = ../../..
+SRCDIR = .
+HFILESDIR = .
+SPECSDIR = $(OSROOTDIR)/specs
+CUSTSRCDIR = ../custsrc
+RT3GPPSRCDIR = $(OSROOTDIR)/rt3gppsrc
+
+include srcfiles.mk
+
+all : rules.mk
+
+rules.mk : $(SRCFILES) mkdepend.pl objects.mk
+	perl mkdepend.pl
+
+# .asn -> .c .h rules
+$(SRCFILES) : $(ASN1SPECS) $(CUSTSRCFILES) \
+$(SPECSDIR)/3GPP-NAS/acconfig.xml $(OSROOTDIR)/bin/asn1c$(EXE)
+	..$(PS)..$(PS)..$(PS)bin$(PS)asn1c $(ASN1SPECS) -c -3gl3 -config $(SPECSDIR)/3GPP-NAS/acconfig.xml -fqenum -I $(SPECSDIR)/3GPP-NAS -I $(CUSTSRCDIR) -noopenext -pdu all -prttostrm -static -strict-size -table-unions -trace -enumchoice -fqtvalue -use-enum-types -warnings -test -asn1 output.asn
+
+clean:
+	$(RM) $(SRCDIR)$(PS)*.c
+	$(RM) $(SRCDIR)$(PS)*.h 
+	$(RM) $(SRCDIR)$(PS)output.asn

@@ -1,0 +1,18 @@
+Decode RosePDU was successful
+rosePDU {
+   invokePDU {
+      invokeID = 1
+      operationValue = 10
+      argument = 300e80083535352d3132313262028800
+   }
+}
+
+Decode MakeCallArgument was successful
+makeCallArgument {
+   callingDevice {
+      dialingNumber = 555-1212
+   }
+   calledDirectoryNumber {
+      notRequired = NULL
+   }
+}

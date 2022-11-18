@@ -1,0 +1,45 @@
+CSTA-snapshot-device
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) snapshot-device( 104) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+SnapshotDeviceData FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ServiceCrossRefID FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+snapshotDevice OPERATION ::=
+{ 	ARGUMENT 		SnapshotDeviceArgument
+	RESULT 			SnapshotDeviceResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 74 }
+
+SnapshotDeviceArgument ::= SEQUENCE
+{	snapshotObject 			DeviceID,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+SnapshotDeviceResult ::= SEQUENCE
+{	crossRefIDorSnapshotData CHOICE
+	{	serviceCrossRefID 	ServiceCrossRefID,
+		snapshotData 		SnapshotDeviceData },
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+END -- of CSTA-snapshot-device

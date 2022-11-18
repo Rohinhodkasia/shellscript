@@ -1,0 +1,1236 @@
+Decode was successful
+Tap3 {
+   transferBatch {
+      batchControlInfo {
+         sender = 4954415349
+         recipient = 41524d3035
+         fileSequenceNumber = 3030303031
+         fileCreationTimeStamp {
+            localTimeStamp = 3230303530383034303833353136
+            utcTimeOffset = 2b30313030
+         }
+         transferCutOffTimeStamp {
+            localTimeStamp = 3230303530383034303833353136
+            utcTimeOffset = 2b30313030
+         }
+         fileAvailableTimeStamp {
+            localTimeStamp = 3230303530383232313634343531
+            utcTimeOffset = 2b30323030
+         }
+         specificationVersionNumber = 3
+         releaseVersionNumber = 11
+         fileTypeIndicator = 54
+         operatorSpecInformation[0] = 7c46696c652070726f63204d54487c
+      }
+      accountingInfo {
+         localCurrency = 455552
+         currencyConversionInfo[0] {
+            exchangeRateCode = 0
+            numberOfDecimalPlaces = 5
+            exchangeRate = 119866
+         }
+         tapDecimalPlaces = 4
+      }
+      networkInfo {
+         utcTimeOffsetInfo[0] {
+            utcTimeOffsetCode = 1
+            utcTimeOffset = 2b30313030
+         }
+         utcTimeOffsetInfo[1] {
+            utcTimeOffsetCode = 2
+            utcTimeOffset = 2b30323030
+         }
+         recEntityInfo[0] {
+            recEntityCode = 1
+            recEntityType = 1
+            recEntityId = 49524d3132
+         }
+         recEntityInfo[1] {
+            recEntityCode = 2
+            recEntityType = 1
+            recEntityId = 56524d3132
+         }
+      }
+      callEventDetails = 638069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f83170637493684728f5f82170d3030333734393336383437323800007f2c80500e32303035303830333132313334325f8168010100005f815f014300007f810a807f811c805f813801015f2d03216aa8000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333132313334325f8168010100007f46807f45805f4201445f6901007f8202805f820301025f817f01005f8200010200007f40807f3f805f470230305f3e0274255f4101435f4401507f831a80500e32303035303830333132313334325f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20317c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f8317063906542375685f82170a3036353432333735363800007f2c80500e32303035303830333133343432335f8168010100005f815f012800007f810a807f811c805f813801015f2d032661a0000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333133343432335f8168010100007f46807f45805f4201445f6901007f8202805f820301015f817f01025f8200010100007f40807f3f805f470230305f3e020dfa5f4101285f4401287f831a80500e32303035303830333133343432335f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20327c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f8317063906542375685f82170a3036353432333735363800007f2c80500e32303035303830333133343831365f8168010100005f815f012d00007f810a807f811c805f813801015f2d03268dd9000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333133343831365f8168010100007f46807f45805f4201445f6901007f8202805f820301015f817f01025f8200010100007f40807f3f805f470230305f3e0212715f41012d5f44013c7f831a80500e32303035303830333133343831365f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20337c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f83170637493684728f5f82170d3030333734393336383437323800007f2c80500e32303035303830333133353530315f8168010100005f815f014000007f810a807f811c805f813801015f2d0326d794000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333133353530315f8168010100007f46807f45805f4201445f6901007f8202805f820301025f817f01005f8200010200007f40807f3f805f470230305f3e0274255f4101405f4401507f831a80500e32303035303830333133353530315f8168010100000000000000000000000000005f81510232307f8122805f81230f7c5365713a2031204c6f633a20347c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333133353530315f8168010100005f815f014000007f810a807f811c805f813801015f2d0326d7945f81080301869f5f3b0300869f000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333133353530315f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101405f4401507f831a80500e32303035303830333133353530315f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20357c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f83170637493684728f5f82170d3030333734393336383437323800007f2c80500e32303035303830333134303132335f8168010100005f815f011700007f810a807f811c805f813801015f2d03272078000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303132335f8168010100007f46807f45805f4201445f6901007f8202805f820301025f817f01005f8200010200007f40807f3f805f470230305f3e023ef65f4101175f4401287f831a80500e32303035303830333134303132335f8168010100000000000000000000000000005f81510232307f8122805f81230f7c5365713a2031204c6f633a20367c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333134303132335f8168010100005f815f011700007f810a807f811c805f813801015f2d032720785f81080301869f5f3b0300869f000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303132335f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101175f4401287f831a80500e32303035303830333134303132335f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20377c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f83170637493684728f5f82170d3030333734393336383437323800007f2c80500e32303035303830333134303233385f8168010100005f815f013c00007f810a807f811c805f813801015f2d03272f8b000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303233385f8168010100007f46807f45805f4201445f6901007f8202805f820301025f817f01005f8200010200007f40807f3f805f470230305f3e02598e5f41013c5f44013c7f831a80500e32303035303830333134303233385f8168010100000000000000000000000000005f81510232307f8122805f81230f7c5365713a2031204c6f633a20387c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333134303233385f8168010100005f815f013c00007f810a807f811c805f813801015f2d03272f8b5f81080301869f5f3b0300869f000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303233385f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f41013c5f44013c7f831a80500e32303035303830333134303233385f8168010100000000000000000000000000007f8122805f81230f7c5365713a2031204c6f633a20397c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f8317063906390092545f82170a3036333930303932353400007f2c80500e32303035303830333134303033355f8168010100005f815f0200bc00007f810a807f811c805f813801015f2d03271af4000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303033355f8168010100007f46807f45805f4201445f6901007f8202805f820301015f817f01025f8200010100007f40807f3f805f470230305f3e0231b25f410200bc5f440200c87f831a80500e32303035303830333134303033355f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031307c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f59805f83170637493684728f5f82170d3030333734393336383437323800007f2c80500e32303035303830333134303630325f8168010100005f815f013b00007f810a807f811c805f813801015f2d03275376000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303630325f8168010100007f46807f45805f4201445f6901007f8202805f820301025f817f01005f8200010200007f40807f3f805f470230305f3e02598e5f41013b5f44013c7f831a80500e32303035303830333134303630325f8168010100000000000000000000000000005f81510232307f8122805f8123107c5365713a2031204c6f633a2031317c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333134303630325f8168010100005f815f013b00007f810a807f811c805f813801015f2d032753765f81080301869f5f3b0300869f000000007f26807f27807f24807f832a805f815a023131000000007f4a80500e32303035303830333134303630325f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f41013b5f44013c7f831a80500e32303035303830333134303630325f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031327c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333132313334305f8168010100005f815f014700007f810a807f811c805f813801025f2d03216e2c5f81080300ea6c5f3b020d6a000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333132313334305f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101475f4401477f831a80500e32303035303830333132313334305f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031337c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333132313534305f8168010100005f815f015200007f810a807f811c805f813801025f2d03218ddb5f81080300ea6c5f3b02149b000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333132313534305f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101525f4401527f831a80500e32303035303830333132313534305f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031347c0000000069807f8113807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333133343230375f8168010100005f815f010800007f810a807f811c805f813801025f2d032645435f81080300ea6c5f3b02149b000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a02313200005f8164010000007f4a80500e32303035303830333133343230375f8168010100007f46807f45805f4201465f6901007f8202805f820301015f817f01045f8200010100007f40807f3f805f470230305f3e01005f4401087f831a80500e32303035303830333133343230375f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031357c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333133353435395f8168010100005f815f014300007f810a807f811c805f813801025f2d0326daf85f81080300ea6c5f3b02149b000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333133353435395f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101435f4401437f831a80500e32303035303830333133353435395f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031367c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333133353735395f8168010100005f815f013800007f810a807f811c805f813801025f2d0326fcd65f81080300ea6c5f3b02149b000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333133353735395f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101385f4401387f831a80500e32303035303830333133353735395f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031377c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333134303132315f8168010100005f815f011b00007f810a807f811c805f813801025f2d032722cf5f81080300ea6c5f3b02149b000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333134303132315f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f41011b5f44011b7f831a80500e32303035303830333134303132315f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031387c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333134303233365f8168010100005f815f014000007f810a807f811c805f813801025f2d032730f95f81080300ea6c5f3b02149b000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333134303233365f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101405f4401407f831a80500e32303035303830333134303233365f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2031397c000000006a807f8119807f832b807f8147805f810108283058000009496f000000007f2c80500e32303035303830333134303630315f8168010100005f815f013e00007f810a807f811c805f813801025f2d032757d35f81080300ea6c5f3b02149b000000007f832d805f810008449313106726620f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333134303630315f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f41013e5f44013e7f831a80500e32303035303830333134303630315f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2032307c000000006a807f8119807f832b807f8147805f810108283058000009494f000000007f2c80500e32303035303830333134333634365f8168010100005f815f010500007f810a807f811c805f813801025f2d0328aed65f81080300ea6c5f3b02149b000000007f832d805f810008449313106725030f00007f26807f27807f24807f832a805f815a02313100005f8164010000007f4a80500e32303035303830333134333634365f8168010100007f46807f45805f4201445f6901007f40807f3f805f470230305f3e01005f4101055f4401057f831a80500e32303035303830333134333634365f8168010100000000000000000000000000007f8122805f8123107c5365713a2031204c6f633a2032317c000000000000
+      auditControlInfo {
+         earliestCallTimeStamp {
+            localTimeStamp = 3230303530383033313231333430
+            utcTimeOffset = 2b30313030
+         }
+         latestCallTimeStamp {
+            localTimeStamp = 3230303530383033313433363436
+            utcTimeOffset = 2b30313030
+         }
+         totalCharge = 142457
+         totalTaxValue = 0
+         totalDiscountValue = 0
+         callEventDetailsCount = 21
+      }
+   }
+}
+Decode was successful
+
+--- Call Event Detail List ---
+
+Call Event Details[0] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 37493684728f
+            dialledDigits = 30303337343933363834373238
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313231333432
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 67
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 216aa8
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313231333432
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 2
+               callTypeLevel2 = 0
+               callTypeLevel3 = 2
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 29733
+               chargeableUnits = 67
+               chargedUnits = 80
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313231333432
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20317c
+   }
+}
+Call Event Details[1] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 390654237568
+            dialledDigits = 30363534323337353638
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313334343233
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 40
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 2661a0
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313334343233
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 1
+               callTypeLevel2 = 2
+               callTypeLevel3 = 1
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 3578
+               chargeableUnits = 40
+               chargedUnits = 40
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313334343233
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20327c
+   }
+}
+Call Event Details[2] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 390654237568
+            dialledDigits = 30363534323337353638
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313334383136
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 45
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 268dd9
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313334383136
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 1
+               callTypeLevel2 = 2
+               callTypeLevel3 = 1
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 4721
+               chargeableUnits = 45
+               chargedUnits = 60
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313334383136
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20337c
+   }
+}
+Call Event Details[3] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 37493684728f
+            dialledDigits = 30303337343933363834373238
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313335353031
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 64
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 26d794
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313335353031
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 2
+               callTypeLevel2 = 0
+               callTypeLevel3 = 2
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 29733
+               chargeableUnits = 64
+               chargedUnits = 80
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313335353031
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      supplServiceCode = 3230
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20347c
+   }
+}
+Call Event Details[4] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313335353031
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 64
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 26d794
+            locationArea = 99999
+            cellId = 34463
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313335353031
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 64
+               chargedUnits = 80
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313335353031
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20357c
+   }
+}
+Call Event Details[5] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 37493684728f
+            dialledDigits = 30303337343933363834373238
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430313233
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 23
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 272078
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430313233
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 2
+               callTypeLevel2 = 0
+               callTypeLevel3 = 2
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 16118
+               chargeableUnits = 23
+               chargedUnits = 40
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430313233
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      supplServiceCode = 3230
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20367c
+   }
+}
+Call Event Details[6] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430313233
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 23
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 272078
+            locationArea = 99999
+            cellId = 34463
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430313233
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 23
+               chargedUnits = 40
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430313233
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20377c
+   }
+}
+Call Event Details[7] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 37493684728f
+            dialledDigits = 30303337343933363834373238
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430323338
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 60
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 272f8b
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430323338
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 2
+               callTypeLevel2 = 0
+               callTypeLevel3 = 2
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 22926
+               chargeableUnits = 60
+               chargedUnits = 60
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430323338
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      supplServiceCode = 3230
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20387c
+   }
+}
+Call Event Details[8] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430323338
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 60
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 272f8b
+            locationArea = 99999
+            cellId = 34463
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430323338
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 60
+               chargedUnits = 60
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430323338
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a20397c
+   }
+}
+Call Event Details[9] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 390639009254
+            dialledDigits = 30363339303039323534
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430303335
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 188
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 271af4
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430303335
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 1
+               callTypeLevel2 = 2
+               callTypeLevel3 = 1
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 12722
+               chargeableUnits = 188
+               chargedUnits = 200
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430303335
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031307c
+   }
+}
+Call Event Details[10] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         destination {
+            calledNumber = 37493684728f
+            dialledDigits = 30303337343933363834373238
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430363032
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 59
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 275376
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430363032
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 2
+               callTypeLevel2 = 0
+               callTypeLevel3 = 2
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 22926
+               chargeableUnits = 59
+               chargedUnits = 60
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430363032
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      supplServiceCode = 3230
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031317c
+   }
+}
+Call Event Details[11] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430363032
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 59
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 1
+            callReference = 275376
+            locationArea = 99999
+            cellId = 34463
+         }
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430363032
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 59
+               chargedUnits = 60
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430363032
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031327c
+   }
+}
+Call Event Details[12] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313231333430
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 71
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 216e2c
+            locationArea = 60012
+            cellId = 3434
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313231333430
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 71
+               chargedUnits = 71
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313231333430
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031337c
+   }
+}
+Call Event Details[13] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313231353430
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 82
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 218ddb
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313231353430
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 82
+               chargedUnits = 82
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313231353430
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031347c
+   }
+}
+Call Event Details[14] {
+   mobileOriginatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313334323037
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 8
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 264543
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3132
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313334323037
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 46
+            exchangeRateCode = 0
+            callTypeGroup {
+               callTypeLevel1 = 1
+               callTypeLevel2 = 4
+               callTypeLevel3 = 1
+            }
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargedUnits = 8
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313334323037
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031357c
+   }
+}
+Call Event Details[15] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313335343539
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 67
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 26daf8
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313335343539
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 67
+               chargedUnits = 67
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313335343539
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031367c
+   }
+}
+Call Event Details[16] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313335373539
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 56
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 26fcd6
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313335373539
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 56
+               chargedUnits = 56
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313335373539
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031377c
+   }
+}
+Call Event Details[17] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430313231
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 27
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 2722cf
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430313231
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 27
+               chargedUnits = 27
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430313231
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031387c
+   }
+}
+Call Event Details[18] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430323336
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 64
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 2730f9
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430323336
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 64
+               chargedUnits = 64
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430323336
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2031397c
+   }
+}
+Call Event Details[19] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009496f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313430363031
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 62
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 2757d3
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106726620f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313430363031
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 62
+               chargedUnits = 62
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313430363031
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2032307c
+   }
+}
+Call Event Details[20] {
+   mobileTerminatedCall {
+      basicCallInformation {
+         chargeableSubscriber {
+            simChargeableSubscriber {
+               imsi = 283058000009494f
+            }
+         }
+         callEventStartTimeStamp {
+            localTimeStamp = 3230303530383033313433363436
+            utcTimeOffsetCode = 1
+         }
+         totalCallEventDuration = 5
+      }
+      locationInformation {
+         networkLocation {
+            recEntityCode = 2
+            callReference = 28aed6
+            locationArea = 60012
+            cellId = 5275
+         }
+      }
+      equipmentIdentifier {
+         imei = 449313106725030f
+      }
+      basicServiceUsedList[0] {
+         basicService {
+            serviceCode {
+               teleServiceCode = 3131
+            }
+            transparencyIndicator = 0
+         }
+         chargingTimeStamp {
+            localTimeStamp = 3230303530383033313433363436
+            utcTimeOffsetCode = 1
+         }
+         chargeInformationList[0] {
+            chargedItem = 44
+            exchangeRateCode = 0
+            chargeDetailList[0] {
+               chargeType = 3030
+               charge = 0
+               chargeableUnits = 5
+               chargedUnits = 5
+               chargeDetailTimeStamp {
+                  localTimeStamp = 3230303530383033313433363436
+                  utcTimeOffsetCode = 1
+               }
+            }
+         }
+      }
+      operatorSpecInformation[0] = 7c5365713a2031204c6f633a2032317c
+   }
+}

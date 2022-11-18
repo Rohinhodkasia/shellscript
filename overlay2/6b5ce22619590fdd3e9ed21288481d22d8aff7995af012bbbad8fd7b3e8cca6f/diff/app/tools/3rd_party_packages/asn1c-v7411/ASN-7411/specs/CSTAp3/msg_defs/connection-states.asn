@@ -1,0 +1,43 @@
+CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+ConnectionList, LocalConnectionState;
+
+IMPORTS
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+ConnectionList ::= SEQUENCE OF SEQUENCE
+{	newConnection 		[0] ConnectionID 		OPTIONAL,
+	oldConnection 		[1] ConnectionID 		OPTIONAL,
+	endpoint 		[2] CHOICE
+		{	deviceID 		DeviceID,
+			notKnown 		NULL,
+			restricted		[1] NULL } 		OPTIONAL,
+	associatedNID 		[3] CHOICE
+		{	deviceID 		DeviceID,
+			notKnown 		NULL } 			OPTIONAL,
+	resultingConnectionInfo 	ConnectionInformation 		OPTIONAL }
+
+LocalConnectionState ::= [APPLICATION 14] IMPLICIT ENUMERATED
+{	null 		(0),
+	initiated 	(1),
+	alerting 	(2),
+	connected 	(3),
+	hold 		(4),
+	queued 		(5),
+	fail 		(6) }
+
+END -- CSTA-connection-states

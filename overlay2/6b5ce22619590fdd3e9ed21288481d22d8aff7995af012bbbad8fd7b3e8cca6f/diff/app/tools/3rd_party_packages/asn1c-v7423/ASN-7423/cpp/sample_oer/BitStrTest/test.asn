@@ -1,0 +1,7 @@
+Test DEFINITIONS ::= BEGIN
+
+BitStr1 ::= BIT STRING (SIZE(12))
+
+BitStr2 ::= BIT STRING (SIZE(8..32))
+
+END

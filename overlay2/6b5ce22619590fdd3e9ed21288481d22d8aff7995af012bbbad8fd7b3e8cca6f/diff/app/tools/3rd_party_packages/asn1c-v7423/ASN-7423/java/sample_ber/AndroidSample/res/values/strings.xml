@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="hello">Hello World, AndroidSampleActivity!</string>
+    <string name="app_name">AndroidSample</string>
+    <string name="choose_test_method_instr">Choose the test method:</string>
+    <string name="decode_locally_encoded">Decode a locally encoded message</string>
+    <string name="encode_socket">Encode to Socket</string>
+    <string name="server_address">Server Address:</string>
+    <string name="server_port">Server Port:</string>
+    <string name="server_info">You must start a server process to receive the
+    message you will transmit.  You may find the sample program sample_ber/EmployeeSocketStream
+    useful for this purpose.
+    </string>
+</resources>

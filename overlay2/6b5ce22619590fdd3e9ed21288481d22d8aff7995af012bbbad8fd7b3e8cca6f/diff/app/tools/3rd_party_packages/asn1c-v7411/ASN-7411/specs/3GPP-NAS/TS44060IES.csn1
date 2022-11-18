@@ -1,0 +1,345 @@
+ASN1MODULE : TS44060IES;
+
+---------------------------
+-- 12.5.2 EGPRS Window Size
+---------------------------
+<EGPRS Window Size IE> ::= bit(5);
+
+--------------------------------------
+-- 12.7 Channel Request Description IE
+--------------------------------------
+< Channel Request Description IE > ::=
+   < PEAK_THROUGHPUT_CLASS : bit (4) >
+   < RADIO_PRIORITY : bit (2) >
+   < RLC_MODE : bit (1) >
+   < LLC_ PDU_TYPE : bit (1) >
+   < RLC_OCTET_COUNT : bit (16) > ;
+
+
+----------------------------
+-- 12.8 Frequency Parameters
+----------------------------
+< Frequency Parameters IE > ::=
+   < TSC : bit (3) >
+   { 00 < ARFCN : bit (10) >
+   | 01 < Indirect encoding : < Indirect encoding struct > >
+   | 10 < Direct encoding 1 : < Direct encoding 1 struct > >
+   | 11 < Direct encoding 2 : < Direct encoding 2 struct > > } 
+;
+
+< Indirect encoding struct > ::=
+   < MAIO : bit (6) >
+   < MA_NUMBER : bit (4) >
+   { 0 | 1 < CHANGE_MARK_1 : bit (2) >
+         { 0 | 1 < CHANGE_MARK_2 : bit (2) > } 
+   };
+
+< Direct encoding 1 struct > ::=
+   < MAIO : bit (6) >
+   < GPRS Mobile Allocation : < GPRS Mobile Allocation IE > > ;
+
+< Direct encoding 2 struct > ::=
+   < MAIO : bit (6) >
+   < HSN : bit (6) >
+   < Length of MA Frequency List contents : bit (4) >
+   < MA Frequency List contents : octet (val(Length of MA Frequency List contents) + 3) > ;
+
+----------------------------------
+-- 12.8.3 Pulse Format description
+----------------------------------
+< Pulse Format IE > ::=
+   { 0 < Pulse Format Coding 1 : bit (3) >
+   | 1 < Pulse Format Coding 2 : < Pulse Format Coding 2 struct > > };
+
+-- The original definition for Pulse Format Coding 2 struct had this:
+--    < Pulse Format Bitmap: bit (val (Pulse Format Bitmap Length) + 1)
+--    & { { 1 | 01 | 00 } ** ! { bit** = <no string> } } >
+-- The intention is that <Pulse Format Bitmap> should be a repetition of the one
+-- and two bit codes 1, 01, 00.  The error alternative seems to suggest that
+-- decoders should, however, be able to receive any bit string of the given
+-- length.  Therefore, I have modified this to eliminate the intersection
+-- and to let it simply be a bit string.
+< Pulse Format Coding 2 struct > ::=
+   { 0 < Pulse Format Bitmap Length: bit (7) >
+      < Pulse Format Bitmap: bit (val (Pulse Format Bitmap Length) + 1)>
+   | 1 < Non Hopping Carrier Pulse Format : <wide: 1> | <wide_tight: 01> | <narrow: 00> >
+   } ;
+
+
+-----------------------------------------
+-- 12.9a GPRS Power Control Parameters IE
+-----------------------------------------
+< GPRS Power Control Parameters IE > ::=
+   < ALPHA : bit (4) >
+   < T_AVG_W : bit (5) >
+   < T_AVG_T : bit (5) >
+   < PC_MEAS_CHAN : bit >
+   < N_AVG_I : bit (4) > 
+;
+
+
+--------------------------------
+-- 12.10a GPRS Mobile Allocation
+--------------------------------
+-- In the following, I have eliminated some recursive definitions.  This
+-- led to non-recursive ASN.1 definitions which led to more user-friendly code.
+-- I replaced:
+--    { 0 | 1 < RFL number list : < RFL number list struct > > }
+-- with:
+--    { 1 < RFL_NUMBER : bit (4) > }** 0
+-- and replaced :
+--    { 0 | 1 < ARFCN index list : < ARFCN index list struct > > }  
+-- with:
+--    { 1 < ARFCN_INDEX : bit (6) > }** 0
+
+< GPRS Mobile Allocation IE > ::=
+   < HSN : bit (6) >
+   { 1 < RFL_NUMBER : bit (4) > }** 0
+   { 0 < MA_LENGTH : bit (6) >
+      < MA_BITMAP : bit (val(MA_LENGTH) + 1) >
+   | 1 { 1 < ARFCN_INDEX : bit (6) > }** 0
+   } ;
+
+-- The following definitions were eliminated by eliminating the recursion as
+-- described above.
+-- < RFL number list struct > ::=
+--    < RFL_NUMBER : bit (4) >
+--    { 0 | 1 < RFL number list struct > } ;
+-- 
+-- < ARFCN index list struct > ::=
+--    < ARFCN_INDEX : bit (6) >
+--    { 0 | 1 < ARFCN index list struct > } ;
+
+
+--------------------------------------------------------
+-- 12.10d EGPRS Modulation and coding Scheme description
+--------------------------------------------------------
+<EGPRS Modulation and Coding IE> ::= bit(4);
+
+---------------------------------
+-- 12.10f EGPRS Level description
+---------------------------------
+<EGPRS Level IE> ::= bit(2);
+
+
+------------------------------
+-- 12.12 Packet Timing Advance
+------------------------------
+< Packet Timing Advance IE > ::=
+   { 0 | 1 < TIMING_ADVANCE_VALUE : bit (6) > }
+   { 0 | 1 < TIMING_ADVANCE_INDEX : bit (4) >
+         < TIMING_ADVANCE_TIMESLOT_NUMBER : bit (3) > } ;
+
+--------------------------------------
+-- 12.12a Global Packet Timing Advance
+--------------------------------------
+< Global Packet Timing Advance IE > ::=
+   { 0 | 1 < TIMING_ADVANCE_VALUE : bit (6) > }
+   { 0 | 1 < UPLINK_TIMING_ADVANCE_INDEX : bit (4) >
+         < UPLINK_TIMING_ADVANCE_TIMESLOT_NUMBER : bit (3) > }
+   { 0 | 1 < DOWNLINK_TIMING_ADVANCE_INDEX : bit (4) >
+            < DOWNLINK_TIMING_ADVANCE_TIMESLOT_NUMBER : bit (3) > };
+
+
+---------------------------------
+-- 12.13 Power Control Parameters
+---------------------------------
+< Power Control Parameters IE > ::=
+   < ALPHA : bit (4) >
+   { 0 | 1 < GAMMA_TN0 : bit (5) > }
+   { 0 | 1 < GAMMA_TN1 : bit (5) > }
+   { 0 | 1 < GAMMA_TN2 : bit (5) > }
+   { 0 | 1 < GAMMA_TN3 : bit (5) > }
+   { 0 | 1 < GAMMA_TN4 : bit (5) > }
+   { 0 | 1 < GAMMA_TN5 : bit (5) > }
+   { 0 | 1 < GAMMA_TN6 : bit (5) > }
+   { 0 | 1 < GAMMA_TN7 : bit (5) > } ;
+
+-----------------------------
+-- 12.24 GPRS Cell Options IE
+-----------------------------
+< GPRS Cell Options IE > ::=
+   < NMO : bit (2) >
+   < T3168 : bit (3) >
+   < T3192 : bit (3) >
+   < DRX_TIMER_MAX : bit (3) >
+   < ACCESS_BURST_TYPE : bit >
+   < CONTROL_ACK_TYPE : bit >
+   < BS_CV_MAX : bit (4) >
+   { 0 | 1 < PAN_DEC : bit (3) >
+         < PAN_INC : bit (3) >
+         < PAN_MAX : bit (3) > 
+   }
+   -- Optional extension information:
+   { 0 | 1 <Extension Length : bit (6)>
+         { bit (val(Extension Length) + 1) &
+         { <Extension Information > < spare bit > ** } }
+   };
+
+
+< Extension Information> ::=
+   {  { -- R99 extension:
+         { 0 | 1 -- EGPRS supported by the cell if the choice bit is set to '1'
+               < EGPRS_PACKET_CHANNEL_REQUEST : bit >
+               < BEP_PERIOD : bit (4) > 
+         }
+         < PFC_FEATURE_MODE: bit >
+         < DTM_SUPPORT: bit >
+         < BSS_PAGING_COORDINATION: bit > 
+      }
+      { -- REL-4 extension:
+         < CCN_ACTIVE : bit >
+         < NW_EXT_UTBF : bit > 
+      }
+      { -- REL 6 extension:
+         < MULTIPLE_TBF_CAPABILITY : bit >
+         < EXT_UTBF_NODATA : bit >
+         < DTM_ENHANCEMENTS_CAPABILITY : bit >
+         { 0 -- MBMS procedures not supported by the cell if the choice bit is set to '0'
+         | 1 -- MBMS procedures supported by the cell if the choice bit is set to '1'
+            < DEDICATED_MODE_MBMS_NOTIFICATION_SUPPORT: bit >
+            < MNCI_SUPPORT : bit > 
+         }
+      }
+      { -- Rel-7 extension:
+         < REDUCED_LATENCY_ACCESS : bit > 
+      }
+      { -- Rel-10 extension:
+         < NMO_I_ALTERNATE: bit > 
+      }
+      -- spare bits moved to point of use to avoid ambiguity
+      -- < spare bit > **
+   } // ; -- Extension information may be truncated between released versions of the protocol.
+          -- The receiver shall assume the value zero for any truncated bit.
+
+
+-----------------------------------------------
+-- 12.33 Temporary Mobile Group Identity (TMGI)
+-----------------------------------------------
+< TMGI IE > ::=
+   { 0 -- without MCC and MNC parameters
+      < MBMS SERVICE ID : bit (24) >
+   | 1 -- with MCC and MNC parameters
+      < MBMS SERVICE ID : bit (24) >
+      < MCC : bit (12) >
+      < MNC : bit (12) > } ;
+
+
+--------------------------------
+-- 12.36 MBMS Channel Parameters
+--------------------------------
+< MBMS Channel Parameters IE >::=
+{
+   0 -- counting is off
+      { 0 | 1 < MBMS p-t-m channel description : < MBMS p-t-m channel description IE > >
+            < MBMS Session Parameters List : < MBMS Session Parameters List IE >> 
+      }
+   | 1 -- counting is on
+      { 0 | 1 < MPRACH description : < MPRACH description IE > > } 
+};
+
+---------------------------------------
+-- 12.37 MBMS p-t-m channel description
+---------------------------------------
+< MBMS p-t-m channel description IE > ::=
+   { 0 | 1 < Frequency Parameters : < Frequency Parameters IE > > }
+   < DL_TIMESLOT_ALLOCATION : bit (8) >
+;
+
+---------------------------
+-- 12.38 MPRACH description
+---------------------------
+< MPRACH description IE > ::=
+   { 0 | 1 < Frequency Parameters : < Frequency Parameters IE > > }
+   < MPRACH_TIMESLOT NUMBER : bit (3) >
+   < USF : bit (3) >
+   { 0 | 1 < MPRACH Control Parameters : < MPRACH Control Parameters IE > > } ;
+
+---------------------------
+-- 12.39 MBMS Sessions List
+---------------------------
+< MBMS Session List IE > ::=
+   { 1 < TMGI : < TMGI IE >>
+      { 0 | 1 < MBMS Session Identity : bit (8) > } 
+   } ** 0;
+
+-------------------------------------
+-- 12.40 MBMS Session Parameters List
+-------------------------------------
+< MBMS Session Parameters List IE > ::=
+   { 1 < Length of MBMS Bearer Identity : bit (3) > -- Configurations "000", "110" and "111" are reserved
+      < MBMS Bearer Identity : bit (val (Length of MBMS Bearer Identity)) >
+      < Estimated Session Duration : bit (8) >
+      { 0 | 1 < MBMS Radio Bearer Starting Time : bit (16) > }
+      { 0 | 1 < EGPRS Window Size : < EGPRS Window Size IE >> }
+      { 0 | 1 < NPM Transfer Time : bit (5) > } 
+   } ** 0;
+
+
+----------------------------------
+-- 12.41 MPRACH Control Parameters
+----------------------------------
+< MPRACH Control Parameters IE > ::=
+   { 0 | 1< ACC_CONTR_CLASS : bit (16) > }
+   { 0 | 1< MAX_RETRANS : bit (2) > }
+   < S : bit (4) >
+   { 0 | 1 < TX_INT : bit (4) > }
+   { 0 | 1 < PERSISTENCE_LEVEL : bit (4) > } ;
+
+
+-----------------------
+-- 12.57 PCID Group IE
+-----------------------
+< PCID Group IE > ::=
+   { 1 < PCID : bit (9) > } ** 0 -- explicit PCID coding
+   { 0 | 1 < PCID_BITMAP_GROUP : bit (6) > }
+   { 1 < PCID_Pattern_length : bit (3) >
+      < PCID_Pattern : bit (val(PCID_Pattern_length) + 1) >
+      < PCID_pattern_sense : bit (1) >
+   } ** 0 ;
+
+---------------------
+-- 12.58 PSC Group IE
+---------------------
+< PSC Group IE > ::=
+   { 1 < PSC : bit (9) > } ** 0 -- explicit PSC coding
+   { 1 < PSC_Pattern_length : bit (3) >
+      < PSC_Pattern : bit (val(PSC_Pattern_length) + 1) >
+      < PSC_pattern_sense : bit (1) >
+   } ** 0 ;
+
+
+------------------------------------------------
+-- 12.59 Enhanced Cell Reselection Parameters IE
+------------------------------------------------
+< Enhanced Cell Reselection Parameters IE > ::=
+   { 1 < Repeated E-UTRAN Enhanced Cell Reselection Parameters :
+      < Repeated E-UTRAN Enhanced Cell Reselection Parameters struct >> } ** 0 ;
+
+< Repeated E-UTRAN Enhanced Cell Reselection Parameters struct > ::=
+   { 1 < E-UTRAN_FREQUENCY_INDEX : bit (3) > } ** 0
+   { 0 -- reselection based on target cell RSRP (RSRQ checked for suitability)
+      < E-UTRAN_Qmin: bit(4) >
+   | 1 -- reselection based on target cell RSRQ (RSRP checked for suitability)
+      < THRESH_E-UTRAN_high_Q: bit(5) >
+      { 0 | 1 < THRESH_E-UTRAN_low_Q: bit(5) > }
+      { 0 | 1 < E-UTRAN_QQUALMIN : bit(4) > }
+      { 0 | 1 < E-UTRAN_RSRPmin : bit(5) > }
+   } ;
+
+----------------------------------------
+-- 12.61 UTRAN CSG Measurement Report IE
+----------------------------------------
+< UTRAN CSG Measurement Report IE > ::=
+   < UTRAN CGI : bit (28) >
+   { 0 | 1 < PLMN-ID : < PLMN-ID struct > > }
+   < CSG-ID : bit (27) >
+   < Access Mode : bit (1) >
+   < REPORTING_QUANTITY : bit (6) > ;
+
+< PLMN-ID struct > ::=
+   < MCC : bit (12) >
+   < MNC : bit (12) > ;
+
+
+<spare bit> ::= <bit> send 0;

@@ -1,0 +1,28 @@
+CSTA-do-not-disturb-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) do-not-disturb-event( 42) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CallOrigination FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+DoNotDisturbEvent ::= SEQUENCE
+{	device 				SubjectDeviceID,
+	doNotDisturbOn			BOOLEAN,
+	callOrigination			CallOrigination				OPTIONAL,
+	callingDeviceList		SEQUENCE OF DeviceID			OPTIONAL,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-do-not-disturb-event

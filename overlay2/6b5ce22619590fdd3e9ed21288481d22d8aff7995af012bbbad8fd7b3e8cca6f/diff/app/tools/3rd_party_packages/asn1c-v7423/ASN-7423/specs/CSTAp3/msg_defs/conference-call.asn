@@ -1,0 +1,50 @@
+CSTA-conference-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) conference-call( 6) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CallLinkageDataList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+conferenceCall OPERATION ::=
+{ 	ARGUMENT 		ConferenceCallArgument
+	RESULT 			ConferenceCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 6 }
+
+ConferenceCallArgument ::= SEQUENCE
+{ 	heldCall 			ConnectionID,
+	activeCall 			ConnectionID,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+ConferenceCallResult ::= SEQUENCE
+{ 	conferenceCall 			ConnectionID,
+	connections 			[0] IMPLICIT ConnectionList 		OPTIONAL,
+	conferenceCallInfo 		[1] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageDataList		[2] IMPLICIT CallLinkageDataList	OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-conference-call

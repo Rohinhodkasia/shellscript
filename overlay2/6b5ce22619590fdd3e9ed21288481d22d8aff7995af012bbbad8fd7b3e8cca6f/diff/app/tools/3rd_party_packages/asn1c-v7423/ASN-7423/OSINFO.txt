@@ -1,0 +1,4 @@
+The ASN1C compiler was built on the following machine:
+
+O/S:     CentOS 6.5 (x86)
+compiler: GNU g++ 4.9.4 / 5.4.0 / 6.1.0 / 7.2.0

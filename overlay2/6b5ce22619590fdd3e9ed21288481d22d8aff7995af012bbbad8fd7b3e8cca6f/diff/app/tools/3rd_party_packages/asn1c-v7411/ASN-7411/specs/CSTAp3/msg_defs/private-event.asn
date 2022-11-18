@@ -1,0 +1,22 @@
+CSTA-private-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) private-event( 71) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+CSTASecurityData FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+CSTAPrivateData FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+PrivateEvent ::= SEQUENCE
+{	security			CSTASecurityData			OPTIONAL,
+	privateData			CSTAPrivateData}
+
+END -- of CSTA-private-event

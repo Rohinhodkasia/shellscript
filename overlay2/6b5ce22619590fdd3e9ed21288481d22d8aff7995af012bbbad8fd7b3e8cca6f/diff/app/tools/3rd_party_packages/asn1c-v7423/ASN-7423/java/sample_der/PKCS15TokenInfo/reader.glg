@@ -1,0 +1,42 @@
+Decode was successful
+tokenInfo {
+   version = 0
+   serialNumber = 159752222515401240
+   manufacturerID = XY, Inc.
+   label = Digital signature card
+   tokenflags = 001xxxxx
+   seInfo[0] {
+      se = 1
+      owner = { 1 0 0 }
+   }
+   supportedAlgorithms[0] {
+      reference = 1
+      algorithm = 1
+      parameters = 0500
+      supportedOperations = 0000001x
+      algId = { 1 3 14 3 2 26 }
+   }
+   supportedAlgorithms[1] {
+      reference = 2
+      algorithm = 2
+      parameters = 0500
+      supportedOperations = 01xxxxxx
+      algId = { 1 3 36 3 4 3 2 1 }
+   }
+   supportedAlgorithms[2] {
+      reference = 3
+      algorithm = 3
+      parameters = 0500
+      supportedOperations = 101xxxxx
+      algId = { 1 0 0 }
+   }
+   supportedAlgorithms[3] {
+      reference = 4
+      algorithm = 4
+      parameters = 04080000000000000000
+      supportedOperations = 000011xx
+      algId = { 1 2 840 113549 3 7 }
+   }
+   issuerId = wxy
+   holderId = vwx
+}

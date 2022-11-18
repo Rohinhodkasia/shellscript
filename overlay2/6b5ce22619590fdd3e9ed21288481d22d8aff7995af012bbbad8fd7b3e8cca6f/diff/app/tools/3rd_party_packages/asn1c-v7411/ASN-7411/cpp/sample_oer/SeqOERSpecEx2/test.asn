@@ -1,0 +1,9 @@
+Test DEFINITIONS ::= BEGIN
+
+TestSeq ::= SEQUENCE {
+   objectName1 OCTET STRING(SIZE(5)), 
+   objectName2 INTEGER (0..255) DEFAULT 7, 
+   objectName3 INTEGER OPTIONAL
+}
+
+END

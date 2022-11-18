@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Encoding TS24301Msg_PDU</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s07.html" title="Encoding Messages" />
+    <link rel="prev" href="ar01s07s01.html" title="Encoding Messages Other Than TS24301Msg_PDU" />
+    <link rel="next" href="ar01s08.html" title="Decoding Messages" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Encoding TS24301Msg_PDU</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s07s01.html">Prev</a> </td>
+          <th width="60%" align="center">Encoding Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s08.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Encoding TS24301Msg_PDU">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644155044"></a>Encoding TS24301Msg_PDU</h3>
+          </div>
+        </div>
+      </div>
+      <p>The procedure for encoding <code class="literal">TS24301Msg_PDU</code> is basically the same as given above. When the message is to be encoded with security protection, however, there are a few additional requirements. These steps are <span class="emphasis"><em>not</em></span> necessary when encoding a message <span class="emphasis"><em>without</em></span> security protection.</p>
+      <p>For security protected messages, including <code class="literal">SERVICE REQUEST</code> messages (which always have integrity protection): </p>
+      <div class="orderedlist">
+        <ol class="orderedlist" type="1">
+          <li class="listitem">
+            <p>Initialize the NAS security context</p>
+          </li>
+          <li class="listitem">
+            <p>Specify the algorithm and keys to use</p>
+          </li>
+          <li class="listitem">
+            <p>Set NAS security parameters</p>
+          </li>
+          <li class="listitem">
+            <p>Assign security header fields in the PDU.</p>
+          </li>
+          <li class="listitem">
+            <p>Free the NAS security context when finished.</p>
+          </li>
+        </ol>
+      </div>
+      <p>The following code illustrates these steps. It encodes an <code class="literal">ACTIVATE DEDICATED EPS BEARER CONTEXT ACCEPT</code> message with both integrity and confidentiality protection.</p>
+      <pre class="programlisting">#include "TS24301Msgs.h"
+#include "rt3gppsrc/rt3gppNasSec.h"
+
+int main (int argc, char** argv)
+{
+    TS24301Msg_PDU pdu;
+    TS24301Msg_ActvDedEPSBearerCtxtAcc data;
+    TS24301Msg_ActvDedEPSBearerCtxtAcc* pvalue = &amp;data;
+    OSCTXT	ctxt;
+    OSOCTET	msgbuf[256], *msgptr;
+    OSSIZE       len;
+    int		i, ret;
+    OSCrypt128Key integKey = { ... };
+    OSCrypt128Key encryptKey = { ... };
+    
+    
+    /* Initialize context structure */
+    
+    ret = rtInitContext (&amp;ctxt);
+    if (0 != ret) {
+        printf ("rtInitContext failed; status = %d\n", ret);
+        rtxErrPrint (&amp;ctxt);
+        return ret;
+    }
+    
+    /* Initialize the NAS Security context */   
+    ret = rtx3gppSecInitialize(&amp;ctxt);
+    if (0 != ret) {
+        rtxErrPrint (&amp;ctxt);
+    }
+    
+    
+    /* Specify the integrity and encryption algorithms and keys.
+    This only needs to be done the first time or when these values change
+    */
+    ret = rtx3gppAssignAlgorithmKeys(&amp;ctxt, &amp;integKey, &amp;encryptKey,
+    OS3GPPSecAlgorithm_AES, OS3GPPSecAlgorithm_AES);
+    if (0 != ret) {
+        rtxErrPrint (&amp;ctxt);
+    }
+    
+    /* Assign count, bearerId, direction in the NAS security context.
+    These act as input into the security algorithms.
+    */
+    ctxt.p3gppSec-&gt;count = 15;
+    ctxt.p3gppSec-&gt;bearerId = 0;
+    ctxt.p3gppSec-&gt;direction = 0; /*uplink*/   
+    
+    /* Populate data structure */
+    
+    asn1Init_TS24301Msg_PDU (&amp;pdu);
+    
+    /* Specify the security header is present. Populate the security header
+    fields. The security header's protocol discriminator is always EPS
+    Mobility management. The msgAuthCode field will be filled in by function
+    NASEnc_TS24301Msg_PDU.
+    */
+    pdu.m.secHdrPresent = 1;
+    pdu.secHdr.secHdrType = TS24007L3_SecHdrType_integProtAndCipher;
+    pdu.secHdr.protoDiscr = TS24007L3_ProtoDiscr_epsMobMgmt;
+    pdu.secHdr.seqNumber  = 1;
+    
+    /* The skipIndicator is used for the message's ESP bearer identity;
+    it is always zero. The PDU's protocol discriminator (unlike the security
+    header's protocol discriminator above) is set according to the message
+    being protected.
+    */
+    pdu.l3HdrOpts.t = T_TS24007L3_L3HdrOptions_skipInd;
+    pdu.l3HdrOpts.u.skipInd = 0;
+    pdu.protoDiscr = TS24007L3_ProtoDiscr_epsSessMgmt;
+    pdu.msgType = ASN1V_ts24301Msg_mt_ActvDedEPSBearerCtxtAcc;
+    
+    ... 
+    
+    
+    /* Encode data.
+    NASEnc_TS24301Msg_PDU will encrypt the message and compute the message
+    authentication code according to the security settings chosen above.
+    */
+    
+    rtxCtxtSetBufPtr (&amp;ctxt, msgbuf, sizeof(msgbuf));
+    
+    ret = NASEnc_TS24301Msg_PDU (&amp;ctxt, &amp;pdu);
+    if (0 != ret) {
+        printf ("encode PDU failed; status = %d\n", ret);
+        rtxErrPrint (&amp;ctxt);
+        return ret;
+    }
+    
+    ... 
+    
+    /* Free the NAS security context */
+    
+    rtx3gppSecFree(&amp;ctxt);
+    
+    ... 
+}</pre>
+      <p>When the message being security protected is a <code class="literal">SERVICE REQUEST</code> message, the above procedure is basically the same, but a few differences do exist: </p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist" type="disc">
+          <li class="listitem">
+            <p><code class="literal">TS24301Msg_ServiceRequest</code> has its own <code class="literal">secHdr</code> field that is simply the security header type. This means there are <span class="emphasis"><em>two</em></span> fields (this one and <code class="literal">TS24301Msg_PDU.secHdr.secHdrType</code>) that have the security header type; <span class="emphasis"><em>both</em></span> should be set to <code class="literal">TS24007L3_SecHdrType_secHdrForSvcReq</code>.</p>
+          </li>
+          <li class="listitem">
+            <p><code class="literal">TS24301Msg_ServiceRequest</code> has its own MAC field, <code class="literal">shortMAC</code>. This does not need to be set. It will be assigned by <code class="literal">NASEnc_TS24301Msg_PDU</code> (<code class="literal">TS24301Msg_PDU.secHdr.msgAuthCode</code> will not be assigned).</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s07s01.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s07.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s08.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Encoding Messages Other Than TS24301Msg_PDU </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> Decoding Messages</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

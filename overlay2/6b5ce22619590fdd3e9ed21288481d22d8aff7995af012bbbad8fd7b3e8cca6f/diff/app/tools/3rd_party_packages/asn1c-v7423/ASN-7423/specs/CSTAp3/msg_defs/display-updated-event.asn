@@ -1,0 +1,34 @@
+CSTA-display-updated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) display-updated-event( 285) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DisplayID, CharacterSet FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+DisplayUpdatedEvent ::= SEQUENCE
+{	device				SubjectDeviceID,
+	displayID			DisplayID				OPTIONAL,
+	logicalRows			INTEGER,
+	logicalColumns			INTEGER,
+	physicalRows			[0] IMPLICIT INTEGER	 		OPTIONAL,
+	physicalColumns			[1] IMPLICIT INTEGER	 		OPTIONAL,
+	physicalBaseRowNumber		[2] IMPLICIT INTEGER	 		OPTIONAL,
+	physicalBaseColumnNumber	[3] IMPLICIT INTEGER	 		OPTIONAL,
+	characterSet			CharacterSet				OPTIONAL,
+	contentsOfDisplay		IA5String,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-display-updated-event

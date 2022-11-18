@@ -1,0 +1,53 @@
+<project>
+
+   <!-- Build classpath -->
+   <path id="compile.classpath">
+      <pathelement location="../../asn1rt.jar"/>
+      <pathelement location="../../.."/>
+      <pathelement location="../.."/>
+      <pathelement location="."/>
+   </path>
+
+   <!-- Code generation -->
+   <target name="generate">
+      <exec executable="../../../bin/asn1c" failonerror="true">
+         <arg value="test.asn"/>
+         <arg value="-java"/>
+         <arg value="-json"/>
+         <arg value="-print"/>
+         <arg value="-noUniqueNames"/>
+         <arg line="-pkgname sample_json.Alltypes"/>
+      </exec>
+   </target>
+   
+   <target name="build" depends="generate">
+      <javac includeantruntime="false" srcdir=".">
+         <classpath refid="compile.classpath"/>
+      </javac>
+   </target>
+
+   <target name="writer">
+      <java classname="sample_json.Alltypes.Writer" failonerror="true" output="writer.log">
+         <classpath refid="compile.classpath"/>
+      </java>
+   </target>
+
+<target name="reader">
+   <java classname="sample_json.Alltypes.Reader" failonerror="true" output="reader.log">
+      <classpath refid="compile.classpath"/>
+   </java>
+</target>
+
+
+<target name="clean">
+   <delete>
+      <fileset dir="." defaultexcludes="false">
+         <include name="**/*.java"/>
+         <include name="**/*.class"/>
+         <exclude name="Writer.java"/>
+         <exclude name="Reader.java"/>
+      </fileset>
+   </delete>
+</target>
+
+</project>

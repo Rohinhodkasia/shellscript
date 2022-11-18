@@ -1,0 +1,22 @@
+Canonical
+DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+
+PDU ::= SEQUENCE
+{
+   valueWithDefault IA5String DEFAULT "okay",
+   bitStringNamedRange BIT STRING { b0(0), b1(1), b14 (14) } (SIZE(4..20)),
+   seqOfOctStrings SEQUENCE OF OCTET STRING,  --easiest to test out ordering   
+   setOfOctStrings SET OF OCTET STRING,  --easiest to test out ordering   
+   generalizedTime GeneralizedTime,
+   utcTime UTCTime,
+   trueOrFalse BOOLEAN,
+   unsignedint INTEGER(0..MAX),
+   signedint INTEGER,
+   animal ENUMERATED { horse(-1), cow(2), pig(4), elephant(200) },
+   color ENUMERATED { red(2), brown(4), green(200), white(255) }
+}
+
+
+
+END

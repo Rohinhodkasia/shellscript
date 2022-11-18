@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Encoding Messages Other Than TS24301Msg_PDU</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s07.html" title="Encoding Messages" />
+    <link rel="prev" href="ar01s07.html" title="Encoding Messages" />
+    <link rel="next" href="ar01s07s02.html" title="Encoding TS24301Msg_PDU" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Encoding Messages Other Than TS24301Msg_PDU</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s07.html">Prev</a> </td>
+          <th width="60%" align="center">Encoding Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s07s02.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Encoding Messages Other Than TS24301Msg_PDU">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644104764"></a>Encoding Messages Other Than TS24301Msg_PDU</h3>
+          </div>
+        </div>
+      </div>
+      <p>We'll use the PDU for TS 24.008 as our example. File TS24008Msgs.asn contains a type defined as follows:</p>
+      <pre class="screen">PDU ::= SEQUENCE {     
+    -- L3 header, octet 1, bits 5 thru 8
+    l3HdrOpts CHOICE {
+        skipInd INTEGER(0..15),
+        transId SEQUENCE {
+            flag BOOLEAN,
+            value INTEGER(0..255)
+        }
+    },
+    protoDiscr   NAS-PROTOCOL-CLASS.&amp;protoDiscr ({TS24008-IE-OBJECTSET}), 
+    sendSeqNum   INTEGER (0..3) OPTIONAL, 
+    msgType      NAS-PROTOCOL-CLASS.&amp;msgType ({TS24008-IE-OBJECTSET}), 
+    data         NAS-PROTOCOL-CLASS.&amp;Value 
+                    ({TS24008-IE-OBJECTSET}{@protoDiscr,@msgType})
+}            
+        </pre>
+      <p>The first 4 elements within this definition (<code class="literal">l3HdrOpts</code>, <code class="literal">protoDiscr</code>, <code class="literal">sendSeqNum</code>, and <code class="literal">msgType</code>) describe header fields as defined in the TS 24.007 and TS 24.008 documents. The final data field is a variable type field that defines the contents for all of the different message types. The combination of protocol discriminator and message type serve to specify the message type.</p>
+      <p>The general procedure to encode a message of this type is as follows: </p>
+      <div class="orderedlist">
+        <ol class="orderedlist" type="1">
+          <li class="listitem">
+            <p>Declare variables of the generated PDU type (e.g. <code class="literal">TS24008Msg_PDU</code>) and the specific message type to be sent (e.g. <code class="literal">TS24008Msg_IdentityRequest</code>).</p>
+          </li>
+          <li class="listitem">
+            <p>Populate the types. The address of the specific message structure would be stored within the PDU union structure. The generated <code class="literal">asn1SetTC_*</code> (set table constraint) functions can be used to set fixed value fields (protocol discriminator and message type) and the pointer to the message data in one call.</p>
+          </li>
+          <li class="listitem">
+            <p>Initialize the context structure and set the context buffer pointer.</p>
+          </li>
+          <li class="listitem">
+            <p>Call the PDU encode function</p>
+          </li>
+          <li class="listitem">
+            <p>Get the message pointer and length to work with the binary message.</p>
+          </li>
+        </ol>
+      </div>
+      <p>Before a NAS encode function can be called, the user must first initialize an encoding context block structure. The context block is initialized by calling the <code class="literal">rtInitContext</code> function.</p>
+      <p>Only memory-buffer based encoding is supported because the message sizes are generally small (normally less than 256 bytes).</p>
+      <p>To do memory-based encoding, the <code class="literal">rtxInitContextBuffer</code> function would be called. This can be used to specify use of a static or dynamic memory buffer. Specification of a dynamic buffer is possible by setting the buffer address argument to null and the buffer size argument to zero.</p>
+      <p>The PDU encode function can then be called to encode the message. If the return status indicates success (0), then the message will have been encoded in the given buffer. The length of the encoded message can be obtained by calling the <code class="literal">rtxCtxtGetMsgLen</code> run-time function. If dynamic encoding was specified (i.e., a buffer start address and length were not given), the <code class="literal">rtxCtxtGetMsgPtr</code> run-time function can be used to obtain the start address of the message. This routine will also return the length of the encoded message.</p>
+      <p>A program fragment that could be used to encode a 3G NAS Identity Request message is as follows: 
+            </p>
+      <pre class="programlisting">#include "rt3gppsrc/TS24008Msgs.h" /* include file generated by ASN1C */
+            
+main ()
+{
+    TS24008Msg_PDU pdu;
+    TS24008Msg_IdentityRequest idReq;
+    OSCTXT ctxt;
+    OSOCTET msgbuf[256], *msgptr;
+    int i, len, stat;
+    const char* filename = "message.dat";
+    
+    /* Initialize context structure */
+    
+    stat = rtInitContext (&amp;ctxt);
+    if (0 != stat) {
+        printf ("rtInitContext failed; status = %d\n", ret);
+        rtxErrPrint (&amp;ctxt);
+        return ret;
+    }
+    
+    /* Populate C structure */
+    
+    pdu.l3HdrOpts.u.skipInd = 0;
+    asn1SetTC_TS24008Msg_PDU_obj_IdentityRequest (&amp;ctxt, &amp;pdu, &amp;idReq);
+    
+    OSCRTLMEMSET (&amp;idReq, 0, sizeof(idReq));
+    idReq.value.typeOfIdent = TS24008IE_IdentityTypeValue_typeOfIdent_imei;
+    
+    /* Encode */
+    
+    rtxCtxtSetBufPtr (&amp;ctxt, msgbuf, sizeof(msgbuf));
+    
+    stat = NASEnc_TS24008Msg_PDU (&amp;ctxt, &amp;pdu);
+    if (0 != stat) {
+        printf ("encode PDU failed; status = %d\n", ret);
+        rtxErrPrint (&amp;ctxt);
+        return ret;
+    }
+    
+    msgptr = rtxCtxtGetMsgPtr (&amp;ctxt);
+    len = rtxCtxtGetMsgLen (&amp;ctxt);
+    
+    ... 
+}   
+</pre>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s07.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s07.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s07s02.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Encoding Messages </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> Encoding TS24301Msg_PDU</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

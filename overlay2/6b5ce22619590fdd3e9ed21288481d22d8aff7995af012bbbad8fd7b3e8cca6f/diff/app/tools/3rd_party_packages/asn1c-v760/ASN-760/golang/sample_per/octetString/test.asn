@@ -1,0 +1,16 @@
+MyModule DEFINITIONS ::= BEGIN
+
+OctStr ::= OCTET STRING
+OctStr-1-50 ::= OCTET STRING (SIZE(1..50))
+OctStr3 ::= OCTET STRING (SIZE(3))
+
+MySeq ::= SEQUENCE {
+    os1 OctStr, 
+    os2 OCTET STRING,
+    os3 OctStr-1-50,
+    os4 OCTET STRING (SIZE(1..50)) OPTIONAL,
+    os5 OctStr3 OPTIONAL,
+    os6 OCTET STRING (SIZE(10))
+}
+
+END

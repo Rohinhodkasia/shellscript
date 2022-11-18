@@ -1,0 +1,12 @@
+<asn1config>
+   <module>
+      <name>SkipElements</name>
+      <production>
+         <name>PDU</name>
+         <element>
+            <name>details</name>
+            <skip/>
+         </element>
+      </production>
+   </module>
+</asn1config>

@@ -1,0 +1,3853 @@
+CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+CapExchangeServList, SystemStatusServList, MonitoringServList, SnapshotServList,
+CallControlServList, CallControlEvtsList, CallAssociatedServList,
+CallAssociatedEvtsList, MediaServList, MediaEvtsList, RouteingServList, PhysDevEvtsList,
+PhysDevServList, LogicalEvtsList, LogicalServList, DeviceMaintEvtsList, IOServicesServList,
+DataCollectionServList, VoiceUnitServList, VoiceUnitEvtsList, CDRServList,
+VendorSpecificServList, VendorSpecificEvtsList, DeviceIDFormat, SwDomainFeatures,
+SwAppearanceAddressability, SwAppearanceTypes, IgnoreUnsupportedParameters, PauseTime,
+TimeStampMode, MiscMonitorCaps, MaxLengthParameters, MaxLengthParametersContinued,
+FilterThreshold, ServiceCrossRefID,DeviceCategory, GroupDeviceAttributes, NamedDeviceTypes, 
+ACDModels, AgentLogOnModels,AppearanceType, TransAndConfSetup, MediaServiceCapsList, LogDevServList, 
+LogDevEvtsList,BookmarkReached,GetLocationTrackingSessions,
+GetLocationTrackingCapabilities,LocationSessionInfo,LocationServicesServList;
+
+IMPORTS
+MediaServiceType, MediaServiceInstanceID, ConnectionMode, ConnectionModeBMap
+FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+ServiceCrossRefID ::= OCTET STRING 
+
+-- Capability Bitmaps
+
+LogDevServList ::= SEQUENCE
+{	callControlServList 		[0] IMPLICIT CallControlServList 		OPTIONAL,
+	callAssociatedServList 		[1] IMPLICIT CallAssociatedServList 		OPTIONAL,
+	logicalServList 		[2] IMPLICIT LogicalServList 			OPTIONAL,
+	mediaServList 			[3] IMPLICIT MediaServList 			OPTIONAL,
+	iOServicesServList 		[4] IMPLICIT IOServicesServList 		OPTIONAL,
+	dataCollectionServList 		[5] IMPLICIT DataCollectionServList 		OPTIONAL,
+	voiceUnitServList 		[6] IMPLICIT VoiceUnitServList 			OPTIONAL,
+	locationServicesServList	[7] IMPLICIT LocationServicesServList		OPTIONAL }
+
+LogDevEvtsList ::= SEQUENCE
+{ 	callControlEvtsList 		[0] IMPLICIT CallControlEvtsList 		OPTIONAL,
+	callAssociatedEvtsList 		[1] IMPLICIT CallAssociatedEvtsList 		OPTIONAL,
+	logicalEvtsList 		[2] IMPLICIT LogicalEvtsList 			OPTIONAL,
+	mediaEvtsList 			[3] IMPLICIT MediaEvtsList 			OPTIONAL,
+	voiceUnitEvtsList 		[4] IMPLICIT VoiceUnitEvtsList 			OPTIONAL }
+
+CapExchangeServList ::= SEQUENCE
+{ 	getCSTAFeatures			[5] IMPLICIT GetCSTAFeatures			OPTIONAL,
+	getLogicalDeviceInformation 	[0] IMPLICIT GetLogicalDeviceInformation 	OPTIONAL,
+	getPhysicalDeviceInformation 	[1] IMPLICIT GetPhysicalDeviceInformation 	OPTIONAL,
+	getSwitchingFunctionCaps	[4] IMPLICIT GetSwitchingFunctionCapabilities	OPTIONAL,
+	getSwitchingFunctionDevices 	[2] IMPLICIT GetSwitchingFunctionDevices 	OPTIONAL,
+	switchingFunctionDevices 	[3] IMPLICIT SwitchingFunctionDevices 		OPTIONAL }
+
+
+GetCSTAFeatures ::= BIT STRING
+{ 	privateDataInReq			( 0),
+	privateDataInAck			( 1) }
+
+GetLogicalDeviceInformation ::= BIT STRING
+{ 	privateDataInReq 			( 0),
+	namedDeviceTypeInAck 			( 1),
+	shortFormDeviceIDInAck 			( 2),
+	miscMonitorCapsInAck 			( 3),
+	maxCallBacksInAck 			( 4),
+	maxAutoAnswerRingsInAck 		( 5),
+	maxActiveCallsInAck 			( 6),
+	maxHeldCallsInAck 			( 7),
+	maxFwdSettingsInAck 			( 8),
+	maxDevicesInConfInAck 			( 9),
+	transAndConfSetupParameter 		(10),
+	transAndConfSetupConsultationInAck 	(11),
+	transAndConfSetupHoldMakeInAck 		(12),
+	transAndConfSetupAlternateInAck 	(13),
+	transAndConfSetupTwoCallsHoldInAck 	(14),
+	transAndConfSetupTwoCallsConnectedInAck (15),
+	mediaClassSupportInAck 			(16),
+	connectionRateListInAck 		(17),
+	delayToleranceListInAck 		(18),
+	numberOfChannelsInAck 			(19),
+	maxChannelBindInAck 			(20),
+	privateDataInAck 			(21) }
+
+GetPhysicalDeviceInformation ::= BIT STRING
+{ 	privateDataInReq 			( 0),
+	namedDeviceTypesInAck 			( 1),
+	otherLogicalDeviceListInAck 		( 2),
+	deviceModelNameInAck 			( 3),
+	maxDisplaysInAck 			( 4),
+	maxButtonsInAck 			( 5),
+	maxLampsInAck 				( 6),
+	maxRingPatternsInAck 			( 7),
+	privateDataInAck 			( 8) }
+
+GetSwitchingFunctionDevices ::= BIT STRING
+{ 	requestedDeviceID 			( 0),
+	requestedDeviceCategoryACD 		( 1),
+	requestedDeviceCategoryACDGroup 	( 2),
+	requestedDeviceCategoryHuntGroup 	( 3),
+	requestedDeviceCategoryPickGroup 	( 4),
+	requestedDeviceCategoryUserGroup	(14),
+	requestedDeviceCategoryOtherGroup 	( 5),
+	requestedDeviceCategoryNetwInterface 	( 6),
+	requestedDeviceCategoryPark 		( 7),
+	requestedDeviceCategoryRouteingDevice 	( 8),
+	requestedDeviceCategoryStation 		( 9),
+	requestedDeviceCategoryVoiceUnit 	(10),
+	requestedDeviceCategoryGenericIV	(15),
+	requestedDeviceCategoryListenerIV	(16),
+	requestedDeviceCategoryVDTMFIV		(17),
+	requestedDeviceCategoryPromptIV		(18),
+	requestedDeviceCategoryPromptQueueIV	(19),
+	requestedDeviceCategoryMessageIV	(20),
+	requestedDeviceCategoryConference	(21),
+	requestedDeviceCategoryOther 		(11),
+	privateData 				(12),
+	privateDataInAck 			(13) }
+
+GetSwitchingFunctionCapabilities ::= BIT STRING
+{ 	privateData 				( 0),
+	mediaClassSupport 			( 1),
+	numberOfChannels			( 2),
+	maxChannelBind				( 3),
+	miscMediaCallCharacteristics		( 4),
+	connectionRateList			( 5),
+	delayToleranceRateList			( 6),
+	pauseTime				( 7),
+	currentTime				( 8),
+	transAndConfSetupParameter		( 9),
+	transAndConfSetupConsultation		(10),
+	transAndConfSetupHoldMake		(11),
+	transAndConfSetupAlternate		(12),
+	transAndConfSetupTwoCalls		(13),
+	transAndConfSetupTwoCallsConnected	(14),
+	miscMonitor				(15),
+	correlatorDataSupported			(16),
+	dynamicFeatureSupported			(17),
+	callLinkageOptions			(18),
+	acdModels				(19),
+	agentLogOnModels			(20),
+	agentStateModels			(21),
+	privateDataVersionList			(22),
+	simpleThreshold				(23),
+	filterThreshold				(24),
+	maxDeviceHistoryEntries			(25) }
+
+SwitchingFunctionDevices ::= BIT STRING
+{ 	segmentID 				( 0),
+	deviceListDeviceCategory 		( 1),
+	deviceListNamedDeviceTypes 		( 2),
+	deviceListDeviceAttributes 		( 3),
+	deviceListDeviceModelName 		( 4),
+	deviceListNidGroup			( 6),
+	privateData 				( 5) }
+
+SystemStatusServList ::= SEQUENCE
+{ 	changeSystemStatusFilter 	[ 0] IMPLICIT ChangeSystemStatusFilter		OPTIONAL,
+	systemRegister 			[ 1] IMPLICIT SystemRegister 			OPTIONAL,
+	systemStatusRegisterAbort 	[ 2] IMPLICIT SystemStatusRegisterAbort 	OPTIONAL,
+	systemStatusRegisterCancel 	[ 3] IMPLICIT SystemStatusRegisterCancel 	OPTIONAL,
+	requestSystemStatus 		[ 4] IMPLICIT RequestSystemStatus 		OPTIONAL,
+	systemStatus 			[ 5] IMPLICIT SystemStatus 			OPTIONAL,
+	swFunctionCapsChanged 		[ 6] IMPLICIT SwFunctionCapsChanged 		OPTIONAL,
+	swFunctionDevicesChanged 	[ 7] IMPLICIT SwFunctionDevicesChanged 		OPTIONAL,
+	getRegistrations		[ 8] IMPLICIT GetRegistrations			OPTIONAL,
+	registrationInfo		[ 9] IMPLICIT RegistrationInfo			OPTIONAL }
+
+ChangeSystemStatusFilter ::= BIT STRING
+{ 	requestedStatusFilterInitializing 	( 0), 	-- optional parameters
+	requestedStatusFilterEnabled 		( 1), 	-- optional parameters
+	requestedStatusFilterNormal 		( 2), 	-- optional parameters
+	requestedStatusFilterMessageLost 	( 3), 	-- optional parameters
+	requestedStatusFilterDisabled 		( 4), 	-- optional parameters
+	requestedStatusFilterPartiallyDisabled 	( 5), 	-- optional parameters
+	requestedStatusFilterOverloadImminent 	( 6), 	-- optional parameters
+	requestedStatusFilterOverloadReached 	( 7), 	-- optional parameters
+	requestedStatusFilterOverloadRelieved 	( 8), 	-- optional parameters
+	privateData 				( 9), 	-- optional parameters
+	privateDataInAck 			(10) }	-- optional parameters
+
+SystemRegister ::= BIT STRING
+{ 	requestTypesSystemStatus 			( 0), 	-- optional parameters
+	requestTypesRequestSystemStatus 		( 1), 	-- optional parameters
+	requestTypesSwitchingFunctionCapsChanged 	( 2), 	-- optional parameters
+	requestTypesSwitchingFuncionDevicesChanged 	( 3), 	-- optional parameters
+	statusFilterInitializing 			( 4), 	-- optional parameters
+	statusFilterEnabled 				( 5), 	-- optional parameters
+	statusFilterNormal 				( 6), 	-- optional parameters
+	statusFilterMessageLost 			( 7), 	-- optional parameters
+	statusFilterDisabled 				( 8), 	-- optional parameters
+	statusFilterPartiallyDisabled 			( 9), 	-- optional parameters
+	statusFilterOverloadImminent 			(10), 	-- optional parameters
+	statusFilterOverloadReached 			(11), 	-- optional parameters
+	statusFilterOverloadRelieved 			(12), 	-- optional parameters
+	privateDataOctetString 				(13), 	-- optional parameters
+	privateData 					(14), 	-- optional parameters
+	privateDataOctetStringInAck 			(15), 	-- optional parameters
+	privateDataInAck 				(16) } 	-- optional parameters
+
+SystemStatusRegisterCancel ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+SystemStatusRegisterAbort ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+RequestSystemStatus ::= BIT STRING
+{ 	privateDataInReq 			( 0), 	-- optional parameters
+	systemStatusInitializing 		( 1), 	-- optional parameters
+	systemStatusEnabled 			( 2), 	-- optional parameters
+	systemStatusNormal 			( 3), 	-- optional parameters
+	systemStatusMessageLost 		( 4), 	-- optional parameters
+	systemStatusDisabled 			( 5), 	-- optional parameters
+	systemStatusPartiallyDisabled 		( 6), 	-- optional parameters
+	systemStatusOverloadImminent 		( 7), 	-- optional parameters
+	systemStatusOverloadReached 		( 8), 	-- optional parameters
+	systemStatusOverloadRelieved 		( 9), 	-- optional parameters
+	privateDataInAck 			(10), 	-- optional parameters
+	switchingFunctionSupportsSending 	(11), 	-- misc characteristics
+	switchingFunctionSupportsReceiving	(12) } 	-- misc characteristics
+
+SystemStatus ::= BIT STRING
+{ 	systemStatusInitializing 		( 0), 	-- optional parameters
+	systemStatusEnabled 			( 1), 	-- optional parameters
+	systemStatusNormal 			( 2), 	-- optional parameters
+	systemStatusMessageLost 		( 3), 	-- optional parameters
+	systemStatusDisabled 			( 4), 	-- optional parameters
+	systemStatusPartiallyDisabled 		( 5), 	-- optional parameters
+	systemStatusOverloadImminent 		( 6), 	-- optional parameters
+	systemStatusOverloadReached 		( 7), 	-- optional parameters
+	systemStatusOverloadRelieved 		( 8), 	-- optional parameters
+	privateData 				( 9), 	-- optional parameters
+	privateDataInAck 			(10), 	-- optional parameters
+	switchingFunctionSupportsSending 	(11), 	-- misc characteristics
+	switchingFunctionSupportsReceiving 	(12) }	-- misc characteristics
+
+SwFunctionCapsChanged ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+SwFunctionDevicesChanged ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+GetRegistrations ::= BIT STRING
+{	requestedReqTypes			( 0),
+	privateData				( 1),
+	privateDataInAck			( 2),
+	segmentedResponseProvided		( 3) }
+
+
+RegistrationInfo ::= BIT STRING
+{	segmentID				( 0),
+	privateData				( 1) }
+
+
+MonitoringServList ::= SEQUENCE
+{ 	changeMonitorFilter 		[ 0] IMPLICIT ChangeMonitorFilter 		OPTIONAL,
+	monitorStart 			[ 1] IMPLICIT MonitorStart 			OPTIONAL,
+	monitorStop 			[ 2] IMPLICIT MonitorStop 			OPTIONAL,
+	getMonitors			[ 3] IMPLICIT GetMonitors			OPTIONAL,
+	monitorInfo			[ 4] IMPLICIT MonitorInfo			OPTIONAL }
+
+ChangeMonitorFilter ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+MonitorStart ::= BIT STRING
+{ 	monitorObjectDevice 			( 0), 	-- optional parameters
+	monitorObjectCall 			( 1), 	-- optional parameters
+	requestedMonitorFilter 			( 2), 	-- optional parameters
+	monitorTypeCall 			( 3), 	-- optional parameters
+	monitorTypeDevice 			( 4), 	-- optional parameters
+	monitorMediaClassParameter 		( 5), 	-- optional parameters
+	monitorMediaClassAudio 			( 6), 	-- optional parameters
+	monitorMediaClassData 			( 7), 	-- optional parameters
+	monitorMediaClassImage 			( 8), 	-- optional parameters
+	monitorMediaClassVoice 			( 9), 	-- optional parameters
+	monitorMediaClassChat			(15), 	-- optional parameters
+	monitorMediaClassEmail			(16), 	-- optional parameters
+	monitorMediaClassMessage		(17), 	-- optional parameters
+	monitorMediaClassIM			(18), 	-- optional parameters
+	monitorMediaClassSMS			(19), 	-- optional parameters
+	monitorMediaClassMMS			(20), 	-- optional parameters
+	monitorExistingCallsInAck 		(10), 	-- optional parameters
+	privateDataInAck 			(11), 	-- optional parameters
+	callIDOnly 				(12), 	-- miscellaneous characteristics
+	swDomainDefaultForMonitorTypeIsDevice 	(13), 	-- miscellaneous characteristics
+	acceptsMonitorStartWhileOOS 		(14) } 	-- miscellaneous characteristics
+
+MonitorStop ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	switchingFunctionSupportsSending 	( 2), 	-- misc characteristics
+	switchingFunctionSupportsReceiving 	( 3) } 	-- misc characteristics
+
+GetMonitors ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	segmentedResponseProvided		( 2) }	-- optional parameters
+
+MonitorInfo ::= BIT STRING
+{ 	segmentID 				( 0), 	-- optional parameters
+	privateData 				( 1) }	-- optional parameters
+
+SnapshotServList ::= SEQUENCE
+{ 	snapshotCall 			[0] IMPLICIT SnapshotCall,
+	snapshotDevice 			[1] IMPLICIT SnapshotDevice,
+	snapshotCallData 		[2] IMPLICIT SnapshotCallData,
+	snapshotDeviceData 		[3] IMPLICIT SnapshotDeviceData }
+
+SnapshotCall ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	locaConnectionStateInAck 		( 1), 	-- optional parameters
+	mediaServiceInfoListInAck 		( 2), 	-- optional parameters
+	mediaServiceVersionInAck 		( 3), 	-- optional parameters
+	mediaServiceInstanceInAck 		( 4), 	-- optional parameters
+	mediaStreamID 				( 5), 	-- optional parameters
+	connectionInformation 			( 6), 	-- optional parameters
+	mediaCallCharacteristicsInAck 		( 7), 	-- optional parameters
+	callCharacteristicsInAck 		( 8), 	-- optional parameters
+	callingDeviceInAck 			( 9), 	-- optional parameters
+	calledDeviceInAck 			(10), 	-- optional parameters
+	subjectOfCallInAck			(14), 	-- optional parameters
+	messageInfoInAck			(15), 	-- optional parameters
+	languagePreferencesInAck		(16), 	-- optional parameters
+	deviceHistoryInAck			(17), 	-- optional parameters
+	privateDataInAck 			(11), 	-- optional parameters
+	callIDOnly 				(12), 	-- miscellaneous characteristics
+	reportsWithSnapsCallData 		(13), 	-- optional parameters
+	locationInfoList			(18) } 	-- miscellaneous characteristics
+
+SnapshotDevice ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	localCallStateCompoundCallState 	( 1), 	-- optional parameters
+	localCallStateSimpleCallState 		( 2), 	-- optional parameters
+	localCallStateUnknown 			( 3), 	-- optional parameters
+	mediaServiceInfoListInAck 		( 4), 	-- optional parameters
+	mediaServiceVersionInAck 		( 5), 	-- optional parameters
+	mediaServiceInstanceInAck 		( 6), 	-- optional parameters
+	mediaStreamID 				( 7), 	-- optional parameters
+	connectionInformation 			( 8), 	-- optional parameters
+	mediaCallCharacteristicsInAck 		( 9), 	-- optional parameters
+	privateDataInAck 			(10), 	-- optional parameters
+	reportsWithSnapsDeviceData 		(11) } 	-- miscellaneous characteristics
+
+SnapshotCallData ::= BIT STRING
+{	segmentID 				( 0), 	-- optional parameters
+	localConnectionState 			( 1), 	-- optional parameters
+	mediaServiceInformationList 		( 2), 	-- optional parameters
+	mediaServiceVersion 			( 3), 	-- optional parameters
+	mediaServiceInstance 			( 4), 	-- optional parameters
+	mediaStreamID 				( 5), 	-- optional parameters
+	connectionInformation 			( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	locationInfoList			( 8) }	-- optional parameters
+
+SnapshotDeviceData ::= BIT STRING
+{	segmentID 				( 0), 	-- optional parameters
+	localCallStateCompoundCallState 	( 1), 	-- optional parameters
+	localCallStateSimpleCallState 		( 2), 	-- optional parameters
+	localCallStateUnknown 			( 3), 	-- optional parameters
+	mediaServiceInformationList 		( 4), 	-- optional parameters
+	mediaServiceVersion 			( 5), 	-- optional parameters
+	mediaServiceInstance 			( 6), 	-- optional parameters
+	mediaStreamID 				( 7), 	-- optional parameters
+	connectionInformation 			( 8), 	-- optional parameters
+	mediaCallCharacteristics 		( 9), 	-- optional parameters
+	endpointDeviceID			(11), 	-- optional parameters
+	privateData 				(10) }	-- optional parameters
+
+CallControlServList ::= SEQUENCE
+{ 	acceptCall 			[ 0] IMPLICIT AcceptCall 			OPTIONAL,
+	alternateCall 			[ 1] IMPLICIT AlternateCall 			OPTIONAL,
+	answerCall 			[ 2] IMPLICIT AnswerCall 			OPTIONAL,
+	callBack 			[ 3] IMPLICIT CallBack 				OPTIONAL,
+	callBackMessage 		[ 4] IMPLICIT CallBackMessage 			OPTIONAL,
+	campOnCall 			[ 5] IMPLICIT CampOnCall 			OPTIONAL,
+	clearCall 			[ 6] IMPLICIT ClearCall 			OPTIONAL,
+	clearConnection 		[ 7] IMPLICIT ClearConnection 			OPTIONAL,
+	conferenceCall 			[ 8] IMPLICIT ConferenceCall 			OPTIONAL,
+	consultationCall 		[ 9] IMPLICIT ConsultationCall 			OPTIONAL,
+	deflectCall 			[10] IMPLICIT DeflectCall 			OPTIONAL,
+	dialDigits 			[11] IMPLICIT DialDigits 			OPTIONAL,
+	directedPickupCall 		[12] IMPLICIT DirectedPickupCall 		OPTIONAL,
+	groupPickupCall 		[13] IMPLICIT GroupPickupCall 			OPTIONAL,
+	holdCall 			[14] IMPLICIT HoldCall 				OPTIONAL,
+	intrudeCall 			[15] IMPLICIT IntrudeCall 			OPTIONAL,
+	joinCall 			[16] IMPLICIT JoinCall 				OPTIONAL,
+	makeCall 			[17] IMPLICIT MakeCall 				OPTIONAL,
+	makeConnection			[25] IMPLICIT MakeConnection			OPTIONAL,
+	makePredictiveCall 		[18] IMPLICIT MakePredictiveCall	 	OPTIONAL,
+	parkCall 			[19] IMPLICIT ParkCall 				OPTIONAL,
+	reconnectCall 			[20] IMPLICIT ReconnectCall 			OPTIONAL,
+	retrieveCall 			[21] IMPLICIT RetrieveCall 			OPTIONAL,
+	sendMessage			[26] IMPLICIT SendMessage			OPTIONAL,
+	singleStepConference 		[22] IMPLICIT SingleStepConference 		OPTIONAL,
+	singleStepTransfer 		[23] IMPLICIT SingleStepTransfer	 	OPTIONAL,
+	transferCall 			[24] IMPLICIT TransferCall 			OPTIONAL }
+
+AcceptCall ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3), 	-- optional parameters
+	deviceIDOnly 				( 4), 	-- misc characteristics
+	ackModelMultiStep 			( 5) } 	-- misc characteristics
+
+AlternateCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states heldCall
+	hold 					( 1), 	-- initial states heldCall
+	queued 					( 2), 	-- initial states heldCall
+	connectionReservation 			( 3), 	-- optional parameters
+	consultOptionConsultOnly 		( 4), 	-- optional parameters
+	consultOptionTransferOnly 		( 5), 	-- optional parameters
+	consultOptionConferenceOnly 		( 6), 	-- optional parameters
+	consultOptionUnrestricted 		( 7), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	deviceIDOnly 				(10), 	-- misc characteristics
+	ackModelMultiStep 			(11), 	-- misc characteristics
+	supportsOfferedModeOfAlerting 		(12) }	-- misc characteristics
+
+AnswerCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	initiated 				( 1), 	-- initial states
+	queued 					( 2), 	-- initial states
+	correlatorData 				( 3), 	-- optional parameters
+	userData 				( 4), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	deviceIDOnly 				( 7), 	-- misc characteristics
+	supportsOfferedModeOfAlerting 		( 8), 	-- misc characteristics
+	ackModelMultiStep 			( 9) } 	-- misc characteristics
+
+CallBack ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	null					( 1), 	-- initial states
+	failed 					( 2), 	-- initial states
+	queued 					( 3), 	-- initial states
+	callCharacteristics 			( 4), 	-- optional parameters
+	subjectOfCall				(11), 	-- optional parameters
+	languagePreferences			(12), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	targetDeviceInAck 			( 6), 	-- optional parameters
+	privateDataInAck 			( 7), 	-- optional parameters
+	deviceIDOnly 				( 8), 	-- misc characteristics
+	moreCallBacksNegAck 			( 9), 	-- misc characteristics
+	ackModelMultiStep 			(10) } 	-- misc characteristics
+
+CallBackMessage ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	null 					( 1), 	-- initial states
+	failed 					( 2), 	-- initial states
+	queued 					( 3), 	-- initial states
+	privateData 				( 4), 	-- optional parameters
+	targetDeviceInAck 			( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	deviceIDOnly 				( 7), 	-- misc characteristics
+	moreCallBacksNegAck 			( 8), 	-- misc characteristics
+	ackModelMultiStep 			( 9) } 	-- misc characteristics
+
+CampOnCall ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck			( 1), 	-- optional parameters
+	deviceIDOnly 				( 2), 	-- misc characteristics
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+ClearCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	failed 					( 2), 	-- initial states
+	queued 					( 3), 	-- initial states
+	initiated 				( 4), 	-- initial states
+	hold 					( 5), 	-- initial states
+	userData 				( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	deviceIDOnly 				( 9), 	-- misc characteristics
+	callIDOnly 				(10), 	-- misc characteristics
+	ackModelMultiStep 			(11), 	-- misc characteristics
+	reason					(12) } 	-- optional parameters
+
+ClearConnection ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	fail 					( 2), 	-- initial states
+	queued 					( 3), 	-- initial states
+	initiated 				( 4), 	-- initial states
+	hold 					( 5), 	-- initial states
+	correlatorData 				( 6), 	-- optional parameters
+	userData 				( 7), 	-- optional parameters
+	reason					(12), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	deviceIDOnly 				(10), 	-- misc characteristics
+	ackModelMultiStep 			(11) } 	-- misc characteristics
+
+ConferenceCall ::= BIT STRING
+{ 	activeCallConnected 			( 0), 	-- initial states
+	activeCallHold 				( 1), 	-- initial states
+	heldCallConnected 			( 2), 	-- initial states
+	heldCallHold 				( 3), 	-- initial states
+	privateData 				( 4), 	-- optional parameters
+	connectionParameterInAck 		( 5), 	-- optional parameters
+	endpointDeviceID 			( 6), 	-- optional parameters
+	resultingConnectionInfo 		( 7), 	-- optional parameters
+	conferenceCallOnfoInAck 		( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	protectedAgainstClearing 		(10), 	-- misc characteristics
+	deviceIDOnly 				(11), 	-- misc characteristics
+	ackModelMultiStep 			(12) } 	-- misc characteristics
+
+ConsultationCall ::= BIT STRING
+{ 	connectionReservation 				( 0), 	-- optional parameters
+	accountCode 					( 1), 	-- optional parameters
+	authCode 					( 2), 	-- optional parameters
+	correlatorData 					( 3), 	-- optional parameters
+	userData 					( 4), 	-- optional parameters
+	callCharacteristics 				( 5), 	-- optional parameters
+	callCharacteristicsACDCall 			( 6), 	-- optional parameters
+	callCharacteristicsLowPriorityCall		(29), 	-- optional parameters
+	callCharacteristicsPriorityCall 		( 7), 	-- optional parameters
+	callCharacteristicsHighPriorityCall		(30), 	-- optional parameters
+	callCharacteristicsMaintenanceCall 		( 8), 	-- optional parameters
+	callCharacteristicsDirectAgent 			( 9), 	-- optional parameters
+	callCharacteristicsAssistCall 			(10), 	-- optional parameters
+	callCharacteristicsVoiceUnitCall 		(11), 	-- optional parameters
+	callCharacteristicsPrivateCall 			(31), 	-- optional parameters
+	callCharacteristicsPersonalCall 		(32), 	-- optional parameters
+	callCharacteristicsSensitiveCall 		(33), 	-- optional parameters
+	callCharacteristicsConfidentialCall 		(34), 	-- optional parameters
+	callCharacteristicsEncryptedCall 		(35), 	-- optional parameters
+	mediaCallCharacteristics 			(12), 	-- optional parameters
+	callingConnectionInfo 				(13), 	-- optional parameters
+	flowDirectionTransmit 				(14), 	-- optional parameters
+	flowDirectionReceive 				(15), 	-- optional parameters
+	flowDirectionTransmitAndReceive 		(16), 	-- optional parameters
+	flowDirectionNone				(36), 	-- optional parameters
+	numberOfChannels 				(17), 	-- optional parameters
+	mediaSessionInfo				(37), 	-- optional parameters
+	consultOptionConsultOnly 			(18), 	-- optional parameters
+	consultOptionTransferOnly 			(19), 	-- optional parameters
+	consultOptionConferenceOnly 			(20), 	-- optional parameters
+	consultOptionUnrestricted 			(21), 	-- optional parameters
+	subjectOfCall					(38), 	-- optional parameters
+	languagePreferences				(39), 	-- optional parameters
+	privateData 					(22), 	-- optional parameters
+	initiatedCallInfoInAck 				(23), 	-- optional parameters
+	privateDataInAck 				(24), 	-- optional parameters
+	deviceIDOnly 					(25), 	-- misc characteristics
+	multiStage 					(26), 	-- misc characteristics
+	supportsAdjustmentOfMediaCharacteristics	(27), 	-- misc characteristics
+	ackModelMultiStep 				(28) }	-- misc characteristics
+
+DeflectCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	failed 					( 2), 	-- initial states
+	hold 					( 3), 	-- initial states
+	queued 					( 4), 	-- initial states
+	correlatorData 				( 5), 	-- optional parameters
+	userData 				( 6), 	-- optional parameters
+	subjectOfCall				(11), 	-- optional parameters
+	languagePreferences			(12), 	-- optional parameters
+	reason					(13), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	deviceIDOnly 				( 9), 	-- misc characteristics
+	ackModelMultiStep 			(10), 	-- misc characteristics
+	callCharacteristicsinRequest		(14), 	-- misc characteristics
+	multipleDeviceIDsInNewDestination	(15) }	-- misc characteristics
+
+DialDigits ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	deviceIDOnly 				( 3), 	-- misc characteristics
+	ackModelMultiStep 			( 4) } 	-- misc characteristics
+
+DirectedPickupCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	hold 					( 1), 	-- initial states
+	queued 					( 2), 	-- initial states
+	connected 				( 3), 	-- initial states
+	correlatorData 				( 4), 	-- optional parameters
+	userData 				( 5), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	pickedCallInAck 			( 7), 	-- optional parameters
+	pickedCallInfoInAck 			( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	deviceIDOnly 				(10), 	-- misc characteristics
+	supportsOfferedModeOfAlerting 		(11), 	-- misc characteristics
+	supportsPrompting 			(12), 	-- misc characteristics
+	promptingMode 				(13), 	-- misc characteristics
+	ackModelMultiStep 			(14) } 	-- misc characteristics
+
+GroupPickupCall ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	hold 					( 2), 	-- initial states
+	queued 					( 3), 	-- initial states
+	pickGroup 				( 4), 	-- optional parameters
+	correlatorData 				( 5), 	-- optional parameters
+	userData 				( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	pickedCallInAck 			( 8), 	-- optional parameters
+	pickedCallInfoInAck 			( 9), 	-- optional parameters
+	privateDataInAck 			(10), 	-- optional parameters
+	supportsPrompting 			(11), 	-- misc characteristics
+	promptingMode 				(12), 	-- misc characteristics
+	supportsOfferedModeOfAlerting		(13), 	-- misc characteristics
+	ackModelMultiStep 			(14) } 	-- misc characteristics
+
+HoldCall ::= BIT STRING
+{ 	connectionReservation 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	deviceIDOnly 				( 3), 	-- misc characteristics
+	ackModelMultiStep 			( 4) } 	-- misc characteristics
+
+IntrudeCall ::= BIT STRING
+{ 	participationTypeSilent 		( 0), 	-- optional parameters
+	participationTypeActive 		( 1), 	-- optional parameters
+	userData 				( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	conferencedCallInfoInAck 		( 4), 	-- optional parameters
+	privateDataInAck 			( 5), 	-- optional parameters
+	deviceIDOnly 				( 6), 	-- misc characteristics
+	supportsConference 			( 7), 	-- misc characteristics
+	supportsAlternate 			( 8), 	-- misc characteristics
+	ackModelMultiStep 			( 9) } 	-- misc characteristics
+
+JoinCall ::= BIT STRING
+{ 	autoOriginatePrompt 			( 0), 	-- optional parameters
+	autoOriginateDoNotPrompt 		( 1), 	-- optional parameters
+	participationTypeSilent 		( 2), 	-- optional parameters
+	participationTypeActive 		( 3), 	-- optional parameters
+	accountCode 				( 4), 	-- optional parameters
+	authCode 				( 5), 	-- optional parameters
+	correlatorData 				( 6), 	-- optional parameters
+	userData 				( 7), 	-- optional parameters
+	conferencedCallInAck 			( 8), 	-- optional parameters
+	conferencedCallInfoInAck 		( 9), 	-- optional parameters
+	privateDataInAck 			(10), 	-- optional parameters
+	deviceIDOnly 				(11), 	-- misc characteristics
+	supportsPrompting 			(12), 	-- misc characteristics
+	promptingMode 				(13), 	-- misc characteristics
+	ackModelMultiStep 			(14) } 	-- misc characteristics
+
+MakeCall ::= BIT STRING
+{ 	initiated 				( 0), 	-- initials states
+	null 					( 1), 	-- initials states
+	accountCode 				( 2), 	-- optional parameters
+	authCode 				( 3), 	-- optional parameters
+	autoOriginatePrompt 			( 4), 	-- optional parameters
+	autoOriginateDoNotPrompt 		( 5), 	-- optional parameters
+	correlatorData 				( 6), 	-- optional parameters
+	userData 				( 7), 	-- optional parameters
+	callCharacteristics 			( 8), 	-- optional parameters
+	callCharacteristicsACDCall 		( 9), 	-- optional parameters
+	callCharacteristicsLowPriorityCall 	(26), 	-- optional parameters
+	callCharacteristicsPriorityCall 	(10), 	-- optional parameters
+	callCharacteristicsHighPriorityCall 	(27), 	-- optional parameters
+	callCharacteristicsMaintenanceCall 	(11), 	-- optional parameters
+	callCharacteristicsDirectAgent 		(12), 	-- optional parameters
+	callCharacteristicsAssistCall 		(13), 	-- optional parameters
+	callCharacteristicsVoiceUnitCall 	(14), 	-- optional parameters
+	callCharacteristicsPrivateCall 		(28), 	-- optional parameters
+	callCharacteristicsPersonalCall 	(29), 	-- optional parameters
+	callCharacteristicsSensitiveCall 	(30), 	-- optional parameters
+	callCharacteristicsConfidentialCall	(31), 	-- optional parameters
+	callCharacteristicsEncryptedCall	(32), 	-- optional parameters
+	mediaCallCharacteristics 		(15), 	-- optional parameters
+	callingConnectionInfo 			(16), 	-- optional parameters
+	subjectOfCall				(33), 	-- optional parameters
+	languagePreferences			(34), 	-- optional parameters
+	privateData 				(17), 	-- optional parameters
+	initiatedCallInfoInAck 			(18), 	-- optional parameters
+	privateDataInAck 			(19), 	-- optional parameters
+	multiStage 				(20), 	-- misc characteristics
+	supportsPrompting 			(21), 	-- misc characteristics
+	promptingMode 				(22), 	-- misc characteristics
+	offHook 				(23), 	-- misc characteristics
+	mediaCharacteristicsAdjustable 		(24), 	-- misc characteristics
+	ackModelMultiStep 			(25), 	-- misc characteristics
+	reason					(35) }	-- optional parameters
+
+MakeConnection ::= BIT STRING
+{ 	null 					( 0), 	-- initials states
+	accountCode 				( 1), 	-- optional parameters
+	authCode 				( 2), 	-- optional parameters
+	autoOriginatePrompt 			( 3), 	-- optional parameters
+	autoOriginateDoNotPrompt 		( 4), 	-- optional parameters
+	correlatorData 				( 5), 	-- optional parameters
+	callCharacteristics 			( 6), 	-- optional parameters
+	callCharacteristicsACDCall 		( 7), 	-- optional parameters
+	callCharacteristicsLowPriorityCall 	( 8), 	-- optional parameters
+	callCharacteristicsPriorityCall 	( 9), 	-- optional parameters
+	callCharacteristicsHighPriorityCall 	(10), 	-- optional parameters
+	callCharacteristicsMaintenanceCall 	(11), 	-- optional parameters
+	callCharacteristicsDirectAgent 		(12), 	-- optional parameters
+	callCharacteristicsAssistCall 		(13), 	-- optional parameters
+	callCharacteristicsVoiceUnitCall 	(14), 	-- optional parameters
+	callCharacteristicsPrivateCall 		(15), 	-- optional parameters
+	callCharacteristicsPersonalCall 	(16), 	-- optional parameters
+	callCharacteristicsSensitiveCall 	(17), 	-- optional parameters
+	callCharacteristicsConfidentialCall	(18), 	-- optional parameters
+	callCharacteristicsEncryptedCall	(19), 	-- optional parameters
+	mediaCallCharacteristics 		(20), 	-- optional parameters
+	connectionInfo 				(21), 	-- optional parameters
+	subjectOfCall				(22), 	-- optional parameters
+	languagePreferences			(23), 	-- optional parameters
+	reason					(24), 	-- optional parameters
+	maxDevices				(25), 	-- optional parameters
+	startTime				(26), 	-- optional parameters
+	duration				(27), 	-- optional parameters
+	privateData				(28), 	-- optional parameters
+	mediaCharacteristicsinAck		(29), 	-- optional parameters
+	initiatedCallInfoInAck			(30), 	-- optional parameters
+	privateDataInAck			(31), 	-- optional parameters
+	supportsPrompting			(32), 	-- optional parameters
+	promptingMode				(33), 	-- optional parameters
+	mediaCharacteristicsAdjusted		(34), 	-- optional parameters
+	ackModelMultistep			(35) } 	-- optional parameters
+
+MakePredictiveCall ::= BIT STRING
+{ 	signallingDetection 				( 0), 	-- optional parameters
+	signallingConditionCallDelivered 		( 1), 	-- optional parameters
+	signallingConditionCallEstablished 		( 2), 	-- optional parameters
+	signallingConditionActionDestinationDetection	( 3), 	-- optional parameters
+	signallingConditionActionRemainConnected 	( 4), 	-- optional parameters
+	destinationDetection 				( 5), 	-- optional parameters
+	destinationConditionHumanVoice 			( 6), 	-- optional parameters
+	destinationConditionAnsweringMachine 		( 7), 	-- optional parameters
+	destinationConditionFax 			( 8), 	-- optional parameters
+	destinationActionClearConnection 		( 9), 	-- optional parameters
+	destinationActionRemainConnected 		(10), 	-- optional parameters
+	defaultActionClearConnection 			(11), 	-- optional parameters
+	defaultActionRemainConnected 			(12), 	-- optional parameters
+	accountCode 					(13), 	-- optional parameters
+	authCode 					(14), 	-- optional parameters
+	autoOriginatePrompt 				(15), 	-- optional parameters
+	autoOriginateDoNotPrompt 			(16), 	-- optional parameters
+	alertTime 					(17), 	-- optional parameters
+	correlatorData 					(18), 	-- optional parameters
+	callCharacteristics 				(19), 	-- optional parameters
+	callCharacteristicsACDCall 			(20), 	-- optional parameters
+	callCharacteristicsLowPriorityCall 		(35), 	-- optional parameters
+	callCharacteristicsPriorityCall 		(21), 	-- optional parameters
+	callCharacteristicsHighPriorityCall 		(36), 	-- optional parameters
+	callCharacteristicsMaintenanceCall 		(22), 	-- optional parameters
+	callCharacteristicsDirectAgent 			(23), 	-- optional parameters
+	callCharacteristicsAssistCall 			(24), 	-- optional parameters
+	callCharacteristicsVoiceUnitCall 		(25), 	-- optional parameters
+	callCharacteristicsPrivateCall 			(37), 	-- optional parameters
+	callCharacteristicsPersonalCall 		(38), 	-- optional parameters
+	callCharacteristicsSensitiveCall 		(39), 	-- optional parameters
+	callCharacteristicsConfidentialCall		(40), 	-- optional parameters
+	callCharacteristicsEncryptedCall		(41), 	-- optional parameters
+	subjectOfCall					(42), 	-- optional parameters
+	languagePreferences				(43), 	-- optional parameters
+	userData 					(26), 	-- optional parameters
+	privateData 					(27), 	-- optional parameters
+	initiatedCallInfoInAck 				(28), 	-- optional parameters
+	privateDataInAck 				(29), 	-- optional parameters
+	deviceIDOnly 					(30), 	-- misc characteristics
+	supportsPrompting 				(31), 	-- misc characteristics
+	promptingMode 					(32), 	-- misc characteristics
+	reservesCallingDevice 				(33), 	-- misc characteristics
+	ackModelMultiStep 				(34) } 	-- misc characteristics
+
+ParkCall ::= BIT STRING
+{	hold 					( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	correlatorData 				( 2), 	-- optional parameters
+	subjectOfCall				( 8), 	-- optional parameters
+	languagePreferences			( 9), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	parkedToInAck 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5), 	-- optional parameters
+	deviceIDOnly 				( 6), 	-- misc characteristics
+	ackModelMultiStep 			( 7) } 	-- misc characteristics
+
+ReconnectCall ::= BIT STRING{
+ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	fail 					( 2), 	-- initial states
+	initiated 				( 3), 	-- initial states
+	queued 					( 4), 	-- initial states
+	privateData 				( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	deviceIDOnly 				( 7), 	-- misc characteristics
+	ackModelMultiStep 			( 8) } 	-- misc characteristics
+
+RetrieveCall ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	deviceIDOnly 				( 2), 	-- misc characteristics
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+SendMessage ::= BIT STRING
+{ 	accountCode 				( 0), 	-- optional parameters
+	authCode 				( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	userData				( 3), 	-- optional parameters
+	callCharacteristics 			( 4), 	-- optional parameters
+	callCharacteristicsACDCall 		( 5), 	-- optional parameters
+	callCharacteristicsLowPriorityCall 	( 6), 	-- optional parameters
+	callCharacteristicsPriorityCall 	( 7), 	-- optional parameters
+	callCharacteristicsHighPriorityCall 	( 8), 	-- optional parameters
+	callCharacteristicsMaintenanceCall 	( 9), 	-- optional parameters
+	callCharacteristicsDirectAgent 		(10), 	-- optional parameters
+	callCharacteristicsAssistCall 		(11), 	-- optional parameters
+	callCharacteristicsVoiceUnitCall 	(12), 	-- optional parameters
+	callCharacteristicsPrivateCall 		(13), 	-- optional parameters
+	callCharacteristicsPersonalCall 	(14), 	-- optional parameters
+	callCharacteristicsSensitiveCall 	(15), 	-- optional parameters
+	callCharacteristicsConfidentialCall	(16), 	-- optional parameters
+	callCharacteristicsEncryptedCall	(17), 	-- optional parameters
+	mediaCallCharacteristics 		(18), 	-- optional parameters
+	subjectOfCall				(19), 	-- optional parameters
+	languagePreferences			(20), 	-- optional parameters
+	privateData				(21), 	-- optional parameters
+	privateDataInAck			(22) }	-- optional parameters
+
+SingleStepConference ::= BIT STRING
+{ 	participationTypeActive 		( 0), 	-- optional parameters
+	participationTypeSilent 		( 1), 	-- optional parameters
+	accountCode 				( 2), 	-- optional parameters
+	authCode 				( 3), 	-- optional parameters
+	correlatorData 				( 4), 	-- optional parameters
+	userData 				( 5), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	conferencedCallInfoInAck 		( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	deviceIDOnly 				( 9), 	-- misc characteristics
+	ackModelMultiStep 			(10) } 	-- misc characteristics
+
+SingleStepTransfer ::= BIT STRING
+{ 	accountCode 				( 0), 	-- optional parameters
+	authCode 				( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	userData 				( 3), 	-- optional parameters
+	subjectOfCall				(13), 	-- optional parameters
+	languagePreferences			(14), 	-- optional parameters
+	reason					(15), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	connectionParameterInAck 		( 5), 	-- optional parameters
+	endpointDeviceID 			( 6), 	-- optional parameters
+	resultionConnectionInformation 		( 7), 	-- optional parameters
+	transferredCollInfoInAck 		( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	deviceIDOnly 				(10), 	-- misc characteristics
+	multipleDevices 			(11), 	-- misc characteristics
+	ackModelMultiStep 			(12),	-- misc characteristics
+	callCharacteristicsinRequest		(16) }	-- misc characteristics
+
+TransferCall ::= BIT STRING
+{	activeCallConnected 			( 0), 	-- initial states
+	activeCallHold 				( 1), 	-- initial states
+	heldCallConnected 			( 2), 	-- initial states
+	heldCallHold 				( 3), 	-- initial states
+	privateData 				( 4), 	-- optional parameters
+	connectionsParameterInAck 		( 5), 	-- optional parameters
+	endpointDeviceID 			( 6), 	-- optional parameters
+	resultingConnectionInformation 		( 7), 	-- optional parameters
+	transferredCallInfoInAck 		( 8), 	-- optional parameters
+	privateDataInAck 			( 9), 	-- optional parameters
+	deviceIDOnly 				(10), 	-- misc characteristics
+	multipleDevices 			(11), 	-- misc characteristics
+	ackModelMultiStep 			(12) } 	-- misc characteristics
+
+CallControlEvtsList ::= SEQUENCE
+{ 	bridged 			[ 0] IMPLICIT 	Bridged 		OPTIONAL,
+	callCleared 			[ 1] IMPLICIT 	CallCleared 		OPTIONAL,
+	conferenced 			[ 2] IMPLICIT 	Conferenced 		OPTIONAL,
+	connectionCleared 		[ 3] IMPLICIT 	ConnectionCleared 	OPTIONAL,
+	delivered 			[ 4] IMPLICIT 	Delivered 		OPTIONAL,
+	digitsDialed 			[ 5] IMPLICIT 	DigitsDialed 		OPTIONAL,
+	diverted 			[ 6] IMPLICIT 	Diverted 		OPTIONAL,
+	established 			[ 7] IMPLICIT 	Established 		OPTIONAL,
+	failed 				[ 8] IMPLICIT 	Failed 			OPTIONAL,
+	held 				[ 9] IMPLICIT 	Held 			OPTIONAL,
+	netwCapsChanged 		[10] IMPLICIT 	NetwCapsChanged 	OPTIONAL,
+	netwReached 			[11] IMPLICIT 	NetwReached 		OPTIONAL,
+	offered 			[12] IMPLICIT 	Offered 		OPTIONAL,
+	originated 			[13] IMPLICIT 	Originated 		OPTIONAL,
+	queued 				[14] IMPLICIT 	Queued 			OPTIONAL,
+	retrieved 			[15] IMPLICIT 	Retrieved 		OPTIONAL,
+	serviceInitiated 		[16] IMPLICIT 	ServiceInitiated 	OPTIONAL,
+	transferred 			[17] IMPLICIT 	Transferred 		OPTIONAL }
+
+Bridged ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	mediaCallCharacteristics 		( 3), 	-- optional parameters
+	callCharacteristics 			( 4), 	-- optional parameters
+	bridgedConnectionInfo 			( 5), 	-- optional parameters
+	languagePreferences			( 8), 	-- optional parameters
+	callLinkageData 			( 7), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	locationinfoList			( 9) } 	-- optional parameters
+
+CallCleared ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	mediaCallCharacteristics 		( 2), 	-- optional parameters
+	callCharacteristics 			( 3), 	-- optional parameters
+	callLinkageData 			( 6), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	callIDOnly 				( 5) } 	-- miscellaneous characteristics
+
+Conferenced ::= BIT STRING
+{ 	confereceConnectionsEndpointDeviceID 		( 0), 	-- optional parameters
+	confereceConnectionsresultingConnectionInfo 	( 1), 	-- optional parameters
+	userData 					( 2), 	-- optional parameters
+	servicesPermitted 				( 3), 	-- optional parameters
+	mediaCallCharacteristics 			( 4), 	-- optional parameters
+	callCharacteristics 				( 5), 	-- optional parameters
+	bridgedConnectionInfo 				( 6), 	-- optional parameters
+	lannguagePreferences				( 8), 	-- optional parameters
+	deviceHistory					( 9), 	-- optional parameters
+	privateData 					( 7), 	-- optional parameters
+	locationInfoList				(10) }	-- optional parameters
+
+ConnectionCleared ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	chargingInfo 				( 2), 	-- optional parameters
+	numberUnitsNumberOfChargingUnits 	( 3), 	-- optional parameters
+	numberUnitsTypeOfUnits 			( 4), 	-- optional parameters
+	numberUnitsNumberOfCurrencyUnits 	( 5), 	-- optional parameters
+	typeOfChargingInfoSubTotal 		( 6), 	-- optional parameters
+	typeOfChargingInfoTotal 		( 7), 	-- optional parameters
+	chargingMultiplierAThousandth 		( 8), 	-- optional parameters
+	chargingMultiplierAHundredth 		( 9), 	-- optional parameters
+	chargingMultiplierATenth 		(10), 	-- optional parameters
+	chargingMultiplierOne 			(11), 	-- optional parameters
+	chargingMultiplierTen 			(12), 	-- optional parameters
+	chargingMultiplierHundred 		(13), 	-- optional parameters
+	chargingMultiplierThousand 		(14), 	-- optional parameters
+	servicesPermitted 			(15), 	-- optional parameters
+	mediaCallCharacteristics 		(16), 	-- optional parameters
+	callCharacteristics 			(17), 	-- optional parameters
+	droppedConnectionInfo 			(18), 	-- optional parameters
+	callLinkageData 			(20), 	-- optional parameters
+	languagePreferences			(21), 	-- optional parameters
+	deviceHistory				(22), 	-- optional parameters
+	privateData 				(19), 	-- optional parameters
+	locationInfoList			(23) } 	-- optional parameters
+
+Delivered ::= BIT STRING
+{ 	originatingNIDConnection 		( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	netwCallingDevice 			( 3), 	-- optional parameters
+	netwCalledDevice 			( 4), 	-- optional parameters
+	mediaCallCharacteristics 		( 5), 	-- optional parameters
+	callCharacteristics 			( 6), 	-- optional parameters
+	connectionInfo 				( 7), 	-- optional parameters
+	subjectOfCall				( 9), 	-- optional parameters
+	messageInfo				(10), 	-- optional parameters
+	languagePreferences			(11), 	-- optional parameters
+	deviceHistory				(12), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	locationInfoList			(13) } 	-- optional parameters
+
+DigitsDialed ::= BIT STRING
+{ 	servicesPermitted 			( 0), 	-- optional parameters
+	netwCallingDevice 			( 1), 	-- optional parameters
+	netwCalledDevice 			( 2), 	-- optional parameters
+	diallingConnectionInfo 			( 3), 	-- optional parameters
+	callCharacteristics 			( 4), 	-- optional parameters
+	languagePreferences			( 6), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	locationInfoList			( 7) } 	-- optional parameters
+
+Diverted ::= BIT STRING
+{ 	callingDevice 				( 0), 	-- optional parameters
+	calledDevice 				( 1), 	-- optional parameters
+	userData 				( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	mediaCallCharacteristics 		( 4), 	-- optional parameters
+	callCharacteristics 			( 5), 	-- optional parameters
+	connectionInfo 				( 6), 	-- optional parameters
+	netwCallingDevice 			( 7), 	-- optional parameters
+	netwCalledDevice 			( 8), 	-- optional parameters
+	subjectOfCall				(11), 	-- optional parameters
+	messageInfo				(12), 	-- optional parameters
+	languagePreferences			(13), 	-- optional parameters
+	deviceHistory				(14), 	-- optional parameters
+	privateData 				( 9), 	-- optional parameters
+	sendsDivertedToAll 			(10), 	-- optional parameters
+	locationInfoList			(15) } 	-- optional parameters
+
+Established ::= BIT STRING
+{ 	originatingNIDConnection 		( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	netwCallingDevice 			( 3), 	-- optional parameters
+	netwCalledDevice 			( 4), 	-- optional parameters
+	mediaCallCharacteristics 		( 5), 	-- optional parameters
+	callCharacteristics 			( 6), 	-- optional parameters
+	establishedConnectionInfo 		( 7), 	-- optional parameters
+	subjectOfCall				( 9), 	-- optional parameters
+	messageInfo				(10), 	-- optional parameters
+	languagePreferences			(11), 	-- optional parameters
+	deviceHistory				(12), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	locationInfoList			(13) } 	-- optional parameters
+
+Failed ::= BIT STRING
+{ 	originatingNIDConnection 		( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	netwCallingDevice 			( 3), 	-- optional parameters
+	netwCalledDevice 			( 4), 	-- optional parameters
+	mediaCallCharacteristics 		( 5), 	-- optional parameters
+	callCharacteristics 			( 6), 	-- optional parameters
+	failedConnectionInfo 			( 7), 	-- optional parameters
+	subjectOfCall				(10), 	-- optional parameters
+	messageInfo				(11), 	-- optional parameters
+	languagePreferences			(12), 	-- optional parameters
+	deviceHistory				(13), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	callIDOnly 				( 9),	-- miscellaneous characteristics
+	locationInfoList			(14) }	-- optional parameters
+
+Held ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	servicesPermitted 			( 1), 	-- optional parameters
+	mediaCallCharacteristics 		( 2), 	-- optional parameters
+	callCharacteristics 			( 3), 	-- optional parameters
+	heldConnectionInfo 			( 4), 	-- optional parameters
+	callLinkageData 			( 6), 	-- optional parameters
+	languagePreferences			( 7), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	locationInfoList			( 8) } 	-- optional parameters
+
+NetwCapsChanged ::= BIT STRING
+{ 	progressLocationUser 			( 0), 	-- optional parameters
+	progressLocationPrivateServLocal 	( 1), 	-- optional parameters
+	progressLocationPublicServLocal 	( 2), 	-- optional parameters
+	progressLocationTransit 		( 3), 	-- optional parameters
+	progressLocationPublicServRemote 	( 4), 	-- optional parameters
+	progressLocationPrivateServRemote 	( 5), 	-- optional parameters
+	progressLocationLocal 			( 6), 	-- optional parameters
+	progressLocationInternational 		( 7), 	-- optional parameters
+	progressLocationNetwBeyondInterworking 	( 8), 	-- optional parameters
+	progressLocationOther 			( 9), 	-- optional parameters
+	progressDescriptionISDN 		(10), 	-- optional parameters
+	progressDescriptionQSIG 		(11), 	-- optional parameters
+	progressDescriptionOther 		(12), 	-- optional parameters
+	userData 				(13), 	-- optional parameters
+	typeOfNetworkISDNPublic 		(14), 	-- optional parameters
+	typeOfNetworkNonISDNPublic 		(15), 	-- optional parameters
+	typeOfNetworkISDNPrivate 		(16), 	-- optional parameters
+	typeOfNetworkNonISDNPrivate 		(17), 	-- optional parameters
+	typeOfNetworkOther 			(18), 	-- optional parameters
+	eventsProvidedParameter 		(19), 	-- optional parameters
+	eventsProvidedBridged 			(20), 	-- optional parameters
+	eventsProvidedCallCleared 		(21), 	-- optional parameters
+	eventsProvidedConferenced 		(22), 	-- optional parameters
+	eventsProvidedConnectionCleared 	(23), 	-- optional parameters
+	eventsProvidedDelivered 		(24), 	-- optional parameters
+	eventsProvidedDigitsDialed 		(25), 	-- optional parameters
+	eventsProvidedDiverted 			(26), 	-- optional parameters
+	eventsProvidedEstablished 		(27), 	-- optional parameters
+	eventsProvidedFailed 			(28), 	-- optional parameters
+	eventsProvidedHeld 			(29), 	-- optional parameters
+	eventsProvidedNetwCapsChanged 		(30), 	-- optional parameters
+	eventsProvidedNetwReached 		(31), 	-- optional parameters
+	eventsProvidedOffered 			(32), 	-- optional parameters
+	eventsProvidedOriginated 		(33), 	-- optional parameters
+	eventsProvidedQueued 			(34), 	-- optional parameters
+	eventsProvidedRetrieved 		(35), 	-- optional parameters
+	eventsProvidedServiceInitiated 		(36), 	-- optional parameters
+	eventsProvidedTransferred 		(37), 	-- optional parameters
+	servicesPermitted 			(38), 	-- optional parameters
+	mediaCallCharacteristics 		(39), 	-- optional parameters
+	callCharacteristics 			(40), 	-- optional parameters
+	outboundConnectionInfo 			(41), 	-- optional parameters
+	languagePreferences			(43), 	-- optional parameters
+	privateData 				(42), 	-- optional parameters
+	locationInfoList			(44) } 	-- optional parameters
+
+NetwReached ::= BIT STRING
+{ 	originatingNIDConnection 		( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	typeOfNetworkISDNPublic 		( 2), 	-- optional parameters
+	typeOfNetworkNonISDNPublic 		( 3), 	-- optional parameters
+	typeOfNetworkISDNPrivate 		( 4), 	-- optional parameters
+	typeOfNetworkNonISDNPrivate 		( 5), 	-- optional parameters
+	typeOfNetworkOther 			( 6), 	-- optional parameters
+	eventsProvidedParameter 		( 7), 	-- optional parameters
+	eventsProvidedBridged 			( 8), 	-- optional parameters
+	eventsProvidedCallCleared 		( 9), 	-- optional parameters
+	eventsProvidedConferenced 		(10), 	-- optional parameters
+	eventsProvidedConnectionCleared 	(11), 	-- optional parameters
+	eventsProvidedDelivered 		(12), 	-- optional parameters
+	eventsProvidedDigitsDialed 		(13), 	-- optional parameters
+	eventsProvidedDiverted 			(14), 	-- optional parameters
+	eventsProvidedEstablished 		(15), 	-- optional parameters
+	eventsProvidedFailed 			(16), 	-- optional parameters
+	eventsProvidedHeld 			(17), 	-- optional parameters
+	eventsProvidedNetwCapsChanged 		(18), 	-- optional parameters
+	eventsProvidedNetwReached 		(19), 	-- optional parameters
+	eventsProvidedOffered 			(20), 	-- optional parameters
+	eventsProvidedOriginated 		(21), 	-- optional parameters
+	eventsProvidedQueued 			(22), 	-- optional parameters
+	eventsProvidedRetrieved 		(23), 	-- optional parameters
+	eventsProvidedServiceInitiated 		(24), 	-- optional parameters
+	eventsProvidedTransferred 		(25), 	-- optional parameters
+	servicesPermitted 			(26), 	-- optional parameters
+	mediaCallCharacteristics 		(27), 	-- optional parameters
+	callCharacteristics 			(28), 	-- optional parameters
+	outboundConnectionInfo 			(29), 	-- optional parameters
+	netwCallingDevice 			(30), 	-- optional parameters
+	netwCalledDevice 			(31), 	-- optional parameters
+	languagePreferences			(33), 	-- optional parameters
+	deviceHistory				(34), 	-- optional parameters
+	privateData 				(32), 	-- optional parameters
+	locationInfoList			(35) }	-- optional parameters
+
+Offered ::= BIT STRING
+{ 	originatingNIDConnection 		( 0), 	-- optional parameters
+	userData 				( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	netwCallingDevice 			( 3), 	-- optional parameters
+	netwCalledDevice 			( 4), 	-- optional parameters
+	mediaCallCharacteristics 		( 5), 	-- optional parameters
+	callCharacteristics 			( 6), 	-- optional parameters
+	offeredConnectionInfo 			( 7), 	-- optional parameters
+	subjectOfCall				( 9), 	-- optional parameters
+	messageInfo				(10), 	-- optional parameters
+	languagePreferences			(11), 	-- optional parameters
+	deciceHistory				(12), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	locationInfoList			(13) }	-- optional parameters
+
+Originated ::= BIT STRING
+{ 	originatingDevice 			( 0), 	-- optional parameters
+	servicesPermitted 			( 1), 	-- optional parameters
+	netwCallingDevice 			( 2), 	-- optional parameters
+	netwCalledDevice 			( 3), 	-- optional parameters
+	mediaCallCharacteristics 		( 4), 	-- optional parameters
+	callCharacteristics 			( 5), 	-- optional parameters
+	originatedConnectionInfo 		( 6), 	-- optional parameters
+	subjectOfCall				( 8), 	-- optional parameters
+	messageInfo				( 9), 	-- optional parameters
+	languagePreferences			(10), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	locationInfoList			(11) }	-- optional parameters
+
+Queued ::= BIT STRING
+{ 	numberQueued 				( 0), 	-- optional parameters
+	callsInFront 				( 1), 	-- optional parameters
+	userData 				( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	netwCallingDevice 			( 4), 	-- optional parameters
+	netwCalledDevice 			( 5), 	-- optional parameters
+	mediaCallCharacteristics 		( 6), 	-- optional parameters
+	callCharacteristics 			( 7), 	-- optional parameters
+	queuedConnectionInfo 			( 8), 	-- optional parameters
+	subjectOfCall				(10), 	-- optional parameters
+	messageInfo				(11), 	-- optional parameters
+	languagePreferences			(12), 	-- optional parameters
+	deviceHistory				(13), 	-- optional parameters
+	privateData 				( 9), 	-- optional parameters
+	locationInfoList			(14) }	-- optional parameters
+
+Retrieved ::= BIT STRING
+{ 	correlatorData 				( 0), 	-- optional parameters
+	servicesPermitted 			( 1), 	-- optional parameters
+	mediaCallCharacteristics 		( 2), 	-- optional parameters
+	callCharacteristics 			( 3), 	-- optional parameters
+	retrievedConnectionInfo 		( 4), 	-- optional parameters
+	callLinkageData 			( 6), 	-- optional parameters
+	languagePreferences			( 7), 	-- optional parameters
+	deviceHistory				( 8), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	locationInfoLiist			( 9) } 	-- optional parameters
+
+ServiceInitiated ::= BIT STRING
+{ 	servicesPermitted 			( 0), 	-- optional parameters
+	mediaCallCharacteristics 		( 1), 	-- optional parameters
+	callCharacteristics 			( 2), 	-- optional parameters
+	initiatedConnectionInfo 		( 3), 	-- optional parameters
+	netwCallingDevice 			( 4), 	-- optional parameters
+	netwCalledDevice 			( 5), 	-- optional parameters
+	subjectOfCall				( 7), 	-- optional parameters
+	messageInfo				( 8), 	-- optional parameters
+	languagePreferences			( 9), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	calledDevice				(10), 	-- optional parameters
+	locationInfoList			(11) }	-- optional parameters
+
+Transferred ::= BIT STRING
+{ 	transferredConnectionsEndpointDeviceID 		( 0), 	-- optional parameters
+	transferredConnectionsResultingConnectionInfo 	( 1), 	-- optional parameters
+	userData 					( 2), 	-- optional parameters
+	chargingInfo 					( 3), 	-- optional parameters
+	numberUnitsNumberOfChargingUnits 		( 4), 	-- optional parameters
+	numberUnitsTypeOfUnits 				( 5), 	-- optional parameters
+	numberUnitsNumberOfCurrencyUnits 		( 6), 	-- optional parameters
+	typeOfChargingInfoSubTotal 			( 7), 	-- optional parameters
+	typeOfChargingInfoTotal 			( 8), 	-- optional parameters
+	chargingMultiplierAThousandth 			( 9), 	-- optional parameters
+	chargingMultiplierAHundredth 			(10), 	-- optional parameters
+	chargingMultiplierATenth 			(11), 	-- optional parameters
+	chargingMultiplierOne 				(12), 	-- optional parameters
+	chargingMultiplierTen 				(13), 	-- optional parameters
+	chargingMultiplierHundred 			(14), 	-- optional parameters
+	chargingMultiplierThousand 			(15), 	-- optional parameters
+	servicesPermitted 				(16), 	-- optional parameters
+	mediaCallCharacteristics 			(17), 	-- optional parameters
+	callCharacteristics 				(18), 	-- optional parameters
+	connectionInfo 					(19), 	-- optional parameters
+	languagePreferences				(21), 	-- optional parameters
+	deviceHistory					(22), 	-- optional parameters
+	privateData 					(20) } 	-- optional parameters
+
+CallAssociatedServList ::= SEQUENCE
+{ 	associateData 			[0] IMPLICIT 	AssociateData 			OPTIONAL,
+	cancelTelephonyTones 		[1] IMPLICIT 	CancelTelephonyTones 		OPTIONAL,
+	changeConnectionInformation	[5] IMPLICIT 	ChangeConnectionInformation	OPTIONAL,
+	generateDigits 			[2] IMPLICIT 	GenerateDigits 			OPTIONAL,
+	generateTelephonyTones 		[3] IMPLICIT 	GenerateTelephonyTones 		OPTIONAL,
+	sendUserInformation 		[4] IMPLICIT 	SendUserInformation 		OPTIONAL }
+
+AssociateData ::= BIT STRING
+{ 	accountCode 				( 0), 	-- optional parameters
+	authCode 				( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	callQualifyingData 			( 3), 	-- optional parameters
+	callCharacteristics			( 9), 	-- optional parameters
+	subjectOfCall				(10), 	-- optional parameters
+	languagePreferences			(11), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5), 	-- optional parameters
+	deviceIDOnly 				( 6), 	-- misc characteristics
+	rejectsRequestsWithOldConnectionID 	( 7), 	-- misc characteristics
+	ackModelMultiStep 			( 8), 	-- misc characteristics
+	deviceInfo				(12) } 	-- misc characteristics
+
+CancelTelephonyTones ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+ChangeConnectionInformation ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+GenerateDigits ::= BIT STRING
+{ 	digitModeDTMF 				( 0), 	-- optional parameters
+	digitModePulse 				( 1), 	-- optional parameters
+	toneDuration 				( 2), 	-- optional parameters
+	pulseRate 				( 3), 	-- optional parameters
+	pauseDuration 				( 4), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	deviceIDOnly 				( 7), 	-- misc characteristics
+	supportsDTMFTonesABCD 			( 8), 	-- misc characteristics
+	supportsPauseToneChar 			( 9), 	-- misc characteristics
+	ackModelMultiStep 			(10) } 	-- misc characteristics
+
+GenerateTelephonyTones ::= BIT STRING
+{ 	toneToSendBeep 				(  0), 	-- optional parameters
+	toneToSendBilling 			(  1), 	-- optional parameters
+	toneToSendBusy 				(  2), 	-- optional parameters
+	toneToSendCarrier 			(  3), 	-- optional parameters
+	toneToSendConfirmation 			(  4), 	-- optional parameters
+	toneToSendDial 				(  5), 	-- optional parameters
+	toneToSendFaxCNG 			(  6), 	-- optional parameters
+	toneToSendHold 				(  7), 	-- optional parameters
+	toneToSendHowler 			(  8), 	-- optional parameters
+	toneToSendIntrusion 			(  9), 	-- optional parameters
+	toneToSendModemCNG 			( 10), 	-- optional parameters
+	toneToSendPark 				( 11), 	-- optional parameters
+	toneToSendRecordWarning 		( 12), 	-- optional parameters
+	toneToSendReorder 			( 13), 	-- optional parameters
+	toneToSendRingback 			( 14), 	-- optional parameters
+	toneToSendSilence 			( 15), 	-- optional parameters
+	toneToSendSitVC 			( 16), 	-- optional parameters
+	toneToSendSitIC 			( 17), 	-- optional parameters
+	toneToSendSitRO 			( 18), 	-- optional parameters
+	toneToSendSitNC 			( 19), 	-- optional parameters
+	toneToSendSf0 				( 20), 	-- optional parameters
+	toneToSendSf1 				( 21), 	-- optional parameters
+	toneToSendSf2 				( 22), 	-- optional parameters
+	toneToSendSf3 				( 23), 	-- optional parameters
+	toneToSendSf4 				( 24), 	-- optional parameters
+	toneToSendSf5 				( 25), 	-- optional parameters
+	toneToSendSf6 				( 26), 	-- optional parameters
+	toneToSendSf7 				( 27), 	-- optional parameters
+	toneToSendSf8 				( 28), 	-- optional parameters
+	toneToSendSf9 				( 29), 	-- optional parameters
+	toneToSendSf10 				( 30), 	-- optional parameters
+	toneToSendSf11 				( 31), 	-- optional parameters
+	toneToSendSf12 				( 32), 	-- optional parameters
+	toneToSendSf13 				( 33), 	-- optional parameters
+	toneToSendSf14 				( 34), 	-- optional parameters
+	toneToSendSf15 				( 35), 	-- optional parameters
+	toneToSendSf16 				( 36), 	-- optional parameters
+	toneToSendSf17 				( 37), 	-- optional parameters
+	toneToSendSf18 				( 38), 	-- optional parameters
+	toneToSendSf19 				( 39), 	-- optional parameters
+	toneToSendSf20 				( 40), 	-- optional parameters
+	toneToSendSf21 				( 41), 	-- optional parameters
+	toneToSendSf22 				( 42), 	-- optional parameters
+	toneToSendSf23 				( 43), 	-- optional parameters
+	toneToSendSf24 				( 44), 	-- optional parameters
+	toneToSendSf25 				( 45), 	-- optional parameters
+	toneToSendSf26 				( 46), 	-- optional parameters
+	toneToSendSf27 				( 47), 	-- optional parameters
+	toneToSendSf28 				( 48), 	-- optional parameters
+	toneToSendSf29 				( 49), 	-- optional parameters
+	toneToSendSf30 				( 50), 	-- optional parameters
+	toneToSendSf31 				( 51), 	-- optional parameters
+	toneToSendSf32 				( 52), 	-- optional parameters
+	toneToSendSf33 				( 53), 	-- optional parameters
+	toneToSendSf34 				( 54), 	-- optional parameters
+	toneToSendSf35 				( 55), 	-- optional parameters
+	toneToSendSf36 				( 56), 	-- optional parameters
+	toneToSendSf37 				( 57), 	-- optional parameters
+	toneToSendSf38 				( 58), 	-- optional parameters
+	toneToSendSf39 				( 59), 	-- optional parameters
+	toneToSendSf40 				( 60), 	-- optional parameters
+	toneToSendSf41 				( 61), 	-- optional parameters
+	toneToSendSf42 				( 62), 	-- optional parameters
+	toneToSendSf43 				( 63), 	-- optional parameters
+	toneToSendSf44 				( 64), 	-- optional parameters
+	toneToSendSf45 				( 65), 	-- optional parameters
+	toneToSendSf46 				( 66), 	-- optional parameters
+	toneToSendSf47 				( 67), 	-- optional parameters
+	toneToSendSf48 				( 68), 	-- optional parameters
+	toneToSendSf49 				( 69), 	-- optional parameters
+	toneToSendSf50 				( 70), 	-- optional parameters
+	toneToSendSf51 				( 71), 	-- optional parameters
+	toneToSendSf52 				( 72), 	-- optional parameters
+	toneToSendSf53 				( 73), 	-- optional parameters
+	toneToSendSf54 				( 74), 	-- optional parameters
+	toneToSendSf55 				( 75), 	-- optional parameters
+	toneToSendSf56 				( 76), 	-- optional parameters
+	toneToSendSf57 				( 77), 	-- optional parameters
+	toneToSendSf58 				( 78), 	-- optional parameters
+	toneToSendSf59 				( 79), 	-- optional parameters
+	toneToSendSf60 				( 80), 	-- optional parameters
+	toneToSendSf61 				( 81), 	-- optional parameters
+	toneToSendSf62 				( 82), 	-- optional parameters
+	toneToSendSf63 				( 83), 	-- optional parameters
+	toneToSendSf64 				( 84), 	-- optional parameters
+	toneToSendSf65 				( 85), 	-- optional parameters
+	toneToSendSf66 				( 86), 	-- optional parameters
+	toneToSendSf67 				( 87), 	-- optional parameters
+	toneToSendSf68 				( 88), 	-- optional parameters
+	toneToSendSf69 				( 89), 	-- optional parameters
+	toneToSendSf70 				( 90), 	-- optional parameters
+	toneToSendSf71 				( 91), 	-- optional parameters
+	toneToSendSf72 				( 92), 	-- optional parameters
+	toneToSendSf73 				( 93), 	-- optional parameters
+	toneToSendSf74 				( 94), 	-- optional parameters
+	toneToSendSf75 				( 95), 	-- optional parameters
+	toneToSendSf76 				( 96), 	-- optional parameters
+	toneToSendSf77 				( 97), 	-- optional parameters
+	toneToSendSf78 				( 98), 	-- optional parameters
+	toneToSendSf79 				( 99), 	-- optional parameters
+	toneToSendSf80 				(100), 	-- optional parameters
+	toneToSendSf81 				(101), 	-- optional parameters
+	toneToSendSf82 				(102), 	-- optional parameters
+	toneToSendSf83 				(103), 	-- optional parameters
+	toneToSendSf84 				(104), 	-- optional parameters
+	toneToSendSf85 				(105), 	-- optional parameters
+	toneToSendSf86 				(106), 	-- optional parameters
+	toneToSendSf87 				(107), 	-- optional parameters
+	toneToSendSf88 				(108), 	-- optional parameters
+	toneToSendSf89 				(109), 	-- optional parameters
+	toneToSendSf90 				(110), 	-- optional parameters
+	toneToSendSf91 				(111), 	-- optional parameters
+	toneToSendSf92 				(112), 	-- optional parameters
+	toneToSendSf93 				(113), 	-- optional parameters
+	toneToSendSf94 				(114), 	-- optional parameters
+	toneToSendSf95 				(115), 	-- optional parameters
+	toneToSendSf96 				(116), 	-- optional parameters
+	toneToSendSf97 				(117), 	-- optional parameters
+	toneToSendSf98 				(118), 	-- optional parameters
+	toneToSendSf99 				(119), 	-- optional parameters
+	toneToSendSf100 			(120), 	-- optional parameters
+	toneDuration 				(121), 	-- optional parameters
+	privateData 				(122), 	-- optional parameters
+	privateDataInAck 			(123), 	-- optional parameters
+	deviceIDOnly 				(124), 	-- misc characteristics
+	ackModelMultiStep 			(125) } -- misc characteristics
+
+SendUserInformation ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	deviceIDOnly 				( 2), 	-- misc characteristics
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+CallAssociatedEvtsList ::= SEQUENCE
+{ 	callInformation 		[0] IMPLICIT 	CallInformation 		OPTIONAL,
+	charging 			[1] IMPLICIT 	Charging 			OPTIONAL,
+	digitsGenerated 		[2] IMPLICIT 	DigitsGenerated 		OPTIONAL,
+	telephonyTonesGenerated 	[3] IMPLICIT 	TelephonyTonesGenerated 	OPTIONAL,
+	serviceCompletionFailure 	[4] IMPLICIT 	ServiceCompletionFailure 	OPTIONAL }
+
+CallInformation ::= BIT STRING
+{ 	callingDevice 				( 0), 	-- optional parameters
+	accountInfo 				( 1), 	-- optional parameters
+	authorisatinonCode 			( 2), 	-- optional parameters
+	correlatorData 				( 3), 	-- optional parameters
+	servicesPermitted 			( 4), 	-- optional parameters
+	userData 				( 5), 	-- optional parameters
+	callQualifyingData 			( 6), 	-- optional parameters
+	connectionInfo 				( 7), 	-- optional parameters
+	callLinkageData 			(10), 	-- optional parameters
+	callCharacteristics			(11), 	-- optional parameters
+	subjectOfCall				(12), 	-- optional parameters
+	languagePreferences			(13), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	genCallInfoForOutdatedConnID 		( 9), 	-- misc characteristics
+	deviceInfo				(14) } 	-- optional parameters
+
+Charging ::= BIT STRING
+{ 	numberUnitsNumberOfChargingUnits 	( 0), 	-- optional parameters
+	numberUnitsTypeOfUnits 			( 1), 	-- optional parameters
+	numberUnitsNumberOfCurrencyUnits 	( 2), 	-- optional parameters
+	typeOfChargingInfoSubTotal 		( 3), 	-- optional parameters
+	typeOfChargingInfoTotal 		( 4), 	-- optional parameters
+	chargingMultiplierAThousandth 		( 5), 	-- optional parameters
+	chargingMultiplierAHundredth 		( 6), 	-- optional parameters
+	chargingMultiplierATenth 		( 7), 	-- optional parameters
+	chargingMultiplierOne 			( 8), 	-- optional parameters
+	chargingMultiplierTen 			( 9), 	-- optional parameters
+	chargingMultiplierHundred 		(10), 	-- optional parameters
+	chargingMultiplierThousand 		(11), 	-- optional parameters
+	privateData 				(12) } 	-- optional parameters
+
+DigitsGenerated ::= BIT STRING
+{ 	digitsDurationList 			( 0), 	-- optional parameters
+	pauseDurationList 			( 1), 	-- optional parameters
+	connectionInfo 				( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+
+TelephonyTonesGenerated ::= BIT STRING
+{ 	toneToSendBeep 				(  0), 	-- optional parameters
+	toneToSendBilling 			(  1), 	-- optional parameters
+	toneToSendBusy 				(  2), 	-- optional parameters
+	toneToSendCarrier 			(  3), 	-- optional parameters
+	toneToSendConfirmation 			(  4), 	-- optional parameters
+	toneToSendDial 				(  5), 	-- optional parameters
+	toneToSendFaxCNG 			(  6), 	-- optional parameters
+	toneToSendHold 				(  7), 	-- optional parameters
+	toneToSendHowler 			(  8), 	-- optional parameters
+	toneToSendIntrusion 			(  9), 	-- optional parameters
+	toneToSendModemCNG 			( 10), 	-- optional parameters
+	toneToSendPark 				( 11), 	-- optional parameters
+	toneToSendRecordWarning 		( 12), 	-- optional parameters
+	toneToSendReorder 			( 13), 	-- optional parameters
+	toneToSendRingback 			( 14), 	-- optional parameters
+	toneToSendSilence 			( 15), 	-- optional parameters
+	toneToSendSitVC 			( 16), 	-- optional parameters
+	toneToSendSitIC 			( 17), 	-- optional parameters
+	toneToSendSitRO 			( 18), 	-- optional parameters
+	toneToSendSitNC 			( 19), 	-- optional parameters
+	toneToSendSf0 				( 20), 	-- optional parameters
+	toneToSendSf1 				( 21), 	-- optional parameters
+	toneToSendSf2 				( 22), 	-- optional parameters
+	toneToSendSf3 				( 23), 	-- optional parameters
+	toneToSendSf4 				( 24), 	-- optional parameters
+	toneToSendSf5 				( 25), 	-- optional parameters
+	toneToSendSf6 				( 26), 	-- optional parameters
+	toneToSendSf7 				( 27), 	-- optional parameters
+	toneToSendSf8 				( 28), 	-- optional parameters
+	toneToSendSf9 				( 29), 	-- optional parameters
+	toneToSendSf10 				( 30),  -- optional parameters
+	toneToSendSf11 				( 31), 	-- optional parameters
+	toneToSendSf12 				( 32), 	-- optional parameters
+	toneToSendSf13 				( 33), 	-- optional parameters
+	toneToSendSf14 				( 34), 	-- optional parameters
+	toneToSendSf15 				( 35), 	-- optional parameters
+	toneToSendSf16 				( 36), 	-- optional parameters
+	toneToSendSf17 				( 37), 	-- optional parameters
+	toneToSendSf18 				( 38), 	-- optional parameters
+	toneToSendSf19 				( 39), 	-- optional parameters
+	toneToSendSf20 				( 40), 	-- optional parameters
+	toneToSendSf21 				( 41), 	-- optional parameters
+	toneToSendSf22 				( 42), 	-- optional parameters
+	toneToSendSf23 				( 43), 	-- optional parameters
+	toneToSendSf24 				( 44), 	-- optional parameters
+	toneToSendSf25 				( 45), 	-- optional parameters
+	toneToSendSf26 				( 46), 	-- optional parameters
+	toneToSendSf27 				( 47), 	-- optional parameters
+	toneToSendSf28 				( 48), 	-- optional parameters
+	toneToSendSf29 				( 49), 	-- optional parameters
+	toneToSendSf30 				( 50), 	-- optional parameters
+	toneToSendSf31 				( 51), 	-- optional parameters
+	toneToSendSf32 				( 52), 	-- optional parameters
+	toneToSendSf33 				( 53), 	-- optional parameters
+	toneToSendSf34 				( 54), 	-- optional parameters
+	toneToSendSf35 				( 55), 	-- optional parameters
+	toneToSendSf36 				( 56), 	-- optional parameters
+	toneToSendSf37 				( 57), 	-- optional parameters
+	toneToSendSf38 				( 58), 	-- optional parameters
+	toneToSendSf39 				( 59), 	-- optional parameters
+	toneToSendSf40 				( 60), 	-- optional parameters
+	toneToSendSf41 				( 61), 	-- optional parameters
+	toneToSendSf42 				( 62), 	-- optional parameters
+	toneToSendSf43 				( 63), 	-- optional parameters
+	toneToSendSf44 				( 64), 	-- optional parameters
+	toneToSendSf45 				( 65), 	-- optional parameters
+	toneToSendSf46 				( 66), 	-- optional parameters
+	toneToSendSf47 				( 67), 	-- optional parameters
+	toneToSendSf48 				( 68), 	-- optional parameters
+	toneToSendSf49 				( 69), 	-- optional parameters
+	toneToSendSf50 				( 70), 	-- optional parameters
+	toneToSendSf51 				( 71), 	-- optional parameters
+	toneToSendSf52 				( 72), 	-- optional parameters
+	toneToSendSf53 				( 73), 	-- optional parameters
+	toneToSendSf54 				( 74), 	-- optional parameters
+	toneToSendSf55 				( 75), 	-- optional parameters
+	toneToSendSf56 				( 76), 	-- optional parameters
+	toneToSendSf57 				( 77), 	-- optional parameters
+	toneToSendSf58 				( 78), 	-- optional parameters
+	toneToSendSf59 				( 79), 	-- optional parameters
+	toneToSendSf60 				( 80), 	-- optional parameters
+	toneToSendSf61 				( 81), 	-- optional parameters
+	toneToSendSf62 				( 82), 	-- optional parameters
+	toneToSendSf63 				( 83), 	-- optional parameters
+	toneToSendSf64 				( 84), 	-- optional parameters
+	toneToSendSf65 				( 85), 	-- optional parameters
+	toneToSendSf66 				( 86), 	-- optional parameters
+	toneToSendSf67 				( 87), 	-- optional parameters
+	toneToSendSf68 				( 88), 	-- optional parameters
+	toneToSendSf69 				( 89), 	-- optional parameters
+	toneToSendSf70 				( 90), 	-- optional parameters
+	toneToSendSf71 				( 91), 	-- optional parameters
+	toneToSendSf72 				( 92), 	-- optional parameters
+	toneToSendSf73 				( 93), 	-- optional parameters
+	toneToSendSf74 				( 94), 	-- optional parameters
+	toneToSendSf75 				( 95), 	-- optional parameters
+	toneToSendSf76 				( 96), 	-- optional parameters
+	toneToSendSf77 				( 97), 	-- optional parameters
+	toneToSendSf78 				( 98), 	-- optional parameters
+	toneToSendSf79 				( 99), 	-- optional parameters
+	toneToSendSf80 				(100), 	-- optional parameters
+	toneToSendSf81 				(101), 	-- optional parameters
+	toneToSendSf82 				(102), 	-- optional parameters
+	toneToSendSf83 				(103), 	-- optional parameters
+	toneToSendSf84 				(104), 	-- optional parameters
+	toneToSendSf85 				(105), 	-- optional parameters
+	toneToSendSf86 				(106), 	-- optional parameters
+	toneToSendSf87 				(107), 	-- optional parameters
+	toneToSendSf88 				(108), 	-- optional parameters
+	toneToSendSf89 				(109), 	-- optional parameters
+	toneToSendSf90 				(110), 	-- optional parameters
+	toneToSendSf91 				(111), 	-- optional parameters
+	toneToSendSf92 				(112), 	-- optional parameters
+	toneToSendSf93 				(113), 	-- optional parameters
+	toneToSendSf94 				(114), 	-- optional parameters
+	toneToSendSf95 				(115), 	-- optional parameters
+	toneToSendSf96 				(116), 	-- optional parameters
+	toneToSendSf97 				(117), 	-- optional parameters
+	toneToSendSf98 				(118), 	-- optional parameters
+	toneToSendSf99 				(119), 	-- optional parameters
+	toneToSendSf100 			(120), 	-- optional parameters
+	toneFrequency 				(121), 	-- optional parameters
+	toneDuration 				(122), 	-- optional parameters
+	pauseDurationList 			(123), 	-- optional parameters
+	connectionInfo 				(124), 	-- optional parameters
+	privateData 				(125) } -- optional parameters
+
+ServiceCompletionFailure ::= BIT STRING
+{ 	primaryCallConnectionInfo 		( 0), 	-- optional parameters
+	secondaryCallConnectionInfo 		( 1), 	-- optional parameters
+	otherDevicesPrimaryCallList 		( 2), 	-- optional parameters
+	otherDevicesSecondaryCallList 		( 3), 	-- optional parameters
+	mediaCallCharacteristics 		( 4), 	-- optional parameters
+	privateData 				( 5) } 	-- optional parameters
+
+MediaServList ::= SEQUENCE
+{ 	attachMediaService 		[0] IMPLICIT 	AttachMediaService 	OPTIONAL,
+	detachMediaService 		[1] IMPLICIT 	DetachMediaService 	OPTIONAL }
+
+AttachMediaService ::= BIT STRING
+{ 	mediaServiceVersion 			( 0), 	-- optional parameters
+	mediaServiceInstanceID 			( 1), 	-- optional parameters
+	connectionModeConsultConference 	( 2), 	-- optional parameters
+	connectionModeConsultConferenceHold 	( 3), 	-- optional parameters
+	connectionModeDeflect 			( 4), 	-- optional parameters
+	connectionModeDirectedPickup 		( 5), 	-- optional parameters
+	connectionModeJoin 			( 6), 	-- optional parameters
+	connectionModeSingleStepConference 	( 7), 	-- optional parameters
+	connectionModeSingleStepConferenceHold 	( 8), 	-- optional parameters
+	connectionModeSingleStepTransfer 	( 9), 	-- optional parameters
+	connectionModeTransfer 			(10), 	-- optional parameters
+	connectionModeDirect 			(11), 	-- optional parameters
+	requestedConnectionState 		(12), 	-- optional parameters
+	privateData 				(13), 	-- optional parameters
+	mediaServiceInstanceIDInAck 		(14), 	-- optional parameters
+	mediaConnectionInfoInAck 		(15), 	-- optional parameters
+	privateDataInAck 			(16), 	-- optional parameters
+	deviceIDOnly 				(17), 	-- misc characteristics
+	ackModelMultiStep 			(18) } 	-- misc characteristics
+
+DetachMediaService ::= BIT STRING
+{ 	alerting 				( 0), 	-- initial states
+	connected 				( 1), 	-- initial states
+	fail 					( 2), 	-- initial states
+	hold 					( 3), 	-- initial states
+	queued 					( 4), 	-- initial states
+	privateData 				( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	deviceIDOnly 				( 7), 	-- misc characteristics
+	ackModelMultiStep 			( 8) } 	-- misc characteristics
+
+
+MediaEvtsList::= SEQUENCE
+{ 	mediaAttached 			[0] IMPLICIT 	MediaAttached 		OPTIONAL,
+	mediaDetached 			[1] IMPLICIT 	MediaDetached 		OPTIONAL }
+
+MediaAttached ::= BIT STRING
+{ 	mediaServiceVersion 			( 0), 	-- optional parameters
+	mediaServiceInstanceID 			( 1), 	-- optional parameters
+	mediaStreamID 				( 2), 	-- optional parameters
+	mediaCallCharacteristics 		( 3), 	-- optional parameters
+	callCharacteristics 			( 4), 	-- optional parameters
+	mediaConnectionInfo 			( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+MediaDetached ::= BIT STRING
+{ 	mediaServiceVersion 			( 0), 	-- optional parameters
+	mediaServiceInstanceID 			( 1), 	-- optional parameters
+	mediaStreamID 				( 2), 	-- optional parameters
+	mediaCallCharacteristics 		( 3), 	-- optional parameters
+	callCharacteristics 			( 4), 	-- optional parameters
+	mediaConnectionInfo 			( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+RouteingServList ::= SEQUENCE
+{ 	routeRegister 			[ 0] IMPLICIT 	RouteRegister 		OPTIONAL,
+	routeRegisterCancel 		[ 1] IMPLICIT 	RouteRegisterCancel 	OPTIONAL,
+	routeRegisterAbort 		[ 2] IMPLICIT 	RouteRegisterAbort 	OPTIONAL,
+	reRoute 			[ 3] IMPLICIT 	ReRoute 		OPTIONAL,
+	routeEnd 			[ 4] IMPLICIT 	RouteEnd 		OPTIONAL,
+	routeReject 			[ 5] IMPLICIT 	RouteReject 		OPTIONAL,
+	routeRequest 			[ 6] IMPLICIT 	RouteRequest 		OPTIONAL,
+	routeSelect 			[ 7] IMPLICIT 	RouteSelect 		OPTIONAL,
+	routeUsed 			[ 8] IMPLICIT 	RouteUsed 		OPTIONAL }
+
+RouteRegister ::= BIT STRING
+{ 	routeingDevice 				( 0), 	-- optional parameters
+	requestedMonitorMediaClass 		( 1), 	-- optional parameters
+	requestedMonitorMediaClassAudio 	( 2), 	-- optional parameters
+	requestedMonitorMediaClassData 		( 3), 	-- optional parameters
+	requestedMonitorMediaClassImage 	( 4), 	-- optional parameters
+	requestedMonitorMediaClassVoice 	( 5), 	-- optional parameters
+	requestedMonitorMediaClassChat		(10), 	-- optional parameters
+	requestedMonitorMediaClassEmail		(11), 	-- optional parameters
+	requestedMonitorMediaClassMessage	(12), 	-- optional parameters
+	requestedMonitorMediaClassIM		(13), 	-- optional parameters
+	requestedMonitorMediaClassSMS		(14), 	-- optional parameters
+	requestedMonitorMediaClassMMS		(15), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	actualRouteingMediaClassInAck 		( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	allRouteingDevices 			( 9) } 	-- misc characteristics
+
+RouteRegisterAbort ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+RouteRegisterCancel ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+ReRoute ::= BIT STRING
+{ 	replyTimeout 				( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+RouteEnd ::= BIT STRING
+{ 	errorValue 				( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	supportsSending 			( 4), 	-- misc characteristics
+	supportsReceiving 			( 5) } 	-- misc characteristics
+
+RouteReject ::= BIT STRING
+{ 	rejectCauseBusyOverflow 		( 0), 	-- optional parameters
+	rejectCauseQueueTimeOverflow 		( 1), 	-- optional parameters
+	rejectCauseCapacityOverflow 		( 2), 	-- optional parameters
+	rejectCauseCalendarOverflow 		( 3), 	-- optional parameters
+	rejectCauseUnknownOverflow 		( 4), 	-- optional parameters
+	correlatorData 				( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+RouteRequest ::= BIT STRING
+{ 	callingDevice 				( 0), 	-- optional parameters
+	routeingDevice 				( 1), 	-- optional parameters
+	routeSelAlgorithmACD 			( 2), 	-- optional parameters
+	routeSelAlgorithmEmergency 		( 3), 	-- optional parameters
+	routeSelAlgorithmLeastCost 		( 4), 	-- optional parameters
+	routeSelAlgorithmNormal 		( 5), 	-- optional parameters
+	routeSelAlgorithmUserDefined 		( 6), 	-- optional parameters
+	priority 				( 7), 	-- optional parameters
+	replyTimeout 				( 8), 	-- optional parameters
+	correlatorData 				( 9), 	-- optional parameters
+	mediaCallCharacteristics 		(10), 	-- optional parameters
+	callCharacteristics 			(11), 	-- optional parameters
+	routedCallInfo 				(12), 	-- optional parameters
+	subjectOfCall				(15), 	-- optional parameters
+	messageInformation			(16), 	-- optional parameters
+	languagePreferences			(17), 	-- optional parameters
+	deviceHistory				(18), 	-- optional parameters
+	privateData 				(13), 	-- optional parameters
+	nonCallRelatedRouteing 			(14) } 	-- misc characteristics
+
+RouteSelect ::= BIT STRING
+{ 	alternateRoutes 			( 0), 	-- optional parameters
+	remainRetriesNoListAvailable 		( 1), 	-- optional parameters
+	remainRetriesNoCountAvailable 		( 2), 	-- optional parameters
+	remainRetriesRetryCount 		( 3), 	-- optional parameters
+	routeUsed 				( 4), 	-- optional parameters
+	correlatorData 				( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+RouteUsed ::= BIT STRING
+{ 	callingDevice 				( 0), 	-- optional parameters
+	domain 					( 1), 	-- optional parameters
+	correlatorData 				( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+PhysDevServList ::= SEQUENCE
+{ 	buttonPress 			[ 0] IMPLICIT ButtonPress 			OPTIONAL,
+	getAuditoryApparatusInfo 	[ 1] IMPLICIT GetAuditoryApparatusInfo 		OPTIONAL,
+	getButtonInformation 		[ 2] IMPLICIT GetButtonInformation 		OPTIONAL,
+	getDisplay 			[ 3] IMPLICIT GetDisplay 			OPTIONAL,
+	getHookSwitchStatus 		[ 4] IMPLICIT GetHookSwitchStatus 		OPTIONAL,
+	getLampInfo 			[ 5] IMPLICIT GetLampInfo 			OPTIONAL,
+	getLampMode 			[ 6] IMPLICIT GetLampMode 			OPTIONAL,
+	getMessageWaitingIndicator 	[ 7] IMPLICIT GetMessageWaitingIndicator 	OPTIONAL,
+	getMicrophoneGain 		[ 8] IMPLICIT GetMicrophoneGain 		OPTIONAL,
+	getMicrophoneMute 		[ 9] IMPLICIT GetMicrophoneMute 		OPTIONAL,
+	getRingerStatus 		[10] IMPLICIT GetRingerStatus 			OPTIONAL,
+	getSpeakerMute 			[11] IMPLICIT GetSpeakerMute 			OPTIONAL,
+	getSpeakerVolume 		[12] IMPLICIT GetSpeakerVolume 			OPTIONAL,
+	setButtonInformation 		[13] IMPLICIT SetButtonInformation 		OPTIONAL,
+	setDisplay 			[14] IMPLICIT SetDisplay 			OPTIONAL,
+	setHookSwitchStatus 		[15] IMPLICIT SetHookSwitchStatus 		OPTIONAL,
+	setLampMode 			[16] IMPLICIT SetLampMode 			OPTIONAL,
+	setMessageWaitingIndicator 	[17] IMPLICIT SetMessageWaitingIndicator 	OPTIONAL,
+	setMicrophoneGain 		[18] IMPLICIT SetMicrophoneGain 		OPTIONAL,
+	setMicrophoneMute 		[19] IMPLICIT SetMicrophoneMute 		OPTIONAL,
+	setRingerStatus 		[20] IMPLICIT SetRingerStatus 			OPTIONAL,
+	setSpeakerMute 			[21] IMPLICIT SetSpeakerMute 			OPTIONAL,
+	setSpeakerVolume 		[22] IMPLICIT SetSpeakerVolume 			OPTIONAL }
+
+ButtonPress ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+GetAuditoryApparatusInfo ::= BIT STRING
+{ 	auditoryApparatus 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	auditoryApparatusTypeSpeakerphone 	( 2), 	-- optional parameters
+	auditoryApparatusTypeHandset 		( 3), 	-- optional parameters
+	auditoryApparatusTypeHeadset 		( 4), 	-- optional parameters
+	auditoryApparatusTypeSpeakerOnlyPhone 	( 5), 	-- optional parameters
+	auditoryApparatusTypeother 		( 6), 	-- optional parameters
+	speakerPresent 				( 7), 	-- optional parameters
+	speakerVolumeSettable 			( 8), 	-- optional parameters
+	speakerVolumeReadable 			( 9), 	-- optional parameters
+	speakerMuteSettable 			(10), 	-- optional parameters
+	speakerMuteReadable 			(11), 	-- optional parameters
+	microphonePresent 			(12), 	-- optional parameters
+	microphoneGainSettable 			(13), 	-- optional parameters
+	microphoneGainReadable 			(14), 	-- optional parameters
+	microphoneMuteSettable 			(15), 	-- optional parameters
+	microphoneMuteReadable 			(16), 	-- optional parameters
+	hookswitchSettable 			(17), 	-- optional parameters
+	hookswitchOnHook 			(18), 	-- optional parameters
+	privateDataInAck 			(19) } 	-- optional parameters
+
+GetButtonInformation ::= BIT STRING
+{ 	button 					( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	buttonLabelInAck 			( 2), 	-- optional parameters
+	buttonLabelSettableInAck 		( 3), 	-- optional parameters
+	buttonFunctionInAck 			( 4), 	-- optional parameters
+	buttonAssociatedNumberInAck 		( 5), 	-- optional parameters
+	buttonAssociatedNumberSettableInAck 	( 6), 	-- optional parameters
+	listOfLampsInAck 			( 7), 	-- optional parameters
+	privateDataInAck 			( 8) } 	-- optional parameters
+
+GetDisplay ::= BIT STRING
+{ 	displayID 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	characterSetASCII 			( 2), 	-- optional parameters
+	characterSetUnicode 			( 3), 	-- optional parameters
+	characterSetProprietary 		( 4), 	-- optional parameters
+	privateDataInAck 			( 5) } 	-- optional parameters
+
+GetHookSwitchStatus ::= BIT STRING
+{ 	hookSwitch 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+GetLampInfo ::= BIT STRING
+{ 	lamp 					( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	lampLabelInAck 				( 2), 	-- optional parameters
+	buttonInAck 				( 3), 	-- optional parameters
+	lampColorInAck 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5) } 	-- optional parameters
+
+GetLampMode ::= BIT STRING
+{ 	lamp 					( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	lampModeInAck 				( 2), 	-- optional parameters
+	lampBrightnessNormal 			( 3), 	-- optional parameters
+	lampBrightnessDim 			( 4), 	-- optional parameters
+	lampBrightnessBright 			( 5), 	-- optional parameters
+	lampColorInAck 				( 6), 	-- optional parameters
+	buttonInAck 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8) } 	-- optional parameters
+
+GetMessageWaitingIndicator ::= BIT STRING
+{	privateData 				( 0), 	-- optional parameter
+	deviceForMsgInAck 			( 1), 	-- optional parameter
+	lampIsPresentInAck 			( 2), 	-- optional parameter
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+GetMicrophoneGain ::= BIT STRING
+{ 	auditoryApparatus 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	micGainAbsInAck 			( 2), 	-- optional parameters
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+GetMicrophoneMute ::= BIT STRING
+{ 	auditoryApparatus 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+GetRingerStatus ::= BIT STRING
+{ 	ringer 					( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	ringCountInAck 				( 2), 	-- optional parameters
+	ringPatternInAck 			( 3), 	-- optional parameters
+	ringVolumeInAck 			( 4), 	-- optional parameters
+	ringVolumeAbsInAck 			( 5), 	-- optional parameters
+	privateDataInAck 			( 6) } 	-- optional parameters
+
+GetSpeakerMute ::= BIT STRING
+{ 	auditoryApparatus 			( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	privateData 				( 2) } 	-- optional parameters
+
+GetSpeakerVolume ::= BIT STRING
+{ 	auditoryApparatus 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	speakerVolAbsInAck 			( 2), 	-- optional parameters
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+SetButtonInformation ::= BIT STRING
+{	buttonLabel 				( 0), 	-- optional parameters
+	buttonAssociatedNumber 			( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3), 	-- optional parameters
+	ackModelMultiStep 			( 4) } 	-- misc characteristics
+
+SetDisplay ::= BIT STRING
+{ 	physBaseRowNumber 			( 0), 	-- optional parameters
+	physColumnRowNumber 			( 1), 	-- optional parameters
+	offset 					( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	privateDataInAck 			( 4), 	-- optional parameters
+	supportsModifyingPosition		( 5), 	-- misc characteristics
+	ackModelMultiStep 			( 6) } 	-- misc characteristics
+
+SetHookSwitchStatus ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	ackModelMultiStep 			( 1) } 	-- misc characteristics
+
+SetLampMode ::= BIT STRING
+{ 	lampModeBrokenFlutter 			(  0), 	-- optional parameter
+	lampModeFlutter 			(  1), 	-- optional parameter
+	lampModeOff 				(  2), 	-- optional parameter
+	lampModeSteady 				(  3), 	-- optional parameter
+	lampModeWink 				(  4), 	-- optional parameter
+	lampModeReserved 			(  5), 	-- optional parameter
+	lampModeSf0 				(  6), 	-- optional parameters
+	lampModeSf1 				(  7), 	-- optional parameters
+	lampModeSf2 				(  8), 	-- optional parameters
+	lampModeSf3 				(  9), 	-- optional parameters
+	lampModeSf4 				( 10), 	-- optional parameters
+	lampModeSf5 				( 11), 	-- optional parameters
+	lampModeSf6 				( 12), 	-- optional parameters
+	lampModeSf7 				( 13), 	-- optional parameters
+	lampModeSf8 				( 14), 	-- optional parameters
+	lampModeSf9 				( 15), 	-- optional parameters
+	lampModeSf10 				( 16), 	-- optional parameters
+	lampModeSf11 				( 17), 	-- optional parameters
+	lampModeSf12 				( 18), 	-- optional parameters
+	lampModeSf13 				( 19), 	-- optional parameters
+	lampModeSf14 				( 20), 	-- optional parameters
+	lampModeSf15 				( 21), 	-- optional parameters
+	lampModeSf16 				( 22), 	-- optional parameters
+	lampModeSf17 				( 23), 	-- optional parameters
+	lampModeSf18 				( 24), 	-- optional parameters
+	lampModeSf19 				( 25), 	-- optional parameters
+	lampModeSf20 				( 26), 	-- optional parameters
+	lampModeSf21 				( 27), 	-- optional parameters
+	lampModeSf22 				( 28), 	-- optional parameters
+	lampModeSf23 				( 29), 	-- optional parameters
+	lampModeSf24 				( 30), 	-- optional parameters
+	lampModeSf25 				( 31), 	-- optional parameters
+	lampModeSf26 				( 32), 	-- optional parameters
+	lampModeSf27 				( 33), 	-- optional parameters
+	lampModeSf28 				( 34), 	-- optional parameters
+	lampModeSf29 				( 35), 	-- optional parameters
+	lampModeSf30 				( 36), 	-- optional parameters
+	lampModeSf31 				( 37), 	-- optional parameters
+	lampModeSf32 				( 38), 	-- optional parameters
+	lampModeSf33 				( 39), 	-- optional parameters
+	lampModeSf34 				( 40), 	-- optional parameters
+	lampModeSf35 				( 41), 	-- optional parameters
+	lampModeSf36 				( 42), 	-- optional parameters
+	lampModeSf37 				( 43), 	-- optional parameters
+	lampModeSf38 				( 44), 	-- optional parameters
+	lampModeSf39 				( 45), 	-- optional parameters
+	lampModeSf40 				( 46), 	-- optional parameters
+	lampModeSf41 				( 47), 	-- optional parameters
+	lampModeSf42 				( 48), 	-- optional parameters
+	lampModeSf43 				( 49), 	-- optional parameters
+	lampModeSf44 				( 50), 	-- optional parameters
+	lampModeSf45 				( 51), 	-- optional parameters
+	lampModeSf46 				( 52), 	-- optional parameters
+	lampModeSf47 				( 53), 	-- optional parameters
+	lampModeSf48 				( 54), 	-- optional parameters
+	lampModeSf49 				( 55), 	-- optional parameters
+	lampModeSf50 				( 56), 	-- optional parameters
+	lampModeSf51 				( 57), 	-- optional parameters
+	lampModeSf52 				( 58), 	-- optional parameters
+	lampModeSf53 				( 59), 	-- optional parameters
+	lampModeSf54 				( 60), 	-- optional parameters
+	lampModeSf55 				( 61), 	-- optional parameters
+	lampModeSf56 				( 62), 	-- optional parameters
+	lampModeSf57 				( 63), 	-- optional parameters
+	lampModeSf58 				( 64), 	-- optional parameters
+	lampModeSf59 				( 65), 	-- optional parameters
+	lampModeSf60 				( 66), 	-- optional parameters
+	lampModeSf61 				( 67), 	-- optional parameters
+	lampModeSf62 				( 68), 	-- optional parameters
+	lampModeSf63 				( 69), 	-- optional parameters
+	lampModeSf64 				( 70), 	-- optional parameters
+	lampModeSf65 				( 71), 	-- optional parameters
+	lampModeSf66 				( 72), 	-- optional parameters
+	lampModeSf67 				( 73), 	-- optional parameters
+	lampModeSf68 				( 74), 	-- optional parameters
+	lampModeSf69 				( 75), 	-- optional parameters
+	lampModeSf70 				( 76), 	-- optional parameters
+	lampModeSf71 				( 77), 	-- optional parameters
+	lampModeSf72 				( 78), 	-- optional parameters
+	lampModeSf73 				( 79), 	-- optional parameters
+	lampModeSf74 				( 80), 	-- optional parameters
+	lampModeSf75 				( 81), 	-- optional parameters
+	lampModeSf76 				( 82), 	-- optional parameters
+	lampModeSf77 				( 83), 	-- optional parameters
+	lampModeSf78 				( 84), 	-- optional parameters
+	lampModeSf79 				( 85), 	-- optional parameters
+	lampModeSf80 				( 86), 	-- optional parameters
+	lampModeSf81 				( 87), 	-- optional parameters
+	lampModeSf82 				( 88), 	-- optional parameters
+	lampModeSf83 				( 89), 	-- optional parameters
+	lampModeSf84 				( 90), 	-- optional parameters
+	lampModeSf85 				( 91), 	-- optional parameters
+	lampModeSf86 				( 92), 	-- optional parameters
+	lampModeSf87 				( 93), 	-- optional parameters
+	lampModeSf88 				( 94), 	-- optional parameters
+	lampModeSf89 				( 95), 	-- optional parameters
+	lampModeSf90 				( 96), 	-- optional parameters
+	lampModeSf91 				( 97), 	-- optional parameters
+	lampModeSf92 				( 98), 	-- optional parameters
+	lampModeSf93 				( 99), 	-- optional parameters
+	lampModeSf94 				(100), 	-- optional parameters
+	lampBrightnessNormal 			(101), 	-- optional parameters
+	lampBrightnessDim 			(102), 	-- optional parameters
+	lampBrightnessBright 			(103), 	-- optional parameters
+	lampColorNoColor 			(104), 	-- optional parameters
+	lampColorRed 				(105), 	-- optional parameters
+	lampColorYellow 			(106), 	-- optional parameters
+	lampColorGreen 				(107), 	-- optional parameters
+	lampColorBlue 				(108), 	-- optional parameters
+	lampColorReserved 			(109), 	-- optional parameters
+	lampColorSf0 				(110), 	-- optional parameters
+	lampColorSf1 				(111), 	-- optional parameters
+	lampColorSf2 				(112), 	-- optional parameters
+	lampColorSf3 				(113), 	-- optional parameters
+	lampColorSf4 				(114), 	-- optional parameters
+	lampColorSf5 				(115), 	-- optional parameters
+	lampColorSf6 				(116), 	-- optional parameters
+	lampColorSf7 				(117), 	-- optional parameters
+	lampColorSf8 				(118), 	-- optional parameters
+	lampColorSf9 				(119), 	-- optional parameters
+	lampColorSf10 				(120), 	-- optional parameters
+	lampColorSf11 				(121), 	-- optional parameters
+	lampColorSf12 				(122), 	-- optional parameters
+	lampColorSf13 				(123), 	-- optional parameters
+	lampColorSf14 				(124), 	-- optional parameters
+	lampColorSf15 				(125), 	-- optional parameters
+	lampColorSf16 				(126), 	-- optional parameters
+	lampColorSf17 				(127), 	-- optional parameters
+	lampColorSf18 				(128), 	-- optional parameters
+	lampColorSf19 				(129), 	-- optional parameters
+	lampColorSf20 				(130), 	-- optional parameters
+	lampColorSf21 				(131), 	-- optional parameters
+	lampColorSf22 				(132), 	-- optional parameters
+	lampColorSf23 				(133), 	-- optional parameters
+	lampColorSf24 				(134), 	-- optional parameters
+	lampColorSf25 				(135), 	-- optional parameters
+	lampColorSf26 				(136), 	-- optional parameters
+	lampColorSf27 				(137), 	-- optional parameters
+	lampColorSf28 				(138), 	-- optional parameters
+	lampColorSf29 				(139), 	-- optional parameters
+	lampColorSf30 				(140), 	-- optional parameters
+	lampColorSf31 				(141), 	-- optional parameters
+	lampColorSf32 				(142), 	-- optional parameters
+	lampColorSf33 				(143), 	-- optional parameters
+	lampColorSf34 				(144), 	-- optional parameters
+	lampColorSf35 				(145), 	-- optional parameters
+	lampColorSf36 				(146), 	-- optional parameters
+	lampColorSf37 				(147), 	-- optional parameters
+	lampColorSf38 				(148), 	-- optional parameters
+	lampColorSf39 				(149), 	-- optional parameters
+	lampColorSf40 				(150), 	-- optional parameters
+	lampColorSf41 				(151), 	-- optional parameters
+	lampColorSf42 				(152), 	-- optional parameters
+	lampColorSf43 				(153), 	-- optional parameters
+	lampColorSf44 				(154), 	-- optional parameters
+	lampColorSf45 				(155), 	-- optional parameters
+	lampColorSf46 				(156), 	-- optional parameters
+	lampColorSf47 				(157), 	-- optional parameters
+	lampColorSf48 				(158), 	-- optional parameters
+	lampColorSf49 				(159), 	-- optional parameters
+	lampColorSf50 				(160), 	-- optional parameters
+	lampColorSf51 				(161), 	-- optional parameters
+	lampColorSf52 				(162), 	-- optional parameters
+	lampColorSf53 				(163), 	-- optional parameters
+	lampColorSf54 				(164), 	-- optional parameters
+	lampColorSf55 				(165), 	-- optional parameters
+	lampColorSf56 				(166), 	-- optional parameters
+	lampColorSf57 				(167), 	-- optional parameters
+	lampColorSf58 				(168), 	-- optional parameters
+	lampColorSf59 				(169), 	-- optional parameters
+	lampColorSf60 				(170), 	-- optional parameters
+	lampColorSf61 				(171), 	-- optional parameters
+	lampColorSf62 				(172), 	-- optional parameters
+	lampColorSf63 				(173), 	-- optional parameters
+	lampColorSf64 				(174), 	-- optional parameters
+	lampColorSf65 				(175), 	-- optional parameters
+	lampColorSf66 				(176), 	-- optional parameters
+	lampColorSf67 				(177), 	-- optional parameters
+	lampColorSf68 				(178), 	-- optional parameters
+	lampColorSf69 				(179), 	-- optional parameters
+	lampColorSf70 				(180), 	-- optional parameters
+	lampColorSf71 				(181), 	-- optional parameters
+	lampColorSf72 				(182), 	-- optional parameters
+	lampColorSf73 				(183), 	-- optional parameters
+	lampColorSf74 				(184), 	-- optional parameters
+	lampColorSf75 				(185), 	-- optional parameters
+	lampColorSf76 				(186), 	-- optional parameters
+	lampColorSf77 				(187), 	-- optional parameters
+	lampColorSf78 				(188), 	-- optional parameters
+	lampColorSf79 				(189), 	-- optional parameters
+	lampColorSf80 				(190), 	-- optional parameters
+	lampColorSf81 				(191), 	-- optional parameters
+	lampColorSf82 				(192), 	-- optional parameters
+	lampColorSf83 				(193), 	-- optional parameters
+	lampColorSf84 				(194), 	-- optional parameters
+	lampColorSf85 				(195), 	-- optional parameters
+	lampColorSf86 				(196), 	-- optional parameters
+	lampColorSf87 				(197), 	-- optional parameters
+	lampColorSf88 				(198), 	-- optional parameters
+	lampColorSf89 				(199), 	-- optional parameters
+	lampColorSf90 				(200), 	-- optional parameters
+	lampColorSf91 				(201), 	-- optional parameters
+	lampColorSf92 				(202), 	-- optional parameters
+	lampColorSf93 				(203), 	-- optional parameters
+	lampColorSf94 				(204), 	-- optional parameters
+	privateData 				(205), 	-- optional parameters
+	privateDataInAck 			(206), 	-- optional parameters
+	ackModelMultiStep 			(207) } -- misc characteristics
+
+SetMessageWaitingIndicator ::= BIT STRING
+{ 	deviceForMsg 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+SetMicrophoneGain ::= BIT STRING
+{ 	microphoneGainAbs 			( 0), 	-- optional parameters
+	microphoneGainInc 			( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3), 	-- optional parameters
+	ackModelMultiStep 			( 4) } 	-- misc characteristics
+
+SetMicrophoneMute ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+SetRingerStatus ::= BIT STRING
+{ 	ringerModeRinging 			( 0), 	-- optional parameters
+	ringerModeNotRinging 			( 1), 	-- optional parameters
+	ringVolumeAbs 				( 2), 	-- optional parameters
+	ringVolumeInc 				( 3), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5), 	-- optional parameters
+	ackModelMultiStep 			( 6) } 	-- misc characteristics
+
+SetSpeakerMute ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+SetSpeakerVolume ::= BIT STRING
+{ 	speakerVolumeAbs 			( 0), 	-- optional parameters
+	speakerVolumeInc 			( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3), 	-- optional parameters
+	ackModelMultiStep 			( 4), 	-- misc characteristics
+	resettedAfterCall 			( 5), 	-- misc characteristics
+	notSettableWhileActive 			( 6) } 	-- misc characteristics
+
+PhysDevEvtsList ::= SEQUENCE
+{ 	buttonInformation 		[ 0] IMPLICIT 	ButtonInformation 		OPTIONAL,
+	buttonPress 			[ 1] IMPLICIT 	ButtonPressEvent 		OPTIONAL,
+	displayUpdated 			[ 2] IMPLICIT 	DisplayUpdated 			OPTIONAL,
+	hookswitch 			[ 3] IMPLICIT 	Hookswitch 			OPTIONAL,
+	lampMode 			[ 4] IMPLICIT 	LampMode 			OPTIONAL,
+	messageWaiting 			[ 5] IMPLICIT 	MessageWaiting 			OPTIONAL,
+	microphoneGain 			[ 6] IMPLICIT 	MicrophoneGain 			OPTIONAL,
+	microphoneMute 			[ 7] IMPLICIT 	MicrophoneMute 			OPTIONAL,
+	ringerStatus 			[ 8] IMPLICIT 	RingerStatus 			OPTIONAL,
+	speakerMute 			[ 9] IMPLICIT 	SpeakerMute 			OPTIONAL,
+	speakerVolume 			[10] IMPLICIT 	SpeakerVolume 			OPTIONAL }
+
+ButtonInformation ::= BIT STRING
+{ 	buttonLabel 				( 0), 	-- optional parameters
+	buttonAssociatedNumber 			( 1), 	-- optional parameters
+	buttonPressIndicator 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+ButtonPressEvent ::= BIT STRING
+{ 	buttonLabel 				( 0), 	-- optional parameters
+	buttonAssociatedNumber 			( 1), 	-- optional parameters
+	privateData 				( 2) } 	-- optional parameters
+
+DisplayUpdated ::= BIT STRING
+{ 	characterSetASCII 			( 0), 	-- optional parameters
+	characterSetUnicode 			( 1), 	-- optional parameters
+	characterSetProprietary 		( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+Hookswitch ::= BIT STRING
+{	privateData 				( 0) } 	-- optional parameters
+
+LampMode ::= BIT STRING
+{ 	lampModeBrokenFlutter 			(  0), 	-- optional parameters
+	lampModeFlutter 			(  1), 	-- optional parameters
+	lampModeOff 				(  2), 	-- optional parameters
+	lampModeSteady 				(  3), 	-- optional parameters
+	lampModeWink 				(  4), 	-- optional parameters
+	lampModeReserved 			(  5), 	-- optional parameters
+	lampModeSf0 				(  6), 	-- optional parameters
+	lampModeSf1 				(  7), 	-- optional parameters
+	lampModeSf2 				(  8), 	-- optional parameters
+	lampModeSf3 				(  9), 	-- optional parameters
+	lampModeSf4 				( 10), 	-- optional parameters
+	lampModeSf5 				( 11), 	-- optional parameters
+	lampModeSf6 				( 12), 	-- optional parameters
+	lampModeSf7 				( 13), 	-- optional parameters
+	lampModeSf8 				( 14), 	-- optional parameters
+	lampModeSf9 				( 15), 	-- optional parameters
+	lampModeSf10 				( 16), 	-- optional parameters
+	lampModeSf11 				( 17), 	-- optional parameters
+	lampModeSf12 				( 18), 	-- optional parameters
+	lampModeSf13 				( 19), 	-- optional parameters
+	lampModeSf14 				( 20), 	-- optional parameters
+	lampModeSf15 				( 21), 	-- optional parameters
+	lampModeSf16 				( 22), 	-- optional parameters
+	lampModeSf17 				( 23), 	-- optional parameters
+	lampModeSf18 				( 24), 	-- optional parameters
+	lampModeSf19 				( 25), 	-- optional parameters
+	lampModeSf20 				( 26), 	-- optional parameters
+	lampModeSf21 				( 27), 	-- optional parameters
+	lampModeSf22 				( 28), 	-- optional parameters
+	lampModeSf23 				( 29), 	-- optional parameters
+	lampModeSf24 				( 30), 	-- optional parameters
+	lampModeSf25 				( 31), 	-- optional parameters
+	lampModeSf26 				( 32), 	-- optional parameters
+	lampModeSf27 				( 33), 	-- optional parameters
+	lampModeSf28 				( 34), 	-- optional parameters
+	lampModeSf29 				( 35), 	-- optional parameters
+	lampModeSf30 				( 36), 	-- optional parameters
+	lampModeSf31 				( 37), 	-- optional parameters
+	lampModeSf32 				( 38), 	-- optional parameters
+	lampModeSf33 				( 39), 	-- optional parameters
+	lampModeSf34 				( 40), 	-- optional parameters
+	lampModeSf35 				( 41), 	-- optional parameters
+	lampModeSf36 				( 42), 	-- optional parameters
+	lampModeSf37 				( 43), 	-- optional parameters
+	lampModeSf38 				( 44), 	-- optional parameters
+	lampModeSf39 				( 45), 	-- optional parameters
+	lampModeSf40 				( 46), 	-- optional parameters
+	lampModeSf41 				( 47), 	-- optional parameters
+	lampModeSf42 				( 48), 	-- optional parameters
+	lampModeSf43 				( 49), 	-- optional parameters
+	lampModeSf44 				( 50), 	-- optional parameters
+	lampModeSf45 				( 51), 	-- optional parameters
+	lampModeSf46 				( 52), 	-- optional parameters
+	lampModeSf47 				( 53), 	-- optional parameters
+	lampModeSf48 				( 54), 	-- optional parameters
+	lampModeSf49 				( 55), 	-- optional parameters
+	lampModeSf50 				( 56), 	-- optional parameters
+	lampModeSf51 				( 57), 	-- optional parameters
+	lampModeSf52 				( 58), 	-- optional parameters
+	lampModeSf53 				( 59), 	-- optional parameters
+	lampModeSf54 				( 60), 	-- optional parameters
+	lampModeSf55 				( 61), 	-- optional parameters
+	lampModeSf56 				( 62), 	-- optional parameters
+	lampModeSf57 				( 63), 	-- optional parameters
+	lampModeSf58 				( 64), 	-- optional parameters
+	lampModeSf59 				( 65), 	-- optional parameters
+	lampModeSf60 				( 66), 	-- optional parameters
+	lampModeSf61 				( 67), 	-- optional parameters
+	lampModeSf62 				( 68), 	-- optional parameters
+	lampModeSf63 				( 69), 	-- optional parameters
+	lampModeSf64 				( 70), 	-- optional parameters
+	lampModeSf65 				( 71), 	-- optional parameters
+	lampModeSf66 				( 72), 	-- optional parameters
+	lampModeSf67 				( 73), 	-- optional parameters
+	lampModeSf68 				( 74), 	-- optional parameters
+	lampModeSf69 				( 75), 	-- optional parameters
+	lampModeSf70 				( 76), 	-- optional parameters
+	lampModeSf71 				( 77), 	-- optional parameters
+	lampModeSf72 				( 78), 	-- optional parameters
+	lampModeSf73 				( 79), 	-- optional parameters
+	lampModeSf74 				( 80), 	-- optional parameters
+	lampModeSf75 				( 81), 	-- optional parameters
+	lampModeSf76 				( 82), 	-- optional parameters
+	lampModeSf77 				( 83), 	-- optional parameters
+	lampModeSf78 				( 84), 	-- optional parameters
+	lampModeSf79 				( 85), 	-- optional parameters
+	lampModeSf80 				( 86), 	-- optional parameters
+	lampModeSf81 				( 87), 	-- optional parameters
+	lampModeSf82 				( 88), 	-- optional parameters
+	lampModeSf83 				( 89), 	-- optional parameters
+	lampModeSf84 				( 90), 	-- optional parameters
+	lampModeSf85 				( 91), 	-- optional parameters
+	lampModeSf86 				( 92), 	-- optional parameters
+	lampModeSf87 				( 93), 	-- optional parameters
+	lampModeSf88 				( 94), 	-- optional parameters
+	lampModeSf89 				( 95), 	-- optional parameters
+	lampModeSf90 				( 96), 	-- optional parameters
+	lampModeSf91 				( 97), 	-- optional parameters
+	lampModeSf92 				( 98), 	-- optional parameters
+	lampModeSf93 				( 99), 	-- optional parameters
+	lampModeSf94 				(100), 	-- optional parameters
+	lampBrightnessNormal 			(101), 	-- optional parameters
+	lampBrightnessDim 			(102), 	-- optional parameters
+	lampBrightnessBright 			(103), 	-- optional parameters
+	lampColorNoColor 			(104), 	-- optional parameters
+	lampColorRed 				(105), 	-- optional parameters
+	lampColorYellow 			(106), 	-- optional parameters
+	lampColorGreen 				(107), 	-- optional parameters
+	lampColorBlue 				(108), 	-- optional parameters
+	lampColorReserved 			(109), 	-- optional parameters
+	lampColorSf0 				(110), 	-- optional parameters
+	lampColorSf1 				(111), 	-- optional parameters
+	lampColorSf2 				(112), 	-- optional parameters
+	lampColorSf3 				(113), 	-- optional parameters
+	lampColorSf4 				(114), 	-- optional parameters
+	lampColorSf5 				(115), 	-- optional parameters
+	lampColorSf6 				(116), 	-- optional parameters
+	lampColorSf7 				(117), 	-- optional parameters
+	lampColorSf8 				(118), 	-- optional parameters
+	lampColorSf9 				(119), 	-- optional parameters
+	lampColorSf10 				(120), 	-- optional parameters
+	lampColorSf11 				(121), 	-- optional parameters
+	lampColorSf12 				(122), 	-- optional parameters
+	lampColorSf13 				(123), 	-- optional parameters
+	lampColorSf14 				(124), 	-- optional parameters
+	lampColorSf15 				(125), 	-- optional parameters
+	lampColorSf16 				(126), 	-- optional parameters
+	lampColorSf17 				(127), 	-- optional parameters
+	lampColorSf18 				(128), 	-- optional parameters
+	lampColorSf19 				(129), 	-- optional parameters
+	lampColorSf20 				(130), 	-- optional parameters
+	lampColorSf21 				(131), 	-- optional parameters
+	lampColorSf22 				(132), 	-- optional parameters
+	lampColorSf23 				(133), 	-- optional parameters
+	lampColorSf24 				(134), 	-- optional parameters
+	lampColorSf25 				(135), 	-- optional parameters
+	lampColorSf26 				(136), 	-- optional parameters
+	lampColorSf27 				(137), 	-- optional parameters
+	lampColorSf28 				(138), 	-- optional parameters
+	lampColorSf29 				(139), 	-- optional parameters
+	lampColorSf30 				(140), 	-- optional parameters
+	lampColorSf31 				(141), 	-- optional parameters
+	lampColorSf32 				(142), 	-- optional parameters
+	lampColorSf33 				(143), 	-- optional parameters
+	lampColorSf34 				(144), 	-- optional parameters
+	lampColorSf35 				(145), 	-- optional parameters
+	lampColorSf36 				(146), 	-- optional parameters
+	lampColorSf37 				(147), 	-- optional parameters
+	lampColorSf38 				(148), 	-- optional parameters
+	lampColorSf39 				(149), 	-- optional parameters
+	lampColorSf40 				(150), 	-- optional parameters
+	lampColorSf41 				(151), 	-- optional parameters
+	lampColorSf42 				(152), 	-- optional parameters
+	lampColorSf43 				(153), 	-- optional parameters
+	lampColorSf44 				(154), 	-- optional parameters
+	lampColorSf45 				(155), 	-- optional parameters
+	lampColorSf46 				(156), 	-- optional parameters
+	lampColorSf47 				(157), 	-- optional parameters
+	lampColorSf48 				(158), 	-- optional parameters
+	lampColorSf49 				(159), 	-- optional parameters
+	lampColorSf50 				(160), 	-- optional parameters
+	lampColorSf51 				(161), 	-- optional parameters
+	lampColorSf52 				(162), 	-- optional parameters
+	lampColorSf53 				(163), 	-- optional parameters
+	lampColorSf54 				(164), 	-- optional parameters
+	lampColorSf55 				(165), 	-- optional parameters
+	lampColorSf56 				(166), 	-- optional parameters
+	lampColorSf57 				(167), 	-- optional parameters
+	lampColorSf58 				(168), 	-- optional parameters
+	lampColorSf59 				(169), 	-- optional parameters
+	lampColorSf60 				(170), 	-- optional parameters
+	lampColorSf61 				(171), 	-- optional parameters
+	lampColorSf62 				(172), 	-- optional parameters
+	lampColorSf63 				(173), 	-- optional parameters
+	lampColorSf64 				(174), 	-- optional parameters
+	lampColorSf65 				(175), 	-- optional parameters
+	lampColorSf66 				(176), 	-- optional parameters
+	lampColorSf67 				(177), 	-- optional parameters
+	lampColorSf68 				(178), 	-- optional parameters
+	lampColorSf69 				(179), 	-- optional parameters
+	lampColorSf70 				(180), 	-- optional parameters
+	lampColorSf71 				(181), 	-- optional parameters
+	lampColorSf72 				(182), 	-- optional parameters
+	lampColorSf73 				(183), 	-- optional parameters
+	lampColorSf74 				(184), 	-- optional parameters
+	lampColorSf75 				(185), 	-- optional parameters
+	lampColorSf76 				(186), 	-- optional parameters
+	lampColorSf77 				(187), 	-- optional parameters
+	lampColorSf78 				(188), 	-- optional parameters
+	lampColorSf79 				(189), 	-- optional parameters
+	lampColorSf80 				(190), 	-- optional parameters
+	lampColorSf81 				(191), 	-- optional parameters
+	lampColorSf82 				(192), 	-- optional parameters
+	lampColorSf83 				(193), 	-- optional parameters
+	lampColorSf84 				(194), 	-- optional parameters
+	lampColorSf85 				(195), 	-- optional parameters
+	lampColorSf86 				(196), 	-- optional parameters
+	lampColorSf87 				(197), 	-- optional parameters
+	lampColorSf88 				(198), 	-- optional parameters
+	lampColorSf89 				(199), 	-- optional parameters
+	lampColorSf90 				(200), 	-- optional parameters
+	lampColorSf91 				(201), 	-- optional parameters
+	lampColorSf92 				(202), 	-- optional parameters
+	lampColorSf93 				(203), 	-- optional parameters
+	lampColorSf94 				(204), 	-- optional parameters
+	privateData 				(205) } -- optional parameters
+
+MessageWaiting ::= BIT STRING
+{ 	deviceForMsg 				( 0), 	-- optional parameters
+	privateData 				( 1) } 	-- optional parameters
+
+MicrophoneGain ::= BIT STRING
+{ 	microphoneGainAbs 			( 0), 	-- optional parameters
+	microphoneGainInc 			( 1), 	-- optional parameters
+	privateData 				( 2) } 	-- optional parameters
+
+MicrophoneMute ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+RingerStatus ::= BIT STRING
+{ 	ringerModeRinging 			( 0), 	-- optional parameters
+	ringerModeNotRinging 			( 1), 	-- optional parameters
+	ringCount 				( 2), 	-- optional parameters
+	ringPattern 				( 3), 	-- optional parameters
+	ringVolumeAbs 				( 4), 	-- optional parameters
+	ringVolumeInc 				( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+SpeakerMute ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+SpeakerVolume ::= BIT STRING
+{ 	speakerVolumeAbs 			( 0), 	-- optional parameters
+	speakerVolumeInc 			( 1), 	-- optional parameters
+	privateData 				( 2) } 	-- optional parameters
+
+LogicalServList ::= SEQUENCE
+{ 	callBackNonCallRel 		[ 0] IMPLICIT 	CallBackNonCallRel 		OPTIONAL,
+	callBackMsgNonCallRel 		[ 1] IMPLICIT 	CallBackMsgNonCallRel 		OPTIONAL,
+	cancelCallBack 			[ 2] IMPLICIT 	CancelCallBack 			OPTIONAL,
+	cancelCallBackMsg 		[ 3] IMPLICIT 	CancelCallBackMsg 		OPTIONAL,
+	getAgentState 			[ 4] IMPLICIT 	GetAgentState 			OPTIONAL,
+	getAutoAnswer 			[ 5] IMPLICIT 	GetAutoAnswer 			OPTIONAL,
+	getAutoWorkMode 		[ 6] IMPLICIT 	GetAutoWorkMode 		OPTIONAL,
+	getCallerIDStatus 		[ 7] IMPLICIT 	GetCallerIDStatus 		OPTIONAL,
+	getCallBack			[19] IMPLICIT	GetCallBack			OPTIONAL,
+	getDoNotDisturb 		[ 8] IMPLICIT 	GetDoNotDisturb 		OPTIONAL,
+	getForwarding 			[ 9] IMPLICIT 	GetForwarding 			OPTIONAL,
+	getLastNumberDialed 		[10] IMPLICIT 	GetLastNumberDialed 		OPTIONAL,
+	getPresenceState		[20] IMPLICIT 	GetPresenceState		OPTIONAL,
+	getRouteingMode 		[11] IMPLICIT 	GetRouteingMode 		OPTIONAL,
+	setAgentState 			[12] IMPLICIT 	SetAgentState 			OPTIONAL,
+	setAutoAnswer 			[13] IMPLICIT 	SetAutoAnswer 			OPTIONAL,
+	setAutoWorkMode 		[14] IMPLICIT 	SetAutoWorkMode 		OPTIONAL,
+	setCallerIDStatus 		[15] IMPLICIT 	SetCallerIDStatus 		OPTIONAL,
+	setDoNotDisturb 		[16] IMPLICIT 	SetDoNotDisturb 		OPTIONAL,
+	setForwarding 			[17] IMPLICIT 	SetForwarding 			OPTIONAL,
+	setPresenceState		[21] IMPLICIT 	SetPresenceState		OPTIONAL,
+	setRouteingMode 		[18] IMPLICIT 	SetRouteingMode 		OPTIONAL }
+
+CallBackNonCallRel ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	additionalReqForbidden 			( 2), 	-- optional parameters
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+CallBackMsgNonCallRel ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	additionalReqForbidden 			( 2), 	-- optional parameters
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+CancelCallBack ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2), 	-- misc characteristics
+	supportsClearing 			( 3) } 	-- misc characteristics
+
+CancelCallBackMsg ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2), 	-- misc characteristics
+	supportsClearing 			( 3) } 	-- misc characteristics
+
+GetAgentState ::= BIT STRING
+{ 	acdGroup 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	agentStateListAgentIDInAck 		( 2), 	-- optional parameters
+	agentGroupInAck 			( 3), 	-- optional parameters
+	pendingAgentStateInAck 			( 4), 	-- optional parameters
+	agentStateConditionForcedPauseInAck 	( 5), 	-- optional parameters
+	agentStateConditionPauseInAck 		( 6), 	-- optional parameters
+	privateDataInAck 			( 7) } 	-- optional parameters
+
+GetAutoAnswer ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	numberOfRingsInAck 			( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+GetAutoWorkMode ::= BIT STRING
+{	privateData 				( 0), 	-- optional parameters
+	autoWorkIntervalInAck 			( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+GetCallerIDStatus ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+GetCallBack ::= BIT STRING
+{	privateData				( 0), 	-- optional parameters
+	privateDataInAck			( 1) } 	-- optional parameters
+
+GetDoNotDisturb ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	callOriginParameterInAck 		( 1), 	-- optional parameters
+	callOriginInternInAck 			( 2), 	-- optional parameters
+	callOriginExternInAck 			( 3), 	-- optional parameters
+	callingDeviceListInAck 			( 4), 	-- optional parameters
+	privateDataInAck 			( 5) } 	-- optional parameters
+
+GetForwarding ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	forwardListInAck 			( 1), 	-- optional parameters
+	forwardListImmediateInAck 		( 2), 	-- optional parameters
+	forwardListBusyInAck 			( 3), 	-- optional parameters
+	forwardListDNDInAck 			( 4), 	-- optional parameters
+	forwardListNoAnsInAck 			( 5), 	-- optional parameters
+	forwardListBusyIntInAck 		( 6), 	-- optional parameters
+	forwardListBusyExtInAck 		( 7), 	-- optional parameters
+	forwardListDNDIntInAck 			( 8), 	-- optional parameters
+	forwardListDNDExtInAck 			( 9), 	-- optional parameters
+	forwardListNoAnsIntInAck 		(10), 	-- optional parameters
+	forwardListNoAnsExtInAck 		(11), 	-- optional parameters
+	forwardListImmIntInAck 			(12), 	-- optional parameters
+	forwardListImmExtInAck 			(13), 	-- optional parameters
+	forwardDNInAck 				(14), 	-- optional parameters
+	forwardDefaultInAck 			(15), 	-- optional parameters
+	forwardDefaultTypeAndDNInAck 		(16), 	-- optional parameters
+	forwardDefaultTypeInAck 		(17), 	-- optional parameters
+	forwardDefaultDNInAck 			(18), 	-- optional parameters
+	ringCountInAck 				(19), 	-- optional parameters
+	privateDataInAck 			(20) } 	-- optional parameters
+
+GetLastNumberDialed ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+GetPresenceState ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	fromTimeInAck	 			( 1), 	-- optional parameters
+	untilTimeInAck	 			( 2), 	-- optional parameters
+	placeInAck		 		( 3), 	-- optional parameters
+	moodInAck		 		( 4), 	-- optional parameters
+	namedPresenceStateInAck 		( 5), 	-- optional parameters
+	privateDataInAck 			( 6) } 	-- optional parameters
+
+GetRouteingMode ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+SetAgentState ::= BIT STRING
+{ 	requestedAgentStateLoggedOn 		( 0), 	-- optional parameters
+	requestedAgentStateLoggedOff 		( 1), 	-- optional parameters
+	requestedAgentStateNotReady 		( 2), 	-- optional parameters
+	requestedAgentStateReady 		( 3), 	-- optional parameters
+	requestedAgentStateWorkingAfterCall 	( 4), 	-- optional parameters
+	agentID 				( 5), 	-- optional parameters
+	password 				( 6), 	-- optional parameters
+	group 					( 7), 	-- optional parameters
+	privateData 				( 8), 	-- optional parameters
+	pendingAgentStateWorkingAfterCallInAck	( 9), 	-- optional parameters
+	pendingAgentStateNotReadyInAck 		(10), 	-- optional parameters
+	pendingAgentStateNullInAck 		(11), 	-- optional parameters
+	privateDataInAck 			(12), 	-- optional parameters
+	ackModelMultiStep 			(13), 	-- misc characteristics
+	groupDeviceAllowedInReq 		(14), 	-- misc characteristics
+	aCDDeviceAllowedInReq 			(15), 	-- misc characteristics
+	delayTransitionIfBusy 			(16), 	-- misc characteristics
+	delayTransitionIfWorkingAfterCall 	(17) } 	-- misc characteristics
+
+SetAutoAnswer ::= BIT STRING
+{ 	numberOfRings 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	ackModelMultiStep 			( 3) } 	-- misc characteristics
+
+SetAutoWorkMode ::= BIT STRING
+{ 	autoWorkInterval 			( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	ackModelMultiStep 			( 3), 	-- misc characteristics
+	groupDeviceAllowedInReq 		( 4), 	-- misc characteristics
+	aCDDeviceAllowedInReq 			( 5) } 	-- misc characteristics
+
+SetCallerIDStatus ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+SetDoNotDisturb ::= BIT STRING
+{ 	callOriginationInternal 		( 0), 	-- optional parameters
+	callOriginationExternal 		( 1), 	-- optional parameters
+	callingDeviceList 			( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	privateDataInAck 			( 4), 	-- optional parameters
+	ackModelMultiStep 			( 5) } 	-- misc characteristics
+
+SetForwarding ::= BIT STRING
+{ 	forwardingTypeBusy 			( 0), 	-- optional parameters
+	forwardingTypeBusyInt 			( 1), 	-- optional parameters
+	forwardingTypeBusyExt 			( 2), 	-- optional parameters
+	forwardingTypeDND 			( 3), 	-- optional parameters
+	forwardingTypeDNDInt 			( 4), 	-- optional parameters
+	forwardingTypeDNDExt 			( 5), 	-- optional parameters
+	forwardingTypeNoAns 			( 6), 	-- optional parameters
+	forwardingTypeNoAnsInt 			( 7), 	-- optional parameters
+	forwardingTypeNoAnsExt 			( 8), 	-- optional parameters
+	forwardingTypeImmediate 		( 9), 	-- optional parameters
+	forwardingTypeImmInt 			(10), 	-- optional parameters
+	forwardingTypeImmExt 			(11), 	-- optional parameters
+	forwardDN 				(12), 	-- optional parameters
+	ringCount 				(13), 	-- optional parameters
+	privateData 				(14), 	-- optional parameters
+	privateDataInAck 			(15), 	-- optional parameters
+	ackModelMultiStep 			(16), 	-- misc characteristics
+	ringDuration				(17) } 	-- optional parameters
+
+SetPresenceState ::= BIT STRING
+{ 	fromTime	 			( 0), 	-- optional parameters
+	untilTime	 			( 1), 	-- optional parameters
+	place		 			( 2), 	-- optional parameters
+	mood		 			( 3), 	-- optional parameters
+	namedPresenceState			( 4), 	-- optional parameters
+	privateData 				( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	ackModelMultiStep 			( 7) } 	-- misc characteristics
+
+SetRouteingMode ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	ackModelMultiStep 			( 2) } 	-- misc characteristics
+
+LogicalEvtsList ::= SEQUENCE
+{ 	agentBusy 			[ 0] IMPLICIT 	AgentBusy 			OPTIONAL,
+	agentLoggedOff 			[ 1] IMPLICIT 	AgentLoggedOff 			OPTIONAL,
+	agentLoggedOn 			[ 2] IMPLICIT 	AgentLoggedOn 			OPTIONAL,
+	agentNotReady 			[ 3] IMPLICIT 	AgentNotReady 			OPTIONAL,
+	agentReady 			[ 4] IMPLICIT 	AgentReady 			OPTIONAL,
+	agentWorkingAfterCall 		[ 5] IMPLICIT 	AgentWorkingAfterCall 		OPTIONAL,
+	autoAnswer 			[ 6] IMPLICIT 	AutoAnswer 			OPTIONAL,
+	autoWorkMode 			[ 7] IMPLICIT 	AutoWorkMode 			OPTIONAL,
+	callBack 			[ 8] IMPLICIT 	CallBackEvent 			OPTIONAL,
+	callBackMessage 		[ 9] IMPLICIT 	CallBackMessageEvent 		OPTIONAL,
+	callerIDStatus 			[10] IMPLICIT 	CallerIDStatus 			OPTIONAL,
+	doNotDisturb 			[11] IMPLICIT 	DoNotDisturb 			OPTIONAL,
+	forwarding 			[12] IMPLICIT 	Forwarding 			OPTIONAL,
+	presenceState			[14] IMPLICIT 	PresenceStateEvent		OPTIONAL,
+	routeingMode 			[13] IMPLICIT 	RouteingMode 			OPTIONAL }
+
+AgentBusy ::= BIT STRING
+{ 	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	pendingAgentStateWorkingAfterCall 	( 2), 	-- optional parameters
+	pendingAgentStateNotReady 		( 3), 	-- optional parameters
+	pendingAgentStateReady 			( 4), 	-- optional parameters
+	pendingAgentStateNull 			( 5), 	-- optional parameters
+	cause 					( 6), 	-- optional parameters
+	privateData 				( 7) } 	-- optional parameters
+
+AgentLoggedOff ::= BIT STRING
+{ 	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	agentPassword 				( 2), 	-- optional parameters
+	cause 					( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+AgentLoggedOn ::= BIT STRING
+{	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	agentPassword 				( 2), 	-- optional parameters
+	cause 					( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+AgentNotReady ::= BIT STRING
+{ 	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	cause 					( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+AgentReady ::= BIT STRING
+{ 	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	cause 					( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+AgentWorkingAfterCall ::= BIT STRING
+{ 	agentID 				( 0), 	-- optional parameters
+	acdGroup 				( 1), 	-- optional parameters
+	pendingAgentStateNotReady 		( 2), 	-- optional parameters
+	pendingAgentStateReady 			( 3), 	-- optional parameters
+	pendingAgentStateNull 			( 4), 	-- optional parameters
+	cause 					( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+AutoAnswer ::= BIT STRING
+{ 	numberOfRings 				( 0), 	-- optional parameters
+	privateData 				( 1) } 	-- optional parameters
+
+AutoWorkMode ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+CallBackEvent ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+CallBackMessageEvent ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+CallerIDStatus ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+DoNotDisturb ::= BIT STRING
+{ 	callOriginationParameter 		( 0), 	-- optional parameters
+	callOriginationInternal 		( 1), 	-- optional parameters
+	callOriginationExternal 		( 2), 	-- optional parameters
+	callingDeviceList 			( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+Forwarding ::= BIT STRING
+{ 	forwardingTypeBusy 			( 0),
+	forwardingTypeBusyInt 			( 1),
+	forwardingTypeBusyExt 			( 2),
+	forwardingTypeDND 			( 3),
+	forwardingTypeDNDInt 			( 4),
+	forwardingTypeDNDExt 			( 5),
+	forwardingTypeNoAns 			( 6),
+	forwardingTypeNoAnsInt 			( 7),
+	forwardingTypeNoAnsExt 			( 8),
+	forwardingTypeImmediate 		( 9),
+	forwardingTypeImmInt 			(10),
+	forwardingTypeImmExt 			(11),
+	forwardTo 				(12),
+	forwardDefaultTypeAndDN 		(13),
+	forwardDefaultType 			(14),
+	forwardDefaultDN 			(15),
+	ringCount 				(16),
+	privateData 				(17),
+	ringDuration				(18) }
+
+PresenceStateEvent ::= BIT STRING
+{ 	fromTime	 			( 0), 	-- optional parameters
+	untilTime	 			( 1), 	-- optional parameters
+	place		 			( 2), 	-- optional parameters
+	mood		 			( 3), 	-- optional parameters
+	namedPresenceState 			( 4), 	-- optional parameters
+	privateData 				( 5) } 	-- optional parameters
+
+RouteingMode ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+DeviceMaintEvtsList ::= SEQUENCE
+{ 	backInService 			[0] IMPLICIT 	BackInService 		OPTIONAL,
+	deviceCapsChanged 		[1] IMPLICIT 	DeviceCapsChanged 	OPTIONAL,
+	outOfService 			[2] IMPLICIT 	OutOfService 		OPTIONAL,
+	partiallyInService		[3] IMPLICIT	PartiallyInService	OPTIONAL }
+
+BackInService ::= BIT STRING
+{ 	cause 					( 0), 	-- optional parameters
+	privateData 				( 1) } 	-- optional parameters
+
+DeviceCapsChanged ::= BIT STRING
+{ 	cause 					( 0), 	-- optional parameters
+	privateData 				( 1) } 	-- optional parameters
+
+OutOfService ::= BIT STRING
+{ 	cause 					( 0), 	-- optional parameters
+	privateData 				( 1) } 	-- optional parameters
+
+PartiallyInService ::= BIT STRING
+{ 	cause					( 0), 	-- optional parameters
+	privateData				( 1) } 	-- optional parameters
+
+IOServicesServList ::= SEQUENCE
+{ 	ioRegister 			[ 0] IMPLICIT 	IoRegister 		OPTIONAL,
+	ioRegisterAbort 		[ 1] IMPLICIT 	IoRegisterAbort 	OPTIONAL,
+	ioRegisterCancel 		[ 2] IMPLICIT 	IoRegisterCancel 	OPTIONAL,
+	dataPathResumed 		[ 3] IMPLICIT 	DataPathResumed 	OPTIONAL,
+	dataPathSuspended 		[ 4] IMPLICIT 	DataPathSuspended 	OPTIONAL,
+	fastData 			[ 5] IMPLICIT 	FastData 		OPTIONAL,
+	resumeDataPath 			[ 6] IMPLICIT 	ResumeDataPath 		OPTIONAL,
+	sendBroadcastData 		[ 7] IMPLICIT 	SendBroadcastData 	OPTIONAL,
+	sendData 			[ 8] IMPLICIT 	SendData 		OPTIONAL,
+	sendMulticastData 		[ 9] IMPLICIT 	SendMulticastData 	OPTIONAL,
+	startDataPath 			[10] IMPLICIT 	StartDataPath 		OPTIONAL,
+	stopDataPath 			[11] IMPLICIT 	StopDataPath 		OPTIONAL,
+	suspendDataPath 		[12] IMPLICIT 	SuspendDataPath 	OPTIONAL }
+
+IoRegister ::= BIT STRING
+{ 	ioDevice 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2), 	-- optional parameters
+	allIODevices 				( 3) } 	-- misc characteristics
+
+IoRegisterAbort ::= BIT STRING
+{ 	privateData 				( 0) } 	-- optional parameters
+
+IoRegisterCancel ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+DataPathResumed ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+DataPathSuspended ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+FastData ::= BIT STRING
+{ 	objectDevice 				( 0), 	-- optional parameters
+	objectCall 				( 1), 	-- optional parameters
+	dataPathTypeText 			( 2), 	-- optional parameters
+	dataPathTypeVoice 			( 3), 	-- optional parameters
+	displayAttribPhyBaseRowNumber 		( 4), 	-- optional parameters
+	displayAttribPhyBaseColumnNumber 	( 5), 	-- optional parameters
+	displayAttribOffset 			( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	supportsModifyingPosition 		( 9) } 	-- misc characteristics
+
+ResumeDataPath ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1), 	-- optional parameters
+	sendsDataPathResumed 			( 2) } 	-- misc characteristics
+
+SendBroadcastData ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	dataPathTypeText 			( 1), 	-- optional parameters
+	dataPathTypeVoice 			( 2), 	-- optional parameters
+	displayAttribPhyBaseRowNumber 		( 3), 	-- optional parameters
+	displayAttribPhyBaseColumnNumber 	( 4), 	-- optional parameters
+	displayAttribOffset 			( 5), 	-- optional parameters
+	privateDataInAck 			( 6), 	-- optional parameters
+	supportsModifyingPosition 		( 7) } 	-- misc characteristics
+
+SendData ::= BIT STRING
+{ 	displayAttribPhyBaseRowNumber 		( 0), 	-- optional parameters
+	displayAttribPhyBaseColumnNumber 	( 1), 	-- optional parameters
+	displayAttribOffset 			( 2), 	-- optional parameters
+	ioCauseTerminationCharReceived 		( 3), 	-- optional parameters
+	ioCauseCharCountReached 		( 4), 	-- optional parameters
+	ioCauseTimeout 				( 5), 	-- optional parameters
+	ioCauseSfTerminated 			( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8), 	-- optional parameters
+	supportsModifyingPosition 		( 9) } 	-- misc characteristics
+
+SendMulticastData ::= BIT STRING
+{ 	ioData 					( 0), 	-- optional parameters
+	displayAttribPhyBaseRowNumber 		( 1), 	-- optional parameters
+	displayAttribPhyBaseColumnNumber 	( 2), 	-- optional parameters
+	displayAttribOffset 			( 3), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5), 	-- optional parameters
+	supportsModifyingPosition 		( 6) } 	-- misc characteristics
+
+StartDataPath ::= BIT STRING
+{ 	objectDevice 				( 0), 	-- optional parameters
+	objectCall 				( 1), 	-- optional parameters
+	dataPathDirectionCfToObject 		( 2), 	-- optional parameters
+	dataPathDirectionObjectToCf 		( 3), 	-- optional parameters
+	dataPathDirectionBidirectional 		( 4), 	-- optional parameters
+	dataPathTypeText 			( 5), 	-- optional parameters
+	dataPathTypeVoice 			( 6), 	-- optional parameters
+	numberOfCharsToCollect 			( 7), 	-- optional parameters
+	terminationChar 			( 8), 	-- optional parameters
+	timeout 				( 9), 	-- optional parameters
+	privateData 				(10), 	-- optional parameters
+	numberOfCharsToCollectInAck 		(11), 	-- optional parameters
+	terminationCharInAck 			(12), 	-- optional parameters
+	timeoutInAck 				(13), 	-- optional parameters
+	privateDataInAck 			(14) } 	-- optional parameters
+
+StopDataPath ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+SuspendDataPath ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+DataCollectionServList ::= SEQUENCE
+{ 	dataCollected 			[ 0] IMPLICIT 	DataCollected 			OPTIONAL,
+	dataCollectionResumed 		[ 1] IMPLICIT 	DataCollectionResumed 		OPTIONAL,
+	dataCollectionSuspended 	[ 2] IMPLICIT 	DataCollectionSuspended 	OPTIONAL,
+	resumeDataCollection 		[ 3] IMPLICIT 	ResumeDataCollection 		OPTIONAL,
+	startDataCollection 		[ 4] IMPLICIT 	StartDataCollection 		OPTIONAL,
+	stopDataCollection 		[ 5] IMPLICIT 	StopDataCollection 		OPTIONAL,
+	suspendDataCollection 		[ 6] IMPLICIT 	SuspendDataCollection 		OPTIONAL }
+
+DataCollected ::= BIT STRING
+{ 	digitsDuration 				( 0), 	-- optional parameters
+	digitsPauseDuration 			( 1), 	-- optional parameters
+	toneDetectedBeep 			( 2), 	-- optional parameters
+	toneDetectedBilling 			( 3), 	-- optional parameters
+	toneDetectedBusy 			( 4), 	-- optional parameters
+	toneDetectedCarrier 			( 5), 	-- optional parameters
+	toneDetectedConfirmation 		( 6), 	-- optional parameters
+	toneDetectedDial 			( 7), 	-- optional parameters
+	toneDetectedFaxCNG 			( 8), 	-- optional parameters
+	toneDetectedHold 			( 9), 	-- optional parameters
+	toneDetectedHowler 			(10), 	-- optional parameters
+	toneDetectedIntrusion 			(11), 	-- optional parameters
+	toneDetectedModemCNG 			(12), 	-- optional parameters
+	toneDetectedPark 			(13), 	-- optional parameters
+	toneDetectedRecordWarning 		(14), 	-- optional parameters
+	toneDetectedReorder 			(15), 	-- optional parameters
+	toneDetectedRingback 			(16), 	-- optional parameters
+	toneDetectedSilence 			(17), 	-- optional parameters
+	toneDetectedSitVC 			(18), 	-- optional parameters
+	toneDetectedSitIC 			(19), 	-- optional parameters
+	toneDetectedSitRO 			(20), 	-- optional parameters
+	toneDetectedSitNC 			(21), 	-- optional parameters
+	toneDetectedSf0 			(22), 	-- optional parameters
+	toneDetectedSf1 			(23), 	-- optional parameters
+	toneDetectedSf2 			(24), 	-- optional parameters
+	toneDetectedSf3 			(25), 	-- optional parameters
+	toneDetectedSf4 			(26), 	-- optional parameters
+	toneDetectedSf5 			(27), 	-- optional parameters
+	toneDetectedSf6 			(28), 	-- optional parameters
+	toneDetectedSf7 			(29), 	-- optional parameters
+	toneDetectedSf8 			(30), 	-- optional parameters
+	toneDetectedSf9 			(31), 	-- optional parameters
+	toneDetectedSf10 			(32), 	-- optional parameters
+	toneDetectedOther 			(33), 	-- optional parameters
+	toneFrequency 				(34), 	-- optional parameters
+	toneDuration 				(35), 	-- optional parameters
+	tonePauseDuration 			(36),	-- optional parameters
+	connectionInfo 				(37), 	-- optional parameters
+	dcollCauseFushCharReceived 		(38), 	-- optional parameters
+	dcollCauseCharCountReached 		(39), 	-- optional parameters
+	dcollCauseTimeout 			(40), 	-- optional parameters
+	dcollCauseSFTerminated 			(41), 	-- optional parameters
+	privateData 				(42), 	-- optional parameters
+	privateDataInAck 			(43) } 	-- optional parameters
+
+DataCollectionResumed ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+DataCollectionSuspended ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+ResumeDataCollection ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+StartDataCollection ::= BIT STRING
+{ 	objectDevice 				( 0), 	-- optional parameters
+	objectCall 				( 1), 	-- optional parameters
+	dataCollectionTypeDigits 		( 2), 	-- optional parameters
+	dataCollectionTypeTones 		( 3), 	-- optional parameters
+	digitsReportingCriteriaNumChars 	( 4), 	-- optional parameters
+	digitsReportingCriteriaFlushChar 	( 5), 	-- optional parameters
+	digitsReportingCriteriaTimeout 		( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8) } 	-- optional parameters
+
+StopDataCollection ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+SuspendDataCollection ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+VoiceUnitServList ::= SEQUENCE
+{ 	activate			[12] IMPLICIT Activate			OPTIONAL,
+	clear				[13] IMPLICIT Clear			OPTIONAL,
+	deactivate			[14] IMPLICIT Deactivate		OPTIONAL,
+	concatenateMsg 			[ 0] IMPLICIT ConcatenateMsg 		OPTIONAL,
+	deleteMsg 			[ 1] IMPLICIT DeleteMsg 		OPTIONAL,
+	queue				[15] IMPLICIT Queue			OPTIONAL,
+	playMsg 			[ 2] IMPLICIT PlayMsg 			OPTIONAL,
+	queryVoiceAttrib 		[ 3] IMPLICIT QueryVoiceAttrib 		OPTIONAL,
+	recordMsg 			[ 4] IMPLICIT RecordMsg 		OPTIONAL,
+	reposition 			[ 5] IMPLICIT Reposition 		OPTIONAL,
+	resume 				[ 6] IMPLICIT Resume 			OPTIONAL,
+	review 				[ 7] IMPLICIT Review 			OPTIONAL,
+	start				[16] IMPLICIT Start			OPTIONAL,
+	setVoiceAttrib 			[ 8] IMPLICIT SetVoiceAttrib 		OPTIONAL,
+	stop 				[ 9] IMPLICIT Stop 			OPTIONAL,
+	suspend 			[10] IMPLICIT Suspend 			OPTIONAL,
+	synthesizeMsg 			[11] IMPLICIT SynthesizeMsg 		OPTIONAL }
+
+Activate ::= BIT STRING
+{	resource				( 0), 	-- optional parameters
+	grammarName				( 1), 	-- optional parameters
+	privateData				( 2), 	-- optional parameters
+	privateDataInAck			( 3) }	-- optional parameters
+
+Clear ::= BIT STRING
+{	resource				( 0), 	-- optional parameters
+	privateData				( 1), 	-- optional parameters
+	privateDataInAck			( 2) }	-- optional parameters
+
+ConcatenateMsg ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+Deactivate ::= BIT STRING
+{	resource				( 0), 	-- optional parameters
+	grammarName				( 1), 	-- optional parameters
+	privateData				( 2), 	-- optional parameters
+	privateDataInAck			( 3) }	-- optional parameters
+
+DeleteMsg ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+PlayMsg ::= BIT STRING
+{ 	duration 				( 0), 	-- optional parameters
+	terminationParameter 			( 1), 	-- optional parameters
+	terminationDurationExceeded 		( 2), 	-- optional parameters
+	terminationDTMFDigitDetected 		( 3), 	-- optional parameters
+	terminationEndOfSpeechDetected 		( 4), 	-- optional parameters
+	terminationSpeech 			( 5), 	-- optional parameters
+	privateData 				( 6), 	-- optional parameters
+	privateDataInAck 			( 7), 	-- optional parameters
+	multipleMsgsSimultaneously 		( 8) } 	-- miscellaneous characteristics
+
+QueryVoiceAttrib ::= BIT STRING
+{ 	messageToQuery				(30), 	-- optional parameters
+	resource				(31), 	-- optional parameters
+	attribToQueryEncodingAlgorithm 		( 0), 	-- optional parameters
+	attribToQuerySamplingRate 		( 1), 	-- optional parameters
+	attribToQueryDuration 			( 2), 	-- optional parameters
+	attribToQueryFilename 			( 3), 	-- optional parameters
+	attribToQueryCurrentPosition 		( 4), 	-- optional parameters
+	attribToQueryCurrentSpeed 		( 5), 	-- optional parameters
+	attribToQueryCurrentVolume 		( 6), 	-- optional parameters
+	attribToQueryCurrentLevel 		( 7), 	-- optional parameters
+	attribToQueryCurrentState 		( 8), 	-- optional parameters
+	attribToQueryGrammars			(32), 	-- optional parameters
+	attribToQueryLanguage			(33), 	-- optional parameters
+	attribToQueryMode			(34), 	-- optional parameters
+	attribToQueryRetainAudio		(35), 	-- optional parameters
+	attribToQuerySilenceTimeout		(36), 	-- optional parameters
+	attribToQueryMaxTimeout			(37), 	-- optional parameters
+	attribToQueryBabbleTimeout		(38), 	-- optional parameters
+	attribToQueryEndSilence			(39), 	-- optional parameters
+	attribToQueryRejectionThreshold		(40), 	-- optional parameters
+	attribToQueryAutoInterruptable		(41), 	-- optional parameters
+	attribToQueryInnerXML			(42), 	-- optional parameters
+	attribToQueryInterdigitTimeout		(43), 	-- optional parameters
+	attribToQueryPreflush			(44), 	-- optional parameters
+	connection 				( 9), 	-- optional parameters
+	duration 				(10), 	-- optional parameters
+	terminationParameter 			(11), 	-- optional parameters
+	terminationDurationExceeded 		(12), 	-- optional parameters
+	terminationDTMFDigitDetected 		(13), 	-- optional parameters
+	terminationEndOfSpeechDetected 		(14), 	-- optional parameters
+	terminationSpeech 			(15), 	-- optional parameters
+	privateData 				(16), 	-- optional parameters
+	attribInAckEncodingAlgorithmADPCM6K 	(17), 	-- optional parameters
+	attribInAckEncodingAlgorithmADPCM8K 	(18), 	-- optional parameters
+	attribInAckEncodingAlgorithmMuLawPCM6K 	(19), 	-- optional parameters
+	attribInAckEncodingAlgorithmALawPCM6K 	(20), 	-- optional parameters
+	attribInAckSamplingRate 		(21), 	-- optional parameters
+	attribInAckDuration 			(22), 	-- optional parameters
+	attribInAckFilename 			(23), 	-- optional parameters
+	attribInAckCurrentPosition 		(24), 	-- optional parameters
+	attribInAckCurrentSpeed 		(25), 	-- optional parameters
+	attribInAckCurrentVolumeAbs 		(26), 	-- optional parameters
+	attribInAckCurrentGain 			(27), 	-- optional parameters
+	attribInAckCurrentState 		(28), 	-- optional parameters
+	privateDataInAck 			(29) } 	-- optional parameters
+
+Queue ::= BIT STRING
+{	message					( 0), 	-- optional parameters
+	resource				( 1), 	-- optional parameters
+	text					( 2), 	-- optional parameters
+	privateData				( 3), 	-- optional parameters
+	privateDataInAck			( 4) }	-- optional parameters
+
+RecordMsg ::= BIT STRING
+{ 	resource				(13), 	-- optional parameters
+	samplingRate 				( 0), 	-- optional parameters
+	encodingAlgorithmADPCM6K 		( 1), 	-- optional parameters
+	encodingAlgorithmADPCM8K 		( 2), 	-- optional parameters
+	encodingAlgorithmMuLawPCM6K 		( 3), 	-- optional parameters
+	encodingAlgorithmALawPCM6K 		( 4), 	-- optional parameters
+	maxDuration 				( 5), 	-- optional parameters
+	terminationParameter 			( 6), 	-- optional parameters
+	terminationDurationExceeded 		( 7), 	-- optional parameters
+	terminationDTMFDigitDetected 		( 8), 	-- optional parameters
+	terminationEndOfDataDetected 		( 9), 	-- optional parameters
+	terminationSpeechDetected 		(10), 	-- optional parameters
+	privateData 				(11), 	-- optional parameters
+	privateDataInAck 			(12) } 	-- optional parameters
+
+Reposition ::= BIT STRING
+{ 	periodOfRepositionStartOfMsg 		( 0), 	-- optional parameters
+	periodOfRepositionEndOfMsg 		( 1), 	-- optional parameters
+	periodOfRepositionRelativePointer 	( 2), 	-- optional parameters
+	msgToReposition 			( 3), 	-- optional parameters
+	privateData 				( 4), 	-- optional parameters
+	privateDataInAck 			( 5) } 	-- optional parameters
+
+Resume ::= BIT STRING
+{ 	msgToResume 				( 0), 	-- optional parameters
+	resource				( 4), 	-- optional parameters
+	duration 				( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+Review ::= BIT STRING
+{ 	msgToReview				( 4),	-- optional parameters
+	resource				( 5),	-- optional parameters
+	periodToResumeStartOfMsg 		( 0), 	-- optional parameters
+	periodToResumeLengthOfReview 		( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+SetVoiceAttrib::= BIT STRING
+{ 	resource				( 9), 	-- optional parameters
+	currentSpeed 				( 0), 	-- optional parameters
+	currentVolumeAbs 			( 1), 	-- optional parameters
+	currentVolumeInc 			( 2), 	-- optional parameters
+	grammars				(10), 	-- optional parameters
+	language				(11), 	-- optional parameters
+	mode					(12), 	-- optional parameters
+	retainAudio				(13), 	-- optional parameters
+	silenceTimeout				(14), 	-- optional parameters
+	maxTimeout				(15), 	-- optional parameters
+	babbleTimeout				(16), 	-- optional parameters
+	endSilence				(17), 	-- optional parameters
+	rejectionThreshold			(18), 	-- optional parameters
+	autoInterruptable			(19), 	-- optional parameters
+	innerXML				(20), 	-- optional parameters
+	interdigitTimeout			(21), 	-- optional parameters
+	preflush				(22), 	-- optional parameters
+	periodToResumeStartOfMsg 		( 3), 	-- optional parameters
+	periodToResumeLengthOfReview 		( 4), 	-- optional parameters
+	currentGain 				( 5), 	-- optional parameters
+	message 				( 6), 	-- optional parameters
+	privateData 				( 7), 	-- optional parameters
+	privateDataInAck 			( 8) } 	-- optional parameters
+
+Start ::= BIT STRING
+{	resource				( 0), 	-- optional parameters
+	text					( 1), 	-- optional parameters
+	privateData				( 2), 	-- optional parameters
+	privateDataInAck			( 3) }	-- optional parameters
+
+Stop ::= BIT STRING
+{ 	msgToBeStopped				( 2), 	-- optional parameters
+	resource				( 3), 	-- optional parameters
+	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+Suspend ::= BIT STRING
+{ 	message 				( 0), 	-- optional parameters
+	resource				( 3), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+SynthesizeMsg ::= BIT STRING
+{ 	genderMale 				( 0), 	-- optional parameters
+	genderFemale 				( 1), 	-- optional parameters
+	privateData 				( 2), 	-- optional parameters
+	privateDataInAck 			( 3) } 	-- optional parameters
+
+
+VoiceUnitEvtsList ::= SEQUENCE
+{ 	bookmarkReached			[ 7] IMPLICIT BookmarkReached			OPTIONAL,
+	completed			[ 8] IMPLICIT Completed				OPTIONAL,
+	dtmfDetected			[ 9] IMPLICIT DtmfDetected			OPTIONAL,
+	emptied				[10] IMPLICIT Emptied				OPTIONAL,
+	interruptionDetected		[11] IMPLICIT InterruptionDetected		OPTIONAL,
+	notRecognized			[12] IMPLICIT NotRecognized			OPTIONAL,
+	play 				[ 0] IMPLICIT Play 				OPTIONAL,
+	record 				[ 1] IMPLICIT Record 				OPTIONAL,
+	recognized			[13] IMPLICIT Recognized			OPTIONAL,
+	review 				[ 2] IMPLICIT ReviewEvent 			OPTIONAL,
+	started				[14] IMPLICIT Started				OPTIONAL,
+	silenceTimeoutExpired		[15] IMPLICIT SilenceTimeoutExpired		OPTIONAL,
+	speechDetected			[16] IMPLICIT SpeechDetected			OPTIONAL,
+	stop 				[ 3] IMPLICIT StopEvent 			OPTIONAL,
+	suspendPlay 			[ 4] IMPLICIT SuspendPlay 			OPTIONAL,
+	suspendRecord 			[ 5] IMPLICIT SuspendRecord 			OPTIONAL,
+	voiceAttribChanged 		[ 6] IMPLICIT VoiceAttribChanged		OPTIONAL,
+	voiceErrorOccured		[17] IMPLICIT VoiceErrorOccured			OPTIONAL }
+
+BookmarkReached ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+Completed ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+DtmfDetected ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+Emptied ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+InterruptionDetected ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+NotRecognized ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	result					( 1), 	-- optional parameters
+	cause					( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+Play ::= BIT STRING
+{ 	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	speed 					( 2), 	-- optional parameters
+	cause 					( 3), 	-- optional parameters
+	servicesPermitted 			( 4), 	-- optional parameters
+	privateData 				( 5) } 	-- optional parameters
+
+Recognized ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+Record ::= BIT STRING
+{ 	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	speed 					( 2), 	-- optional parameters
+	cause 					( 3), 	-- optional parameters
+	servicesPermitted 			( 4), 	-- optional parameters
+	privateData 				( 5) } 	-- optional parameters
+
+ReviewEvent ::= BIT STRING
+{ 	message					( 5), 	-- optional parameters
+	resource				( 6), 	-- optional parameters
+	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	cause 					( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+
+SilenceTimeoutExpired ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+SpeechDetected ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+Started ::= BIT STRING
+{ 	resource 				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted 			( 2), 	-- optional parameters
+	privateData 				( 3) } 	-- optional parameters
+
+StopEvent ::= BIT STRING
+{ 	message					( 6), 	-- optional parameters
+	resource				( 7), 	-- optional parameters
+	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	speed 					( 2), 	-- optional parameters
+	cause 					( 3), 	-- optional parameters
+	servicesPermitted 			( 4), 	-- optional parameters
+	privateData 				( 5) } 	-- optional parameters
+
+SuspendPlay ::= BIT STRING
+{ 	message					( 5), 	-- optional parameters
+	resource				( 6), 	-- optional parameters
+	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	cause 					( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+SuspendRecord ::= BIT STRING
+{ 	message					( 5), 	-- optional parameters
+	resource				( 6), 	-- optional parameters
+	length 					( 0), 	-- optional parameters
+	currentPosition 			( 1), 	-- optional parameters
+	cause 					( 2), 	-- optional parameters
+	servicesPermitted 			( 3), 	-- optional parameters
+	privateData 				( 4) } 	-- optional parameters
+
+VoiceAttribChanged ::= BIT STRING
+{ 	message					( 7), 	-- optional parameters
+	resource				( 8), 	-- optional parameters
+	playVolumeAbs 				( 0), 	-- optional parameters
+	playVolumeInc 				( 1), 	-- optional parameters
+	recordGain 				( 2), 	-- optional parameters
+	speed 					( 3), 	-- optional parameters
+	currentPosition 			( 4), 	-- optional parameters
+	grammars				( 9), 	-- optional parameters
+	language				(10), 	-- optional parameters
+	mode					(11), 	-- optional parameters
+	retainAudio				(12), 	-- optional parameters
+	silenceTimeout				(13), 	-- optional parameters
+	maxTimeout				(14), 	-- optional parameters
+	babbleTimeout				(15), 	-- optional parameters
+	endSilence				(16), 	-- optional parameters
+	rejectionThreshold			(17), 	-- optional parameters
+	autoInterruptable			(18), 	-- optional parameters
+	innerXML				(19), 	-- optional parameters
+	interdigitTimeout			(20), 	-- optional parameters
+	preflush				(21), 	-- optional parameters
+	cause 					( 5), 	-- optional parameters
+	privateData 				( 6) } 	-- optional parameters
+
+VoiceErrorOccured ::= BIT STRING
+{	resource				( 0), 	-- optional parameters
+	cause					( 1), 	-- optional parameters
+	servicesPermitted			( 2), 	-- optional parameters
+	privateData				( 3) }	-- optional parameters
+
+CDRServList ::= SEQUENCE
+{ 	cdrNotification 		[ 0] IMPLICIT 	CdrNotification 		OPTIONAL,
+	cdrReport 			[ 1] IMPLICIT 	CdrReport 			OPTIONAL,
+	sendStoredCDRs 			[ 2] IMPLICIT 	SendStoredCDRs 			OPTIONAL,
+	startCDRTransmission 		[ 3] IMPLICIT 	StartCDRTransmission 		OPTIONAL,
+	stopCDRTransmission 		[ 4] IMPLICIT 	StopCDRTransmission 		OPTIONAL }
+
+CdrNotification ::= BIT STRING
+{ 	cdrReasonTimeout 			( 0), 	-- optional parameters
+	cdrReasonThresholdReached 		( 1), 	-- optional parameters
+	cdrReasonOther 				( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	privateDataInAck 			( 4) } 	-- optional parameters
+
+CdrReport ::= BIT STRING
+{ 	cdrReasonTimeout 			( 0), 	-- optional parameters
+	cdrReasonThresholdReached 		( 1), 	-- optional parameters
+	cdrReasonOther 				( 2), 	-- optional parameters
+	recordNumber 				( 3), 	-- optional parameters
+	recordCreationTime 			( 4), 	-- optional parameters
+	callingDevice 				( 5), 	-- optional parameters
+	calledDevice 				( 6), 	-- optional parameters
+	assocCallingDevice 			( 7), 	-- optional parameters
+	assocCalledDevice 			( 8), 	-- optional parameters
+	netwCallingDevice 			( 9), 	-- optional parameters
+	netwCalledDevice 			(10), 	-- optional parameters
+	callCharacteristics 			(11), 	-- optional parameters
+	mediaCallCharacteristics 		(12), 	-- optional parameters
+	chargedDeviceOperator 			(13), 	-- optional parameters
+	chargedDeviceNonOperator 		(14), 	-- optional parameters
+	recordedCall 				(15), 	-- optional parameters
+	nodeNumberArea0 			(16), 	-- optional parameters
+	nodeNumberArea1 			(17), 	-- optional parameters
+	nodeNumberArea2 			(18), 	-- optional parameters
+	tarifTable 				(19), 	-- optional parameters
+	connectionStart 			(20), 	-- optional parameters
+	connectionEnd 				(21), 	-- optional parameters
+	connectionDuration 			(22), 	-- optional parameters
+	accessCode 				(23), 	-- optional parameters
+	carrier 				(24), 	-- optional parameters
+	selectedRoute 				(25), 	-- optional parameters
+	billingIndicatorNormalCharging 		(26), 	-- optional parameters
+	billingIndicatorReverseCharging 	(27), 	-- optional parameters
+	billingIndicatorCreditCardCharging 	(28), 	-- optional parameters
+	billingIndicatorCallForwarding 		(29), 	-- optional parameters
+	billingIndicatorCallDeflection 		(30), 	-- optional parameters
+	billingIndicatorCallTransfer 		(31), 	-- optional parameters
+	billingIndicatorOther 			(32), 	-- optional parameters
+	chargingInfo 				(33), 	-- optional parameters
+	suppServiceInfoNormalCall 		(34), 	-- optional parameters
+	suppServiceInfoConsultationCall 	(35), 	-- optional parameters
+	suppServiceInfoTransferCall 		(36), 	-- optional parameters
+	suppServiceInfoCallCompletion 		(37), 	-- optional parameters
+	suppServiceInfoCallForwarding 		(38), 	-- optional parameters
+	suppServiceInfoCallDiversion 		(39), 	-- optional parameters
+	suppServiceInfoConferencing 		(40), 	-- optional parameters
+	suppServiceInfoIntrusion 		(41), 	-- optional parameters
+	suppServiceInfoUserUserInfo 		(42), 	-- optional parameters
+	suppServiceInfoOther 			(43), 	-- optional parameters
+	reasonForTermNormalClearing 		(44), 	-- optional parameters
+	reasonForTermUnsuccessfulCallAttempt 	(45), 	-- optional parameters
+	reasonForTermAbnormalTermination 	(46), 	-- optional parameters
+	reasonForTermCallTransferred 		(47), 	-- optional parameters
+	reasonForTermOther 			(48), 	-- optional parameters
+	authCode 				(49), 	-- optional parameters
+	accountInfo 				(50), 	-- optional parameters
+	deviceCategory 				(51), 	-- optional parameters
+	namedDeviceTypes 			(52), 	-- optional parameters
+	operatorDevice 				(53), 	-- optional parameters
+	lastStoredCDRReportSent 		(54), 	-- optional parameters
+	privateData 				(55), 	-- optional parameters
+	privateDataInAck 			(56) } 	-- optional parameters
+
+SendStoredCDRs ::= BIT STRING
+{ 	timePeriod 				( 0), 	-- optional parameters
+	privateData 				( 1), 	-- optional parameters
+	privateDataInAck 			( 2) } 	-- optional parameters
+
+StartCDRTransmission ::= BIT STRING
+{ 	transferModeTransferAtEndOfCall 	( 0), 	-- optional parameters
+	transferModeTransferOnRequest 		( 1), 	-- optional parameters
+	transferModeTransferOnThresholdReached 	( 2), 	-- optional parameters
+	privateData 				( 3), 	-- optional parameters
+	privateDataInAck 			( 4) } 	-- optional parameters
+
+StopCDRTransmission ::= BIT STRING
+{ 	cdrTermReasonEndOfData 			( 0), 	-- optional parameters
+	cdrTermReasonError 			( 1), 	-- optional parameters
+	cdrTermReasonThresholdReached 		( 2), 	-- optional parameters
+	cdrTermReasonOther 			( 3), 	-- optional parameter
+	privateData 				( 4), 	-- optional parameter
+	privateDataInAck 			( 5), 	-- optional parameter
+	swFunctionSupportsSending 		( 6), 	-- miscellaneous characteristics
+	swFunctionSupportsReceiving 		( 7) } 	-- miscellaneous characteristics
+
+LocationServicesServList ::= SEQUENCE
+{	getLocationInformation			[ 0] IMPLICIT GetLocationInformation		OPTIONAL,
+	setLocationInformation			[ 1] IMPLICIT SetLocationInformation		OPTIONAL,
+	locationTrackingSessionResumed		[ 2] IMPLICIT LocationTrackingSessionResumed	OPTIONAL,
+	locationTrackingSessionSuspended	[ 3] IMPLICIT LocationTrackingSessionSuspended	OPTIONAL,
+	resumeLocationTrackingSession		[ 4] IMPLICIT ResumeLocationTrackingSession	OPTIONAL,
+	locationInformationReport		[ 5] IMPLICIT LocationInformationReport		OPTIONAL,
+	startLocationTrackingSession		[ 6] IMPLICIT StartLocationTrackingSession	OPTIONAL,
+	stopLocationTrackingSession		[ 7] IMPLICIT StopLocationTrackingSession	OPTIONAL,
+	suspendLocationTrackingSession		[ 8] IMPLICIT SuspendLocationTrackingSession	OPTIONAL,
+	getLocationTrackingCapabilities		[ 9] IMPLICIT GetLocationTrackingCapabilities	OPTIONAL,
+	getLocationTrackingSessions		[10] IMPLICIT GetLocationTrackingSessions	OPTIONAL,
+	locationSessionInfo			[11] IMPLICIT LocationSessionInfo		OPTIONAL }
+
+GetLocationInformation ::= BIT STRING
+{	privateData				( 0),
+	locationInfoInAck			( 1),
+	privateDataInAck			( 2) }
+
+SetLocationInformation ::= BIT STRING
+{	locationInfo				( 0),
+	replaceMode				( 1),
+	privateData				( 2),
+	privateDataInAck			( 3) }
+
+LocationTrackingSessionResumed ::= BIT STRING
+{	locReason				( 0),
+	privateData				( 1),
+	privateDataInAck			( 2) }
+
+LocationTrackingSessionSuspended ::= BIT STRING
+{	locReason				( 0),
+	locationInfoList			( 1),
+	privateData				( 2),
+	privateDataInAck			( 3) }
+
+ResumeLocationTrackingSession ::= BIT STRING
+{	privateData				( 0),
+	privateDataInAck			( 1) }
+
+LocationInformationReport ::= BIT STRING
+{	locationInfoList			( 0),
+	privateData				( 1),
+	privateDataInAck			( 2) }
+
+StartLocationTrackingSession ::= BIT STRING
+{	collectionType		 		( 0),
+	collectionInterval			( 1),
+	maxCollections				( 2),
+	collectionFilter			( 3),
+	reportingType				( 4),
+	reportingCount				( 5),
+	privateData				( 6),
+	piDFProfileOption1inAck			( 7),
+	piDFProfileOption2inAck			( 8),
+	privateDataInAck			( 9) }
+
+StopLocationTrackingSession ::= BIT STRING
+{	reason					( 0),
+	privateData				( 1),
+	privateDataInAck			( 2) }
+
+SuspendLocationTrackingSession ::= BIT STRING
+{	reason					( 0),
+	privateData				( 1),
+	privateDataInAck			( 2) }
+
+GetLocationTrackingCapabilities ::= BIT STRING
+{	privateData				( 0),
+	privateDataInAck			( 1) }
+
+GetLocationTrackingSessions ::= BIT STRING
+{	privateData				( 0),
+	privateDataInAck			( 1) }
+
+LocationSessionInfo ::= BIT STRING
+{	segmentID				( 0),
+	privateData				( 1) }
+
+VendorSpecificServList ::= SEQUENCE
+{ 	escapeRegister 			[ 0] IMPLICIT 	EscapeRegister 			OPTIONAL,
+	escapeRegisterCancel 		[ 1] IMPLICIT 	EscapeRegisterCancel 		OPTIONAL,
+	escapeRegisterAbort 		[ 2] IMPLICIT 	EscapeRegisterAbort 		OPTIONAL,
+	escape 				[ 3] IMPLICIT 	Escape 				OPTIONAL,
+	privateDataVersionSelection 	[ 4] IMPLICIT 	PrivateDataVersionSelection 	OPTIONAL }
+
+EscapeRegister ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+EscapeRegisterCancel ::= BIT STRING	
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+EscapeRegisterAbort ::= BIT STRING
+{ 	privateData 				( 0), 	-- optional parameters
+	privateDataInAck 			( 1) } 	-- optional parameters
+
+Escape ::= BIT STRING
+{ 	privateDataInAck 			( 0), 	-- optional parameters
+	swFunctionSupportsSending 		( 1), 	-- misc characteristics
+	swFunctionSupportsReceiving 		( 2) } 	-- misc characteristics
+
+PrivateDataVersionSelection ::= BIT STRING
+{ 	privateDataInAck 			( 0) } 	-- optional parameters
+
+VendorSpecificEvtsList ::= SEQUENCE
+{ 	privateEvent 				[0] IMPLICIT 	PrivateEvent 			OPTIONAL }
+
+PrivateEvent ::= BIT STRING
+
+-- other Types
+
+DeviceIDFormat ::= BIT STRING
+{	dialableDigitsAsterix 			( 0),
+	dialableDigitsHash 			( 1),
+	dialableDigitsABCD 			( 2),
+	dialableDigitsExclamation 		( 3),
+	dialableDigitsP 			( 4),
+	dialableDigitsT 			( 5),
+	dialableDigitsComma 			( 6),
+	dialableDigitsW 			( 7),
+	dialableDigitsAt 			( 8),
+	dialableDigitsDollar 			( 9),
+	dialableDigitsSemicolon 		(10),
+	sFReprExclamation 			(11),
+	sFReprEt 				(12),
+	sFReprSlash 				(13),
+	sFReprPercent 				(14),
+	sFReprNM 				(15),
+	sFReprGeneric 				(16),
+	sFReprImplicitTON 			(17),
+	sFReprPubTONUnkown 			(18),
+	sFReprPubTONInternal 			(19),
+	sFReprPubTONNational 			(20),
+	sFReprPubTONSubscriber 			(21),
+	sFReprPubTONAbbreviated 		(22),
+	sFReprPriTONUnknown 			(23),
+	sFReprPriTONLevel3 			(24),
+	sFReprPriTONLevel2 			(25),
+	sFReprPriTONLevel1 			(26),
+	sFReprPriTONLocal 			(27),
+	sFReprPriTONAbbreviated 		(28),
+	sFReprOther 				(29),
+	sFRResourceID				(31),
+	privateNumber				(32),
+	privateName				(33),
+	deviceNumber 				(30) }
+
+SwDomainFeatures ::= BIT STRING
+{ 	isForwardingBefore 			( 0),
+	isForwardingAfter 			( 1),
+	swFunctionDefaultSettings 		( 2),
+	userSpecific 				( 3),
+	userSpecificDefaultFowardingType 	( 4),
+	userSpecificDefaultForwardDestination 	( 5),
+	negativeAcknowledgment 			( 6),
+	supportFailedWithAssConn 		( 7),
+	supportFailedWithoutAssConn 		( 8),
+	supportFailedWithAssConnNotReportet 	( 9),
+	recall 					(10),
+	callBack 				(11),
+	extCallsIncoming 			(12),
+	extCallsOutgoing 			(13),
+	prompting 				(14) }
+
+SwAppearanceAddressability ::= BIT STRING
+{ 	nonAddressable 				( 0),
+	addressable 				( 1) }
+
+SwAppearanceTypes ::= BIT STRING
+{ 	selectedStandard 			( 0),
+	basicStandard 				( 1),
+	basicBridged 				( 2),
+	exclusiveBridged 			( 3),
+	independentSharedBridged 		( 4),
+	interDependentSharedBridged 		( 5) }
+
+IgnoreUnsupportedParameters ::= ENUMERATED
+{ 	ignoreParameters 			( 0),
+	rejectMessage 				( 1) }
+
+PauseTime ::= INTEGER (1..2000)
+
+TimeStampMode ::= BIT STRING
+{ 	allEvents 				( 0),
+	allAcks 				( 1),
+	allServReqs 				( 2) }
+
+MiscMonitorCaps ::= BIT STRING
+{ 	groupInclusivModel 			( 0),
+	groupExclusiveModel 			( 1),
+	monitorPhysicalElement 			( 2),
+	acdDeviceInclusiv 			( 3),
+	acdDeviceExclusiv 			( 4) }
+
+MaxLengthParameters ::= SEQUENCE
+{ 	accountInfo 				INTEGER (0..32),
+	authCode 				INTEGER (0..32),
+	agentID 				INTEGER (0..32),
+	agentPassword 				INTEGER (0..32),
+	callIDInConnectionID 			INTEGER (0..8),
+	correlatorData 				INTEGER (0..32),
+	privateData 				INTEGER,
+	deviceIdentifiers 			INTEGER (0..128),
+	userData 				INTEGER (0..256),
+	buttonLabel 				INTEGER (0..64),
+	lampLabel 				INTEGER (0..64),
+	charactersToSend 			INTEGER (0..64) }
+
+MaxLengthParametersContinued ::= SEQUENCE
+{	monitorCrossRefID			INTEGER,
+	callQualifyingData			INTEGER,
+	subDomainCallLinkageData		INTEGER,
+	subDomainThreadID			INTEGER,
+	ioData					INTEGER,
+	messageInfo				INTEGER }
+
+FilterThreshold ::= SEQUENCE
+{ 	getLogicalDeviceInformation 		INTEGER,
+	getPhysicalDeviceInformation 		INTEGER,
+	getSwitchingFunctionCaps 		INTEGER,
+	getSwitchingFunctionDevices 		INTEGER,
+	switchingFunctionDevices 		INTEGER,
+	changeSystemStatusFilter 		INTEGER,
+	systemStatusRegister 			INTEGER,
+	systemStatusRegisterAbort 		INTEGER,
+	systemStatusRegisterCancel 		INTEGER,
+	requestSystemStatus 			INTEGER,
+	systemStatus 				INTEGER,
+	switchingFunctionCapsChanged 		INTEGER,
+	switchingFunctionDevsChanged 		INTEGER,
+	changeMonitorFilter 			INTEGER,
+	monitorStart 				INTEGER,
+	monitorStop 				INTEGER,
+	snapshotCall 				INTEGER,
+	snapshotDevice 				INTEGER,
+	snapshotCallData 			INTEGER,
+	snapshotDeviceData 			INTEGER,
+	acceptCall 				INTEGER,
+	alternateCall 				INTEGER,
+	answerCall 				INTEGER,
+	callBackCallRelated 			INTEGER,
+	callBackMessageCallRelated 		INTEGER,
+	campOnCall 				INTEGER,
+	clearCall 				INTEGER,
+	clearConnection 			INTEGER,
+	conferenceCall 				INTEGER,
+	consultationCall 			INTEGER,
+	deflectCall 				INTEGER,
+	dialDigits 				INTEGER,
+	directedPickupCall 			INTEGER,
+	groupPickupCall 			INTEGER,
+	holdCall 				INTEGER,
+	intrudeCall 				INTEGER,
+	joinCall 				INTEGER,
+	makeCall 				INTEGER,
+	makePredictiveCall 			INTEGER,
+	parkCall 				INTEGER,
+	reconnectCall 				INTEGER,
+	retrieveCall 				INTEGER,
+	singleStepConferenceCall 		INTEGER,
+	singleStepTransferCall 			INTEGER,
+	transferCall 				INTEGER,
+	associateData 				INTEGER,
+	cancelTelephonyTone 			INTEGER,
+	generateDigits 				INTEGER,
+	generateTelephonyTone 			INTEGER,
+	sendUserInformation 			INTEGER,
+	startDTMFDigitsCollection 		INTEGER,
+	startTelephonyTonesCollection 		INTEGER,
+	stopDTMFDigitsCollection 		INTEGER,
+	stopTelephonyTonesCollection 		INTEGER,
+	attachMediaService 			INTEGER,
+	detachMediaService 			INTEGER,
+	routeRegister 				INTEGER,
+	routeRegisterAbort 			INTEGER,
+	routeRegisterCancel 			INTEGER,
+	reRoute 				INTEGER,
+	routeEnd 				INTEGER,
+	routeReject 				INTEGER,
+	routeRequest 				INTEGER,
+	routeSelect 				INTEGER,
+	routeUsed 				INTEGER,
+	buttonPress 				INTEGER,
+	getAuditoryApparatusInfo 		INTEGER,
+	getButtonInformation 			INTEGER,
+	getDisplay 				INTEGER,
+	getHookswitchStatus 			INTEGER,
+	getLampInformation 			INTEGER,
+	getLampMode 				INTEGER,
+	getMicrophoneGain 			INTEGER,
+	getMicrophoneMute 			INTEGER,
+	getMessageWaitingIndicator 		INTEGER,
+	getRingerStatus 			INTEGER,
+	getSpeakerMute 				INTEGER,
+	getSpeakerVolume 			INTEGER,
+	setButtonInformation 			INTEGER,
+	setDisplay 				INTEGER,
+	setHookswitchStatus 			INTEGER,
+	setLampMode 				INTEGER,
+	setMsgWaitingIndicator 			INTEGER,
+	setMicrophoneGain 			INTEGER,
+	setMicrophoneMute 			INTEGER,
+	setRingerStatus 			INTEGER,
+	setSpeakerMute 				INTEGER,
+	setSpeakerVolume 			INTEGER,
+	callBackMessageNonCallRelated 		INTEGER,
+	callBackNonCallRelated 			INTEGER,
+	cancelCallBack 				INTEGER,
+	cancelCallBackMessage 			INTEGER,
+	getAgentState 				INTEGER,
+	getAutoAnswer 				INTEGER,
+	getAutoWorkMode 			INTEGER,
+	getCallerIDStatus 			INTEGER,
+	getDoNotDisturb 			INTEGER,
+	getForwarding 				INTEGER,
+	getLastNumberDialed 			INTEGER,
+	getRouteingMode 			INTEGER,
+	setAgentState 				INTEGER,
+	setAutoAnswer 				INTEGER,
+	setAutoWorkMode 			INTEGER,
+	setCallerIDStatus 			INTEGER,
+	setDoNotDisturb 			INTEGER,
+	setForwarding 				INTEGER,
+	setRouteingMode 			INTEGER,
+	backInService 				INTEGER,
+	deviceCaosChanged 			INTEGER,
+	outOfService 				INTEGER,
+	partiallyInService			INTEGER,
+	ioRegister 				INTEGER,
+	ioRegisterAbort 			INTEGER,
+	ioRegisterCancel 			INTEGER,
+	dataPathResumed 			INTEGER,
+	dataPathSuspended 			INTEGER,
+	fastData 				INTEGER,
+	resumeDataPath 				INTEGER,
+	sendBroadcastData 			INTEGER,
+	sendData 				INTEGER,
+	sendMulticastData		 	INTEGER,
+	startDataPath 				INTEGER,
+	stopDataPath 				INTEGER,
+	suspendDataPath 			INTEGER,
+	concatenateMsg 				INTEGER,
+	deleteMsg 				INTEGER,
+	playMsg 				INTEGER,
+	queryVoiceAttribute 			INTEGER,
+	recordMsg 				INTEGER,
+	reposition 				INTEGER,
+	resume 					INTEGER,
+	review 					INTEGER,
+	setVoiceAttribute 			INTEGER,
+	stop 					INTEGER,
+	suspend 				INTEGER,
+	synthesizeMsg 				INTEGER,
+	cDRNotification 			INTEGER,
+	cDRReport 				INTEGER,
+	sendStoredCDRs 				INTEGER,
+	startCDRTransmission 			INTEGER,
+	stopCDRTransmission 			INTEGER,
+	escapeRegister 				INTEGER,
+	escapeRegisterAbort 			INTEGER,
+	escapeRegisterCancel 			INTEGER,
+	escape 					INTEGER,
+	privateDataVersion 			INTEGER }
+
+MediaServiceCapsList ::= SEQUENCE OF SEQUENCE
+{ 	mediaServiceType 			MediaServiceType,
+	mediaServiceVersion 			INTEGER 			OPTIONAL,
+	mediaServiceInstance 			MediaServiceInstanceID 		OPTIONAL,
+	connectionMode 				ConnectionModeBMap 		OPTIONAL,
+	mediaStreamIDSupported 			BOOLEAN }
+
+DeviceCategory ::= ENUMERATED
+{ 	acd 					( 0),
+	group 					( 1),
+	networkInterface 			( 2),
+	park 					( 3),
+	routeingDevice 				( 4),
+	station 				( 5),
+	voiceUnit 				( 6),
+	genericInteractiveVoice			( 8),
+	listenerInteractiveVoice		( 9),
+	dtmfInteractiveVoice			(10),
+	promptInteractiveVoice			(11),
+	promptQueueInteractiveVoice		(12),
+	messageInteractiveVoice			(13),
+	conference				(14),
+	other 					( 7) }
+
+GroupDeviceAttributes ::= BIT STRING
+{ 	acd 					( 0),
+	hunt 					( 1),
+	pick 					( 2),
+	user					( 4),
+	agent					( 5),
+	other 					( 3) }
+
+NamedDeviceTypes ::= ENUMERATED
+{ 	acd 					( 0),
+	acdGroup 				( 1),
+	button 					( 2),
+	buttonGroup 				( 3),
+	conferenceBridge 			( 4),
+	line 					( 5),
+	lineGroup 				( 6),
+	operator 				( 7),
+	operatorGroup 				( 8),
+	parkingDevice 				( 9),
+	station 				(10),
+	stationGroup 				(11),
+	trunk 					(12),
+	trunkGroup 				(13),
+	other 					(14),
+	otherGroup 				(15) }
+
+ACDModels ::= BIT STRING
+{ 	visibleACDRelatedDevices 		( 0),
+	nonVisibleACDRelatedDevices 		( 1) }
+
+AgentLogOnModels ::= BIT STRING
+{ 	logOnToACDDevice 			( 0),
+	logOnToACDGroupExplOneStep 		( 1),
+	logOnToACDGroupExplTwoSteps 		( 2),
+	logOnToACDImplOneStep 			( 3) }
+
+AppearanceType ::= ENUMERATED
+{ 	selectedStandard 			( 0),
+	basicStandard 				( 1),
+	basicBridged 				( 2),
+	exclusiveBridged 			( 3),
+	independentSharedBridged 		( 4),
+	interdependentSharedBridged 		( 5) }
+
+TransAndConfSetup ::= BIT STRING
+{ 	consultationCall 			( 0),
+	holdCallMakeCall 			( 1),
+	alternateCall 				( 2),
+	twoCallsInHold 				( 3),
+	twoCallsInConnected 			( 4) }
+
+END -- of CSTA-capability-exchange

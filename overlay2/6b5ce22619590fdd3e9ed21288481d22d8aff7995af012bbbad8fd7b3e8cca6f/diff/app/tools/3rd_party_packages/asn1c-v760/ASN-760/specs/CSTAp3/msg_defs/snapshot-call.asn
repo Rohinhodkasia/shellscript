@@ -1,0 +1,74 @@
+CSTA-snapshot-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) snapshot-call( 105) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CallingDeviceID, CalledDeviceID, AssociatedCallingDeviceID,
+AssociatedCalledDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+SnapshotCallData FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CorrelatorData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ServiceCrossRefID FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+SubjectOfCall,LanguagePreferences, MessageInfo, DeviceHistory
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+snapshotCall OPERATION ::=
+{ 	ARGUMENT 		SnapshotCallArgument
+	RESULT 			SnapshotCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 75 }
+
+SnapshotCallArgument ::= SEQUENCE
+{	snapshotObject 			ConnectionID,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+SnapshotCallResult ::= SEQUENCE
+{	crossRefIDorSnapshotData CHOICE
+	{	serviceCrossRefID 	[0] IMPLICIT ServiceCrossRefID,
+		snapshotData 		SnapshotCallData },
+	mediaCallCharacteristics 	MediaCallCharacteristics 		OPTIONAL,
+	callCharacteristics 		CallCharacteristics 			OPTIONAL,
+	callingDevice 			CallingDeviceID 			OPTIONAL,
+	calledDevice 			CalledDeviceID 				OPTIONAL,
+	associatedCallingDeviceID 	AssociatedCallingDeviceID 		OPTIONAL,
+	associatedCalledDeviceID 	AssociatedCalledDeviceID 		OPTIONAL,
+	correlatorData 			[1] IMPLICIT CorrelatorData 		OPTIONAL,
+	callLinkageData 		[2] IMPLICIT CallLinkageData 		OPTIONAL,
+	subjectOfCall			[3] IMPLICIT	SubjectOfCall		OPTIONAL,
+	messageInfo			[4] IMPLICIT	MessageInfo		OPTIONAL,
+	languagePreferences		[5] IMPLICIT	LanguagePreferences	OPTIONAL,
+	deviceHistory			[6] IMPLICIT	DeviceHistory		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-snapshot-call

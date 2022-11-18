@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Tips</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s10.html" title="Working with GERAN RRC Messages" />
+    <link rel="prev" href="ar01s10s03.html" title="Standard L3 Formatted messages" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Tips</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s10s03.html">Prev</a> </td>
+          <th width="60%" align="center">Working with GERAN RRC Messages</th>
+          <td width="20%" align="right"> </td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Tips">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644204428"></a>Tips</h3>
+          </div>
+        </div>
+      </div>
+      <div class="itemizedlist">
+        <ul class="itemizedlist" type="disc">
+          <li class="listitem">
+            <p>All of the supported RRC messages have example code in <code class="filename">test_ts44018_msgs</code></p>
+          </li>
+          <li class="listitem">
+            <p>There are a few messages that consist of nothing more than a single octet value (e.g. "Channel Request").
+                We haven't defined a type for these messages.</p>
+          </li>
+          <li class="listitem">
+            <p>There are two messages that don't use any of the above formats and don't carry a message type.
+                They are "Synchronization Channel Information" and "COMPACT Synchronization Channel Information". For these, there is no PDU type;
+                you only need the message types to work with: <code class="literal">TS44018Msg_SynchChannelInfo</code> and
+                <code class="literal">TS44018Msg_CompactSynchChannelInfo</code>.
+                </p>
+          </li>
+          <li class="listitem">
+            <p><code class="filename">src2/TS44018Misc.h</code> declares several helper functions for working with ARFCN lists.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s10s03.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s10.html">Up</a>
+          </td>
+          <td width="40%" align="right"> </td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Standard L3 Formatted messages </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> </td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

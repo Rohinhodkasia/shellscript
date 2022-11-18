@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:weightSum="1">
+    <Spinner android:id="@+id/spinner_pdu" android:layout_width="fill_parent" android:layout_height="wrap_content"></Spinner>
+    <LinearLayout android:layout_height="wrap_content" android:layout_width="fill_parent" android:id="@+id/linearLayout1">
+        <Spinner 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content" 
+        	android:id="@+id/spinner_rules"></Spinner>
+        <Button 
+        	android:id="@+id/button_method" 
+        	android:layout_height="wrap_content" 
+        	android:layout_width="wrap_content"
+        	android:text="Method..."></Button>
+        <Button 
+        	android:layout_width="wrap_content" 
+        	android:layout_height="wrap_content"
+        	android:text="Run" 
+        	android:id="@+id/button_run"></Button>
+    </LinearLayout>
+    <TextView android:layout_width="wrap_content" android:text="Encoded Message:" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:layout_weight="0.07" android:gravity="bottom"></TextView>
+    <TextView android:layout_height="106dp" android:scrollbars="vertical" android:background="@color/White" android:textColor="@color/Black" android:id="@+id/tv_encodedMessage" android:layout_width="fill_parent" android:layout_weight="0.20" android:textSize="8sp" android:typeface="monospace" android:scrollHorizontally="true"></TextView>
+    <TextView android:layout_width="wrap_content" android:text="Decoded Message:" android:id="@+id/textView1" android:textAppearance="?android:attr/textAppearanceSmall" android:layout_height="wrap_content" android:layout_weight="0.07" android:gravity="bottom"></TextView>
+    <TextView android:id="@+id/tv_decodedMessage" android:layout_height="106dp" android:scrollbars="vertical" android:background="@color/White" android:textColor="@color/Black" android:layout_width="fill_parent" android:layout_weight="0.20" android:textSize="8sp" android:typeface="monospace" android:scrollHorizontally="true"></TextView>    
+</LinearLayout>

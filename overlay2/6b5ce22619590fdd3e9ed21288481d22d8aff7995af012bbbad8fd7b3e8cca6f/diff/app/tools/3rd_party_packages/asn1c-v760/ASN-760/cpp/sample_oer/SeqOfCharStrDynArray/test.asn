@@ -1,0 +1,5 @@
+Test DEFINITIONS ::= BEGIN
+
+SeqOfCharStr ::= SEQUENCE SIZE (5..10) OF IA5String
+
+END

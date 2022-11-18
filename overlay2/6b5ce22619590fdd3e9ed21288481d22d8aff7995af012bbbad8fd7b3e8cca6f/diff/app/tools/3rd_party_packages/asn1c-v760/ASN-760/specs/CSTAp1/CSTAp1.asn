@@ -1,0 +1,2991 @@
+-- the syntax according to 1997
+
+CSTA-alternate-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) alternate-call( 1) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS   
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionDetails FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+alternateCall	OPERATION ::= { 
+	ARGUMENT	AlternateCallArgument
+	RESULT	AlternateCallResult
+	ERRORS	{universalFailure}
+	CODE local : 1
+}
+
+AlternateCallArgument ::=
+		CHOICE
+		{callsInvolved	ConnectionDetails,
+		 SEQUENCE
+		     {callsInvolved	ConnectionDetails,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+AlternateCallResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-alternate-call
+
+CSTA-answer-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) answer-call( 2) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+answerCall OPERATION ::= { 
+	ARGUMENT	AnswerCallArgument
+	RESULT	AnswerCallResult
+	ERRORS	{universalFailure}
+	CODE local : 2
+}
+
+AnswerCallArgument ::=
+		CHOICE
+		{callToBeAnswered	ConnectionID,
+		 SEQUENCE
+		     {callToBeAnswered	ConnectionID,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+AnswerCallResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-answer-call
+
+CSTA-call-completion 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-completion( 3) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+FeatureInfo FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+callCompletion OPERATION ::= { 
+	ARGUMENT	CallCompletionArgument
+	RESULT	CallCompletionResult
+	ERRORS	{universalFailure}
+	CODE local : 3
+}
+
+CallCompletionArgument ::=
+		CHOICE
+		{featureInfo	FeatureInfo,
+		 SEQUENCE
+		     {featureInfo	FeatureInfo,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+CallCompletionResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-call-completion
+
+CSTA-clear-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) clear-call( 4) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+clearCall OPERATION ::= { 
+	ARGUMENT	ClearCallArgument
+	RESULT	ClearCallResult
+	ERRORS	{universalFailure}
+	CODE local : 4
+}
+
+ClearCallArgument ::=
+		CHOICE
+		{callToBeCleared	ConnectionID,
+		 SEQUENCE
+		   {callToBeCleared	ConnectionID,
+		    extensions	CSTACommonArguments	OPTIONAL} }
+
+ClearCallResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-clear-call
+
+CSTA-clear-connection 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) clear-connection( 5) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+		
+clearConnection OPERATION ::= { 
+	ARGUMENT	ClearConnectionArgument
+	RESULT	ClearConnectionResult
+	ERRORS	{universalFailure}
+	CODE local : 5
+}
+
+ClearConnectionArgument ::=
+		CHOICE
+		{connectionToBeCleared	ConnectionID,
+		 SEQUENCE
+		   {connectionToBeCleared	ConnectionID,
+		    extensions	CSTACommonArguments		OPTIONAL} }
+
+ClearConnectionResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-clear-connection
+
+CSTA-conference-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) conference-call( 6) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+ConnectionDetails FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+conferenceCall OPERATION ::= { 
+	ARGUMENT	ConferenceCallArgument
+	RESULT	ConferenceCallResult
+	ERRORS	{universalFailure}
+	CODE local : 6
+}
+
+ConferenceCallArgument ::=
+		CHOICE
+		{callsInvolved	ConnectionDetails,
+		 SEQUENCE
+		     {callsInvolved	ConnectionDetails,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+ConferenceCallResult ::=
+		SEQUENCE
+		{conferenceCall	ConnectionID,
+		 connections	ConnectionList	OPTIONAL,
+		 extensions	CSTAPrivateData  		OPTIONAL}
+
+END  -- of CSTA-conference-call
+
+CSTA-consultation-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) consultation-call( 7) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+consultationCall OPERATION ::= { 
+	ARGUMENT	ConsultationCallArgument
+	RESULT	ConsultationCallResult
+	ERRORS	{universalFailure}
+	CODE local : 7
+}
+
+ConsultationCallArgument ::=
+		SEQUENCE
+		{existingCall	ConnectionID,
+		 calledDirectoryNumber	CalledDeviceID,
+		 extensions	CSTACommonArguments	OPTIONAL}
+
+ConsultationCallResult ::=
+		CHOICE
+		{initiatedCall	ConnectionID,
+		 SEQUENCE
+		       {initiatedCall	ConnectionID,
+		        extensions	CSTAPrivateData  	OPTIONAL} }
+
+END  -- of CSTA-consultation-call
+
+CSTA-divert-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) divert-call( 8) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+DivertInfo FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+divertCall OPERATION ::= { 
+	ARGUMENT	DivertCallArgument
+	RESULT	DivertCallResult
+	ERRORS	{universalFailure}
+	CODE local : 8
+}
+
+DivertCallArgument ::=
+		CHOICE
+		{divertInfo	DivertInfo,
+		 SEQUENCE
+		     {divertInfo	DivertInfo,
+		      extensions 	CSTACommonArguments 	OPTIONAL} }
+
+DivertCallResult ::=
+		CHOICE
+		{extensions 	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-divert-call
+
+CSTA-hold-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) hold-call( 9) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+ReserveConnection FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+holdCall OPERATION ::= { 
+	ARGUMENT	HoldCallArgument
+	RESULT	HoldCallResult
+	ERRORS	{universalFailure}
+	CODE local : 9
+}
+
+HoldCallArgument ::=
+		SEQUENCE
+		{callToBeHeld	ConnectionID,
+		 connectionReservation	ReserveConnection  	DEFAULT FALSE,
+		 extensions 	CSTACommonArguments	OPTIONAL}
+
+HoldCallResult ::=
+		CHOICE
+		{extensions 	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-hold-call
+
+CSTA-make-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012) 
+		standard( 0) csta( 180) version1( 1) make-call( 10) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+DeviceID, CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+makeCall OPERATION ::= { 
+	ARGUMENT	MakeCallArgument
+	RESULT	MakeCallResult
+	ERRORS	{universalFailure}
+	CODE local : 10
+}
+
+MakeCallArgument ::=
+		SEQUENCE
+		{callingDevice	   DeviceID,
+		 calledDirectoryNumber  CalledDeviceID,
+		 extensions	   CSTACommonArguments	OPTIONAL}
+
+MakeCallResult ::=
+		CHOICE
+		{initiatedCall	   ConnectionID,
+		 SEQUENCE
+		       {initiatedCall	   ConnectionID,
+		        extensions	   CSTAPrivateData		OPTIONAL}}
+
+END  -- of CSTA-make-call 
+
+CSTA-make-predictive-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) make-predictive-call( 11) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+AllocationState FROM CSTA-device-feature-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+DeviceID, CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+makePredictiveCall  OPERATION ::= { 
+	ARGUMENT	MakePredictiveCallArgument
+	RESULT	MakePredictiveCallResult
+	ERRORS	{universalFailure}
+	CODE local : 11
+}
+
+MakePredictiveCallArgument ::=
+		SEQUENCE
+		{callingDevice	  DeviceID,
+		 calledDirectoryNumber CalledDeviceID,
+		 allocation	  AllocationState	             DEFAULT callDelivered,
+		 extensions	  CSTACommonArguments	OPTIONAL}
+
+MakePredictiveCallResult ::=
+		CHOICE
+		{initiatedCall	  ConnectionID,
+		 SEQUENCE
+		       {initiatedCall	  ConnectionID,
+		        extensions	  CSTAPrivateData	           OPTIONAL} }
+
+END  -- of CSTA-make-predictive-call 
+
+CSTA-query-device 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) query-device( 12) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+QueryDeviceFeature, QueryDeviceInformation FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+queryDevice OPERATION ::= { 
+	ARGUMENT	QueryDeviceArgument
+	RESULT	QueryDeviceResult
+	ERRORS	{universalFailure}
+	CODE local : 12
+}
+
+QueryDeviceArgument ::=
+		SEQUENCE
+		{device	DeviceID,
+		 feature	QueryDeviceFeature,
+		 extensions 	CSTACommonArguments	OPTIONAL}
+
+QueryDeviceResult ::=
+		CHOICE
+		{deviceInformation	QueryDeviceInformation,
+		 SEQUENCE
+		       {deviceInformation	QueryDeviceInformation,
+		        extensions	CSTAPrivateData		OPTIONAL} }
+
+END  -- of CSTA-query-device
+
+CSTA-reconnect-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) reconnect-call( 13) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionDetails FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+reconnectCall OPERATION ::= { 
+	ARGUMENT	ReconnectCallArgument
+	RESULT	ReconnectCallResult
+	ERRORS	{universalFailure}
+	CODE local : 13
+}
+
+ReconnectCallArgument ::=
+		CHOICE
+		{reconnectInfo	ConnectionDetails,
+		 SEQUENCE
+		     {reconnectInfo	ConnectionDetails,
+		      extensions 	CSTACommonArguments 	OPTIONAL} }
+
+ReconnectCallResult ::=
+		CHOICE
+		{extensions 	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-reconnect-call
+
+CSTA-retrieve-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) retrieve-call( 14) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+retrieveCall OPERATION ::= { 
+	ARGUMENT	RetrieveCallArgument
+	RESULT	RetrieveCallResult
+	ERRORS	{universalFailure}
+	CODE local : 14
+}
+
+RetrieveCallArgument ::=
+		CHOICE
+		{callToBeRetrieved	ConnectionID,
+		 SEQUENCE
+		     {callToBeRetrieved	ConnectionID,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+RetrieveCallResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-retrieve-call
+
+CSTA-set-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) set-feature( 15) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+SetDeviceFeature FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+setFeature OPERATION ::= { 
+	ARGUMENT	SetFeatureArgument
+	RESULT	SetFeatureResult
+	ERRORS	{universalFailure}
+	CODE local : 15
+}
+
+SetFeatureArgument ::=
+		SEQUENCE
+		{device	DeviceID,
+		 feature	SetDeviceFeature,
+		 extensions 	CSTACommonArguments	OPTIONAL}
+
+SetFeatureResult ::=
+		CHOICE
+		{extensions 	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-set-feature
+
+CSTA-transfer-call 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) transfer-call( 16) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+ConnectionDetails FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+ConnectionID  FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+transferCall OPERATION ::= { 
+	ARGUMENT	TransferCallArgument
+	RESULT	TransferCallResult
+	ERRORS	{universalFailure}
+	CODE local : 16
+}
+
+TransferCallArgument ::=
+		CHOICE
+		{transferInfo	ConnectionDetails,
+		 SEQUENCE
+		     {transferInfo	ConnectionDetails,
+		      extensions 	CSTACommonArguments    OPTIONAL} }
+
+TransferCallResult ::=
+		SEQUENCE
+		{transferredCall	ConnectionID		OPTIONAL,
+		 connections	ConnectionList		OPTIONAL,
+		 extensions 	CSTAPrivateData  		OPTIONAL}
+
+END  -- of CSTA-transfer-call
+
+CSTA-call-cleared-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-cleared-event( 22) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState  FROM  CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+
+callCleared	EVENT ::= 
+{
+	EVENTINFO 	CallClearedEventInfo
+	CODE cSTAform : 1
+}
+
+CallClearedEventInfo ::=
+	SEQUENCE
+	{clearedCall		ConnectionID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-call-cleared-event
+
+CSTA-conferenced-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) conferenced-event( 23) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState, ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID    FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+conferenced	EVENT ::= 
+{
+	EVENTINFO 	ConferencedEventInfo
+	CODE cSTAform : 2
+}
+
+ConferencedEventInfo ::=
+	SEQUENCE
+	{primaryOldCall	ConnectionID,
+	 secondaryOldCall	ConnectionID		OPTIONAL,
+	 confController	SubjectDeviceID,
+	 addedParty		SubjectDeviceID,
+	 conferenceConnections	ConnectionList		OPTIONAL,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-conferenced-event
+
+CSTA-connection-cleared-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-cleared-event( 24) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+connectionCleared EVENT ::= 
+{
+	EVENTINFO 	ConnectionClearedEventInfo
+	CODE cSTAform : 3
+}
+
+ConnectionClearedEventInfo ::=
+	SEQUENCE
+	{droppedConnection	ConnectionID,
+	 releasingDevice	SubjectDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-connection-cleared-event
+
+CSTA-delivered-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) delivered-event( 25) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CallingDeviceID, CalledDeviceID, RedirectionDeviceID
+	FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+delivered	EVENT ::= 
+{
+	EVENTINFO	DeliveredEventInfo
+	CODE cSTAform : 4
+}
+
+DeliveredEventInfo ::=
+	SEQUENCE
+	{connection		ConnectionID,
+	 alertingDevice	SubjectDeviceID,
+	 callingDevice	CallingDeviceID,
+	 calledDevice	CalledDeviceID,
+	 lastRedirectionDevice	RedirectionDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-delivered-event
+
+CSTA-diverted-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) diverted-event( 26) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CalledDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+diverted	EVENT ::= 
+{
+	EVENTINFO	DivertedEventInfo
+	CODE cSTAform : 5
+}
+
+DivertedEventInfo ::=
+	SEQUENCE
+	{connection		ConnectionID		OPTIONAL,
+	 divertingDevice	SubjectDeviceID,
+	 newDestination	CalledDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of diverted-event
+
+CSTA-established-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) established-event( 27) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CalledDeviceID, CallingDeviceID, RedirectionDeviceID
+	FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+established	EVENT  ::= 
+{
+	EVENTINFO	EstablishedEventInfo
+	CODE cSTAform : 6
+}
+
+EstablishedEventInfo ::=
+	SEQUENCE	
+	{establishedConnection	ConnectionID,
+	 answeringDevice	SubjectDeviceID,
+	 callingDevice	CallingDeviceID,
+	 calledDevice	CalledDeviceID,
+	 lastRedirectionDevice	RedirectionDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-established-event
+
+CSTA-failed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) failed-event( 28) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CalledDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+failed		EVENT ::= 
+{
+	EVENTINFO	FailedEventInfo
+	CODE cSTAform : 7
+}
+
+FailedEventInfo ::=
+	SEQUENCE
+	{failedConnection	ConnectionID,
+	 failingDevice	SubjectDeviceID,
+	 calledDevice	CalledDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-failed-event
+
+CSTA-held-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) held-event( 29) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+held		EVENT ::= 
+{
+	EVENTINFO	HeldEventInfo
+	CODE cSTAform : 8
+}
+
+HeldEventInfo ::=
+	SEQUENCE
+	{heldConnection	ConnectionID,
+	 holdingDevice	SubjectDeviceID,	
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-held-event
+
+CSTA-network-reached-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) network-reached-event( 30) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CalledDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+networkReached	EVENT  ::= 
+{
+	EVENTINFO	NetworkReachedEventInfo
+	CODE cSTAform : 9
+}
+
+NetworkReachedEventInfo ::=
+	SEQUENCE
+	{connection		ConnectionID,
+	 trunkUsed		SubjectDeviceID,
+	 calledDevice	CalledDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-network-reached-event
+
+CSTA-originated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) originated-event( 31) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID, CalledDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+originated	EVENT  ::= 
+{
+	EVENTINFO	OriginatedEventInfo
+	CODE cSTAform : 10
+}
+
+OriginatedEventInfo ::=
+	SEQUENCE
+	{originatedConnection	ConnectionID,
+	 callingDevice	SubjectDeviceID,
+	 calledDevice	CalledDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-originated-event
+
+CSTA-queued-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) queued-event( 32) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+CalledDeviceID, CallingDeviceID, RedirectionDeviceID, SubjectDeviceID  
+	FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+NoOfCallsInQueue FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+queued	EVENT  ::= 
+{
+	EVENTINFO	QueuedEventInfo
+	CODE cSTAform : 11
+}
+
+QueuedEventInfo ::=
+	SEQUENCE
+	{queuedConnection	ConnectionID,
+	 queue		SubjectDeviceID,
+	 callingDevice	CallingDeviceID,
+	 calledDevice	CalledDeviceID,
+	 lastRedirectionDevice	RedirectionDeviceID,
+	 numberedQueued	NoOfCallsInQueue		OPTIONAL,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-queued-event
+
+CSTA-retrieved-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) retrieved-event( 33) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+retrieved	EVENT  ::= 
+{
+	EVENTINFO	RetrievedEventInfo
+	CODE cSTAform : 12
+}
+
+RetrievedEventInfo ::=
+	SEQUENCE
+	{retrievedConnection	ConnectionID,
+	 retrievingDevice	SubjectDeviceID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-retrieved-event
+
+CSTA-service-initiated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) service-initiated-event( 34) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+serviceInitiated	EVENT ::= 
+{
+	EVENTINFO	ServiceInitiatedEventInfo
+	CODE cSTAform : 13
+}
+
+ServiceInitiatedEventInfo ::=
+	SEQUENCE
+	{initiatedConnection	ConnectionID,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-service-initiated-event
+
+CSTA-transferred-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) transferred-event( 35) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+LocalConnectionState, ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+transferred	EVENT  ::= 
+{
+	EVENTINFO	TransferedEventInfo
+	CODE cSTAform : 14
+}
+
+TransferedEventInfo ::=
+	SEQUENCE
+	{primaryOldCall	ConnectionID,
+	 secondaryOldCall	ConnectionID		OPTIONAL,
+	 transferringDevice	SubjectDeviceID,
+	 transferredDevice	SubjectDeviceID,
+	 transferredConnections	ConnectionList		OPTIONAL,
+	 localConnectionInfo	LocalConnectionState	OPTIONAL,
+	 cause		EventCause		OPTIONAL}
+
+END  -- of CSTA-transferred-event
+
+CSTA-call-information-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-information-event( 41) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AccountInfo, AuthCode FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) };
+
+callInformation	EVENT ::= 
+{
+	EVENTINFO	CallInformationEventInfo
+	CODE cSTAform : 101
+}
+
+CallInformationEventInfo ::=
+	SEQUENCE
+	{connection		ConnectionID,
+	 device		SubjectDeviceID,
+	 accountInfo		[10] IMPLICIT AccountInfo	OPTIONAL,
+	 authorisationCode	[11] IMPLICIT AuthCode	OPTIONAL}
+
+END  -- of CSTA-call-information-event
+
+CSTA-do-not-disturb-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) do-not-disturb-event( 42) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+doNotDisturb	EVENT ::= 
+{
+	EVENTINFO	DoNotDisturbEventInfo
+	CODE cSTAform : 102
+}
+
+DoNotDisturbEventInfo ::=
+	SEQUENCE 
+	{device		SubjectDeviceID,
+	 doNotDisturbOn	BOOLEAN}
+
+END  -- of CSTA-do-not-disturb-event
+
+CSTA-forwarding-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) forwarding-event( 43) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+ForwardParameter FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+forwarding	EVENT ::= 
+{
+	EVENTINFO	ForwardingEventInfo
+	CODE cSTAform : 103
+}
+
+ForwardingEventInfo ::=
+	SEQUENCE 
+	{device		SubjectDeviceID,
+	 forwardingInformation	ForwardParameter}
+
+END  -- of CSTA-forwarding-event
+
+CSTA-message-waiting-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) message-waiting-event( 44) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+CalledDeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+messageWaiting	EVENT ::= 
+{
+	EVENTINFO	MessageWaitingEventInfo
+	CODE cSTAform : 104
+}
+
+MessageWaitingEventInfo ::=
+	SEQUENCE 
+	{deviceForMessage	CalledDeviceID,
+	 invokingDevice	SubjectDeviceID,
+	 messageWaitingOn	BOOLEAN}
+
+END  -- of CSTA-message-waiting-event
+
+CSTA-logged-on-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) logged-on-event( 51) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AgentID, AgentGroup, AgentPassword FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+loggedOn	EVENT ::= 
+{
+	EVENTINFO	LoggedOnEventInfo	
+	CODE cSTAform : 201
+}
+
+LoggedOnEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID	OPTIONAL,
+	 agentGroup		AgentGroup		OPTIONAL,
+	 password		[11] IMPLICIT AgentPassword	OPTIONAL}
+
+END  -- of CSTA-logged-on-event
+
+CSTA-logged-off-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) logged-off-event( 52) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AgentID, AgentGroup FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+loggedOff	EVENT ::= 
+{
+	EVENTINFO	LoggedOffEventInfo
+	CODE cSTAform : 202
+}
+
+LoggedOffEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID  OPTIONAL,
+	 agentGroup		AgentGroup	    OPTIONAL}
+
+END  -- of CSTA-logged-off-event
+
+CSTA-not-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) not-ready-event( 53) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123)}
+AgentID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+notReady     	EVENT ::= 
+{
+	EVENTINFO	NotReadyEventInfo	
+	CODE cSTAform : 203
+}
+
+NotReadyEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID	OPTIONAL}
+
+END  -- of CSTA-not-ready-event
+
+CSTA-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) ready-event( 54) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AgentID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+ready  	EVENT ::= 
+{
+	EVENTINFO	ReadyEventInfo	
+	CODE cSTAform : 204
+}
+
+ReadyEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID	OPTIONAL}
+
+END  -- of CSTA-ready-event
+
+CSTA-work-not-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) work-not-ready-event( 55) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AgentID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+workNotReady  	EVENT ::= 
+{
+	EVENTINFO	WorkNotReadyEventInfo	
+	CODE cSTAform : 205
+}
+
+WorkNotReadyEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID	OPTIONAL}
+
+END  -- of CSTA-work-not-ready-event
+
+CSTA-work-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) work-ready-event( 56) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+AgentID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) };
+
+workReady     	EVENT ::= 
+{
+	EVENTINFO	WorkReadyEventInfo	
+	CODE cSTAform : 206
+}
+
+WorkReadyEventInfo ::=
+	SEQUENCE
+	{agentDevice		SubjectDeviceID,
+	 agentID		[10] IMPLICIT AgentID	OPTIONAL}
+
+END  -- of CSTA-work-ready-event
+
+CSTA-back-in-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) back-in-service-event( 61) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+backInService	EVENT ::= 
+{
+	EVENTINFO	BackInServiceEventInfo
+	CODE cSTAform : 301
+}
+
+BackInServiceEventInfo ::=
+	SEQUENCE
+	{device		DeviceID,
+	 cause		EventCause	OPTIONAL}
+
+END  -- of CSTA-back-in-service-event
+
+CSTA-out-of-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) out-of-service-event( 62) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) }
+-- Data Types --
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) };
+
+outOfService	EVENT ::= 
+{
+	EVENTINFO	OutOfServiceEventInfo
+	CODE cSTAform : 302
+}
+
+OutOfServiceEventInfo ::=
+	SEQUENCE
+	{device		DeviceID,
+	 cause		EventCause	OPTIONAL}
+
+END  -- of CSTA-out-of-service-event
+
+CSTA-private-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) private-event( 71) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+EVENT FROM CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions( 21) };
+
+private		EVENT ::= 
+{
+	EVENTINFO	PrivateEventInfo
+	CODE cSTAform : 401
+}
+
+PrivateEventInfo ::= NULL
+-- The actual encoding of the private event is added here, replacing NULL with another
+-- valid ASN.1 type.
+
+END	-- of CSTA-private-event
+
+CSTA-route-request 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) route-request( 81) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CalledDeviceID, CallingDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+SelectValue, PriorityValue, SetUpValues, RoutingCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+routeRequest OPERATION ::= { 
+	ARGUMENT	RouteRequestArgument
+	ERRORS	{universalFailure}
+	CODE local : 31
+}
+
+RouteRequestArgument ::=
+		SEQUENCE
+		{crossRefIdentifier		RoutingCrossRefID,
+		 currentRoute		CalledDeviceID,
+		 callingDevice		CallingDeviceID		OPTIONAL,
+		 routedCall		ConnectionID		OPTIONAL,
+		 routeSelAlgorithm		SelectValue		OPTIONAL,
+		 priority		PriorityValue		OPTIONAL,
+		 setupInformation		SetUpValues		OPTIONAL,
+		 extensions		CSTACommonArguments	OPTIONAL}
+
+END  -- of CSTA-route-request
+
+CSTA-re-route-request 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) re-route-request( 82) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+RoutingCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+reRouteRequest OPERATION ::= { 
+	ARGUMENT	ReRouteRequestArgument
+	ERRORS	{universalFailure}
+	CODE local : 32
+}
+
+ReRouteRequestArgument ::=
+		SEQUENCE
+		{crossRefIdentifier	RoutingCrossRefID,
+		 extensions 	CSTACommonArguments		OPTIONAL}
+		 
+END  -- of CSTA-re-route-request
+
+CSTA-Route-select-request 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) route-select-request( 83) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+RouteUsedFlag, RetryValue, SetUpValues, RoutingCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };		
+
+routeSelectRequest	OPERATION ::= { 
+	ARGUMENT	RouteSelectRequestArgument
+	ERRORS	{universalFailure}
+	CODE local : 33
+}
+
+RouteSelectRequestArgument ::=
+		SEQUENCE
+		{crossRefIdentifier		RoutingCrossRefID,
+		 routeSelected		CalledDeviceID,
+		 remainRetry		RetryValue		OPTIONAL,
+		 setupInformation		SetUpValues		OPTIONAL,
+		 routeUsedReq		RouteUsedFlag		OPTIONAL,
+		 extensions 		CSTACommonArguments	OPTIONAL}
+		 
+END  -- of CSTA-route-select-request
+
+CSTA-route-used-request 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012) 
+		standard( 0) csta( 180) version1( 1) route-used-request( 84) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CallingDeviceID, CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+DomainValue, RoutingCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };		
+
+routeUsedRequest	OPERATION ::= { 
+	ARGUMENT	RouteUsedRequestArgument
+	ERRORS	{universalFailure}
+	CODE local : 34
+}
+
+RouteUsedRequestArgument ::=
+		SEQUENCE
+		{crossRefIdentifier		RoutingCrossRefID,
+		 routeUsed		CalledDeviceID,
+		 callingDevice		CallingDeviceID		OPTIONAL,
+		 domain		DomainValue		OPTIONAL,
+		 extensions 		CSTACommonArguments	OPTIONAL}
+
+END  -- of CSTA-route-used-request
+
+CSTA-route-end-request 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012) 
+		standard( 0) csta( 180) route-end-request( 85) } 
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+RoutingCrossRefID  FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure, UniversalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };		
+
+routeEndRequest	OPERATION ::= { 
+	ARGUMENT	RouteEndRequestArgument
+	ERRORS	{universalFailure}
+	CODE local : 35
+}
+
+RouteEndRequestArgument ::=
+		SEQUENCE
+		{crossRefIdentifier		RoutingCrossRefID,
+		 errorValue		UniversalFailure		OPTIONAL,
+		 extensions 		CSTACommonArguments	OPTIONAL}
+
+END  -- of CSTA-route-end-request
+
+CSTA-escape-service
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) escape-service( 91) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1(1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+escapeService	OPERATION ::= { 
+	ARGUMENT	EscapeServiceArgument
+	RESULT	EscapeServiceResult
+	ERRORS	{universalFailure}
+	CODE local : 51
+}
+
+EscapeServiceArgument ::= -- objsys CHOICE type added for missing definition?
+		CHOICE
+		{extensions 	CSTACommonArguments,
+		 noData	NULL}
+
+EscapeServiceResult ::=
+		CHOICE
+		{extensions 	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-escape-service
+
+CSTA-system-status
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012) 
+		standard( 0) csta( 180) version1( 1) system-status( 92) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+SystemStatus FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+systemStatus	OPERATION ::= { 
+	ARGUMENT	SystemStatusArgument
+	RESULT	SystemStatusResult
+	ERRORS	{universalFailure}
+	CODE local : 52
+}
+
+SystemStatusArgument ::=
+		CHOICE
+		{systemStatus	SystemStatus,
+		 SEQUENCE
+		     {systemStatus	SystemStatus,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+SystemStatusResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-system-status
+
+CSTA-monitor-start
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) monitor-start( 101) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+MonitorObject, MonitorFilter, MonitorType, MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+monitorStart	OPERATION ::= { 
+	ARGUMENT	MonitorStartArgument
+	RESULT	MonitorStartResult
+	ERRORS	{universalFailure}
+	CODE local : 71
+}
+
+MonitorStartArgument ::=
+		SEQUENCE
+		{monitorObject	MonitorObject,
+		 monitorFilter	MonitorFilter		OPTIONAL,
+		 monitorType	MonitorType		OPTIONAL,
+		 extensions	CSTACommonArguments	OPTIONAL}
+
+MonitorStartResult ::=
+		SEQUENCE
+ 	 	{crossRefIdentifier	MonitorCrossRefID,
+		 monitorFilter	MonitorFilter		OPTIONAL,
+		 extensions	CSTAPrivateData		OPTIONAL}
+
+END  -- of CSTA-monitor-start
+
+CSTA-change-monitor-filter
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012) 
+		standard( 0) csta( 180) version1 ( 1) change-monitor-filter( 102) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+MonitorFilter, MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+changeMonitorFilter	OPERATION ::= { 
+	ARGUMENT	ChangeMonitorFilterArgument
+	RESULT	ChangeMonitorFilterResult
+	ERRORS	{universalFailure}
+	CODE local : 72
+}
+
+ChangeMonitorFilterArgument ::=
+		SEQUENCE
+		{monitorCrossRefID	MonitorCrossRefID,
+		 filterlist	MonitorFilter,
+		 extensions	CSTACommonArguments	OPTIONAL}	
+
+ChangeMonitorFilterResult ::=
+		CHOICE
+		{filterList	[0] IMPLICIT MonitorFilter,
+		 SEQUENCE
+		     {filterList	MonitorFilter	OPTIONAL,
+		            extensions	CSTAPrivateData	OPTIONAL} }
+
+END  -- of CSTA-change-monitor-filter
+
+CSTA-monitor-stop
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) monitor-stop( 103) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };	
+
+monitorStop	OPERATION ::= { 
+	ARGUMENT	MonitorStopArgument
+	RESULT	MonitorStopResult
+	ERRORS 	{universalFailure}
+	CODE local : 73
+}
+
+MonitorStopArgument ::=
+		CHOICE
+		{crossRefIdentifier         MonitorCrossRefID,
+		 SEQUENCE
+		     {crossRefIdentifier    MonitorCrossRefID,
+		      extensions               CSTACommonArguments    	OPTIONAL} }
+
+MonitorStopResult ::=
+		CHOICE
+		{extensions	CSTAPrivateData,
+		 noData	NULL}
+
+END  -- of CSTA-monitor-stop
+
+CSTA-snapshot-device
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) snapshot-device( 104) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+SnapshotDeviceData FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+
+snapshotDevice	OPERATION ::= { 
+	ARGUMENT	SnapshotDeviceArgument
+	RESULT	SnapshotDeviceResult
+	ERRORS	{universalFailure}
+	CODE local : 74
+}
+
+SnapshotDeviceArgument ::=
+		CHOICE
+		{snapshotObject	DeviceID,
+	  	 SEQUENCE
+		     {snapshotObject	DeviceID,
+		      extensions	CSTACommonArguments	OPTIONAL} }
+
+SnapshotDeviceResult ::=
+		CHOICE
+		{snapshotData	SnapshotDeviceData,
+		 SEQUENCE
+		     {snapshotData	SnapshotDeviceData,
+		      extensions	CSTAPrivateData		OPTIONAL} }
+
+END  -- of CSTA-snapshot-device
+
+CSTA-snapshot-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) snapshot-call( 105) }
+DEFINITIONS    ::=
+BEGIN
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+SnapshotCallData FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+universalFailure FROM CSTA-error-definition
+  	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) };
+	
+snapshotCall	OPERATION ::= { 
+	ARGUMENT	SnapshotCallArgument
+	RESULT	SnapshotCallResult
+	ERRORS	{universalFailure}
+	CODE local : 75
+}
+
+SnapshotCallArgument ::=
+		CHOICE
+		{snapshotObject	ConnectionID,
+		 SEQUENCE
+		   {snapshotObject	ConnectionID,	
+		    extensions 	CSTACommonArguments	OPTIONAL} }
+
+SnapshotCallResult ::=
+		CHOICE
+		{snapshotData	SnapshotCallData,
+		 SEQUENCE
+		   {snapshotData	SnapshotCallData,
+	 	    extensions 	CSTAPrivateData		OPTIONAL} }
+
+END  -- of CSTA-snapshot-call
+
+CSTA-error-definition 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) error-definition( 120) } 
+DEFINITIONS    ::=
+BEGIN
+EXPORTS UniversalFailure, universalFailure;
+IMPORTS ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+CSTAPrivateData FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) };
+
+universalFailure	ERROR ::= { 
+	PARAMETER	UniversalFailure
+	CODE local : 1
+}
+
+UniversalFailure ::= CHOICE
+  { operationalErrors 	[1] IMPLICIT Operations,
+    stateErrors		[2] IMPLICIT StateIncompatibility,
+    systemResourceErrors	[3] IMPLICIT SystemResourceAvailability,
+    subscribedResourceAvailabilityErrors	[4] IMPLICIT SubscribedResourceAvailability,
+    performanceErrors	[5] IMPLICIT PerformanceManagement,
+    securityErrors		[6] IMPLICIT SecurityError,
+    unspecifiedErrors	[7] IMPLICIT NULL,
+    nonStandardErrors	     CSTAPrivateData}
+
+Operations ::= ENUMERATED
+	{	generic		  (1),
+		requestIncompatibleWithObject	  (2),
+		valueOutOfRange		  (3),
+		objectNotKnown		  (4),
+		invalidCallingDevice		  (5),
+		invalidCalledDevice		  (6),
+		invalidForwardingDestination		  (7),
+		privilegeViolationOnSpecifiedDevice	  (8),
+		privilegeViolationOnCalledDevice	  (9),
+		privilegeViolationOnCallingDevice	(10),
+		invalidCSTACallIdentifier		(11),
+		invalidCSTADeviceIdentifier		(12),
+		invalidCSTAConnectionIdentifier	(13),
+		invalidDestination		(14),
+		invalidFeature		(15),
+		invalidAllocationState		(16),
+		invalidCrossRefID		(17),
+		invalidObjectType		(18),
+		securityViolation		(19)   }
+
+StateIncompatibility ::= ENUMERATED
+	{	generic		  (1),
+		invalidObjectState		  (2),
+		invalidConnectionID		  (3),
+		noActiveCall		  (4),
+		noHeldCall		  (5),
+		noCallToClear		  (6),
+		noConnectionToClear		  (7),
+		noCallToAnswer		  (8),
+		noCallToComplete		  (9) }
+
+SystemResourceAvailability ::= ENUMERATED
+	{	generic		  (1),
+		serviceBusy		  (2),
+		resourceBusy		  (3),
+		resourceOutOfService		  (4),
+		networkBusy		  (5),
+		networkOutOfService		  (6),
+		overallMonitorLimitExceeded		  (7),
+		conferenceMemberLimitExceeded 	  (8)   }
+
+SubscribedResourceAvailability ::= ENUMERATED
+	{	generic		  (1),
+		objectMonitorLimitExceeded		  (2),
+		externalTrunkLimitExceeded		  (3),
+		outstandingRequestLimitExceeded 	  (4)   }
+
+PerformanceManagement ::= ENUMERATED
+	{	generic		  (1),
+		performanceLimitExceeded		  (2)   }
+
+SecurityError ::= ENUMERATED 
+	{	unspecified		                             (0),
+		sequenceNumberViolated	                             (1),
+		timeStampViolated		                             (2),
+		pACViolated		                             (3),
+		sealViolated		                             (4)   }
+
+END  -- of CSTA-error-definition 
+
+CSTA-event-causes 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-causes( 121) } 
+DEFINITIONS ::=
+BEGIN
+EXPORTS   EventCause;
+EventCause ::= ENUMERATED	-- a general list of cause codes
+  { 	activeMonitor	(1),
+	alternate	(2),
+	busy	(3),
+	callBack	(4),
+	callCancelled	(5),
+	callForwardAlways	(6),
+	callForwardBusy	(7),
+	callForwardNoAnswer	(8),
+	callForward	(9),
+	callNotAnswered	(10),
+	callPickup	(11),
+	campOn	(12),
+	destNotObtainable	(13),
+	doNotDisturb	(14),
+	incompatibleDestination	(15),
+	invalidAccountCode	(16),
+	keyConference	(17),
+	lockout	(18),
+	maintenance	(19),
+	networkCongestion	(20),
+	networkNotObtainable	(21),
+	newCall	(22),
+	noAvailableAgents	(23),
+	override	(24),
+	park	(25),
+	overflow	(26),
+	recall	(27),
+	redirected	(28),
+	reorderTone	(29),
+	resourcesNotAvailable	(30),
+	silentMonitor	(31),
+	transfer	(32),
+	trunksBusy	(33),
+	voiceUnitInitiator	(34)     }
+
+END  -- of event-cause-definitions
+
+CSTA-switching-function-objects 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) switching-function-objects( 122) } 
+DEFINITIONS    ::=
+BEGIN
+EXPORTS  CSTAObject;
+IMPORTS   
+DeviceID  FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM  CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) };
+
+CSTAObject	::= CHOICE
+	{device	DeviceID,              
+	 call	ConnectionID}
+
+END  -- of CSTA-switching-function-objects 
+
+CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS  
+DeviceID, NumberDigits, ExtendedDeviceID, CallingDeviceID, CalledDeviceID, SubjectDeviceID, RedirectionDeviceID;
+
+DeviceID	::= CHOICE
+	{dialingNumber	[0] IMPLICIT	NumberDigits,
+	 deviceNumber	[1] IMPLICIT	DeviceNumber }
+
+-- NumberDigits is a string of digits that represents a number (address) that 
+-- the switch can route a call on. It can be dialled by a user  (i.e from a telephone 
+-- keypad) to make a call.  DeviceNumber is not a routing address and cannot be dialed
+-- from a keypad. It is allocated by the switch to reference a device. 
+
+NumberDigits	::=  IA5String
+
+DeviceNumber	::=  INTEGER
+
+ExtendedDeviceID	::= CHOICE
+	{deviceIdentifier			DeviceID,
+	 implicitPublic	[2]	IMPLICIT	NumberDigits,
+	 explicitPublic	[3]		PublicTON,
+	 implicitPrivate	[4]	IMPLICIT	NumberDigits,
+	 explicitPrivate	[5]		PrivateTON,
+	 other	[6]	IMPLICIT	OtherPlan }
+
+CallingDeviceID	::= [APPLICATION 1] CHOICE
+	{deviceIdentifier      	ExtendedDeviceID,
+	 notKnown	[7]	IMPLICIT NULL,
+	 notRequired	[8]	IMPLICIT NULL }
+
+CalledDeviceID 	::= [APPLICATION 2]  CHOICE
+	{deviceIdentifier	ExtendedDeviceID,
+	 notKnown	[7]	IMPLICIT NULL,
+	 notRequired	[8]	IMPLICIT NULL }
+
+SubjectDeviceID 	::= [APPLICATION 3]  CHOICE
+	{deviceIdentifier	ExtendedDeviceID,
+	 notKnown	[7]	IMPLICIT NULL,
+	 notRequired	[8]	IMPLICIT NULL }
+
+RedirectionDeviceID	::= [APPLICATION 4] CHOICE
+	{numberdialed	ExtendedDeviceID,
+	 notKnown	[7]	IMPLICIT	NULL, 
+	 notRequired	[8]	IMPLICIT	NULL }
+
+-- SubjectDeviceID is used in some event reports to specify which device the report 
+-- refers to. If the SubjectDeviceID has had a monitor invoked then this data is not  
+-- required and so the implicit NULL encoding for notRequired is returned. 
+-- RedirectionDeviceID is used in Events as the lastRedirectionDevice.
+-- CalledDeviceID is used in Events to specify the number dialled.
+
+PublicTON ::= CHOICE
+    {	unknown		[0]	IMPLICIT IA5String,
+ 	international		[1]	IMPLICIT IA5String,
+	national		[2]	IMPLICIT IA5String,
+	networkspecific	[3]	IMPLICIT IA5String,
+	subscriber		[4]	IMPLICIT IA5String,
+	abbreviated		[5]	IMPLICIT IA5String }
+
+-- the public type of numbers  are derived from CCITT E.164
+
+PrivateTON ::= CHOICE
+    {	unknown		[0]	IMPLICIT IA5String,
+	level3RegionalNumber	[1]	IMPLICIT IA5String,
+	level2RegionalNumber	[2]	IMPLICIT IA5String,
+	level1RegionalNumber	[3]	IMPLICIT IA5String,
+	pTNSpecificNumber	[4]	IMPLICIT IA5String,
+	localNumber		[5]	IMPLICIT IA5String,
+	abbreviated		[6]	IMPLICIT IA5String }
+
+-- the private type of numbers are derived from ECMA-155
+
+OtherPlan ::=  OCTET STRING    -- allows future expansion to cover other numbering
+		                  -- plans (such as X.121 etc.)
+
+END  -- of CSTA-device-identifiers 
+
+CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS
+ConnectionID;
+IMPORTS 
+DeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+ConnectionID	::=[APPLICATION 11]	IMPLICIT SEQUENCE
+    {	call                    [2]	IMPLICIT OCTET STRING  OPTIONAL,
+	device     CHOICE
+		{staticID	DeviceID,
+		 dynamicID      [3]	IMPLICIT OCTET STRING }  OPTIONAL }
+
+END  -- of CSTA-call-connection-identifiers 
+
+CSTA-connection-states 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS
+ConnectionList, ConnectionIDList, LocalConnectionState;
+IMPORTS  
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+DeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+ConnectionIDList	::= [APPLICATION 12] IMPLICIT SEQUENCE OF ConnectionID
+
+CallInfo  ::= [APPLICATION 13] IMPLICIT SEQUENCE OF SEQUENCE
+		{endpoint	ConnectionID,
+		 staticEndpoint	DeviceID  	OPTIONAL }
+
+ConnectionList  ::= CHOICE
+		{connections	ConnectionIDList,
+		 callinformation	CallInfo }
+
+LocalConnectionState  ::= [APPLICATION 14] IMPLICIT ENUMERATED
+    {	null	(0),
+	initiate	(1),
+	alerting	(2),
+	connect	(3),
+	hold	(4),
+	queued	(5),
+	fail	(6) }
+
+END  -- CSTA-connection-states
+
+CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS 
+MonitorObject, MonitorCrossRefID, MonitorFilter, MonitorType, SnapshotCallData,
+SnapshotDeviceData;
+IMPORTS  
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) connection-states( 125) }
+CSTAObject FROM CSTA-switching-function-objects 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) switching-function-objects( 122) };
+
+MonitorObject ::= CSTAObject 
+
+MonitorCrossRefID ::= [APPLICATION 21] IMPLICIT OCTET STRING
+
+MonitorFilter	::=  SEQUENCE	-- default is no filter (i.e. all events)
+    {	call	[0] IMPLICIT CallFilter	DEFAULT {},
+    	feature	[1] IMPLICIT FeatureFilter	DEFAULT {},
+    	agent	[2] IMPLICIT AgentFilter	DEFAULT {},
+    	maintenance	[3] IMPLICIT MaintenanceFilter	DEFAULT {},
+    	private	[4] IMPLICIT BOOLEAN	DEFAULT FALSE  }
+
+-- setting the relevant bit requests the filter for the appropriate events
+
+CallFilter	::=  BIT STRING
+   {	callCleared		  (0),
+	conferenced		  (1),
+	connectionCleared	  (2),
+	delivered		  (3),
+	diverted		  (4),
+	established		  (5),
+	failed		  (6),
+	held		  (7),
+	networkReached	  (8),
+	originated		  (9),
+	queued		(10),
+	retrieved		(11),
+	serviceInitiated	(12),
+	transferrd		(13)    }
+
+FeatureFilter	::=  BIT STRING
+   {	callInformation	(0),
+	doNotDisturb		(1),
+	forwarding		(2),
+	messageWaiting	(3)    }
+
+AgentFilter	::=  BIT STRING
+   {	loggedOn		(0),
+	loggedOff		(1),
+	notReady		(2),
+	ready		(3),
+	workNotReady	(4),
+	workReady		(5)    }
+
+MaintenanceFilter	::=  BIT STRING
+   {	backInService	(0),
+	outOfService		(1)    } 
+
+MonitorType ::=  ENUMERATED
+   {	call             (0),
+	device        (1)    } 
+
+SnapshotDeviceData ::= [APPLICATION 22] IMPLICIT SEQUENCE OF 					  		    SnapshotDeviceResponseInfo
+
+SnapshotDeviceResponseInfo ::=  SEQUENCE
+	{callIdentifier		ConnectionID,
+	 localCallState	CallState    }
+
+SnapshotCallData ::= [APPLICATION 23] IMPLICIT SEQUENCE OF 					  		    SnapshotCallResponseInfo
+
+SnapshotCallResponseInfo ::=  SEQUENCE
+	{deviceOnCall	SubjectDeviceID,
+	 callIdentifier		ConnectionID,
+	 localConnectionState	LocalConnectionState   OPTIONAL }
+
+CallState   ::= CHOICE
+		{ compound	[0] IMPLICIT CompoundCallState,
+		  simple	[1] IMPLICIT SimpleCallState,
+		  unknown	[2] IMPLICIT NULL              }
+
+-- unknown is returned by server if no other CallState can be supplied --
+
+CompoundCallState   ::= SEQUENCE OF LocalConnectionState
+
+
+SimpleCallState	::=  ENUMERATED
+	{callNull         	(0),     -- '00'H   - null-null
+	 callPending      	(1),     -- '01'H   - null-initiate
+	 callOriginated   	(3),     -- '03'H   - null-connect
+	 callDelivered               	(35),    -- '23'H   - alerting-connect
+	 callDeliveredHeld	(36),    -- '24'H   - alerting-held
+	 callReceived	(50),    -- '32'H   - connect-alerting
+	 callEstablished        	(51),    -- '33'H   - connect-connect
+	 callEstablishedHeld    	(52),    -- '34'H   - connected-held
+	 callReceivedOnHold     	(66),    -- '42'H   - held-alerting
+	 callEstablishedOnHold  	(67),    -- '43'H   - held-connect
+	 callQueued		(83),    -- '53'H   - queued-connect
+	 callQueuedHeld	(84),    -- '54'H   - queued-held
+	 callFailed     		(99),    -- '63'H   - failed-connect
+	 callFailedHeld	(100)}   -- '64'H   - failed-held 
+
+-- This represents the main call states in a simplified encoding.  The semantics
+-- are identical to the sequence of connection states but they are represented by
+-- an item from an enumerated list.
+
+END  -- of CSTA-status-reporting
+
+CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-feature-types( 127) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS  
+AccountInfo, AgentID, AgentGroup, AgentPassword, AgentParameter, AgentState,
+AllocationState, AuthCode, ConnectionDetails, DeviceClass, DeviceInfo, DeviceType,
+DivertInfo, FeatureInfo, ListForwardParameters, LoggedOnInfo, LoggedOffInfo,
+ForwardParameter, ForwardingType, NoOfCallsInQueue, QueryDeviceFeature,
+QueryDeviceInformation, ReserveConnection, SetDeviceFeature, SystemStatus, SelectValue,
+PriorityValue, SetUpValues, RetryValue, RouteUsedFlag, DomainValue, RoutingCrossRefID;
+IMPORTS   
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) call-connection-identifiers( 124) }
+DeviceID, NumberDigits, CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) device-identifiers( 123) };
+
+AccountInfo	::= OCTET STRING	-- used in CallInformation event
+
+AgentID 	::= OCTET STRING
+
+AgentGroup 	::= DeviceID
+
+AgentPassword 	::= OCTET STRING
+
+AgentParameter 	::= CHOICE
+    {	loggedIn		[0]	IMPLICIT LoggedOnInfo,
+	loggedOut		[1]	IMPLICIT LoggedOffInfo,	
+	notReady		[2]	IMPLICIT NULL,
+	ready		[3]	IMPLICIT NULL,
+	workNotReady	[4]	IMPLICIT NULL,
+	workReady		[5]	IMPLICIT NULL  }
+
+AgentState	::= ENUMERATED	
+    {	notReady		(0),
+	null		(1),
+	ready		(2),
+	workNotReady	(3),
+	workReady		(4) }
+
+AllocationState	::= ENUMERATED	
+    {	callDelivered      (0),
+	callEstablished   (1) }
+-- used in MakePredictiveCall to indicate when call should be allocated to the device
+
+AuthCode	::= OCTET STRING   -- used in Information Events
+
+ConnectionDetails ::= CHOICE
+    {	 heldCall	[0] IMPLICIT ConnectionID,
+	 activeCall	[1] IMPLICIT ConnectionID,
+	 bothCalls	[2] IMPLICIT SEQUENCE 
+			 {heldCall    ConnectionID,
+			  activeCall  ConnectionID} }
+
+DeviceClass ::= BIT STRING
+    {	voice	(0),
+	data	(1),
+	image	(2),
+	other	(3) }
+
+DeviceInfo	::=  SEQUENCE
+    {	deviceID            DeviceID 	OPTIONAL,
+	deviceType        DeviceType	OPTIONAL,
+	deviceClass       DeviceClass	OPTIONAL}
+
+DeviceType ::= ENUMERATED
+    {	station		    (0),
+	line		    (1),
+	button		    (2),
+	aCD		    (3),
+	trunk		    (4),
+	operator		    (5),
+	station-group		  (16),
+	line-group		  (17),
+	button-group		  (18),
+	aCD-group		  (19),
+	trunk-group		  (20),
+	operator-group	  (21),
+	other		(255)   }
+
+DivertInfo	::= CHOICE	--used by Divert Call service
+   {  deflect	[0] IMPLICIT SEQUENCE 
+		  { callToBeDiverted    ConnectionID,
+		    newDestination      CalledDeviceID },
+      pickup	[1] IMPLICIT SEQUENCE 
+		  { callToBePickedUp    ConnectionID,
+		    requestingDevice    DeviceID },
+      group	[2] DeviceID      }
+
+FeatureInfo	::= CHOICE	--used by Call Completion service
+    {	campon	       [0] IMPLICIT	ConnectionID,
+	callback	       [1] IMPLICIT	ConnectionID,
+	intrude	       [2] IMPLICIT	ConnectionID }
+
+ListForwardParameters  ::= SEQUENCE OF SEQUENCE
+    {	forwardingType	ForwardingType,
+	forwardDN		NumberDigits }
+
+LoggedOnInfo	::= SEQUENCE
+    {	agentID	      [10] IMPLICIT	AgentID	OPTIONAL,
+	password	      [11] IMPLICIT	AgentPassword	OPTIONAL,
+	group	              	AgentGroup	OPTIONAL  }
+
+LoggedOffInfo	::= SEQUENCE
+    {	agentID	      [10] IMPLICIT	AgentID	OPTIONAL,
+	group	              	AgentGroup	OPTIONAL  }
+
+ForwardParameter    ::= SEQUENCE
+    {	forwardingType	ForwardingType,
+	forwardDN		NumberDigits	OPTIONAL    }
+
+ForwardingType	::= ENUMERATED
+    {	forwardImmediateOn	(0),
+	forwardImmediateOff	(1),
+	forwardBusyOn	(2),
+	forwardBusyOff	(3),
+	forwardNoAnsOn	(4),
+	forwardNoAnsOff	(5),
+	forwardBusyIntOn	(6),
+	forwardBusyIntOff	(7),
+	forwardBusyExtOn	(8),
+	forwardBusyExtOff	(9),
+	forwardNoAnsIntOn	(10),
+	forwardNoAnsIntOf	(11),
+	forwardNoAnsExtOn	(12),
+	forwardNoAnsExtOff	(13) }
+
+NoOfCallsInQueue	::= INTEGER	-- used in Call Queued Event
+
+QueryDeviceFeature  ::=ENUMERATED	-- used by Query Feature service request
+    {	msgWaitingOn   	(0),
+	doNotDisturbOn 	(1),
+	forward	   	(2),
+	lastDialedNumber    	(3),
+	deviceInfo	   	(4),
+	agentState	   	(5) }
+
+QueryDeviceInformation   ::= CHOICE	
+    {	msgWaitingOn	[0]	IMPLICIT BOOLEAN,
+	doNotDisturbOn	[1]	IMPLICIT BOOLEAN,
+	forward		[2]	IMPLICIT ListForwardParameters,
+	lastDialed		[3]	IMPLICIT NumberDigits,
+	deviceInfo		[4]	IMPLICIT DeviceInfo,
+	agentState		[5]	IMPLICIT AgentState  }
+
+ReserveConnection	::= BOOLEAN	-- used with Hold service to reserve ISDN 
+			-- connection
+
+SetDeviceFeature	::= CHOICE	-- used by SetFeature service request 
+    {	msgWaitingOn	[0]	IMPLICIT BOOLEAN,
+	doNotDisturbOn	[1]	IMPLICIT BOOLEAN,
+	forward		[2]	IMPLICIT ForwardParameter,
+	aRequestedAgentState	[3]	AgentParameter }
+
+
+SystemStatus ::= ENUMERATED	
+    {	initializing		(0),
+	enabled		(1),
+	normal		(2),
+	messagesLost	(3),
+	disabled		(4),
+	overloadImminent	(5),
+	overloadReached	(6),
+	overloadRelieved	(7) }
+
+SelectValue ::= ENUMERATED
+    {	normal		(0),
+	leastCost		(1),
+	emergency		(2),
+	aCD		(3),
+	userDefined		(4) }
+	
+PriorityValue ::= BOOLEAN	-- TRUE means priority call
+
+SetUpValues ::= OCTET STRING	-- Contains Q.931 Setup message
+
+RetryValue ::= CHOICE	-- used in RouteSelect Request service
+    {	noListAvailable	[0] IMPLICIT BOOLEAN,
+	noCountAvailable	[1] IMPLICIT BOOLEAN,
+	retryCount		[2] IMPLICIT INTEGER  }
+
+RouteUsedFlag ::= BOOLEAN	-- TRUE means RouteUsed Request service requested
+
+DomainValue ::= BOOLEAN	-- TRUE means CSTA subdomain destination
+
+RoutingCrossRefID ::= [APPLICATION 24] IMPLICIT OCTET STRING
+
+
+END  -- of CSTA-device-feature-types
+
+CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) security( 128) }
+
+DEFINITIONS    ::=
+BEGIN
+EXPORTS
+CSTASecurityData;
+--objsys
+--IMPORTS	
+-- PrivilegeAttributeCertificate FROM Security-Information
+--	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+--		standard( 0) desd( 138) securityData( 1) };
+
+PrivilegeAttributeCertificate ::= NULL
+
+   --PrivilegeAttributeCertificate ::= NULL as per CSTA faq
+   --or definition used in ECMA 219 can be used
+   --client/server both side need to implement this
+   --Also finally it should be noted the server is not supposed 
+   --to send security information if the client doesn't ask it to.
+
+Seal ::= SEQUENCE
+   {	algorithmIdentifier	OBJECT IDENTIFIER,
+	keyIdentifier		OCTET STRING,
+	seal	  	OCTET STRING  }
+
+CSTASecurityData	::= SEQUENCE
+		      { messageSequenceNumber	INTEGER		OPTIONAL,
+		        timeStamp		UTCTime		OPTIONAL,
+  	 	        privilegeAttributeCertificate	PrivilegeAttributeCertificate	OPTIONAL,
+		        seal		Seal		OPTIONAL }
+END  -- of CSTA-security
+
+CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS
+CSTACommonArguments, CSTAPrivateData; 
+IMPORTS 
+CSTASecurityData FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) security( 128) };
+		  	   	
+CSTACommonArguments ::= [APPLICATION 30] IMPLICIT SEQUENCE
+   { security              [0] IMPLICIT CSTASecurityData   OPTIONAL,
+     privateData           [1] IMPLICIT SEQUENCE OF CSTAPrivateData  OPTIONAL }
+
+CSTAPrivateData   ::= [APPLICATION 29] IMPLICIT SEQUENCE
+   { manufacturer OBJECT IDENTIFIER, 
+     ANY DEFINED BY manufacturer }
+
+END  -- of CSTA-extension-types
+
+CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) event-report-definitions(21) }
+DEFINITIONS    ::=
+BEGIN
+EXPORTS
+EVENT;
+IMPORTS
+callCleared
+ FROM CSTA-call-cleared-event,
+conferenced
+ FROM CSTA-conferenced-event,
+connectionCleared
+ FROM CSTA-connection-cleared-event,
+delivered
+ FROM CSTA-delivered-event,
+diverted
+ FROM CSTA-diverted-event,
+established
+ FROM CSTA-established-event,
+failed
+ FROM CSTA-failed-event,
+held
+ FROM CSTA-held-event,
+networkReached
+ FROM CSTA-network-reached-event,
+originated
+ FROM CSTA-originated-event,
+queued
+ FROM CSTA-queued-event,
+retrieved
+ FROM CSTA-retrieved-event,
+serviceInitiated
+ FROM CSTA-service-initiated-event,
+transferred
+ FROM CSTA-transferred-event,
+callInformation
+ FROM CSTA-call-information-event,
+doNotDisturb
+ FROM CSTA-do-not-disturb-event,
+forwarding
+ FROM CSTA-forwarding-event,
+messageWaiting
+ FROM CSTA-message-waiting-event,
+loggedOn
+ FROM CSTA-logged-on-event,
+loggedOff
+ FROM CSTA-logged-off-event,
+notReady
+ FROM CSTA-not-ready-event,
+ready
+ FROM CSTA-ready-event,
+workNotReady
+ FROM CSTA-work-not-ready-event,
+workReady
+ FROM CSTA-work-ready-event,
+backInService
+ FROM CSTA-back-in-service-event,
+outOfService
+ FROM CSTA-out-of-service-event,
+private
+ FROM CSTA-private-event,
+
+OPERATION, ERROR FROM Remote-Operations-Information-Objects -- moved to X680 / X880
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+-- Data Types --
+CSTAPrivateData FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) extension-types( 129) }
+MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 0012)
+		standard( 0) csta( 180) version1( 1) status-reporting( 126) };
+
+cSTAEventReport OPERATION ::= { 
+	ARGUMENT	CSTAEventReportArgument
+	CODE local : 21
+}
+
+-- X680 MACRO is replaced by Information Object Class and type is replaced by parameterized type
+-- with relational constraint on components
+
+-- start X208
+--CSTAEventReportArgument ::=
+--	SEQUENCE
+--	{crossRefIdentifier	MonitorCrossRefID,
+--	 eventType		EventTypeID,
+--	 eventInfo		ANY DEFINED BY eventType,
+--	 extensions		CSTAPrivateData		OPTIONAL}
+
+--EventTypeID ::=  CHOICE { cSTAform       [0] IMPLICIT value(EVENT) }
+
+--EVENT   MACRO  ::=
+--BEGIN 
+--	TYPE  NOTATION	::= "EVENTINFO"  type  |   empty
+--	VALUE  NOTATION	::= value(VALUE  INTEGER)
+--END
+-- end X208
+
+-- writing using X680 standard
+CSTAEventReportArgument ::=
+         SEQUENCE
+         {crossRefIdentifier     MonitorCrossRefID,  -- allocated by switch
+          eventType              EVENT.&code({Events}),
+          eventInfo              EVENT.&EventInfo ({Events}{@eventType}),
+          extensions             CSTAPrivateData         OPTIONAL}
+ 
+EVENT ::= CLASS
+{
+   &EventInfo OPTIONAL,
+   &code EventTypeID UNIQUE
+}
+WITH SYNTAX
+{
+   [EVENTINFO &EventInfo]
+   CODE    &code
+}
+
+EventTypeID ::=  CHOICE { cSTAform [0] IMPLICIT INTEGER}
+
+-- added for X680
+-- here is the object set for all events defined in this specification. 
+-- Note that instead of using IMPORTS notation we use Module.assignment 
+-- for better reading...
+Events EVENT ::= { CSTA-call-cleared-event.callCleared |
+                   CSTA-conferenced-event.conferenced |
+                   CSTA-connection-cleared-event.connectionCleared |
+                   CSTA-delivered-event.delivered |
+                   CSTA-diverted-event.diverted |
+                   CSTA-established-event.established |
+                   CSTA-failed-event.failed |
+                   CSTA-held-event.held |
+                   CSTA-network-reached-event.networkReached |
+                   CSTA-originated-event.originated |
+                   CSTA-queued-event.queued |
+                   CSTA-retrieved-event.retrieved |
+                   CSTA-service-initiated-event.serviceInitiated |
+                   CSTA-transferred-event.transferred |
+                   CSTA-call-information-event.callInformation |
+                   CSTA-do-not-disturb-event.doNotDisturb |
+                   CSTA-forwarding-event.forwarding |
+                   CSTA-message-waiting-event.messageWaiting |
+                   CSTA-logged-on-event.loggedOn |
+                   CSTA-logged-off-event.loggedOff |
+                   CSTA-not-ready-event.notReady |
+                   CSTA-ready-event.ready |
+                   CSTA-work-not-ready-event.workNotReady |
+                   CSTA-work-ready-event.workReady |
+                   CSTA-back-in-service-event.backInService |
+                   CSTA-out-of-service-event.outOfService |
+                   CSTA-private-event.private,
+                   ...}
+
+END  -- of CSTA-event-report-definitions
+
+
+-- ***********************************
+-- * Objective Systems additions     *
+-- ***********************************
+-- the following module contains a concrete instantiation of the 
+-- ROS parameterized type for CSTA (ED, 11/4/02)
+
+CSTA-ROSE-PDU-types 
+DEFINITIONS    ::=
+BEGIN
+   IMPORTS ROS{} FROM Remote-Operations-Generic-ROS-PDUs 
+   {joint-iso-itu-t remote-operations(4) generic-ROS-PDUs(6) version1(0)}
+
+   OPERATION, ERROR FROM Remote-Operations-Information-Objects
+   {joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+
+   alternateCall FROM CSTA-alternate-call
+   answerCall FROM CSTA-answer-call
+   callCompletion FROM CSTA-call-completion
+   clearCall FROM CSTA-clear-call
+   clearConnection FROM CSTA-clear-connection
+   conferenceCall FROM CSTA-conference-call
+   consultationCall FROM CSTA-consultation-call
+   divertCall FROM CSTA-divert-call
+   holdCall FROM CSTA-hold-call
+   makeCall FROM CSTA-make-call
+   makePredictiveCall FROM CSTA-make-predictive-call
+   queryDevice FROM CSTA-query-device
+   reconnectCall FROM CSTA-reconnect-call
+   retrieveCall FROM CSTA-retrieve-call
+   setFeature FROM CSTA-set-feature
+   transferCall FROM CSTA-transfer-call
+   cSTAEventReport FROM CSTA-event-report-definitions
+   routeRequest FROM CSTA-route-request
+   reRouteRequest FROM CSTA-re-route-request
+   routeSelectRequest FROM CSTA-Route-select-request
+   routeUsedRequest FROM CSTA-route-used-request
+   routeEndRequest FROM CSTA-route-end-request
+   escapeService FROM CSTA-escape-service
+   systemStatus FROM CSTA-system-status
+   monitorStart FROM CSTA-monitor-start
+   changeMonitorFilter FROM CSTA-change-monitor-filter
+   monitorStop FROM CSTA-monitor-stop
+   snapshotDevice FROM CSTA-snapshot-device
+   snapshotCall FROM CSTA-snapshot-call 
+;
+
+   CSTA-ROSE-PDU ::= ROS {{InvokeIdSet}, {OperationSet}, {OperationSet}}
+
+   InvokeIdSet INTEGER ::=
+   {
+      InvokeIDs
+   }
+
+   InvokeIDs ::= INTEGER 
+
+   OperationSet OPERATION ::=
+   {
+      CSTA-alternate-call.alternateCall |
+      CSTA-answer-call.answerCall |
+      CSTA-call-completion.callCompletion |
+      CSTA-clear-call.clearCall |
+      CSTA-clear-connection.clearConnection |
+      CSTA-conference-call.conferenceCall |
+      CSTA-consultation-call.consultationCall |
+      CSTA-divert-call.divertCall |
+      CSTA-hold-call.holdCall |
+      CSTA-make-call.makeCall |
+      CSTA-make-predictive-call.makePredictiveCall |
+      CSTA-query-device.queryDevice |
+      CSTA-reconnect-call.reconnectCall |
+      CSTA-retrieve-call.retrieveCall |
+      CSTA-set-feature.setFeature |
+      CSTA-transfer-call.transferCall |
+      CSTA-event-report-definitions.cSTAEventReport |
+      CSTA-route-request.routeRequest |
+      CSTA-re-route-request.reRouteRequest |
+      CSTA-Route-select-request.routeSelectRequest |
+      CSTA-route-used-request.routeUsedRequest |
+      CSTA-route-end-request.routeEndRequest |
+      CSTA-escape-service.escapeService |
+      CSTA-system-status.systemStatus |
+      CSTA-monitor-start.monitorStart |
+      CSTA-change-monitor-filter.changeMonitorFilter |
+      CSTA-monitor-stop.monitorStop |
+      CSTA-snapshot-device.snapshotDevice |
+      CSTA-snapshot-call.snapshotCall, 
+      
+      ...
+   }
+
+END

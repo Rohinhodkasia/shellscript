@@ -1,0 +1,9 @@
+<asn1config>
+  <includedir>../IN-CS3</includedir>
+  <includedir>../pkix88</includedir>
+  <includedir>../ROSE</includedir>
+  <includedir>../x400</includedir>
+  <includedir>../x420</includedir>
+  <includedir>../x509v3</includedir>
+  <includedir>../x9</includedir>
+</asn1config>

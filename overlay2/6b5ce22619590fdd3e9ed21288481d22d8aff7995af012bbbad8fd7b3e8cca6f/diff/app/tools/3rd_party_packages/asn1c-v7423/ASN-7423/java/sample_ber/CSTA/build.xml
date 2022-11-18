@@ -1,0 +1,65 @@
+<project>
+
+   <!-- Build classpath -->
+   <path id="compile.classpath">
+      <pathelement location="../../asn1rt.jar"/>
+      <pathelement location="../../.."/>
+      <pathelement location="../.."/>
+      <pathelement location="."/>
+   </path>
+
+   <!-- Code generation -->
+   <target name="generate">
+      <exec executable="../../../bin/asn1c" failonerror="true">
+         <arg value="makeCallArgument.asn"/>
+         <arg value="-java"/>
+         <arg value="-ber"/>
+         <arg value="-print"/>
+         <arg value="-noUniqueNames"/>
+         <arg line="-pkgname sample_ber.CSTA"/>
+      </exec>
+   </target>
+   
+   <target name="build" depends="generate">
+      <echo>Build subproject SimpleROSE</echo>
+      <ant dir="../SimpleROSE" target="build"/>
+      <echo>Done with SimpleROSE</echo>
+      <javac srcdir="." includeantruntime="false">
+         <classpath refid="compile.classpath"/>
+      </javac>
+   </target>
+
+   <target name="writer">
+      <java classname="sample_ber.CSTA.Writer" failonerror="true" output="writer.log">
+         <classpath refid="compile.classpath"/>
+      </java>
+      <exec executable="../../../bin/ber2indef" failonerror="true">
+         <arg value="message.dat"/>
+         <arg value="messagei.dat"/>
+      </exec>
+   </target>
+
+<target name="reader">
+   <java classname="sample_ber.CSTA.Reader" failonerror="true" output="reader.log">
+      <classpath refid="compile.classpath"/>
+   </java>
+   <java classname="sample_ber.CSTA.Reader" failonerror="true" output="readeri.log">
+      <classpath refid="compile.classpath"/>
+      <arg value="-i"/>
+      <arg value="messagei.dat"/>
+   </java>
+</target>
+
+
+<target name="clean">
+   <delete>
+      <fileset dir="." defaultexcludes="false">
+         <include name="**/*.java"/>
+         <include name="**/*.class"/>
+         <exclude name="Writer.java"/>
+         <exclude name="Reader.java"/>
+      </fileset>
+   </delete>
+</target>
+
+</project>

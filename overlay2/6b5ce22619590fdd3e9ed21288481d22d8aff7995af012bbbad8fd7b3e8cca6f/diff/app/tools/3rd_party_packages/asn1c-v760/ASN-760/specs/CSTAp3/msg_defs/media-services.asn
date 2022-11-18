@@ -1,0 +1,125 @@
+CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+ConnectionInformation, ConnectionMode, ConnectionModeBMap, MediaCallCharacteristics,
+MediaServiceInstanceID, MediaServiceType, MediaStreamID, MediaClass;
+
+MediaServiceType ::= ENUMERATED
+{ 	cstaVoiceUnit 				( 0),
+	dataModem 				( 1),
+	digitalDataIsochronousIeee1394 		( 2),
+	digitalDataIsochronousGeoport 		( 3),
+	digitalDataIsochronousIeeeAtm 		( 4),
+	digitalDataIsochronousIeeeIsdn 		( 5),
+	digitalDataApi 				( 6),
+	ectfS100MediaServicesDefault 		( 7),
+	ectfS100MediaServicesAppServices 	( 8),
+	cstaIVRScript1 				( 9),
+	cstaIVRScript2 				(10),
+	cstaIVRScript3 				(11),
+	cstaIVRScript4 				(12),
+	cstaIVRScript5 				(13),
+	cstaIVRScript6 				(14),
+	cstaIVRScript7 				(15),
+	cstaIVRScript8 				(16),
+	cstaIVRScript9 				(17),
+	cstaIVRScript10 			(18),
+	liveSoundCaptureAnalog 			(19),
+	liveSoundTransmitAnalog 		(20),
+	liveSoundCaptureIeee1394 		(21),
+	liveSoundTransmitIeee1394 		(22),
+	liveSoundCaptureTransmitGeoport 	(23),
+	liveSoundCaptureTransmitAtm 		(24),
+	liveSoundCaptureTransmitISDN 		(25),
+	soundCaptureTransmitADPCM 		(26),
+	soundCaptureTransmitApi 		(27),
+	usb 					(28),
+	sfSpecific1 				(29),
+	sfSpecific2 				(30),
+	sfSpecific3 				(31),
+	sfSpecific4 				(32),
+	sfSpecific5 				(33),
+	sfSpecific6 				(34),
+	sfSpecific7 				(35),
+	sfSpecific8 				(36),
+	sfSpecific9 				(37),
+	sfSpecific10 				(38) }
+
+MediaStreamID ::= OCTET STRING
+
+MediaServiceInstanceID ::= OCTET STRING
+
+ConnectionInformation ::= SEQUENCE
+{ 	flowDirection 			ENUMERATED
+	{	transmit 			(0),
+		receive 			(1),
+		transmitAndReceive 		(2),
+		none 				(3) } 		OPTIONAL,
+	numberOfChannels 		INTEGER 		DEFAULT    1,
+	mediaSessionInformation		IA5String		OPTIONAL      }
+
+ConnectionMode ::= ENUMERATED
+{ 	consultationConference 			(0),
+	consultationConferenceHold 		(1),
+	deflect 				(2),
+	directedPickup 				(3),
+	join 					(4),
+	singleStepConference 			(5),
+	singleStepConferenceHold 		(6),
+	singleStepTransfer 			(7),
+	transfer 				(8),
+	direct 					(9) }
+
+ConnectionModeBMap ::= BIT STRING
+{ 	consultationConference 			(0),
+	consultationConferenceHold 		(1),
+	deflect 				(2),
+	directedPickup 				(3),
+	join 					(4),
+	singleStepConference 			(5),
+	singleStepConferenceHold 		(6),
+	singleStepTransfer 			(7),
+	transfer 				(8),
+	direct 					(9) }
+
+MediaCallCharacteristics ::= SEQUENCE
+{ 	mediaClass 				MediaClass,
+	connectionRate 				[0] IMPLICIT INTEGER 			OPTIONAL,
+                                            	-- value 0 indicates that
+                                            	-- the connection rate is
+                                            	-- unknown
+	bitRate 				[1] IMPLICIT ENUMERATED
+						{ 	constant 	(0),
+							variable 	(1) } 		DEFAULT constant,
+	delayTolerance 				[2] IMPLICIT INTEGER 			OPTIONAL,
+	switchingSubDomainCCIEType 		[3] IMPLICIT ENUMERATED 
+						{	isdn 		(0),
+							atm 		(1),
+							isoEthernet 	(2),
+							rsvp 		(3),
+							other 		(4),
+							sip		(5) }		OPTIONAL,
+	switchingSubDomainInformationElements 	OCTET STRING 				OPTIONAL }
+					-- is mandatory, if the switchingSubDomainCCIEType is present,
+					-- should be ignored otherwise
+
+MediaClass ::= BIT STRING
+{ 	voice 					( 0),
+	data 					( 1),
+	image 					( 2),
+	audio 					( 4),
+	other 					( 3),
+	notKnown 				( 5),
+	chat					( 6),
+	email					( 7),
+	message					( 8),
+	im					( 9),
+	sms					(10),
+	mms					(11) }
+
+END -- of CSTA-media-services

@@ -1,0 +1,46 @@
+CSTA-generate-digits
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) generate-digits( 232) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+generateDigits	OPERATION ::=
+{	ARGUMENT		GenerateDigitsArgument
+	RESULT			GenerateDigitsResult
+	ERRORS			{universalFailure }
+	CODE			local: 232 }
+
+GenerateDigitsArgument ::= SEQUENCE
+{	connectionToSendDigits		ConnectionID,
+	digitMode			DigitMode			OPTIONAL,
+	charactersToSend		IA5String,
+	toneDuration			[0] IMPLICIT INTEGER		OPTIONAL,
+	pulseRate			[1] IMPLICIT INTEGER		OPTIONAL,
+	pauseDuration			[2] IMPLICIT INTEGER		OPTIONAL,
+	extensions			CSTACommonArguments		OPTIONAL } 
+
+GenerateDigitsResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+DigitMode ::= ENUMERATED
+{	rotaryPulse			(0),
+	dTMF				(1) }
+
+END  -- of CSTA-generate-digits

@@ -1,0 +1,45 @@
+CSTA-set-location-information
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) set-location-information ( 531) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LocationInfo FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) };
+
+setLocationInformation OPERATION ::=
+{ 	ARGUMENT		SetLocationInformationArgument
+	RESULT			SetLocationInformationResult
+	ERRORS			{universalFailure }
+	CODE			local: 531}
+
+SetLocationInformationArgument ::= SEQUENCE
+{	device				DeviceID,
+	locationInfo			LocationInfo				OPTIONAL,
+	replaceMode			ReplaceMode				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+SetLocationInformationResult ::= SEQUENCE 
+{	extensions			CSTACommonArguments			OPTIONAL }
+
+ReplaceMode ::= ENUMERATED
+{	replaceAll			(0),
+	replacePortion			(1) }
+
+END -- of CSTA-set-location-information

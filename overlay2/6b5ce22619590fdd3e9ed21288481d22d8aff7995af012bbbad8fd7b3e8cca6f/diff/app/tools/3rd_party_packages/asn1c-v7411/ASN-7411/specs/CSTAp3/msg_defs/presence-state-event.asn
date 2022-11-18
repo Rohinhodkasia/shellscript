@@ -1,0 +1,34 @@
+CSTA-presence-state-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) presence-state-event( 552) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+PresenceState FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+TimeInfo FROM CSTA-security
+{ iso( 1) identified-organization( 3) icd-ecma( 12)
+standard( 0) csta3( 285) security( 128) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+PresenceStateEvent::= SEQUENCE
+{	device 				SubjectDeviceID,
+	presenceState	 		PresenceState,
+	fromTime			[0] IMPLICIT TimeInfo			OPTIONAL,
+	untilTime			[1] IMPLICIT TimeInfo			OPTIONAL,
+	place				[2] IMPLICIT OCTET STRING		OPTIONAL,
+	mood				[3] IMPLICIT OCTET STRING		OPTIONAL,
+	namedPresenceState 		[4] IMPLICIT OCTET STRING		OPTIONAL,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-presence-state-event

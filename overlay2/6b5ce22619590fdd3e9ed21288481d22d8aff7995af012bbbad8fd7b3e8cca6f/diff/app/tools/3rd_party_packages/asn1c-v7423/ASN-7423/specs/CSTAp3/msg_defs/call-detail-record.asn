@@ -1,0 +1,135 @@
+CSTA-call-detail-record
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-detail-record( 132) }
+
+DEFINITIONS ::=
+
+BEGIN
+
+EXPORTS
+CDRCrossRefID, CDRInfo, CDRReason, CDRTermReason, CDRTimePeriod,
+CDRTransferMode;
+
+IMPORTS
+DeviceID, CalledDeviceID, CallingDeviceID, AssociatedCalledDeviceID,
+AssociatedCallingDeviceID, NetworkCalledDeviceID, NetworkCallingDeviceID
+
+FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+TimeInfo FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+CallCharacteristics FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+DeviceCategory, NamedDeviceTypes FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+ChargingInfo FROM CSTA-charge-info
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) charge-info( 133) }
+MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+CDRCrossRefID ::= OCTET STRING 
+
+
+CDRReason ::= ENUMERATED
+{ 	timeout 				(0),
+	thresholdReached 			(1),
+	other 					(2) }
+
+CDRInfo ::= SEQUENCE OF CDRInformationItem
+
+CDRInformationItem ::= SEQUENCE
+{ 	recordNumber 			INTEGER (1..128) 				OPTIONAL,
+	recordCreationTime 		TimeInfo,
+	callingDevice 			CallingDeviceID 				OPTIONAL,
+	calledDevice 			CalledDeviceID 					OPTIONAL,
+	associatedCallingDevice 	AssociatedCallingDeviceID 			OPTIONAL,
+	associatedCalledDevice 		AssociatedCalledDeviceID 			OPTIONAL,
+	networkCallingDevice 		NetworkCallingDeviceID 				OPTIONAL,
+	networkCalledDevice 		NetworkCalledDeviceID 				OPTIONAL,
+	callCharacteristics 		[ 0] IMPLICIT 	CallCharacteristics 		OPTIONAL,
+	mediaCallCharacteristics 	[ 1] IMPLICIT 	MediaCallCharacteristics 	OPTIONAL,
+	chargedDevice 			[ 2] ChargedDevice 				OPTIONAL,
+	recordedCall 			ConnectionID 					OPTIONAL,
+	nodeNumber 			[ 3] IMPLICIT 	NodeNumber 			OPTIONAL,
+	tariffTable 			[ 4] IMPLICIT 	INTEGER 			OPTIONAL,
+	connectionStart 		[ 5] IMPLICIT 	TimeInfo 			OPTIONAL,
+	connectionEnd 			[ 6] IMPLICIT 	TimeInfo 			OPTIONAL,
+	connectionDuration 		[ 7] IMPLICIT 	INTEGER 			OPTIONAL,
+	accessCode 			[ 8] IMPLICIT 	OCTET STRING 			OPTIONAL,
+	carrier 			[ 9] IMPLICIT 	INTEGER 			OPTIONAL,
+	selectedRoute 			[10] IMPLICIT 	INTEGER 			OPTIONAL,
+	billingID 			[11] IMPLICIT 	BillingID 			OPTIONAL,
+	chargingInfo 			[12] IMPLICIT 	ChargingInfo 			OPTIONAL,
+	supplServiceInfo 		[13] IMPLICIT 	SupplServiceInfo 		OPTIONAL,
+	reasonForTerm 			[14] IMPLICIT 	ReasonForTerm 			OPTIONAL,
+	authCode 			[15] IMPLICIT 	AuthCode 			OPTIONAL,
+	accountInfo 			[16] IMPLICIT 	AccountInfo 			OPTIONAL,
+	deviceCategory 			[17] IMPLICIT 	DeviceCategory 			OPTIONAL,
+	namedDeviceTypes 		[18] IMPLICIT 	NamedDeviceTypes 		OPTIONAL,
+	operatorDevice 			[19] DeviceID 					OPTIONAL }
+
+ChargedDevice ::= CHOICE
+{ 	operator 			[ 0] IMPLICIT 	DeviceID,
+	nonOperator 			[ 1] IMPLICIT 	DeviceID }
+
+NodeNumber ::= SEQUENCE
+{ 	area0 				[ 0] IMPLICIT 	INTEGER 			OPTIONAL,
+	area1 				[ 1] IMPLICIT 	INTEGER 			OPTIONAL,
+	area2 				[ 2] IMPLICIT 	INTEGER 			OPTIONAL }
+
+BillingID ::= ENUMERATED
+{ 	normalCharging 				(0),
+	reverseCharging 			(1),
+	creditCardCharging 			(2),
+	callForwarding 				(3),
+	callDeflection 				(4),
+	callTransfer 				(5),
+	other 					(6) }
+
+SupplServiceInfo ::= BIT STRING
+{ 	normalCall 				(0),
+	consultationCall 			(1),
+	transferCall 				(2),
+	callCompletion 				(3),
+	callForwarding 				(4),
+	callDiversion 				(5),
+	conferencing 				(6),
+	intrusion 				(7),
+	userUserInfo 				(8),
+	other 					(9) }
+
+ReasonForTerm ::= ENUMERATED
+{ 	normalClearing 				(0),
+	unsuccessfulCallAttempt 		(1),
+	abnormalTermination 			(2),
+	callTransferred 			(3),
+	other 					(4) }
+
+CDRTimePeriod ::= SEQUENCE
+{ 	beginningOfCDR 			TimeInfo,
+	endOfCDR 			TimeInfo }
+
+CDRTransferMode ::= ENUMERATED
+{ 	transferAtEndOfCall 			(0),
+	transferOnRequest 			(1),
+	transferOnThresholdReached 		(2) }
+
+CDRTermReason ::= ENUMERATED
+{ 	endOfDataDetected 			(0),
+	errorDetected 				(1),
+	thresholdReached 			(2),
+	other 					(3) }
+
+END -- of CSTA-call-detail-record

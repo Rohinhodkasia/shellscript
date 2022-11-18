@@ -1,0 +1,4 @@
+mv reader_a.log reader_a.glg
+mv reader_u.log reader_u.glg
+mv writer_a.log writer_a.glg
+mv writer_u.log writer_u.glg

@@ -1,0 +1,53 @@
+CSTA-switching-function-devices
+{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) switching-function-devices( 205) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ServiceCrossRefID, DeviceCategory, NamedDeviceTypes FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+switchingFunctionDevices OPERATION ::=
+{	ARGUMENT		SwitchingFunctionDevicesArgument
+	ERRORS			{universalFailure }
+	CODE 			local:205 }
+
+SwitchingFunctionDevicesArgument ::= SEQUENCE
+{ 	serviceCrossRefID 		ServiceCrossRefID,
+	segmentID 			INTEGER 			OPTIONAL,
+	lastSegment 			BOOLEAN,
+	deviceList 			DeviceList,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+DeviceList ::= SEQUENCE OF SEQUENCE
+{ 	deviceID 			DeviceID,
+	deviceCategory 			[0] IMPLICIT DeviceCategory 	DEFAULT station,
+	namedDeviceTypes 		[1] IMPLICIT NamedDeviceTypes 	OPTIONAL,
+	deviceAttributes 		DeviceAttributes 		OPTIONAL,
+	deviceModelName 		IA5String (SIZE(0..64)) 	OPTIONAL, 
+	nidGroup			DeviceID			OPTIONAL }
+
+DeviceAttributes ::= BIT STRING
+{ 	mediaAccessDevice 		( 0),
+	routeingDevice 			( 1),
+	groupACD 			( 2),
+	groupHunt 			( 3),
+	groupPick 			( 4) }
+
+END -- of CSTA-switching-function-devices

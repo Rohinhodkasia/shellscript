@@ -1,0 +1,24 @@
+  139  ./asn1c -licinstall ../../../client.lic 
+  140  cd ../
+  141  ls
+  142  cd c
+  143  ls
+  144  cd nas_dev/
+  145  make
+  146  ls
+  147  cd ../../
+  148  ls
+  149  cd specs/
+  150  ls
+  151  cd NGAP/
+  152  asn1c  *.asn1 -per -trace  -c -hfile -prtfmt  details -prttostr -prtToStrm -print -strict-size   -genMakeLib -table-unions
+  153  ../../bin/asn1c  *.asn1 -per -trace  -c -hfile -prtfmt  details -prttostr -prtToStrm -print -strict-size   -genMakeLib -table-unions
+  154  ls
+  155  mv NGAP-*.c ngap
+  156  mv NGAP-*.h ngap
+  157  ls
+  158  mv rtkey.h ngap
+  159  ls
+  160  mv makefile ngap
+  161  ls
+  162  cd ngap/

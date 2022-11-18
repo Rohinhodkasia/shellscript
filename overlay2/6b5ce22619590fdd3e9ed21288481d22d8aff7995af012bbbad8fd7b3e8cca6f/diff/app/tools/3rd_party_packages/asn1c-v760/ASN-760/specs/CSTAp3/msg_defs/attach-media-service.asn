@@ -1,0 +1,59 @@
+CSTA-attach-media-service
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) attach-media-service( 244) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+MediaServiceType, MediaServiceInstanceID, ConnectionMode, 
+	ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+attachMediaService OPERATION ::=
+{	ARGUMENT 		AttachMediaServiceArgument
+	RESULT 			AttachMediaServiceResult
+	ERRORS 			{universalFailure }
+	CODE			local: 244 }
+
+AttachMediaServiceArgument ::= SEQUENCE
+{	connection 			ConnectionID,
+	mediaServiceType 		MediaServiceType,
+	mediaServiceVersion		INTEGER					OPTIONAL,
+	mediaServiceInstanceID 		MediaServiceInstanceID			OPTIONAL,
+	connectionMode			ConnectionMode,
+	requestedConnectionState	LocalConnectionState			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+AttachMediaServiceResult ::= SEQUENCE
+{	mediaConnection 		ConnectionID				OPTIONAL,
+	mediaDevice 			[0] IMPLICIT DeviceID 			OPTIONAL,
+	mediaServiceInstanceID 		MediaServiceInstanceID			OPTIONAL,
+	mediaConnectionInfo 		[1] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageData			[2] IMPLICIT CallLinkageData		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+	
+END  -- of CSTA-attach-media-service

@@ -1,0 +1,12 @@
+<asn1config>
+  <includedir>../../cms2009</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/AttrCert</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/CRMF</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <module name="PKIXCMP-2009">
+    <production name="PKIMessage"><isPDU/></production>
+    <production name="PKIMessages"><isPDU/></production>
+  </module>
+</asn1config>

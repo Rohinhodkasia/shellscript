@@ -1,0 +1,23 @@
+CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+CSTASecurityData,TimeInfo;
+
+CSTASecurityData ::= SEQUENCE
+{ 	messageSequenceNumber	[0] IMPLICIT INTEGER 				OPTIONAL,
+	timestamp 		TimeInfo 					OPTIONAL,
+	securityInfo 		SecurityInfo 					OPTIONAL }
+
+SecurityInfo ::= CHOICE
+{ 	string 			OCTET STRING,
+	private 		NULL } 	-- The actual encoding is added here,
+					-- replacing NULL with another valid ASN.1 type.
+
+TimeInfo ::= GeneralizedTime
+
+END -- of CSTA-security

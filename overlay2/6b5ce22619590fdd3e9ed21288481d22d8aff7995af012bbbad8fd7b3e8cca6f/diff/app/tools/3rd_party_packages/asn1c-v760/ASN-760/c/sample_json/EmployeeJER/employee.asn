@@ -1,0 +1,46 @@
+Employee DEFINITIONS JER INSTRUCTIONS AUTOMATIC TAGS ::=
+BEGIN
+
+PersonnelRecord ::= SET {
+  name Name,
+  title VisibleString,
+  number EmployeeNumber,
+  dateOfHire [NAME AS "date of hire"] Date,
+  nameOfSpouse [NAME AS "name of spouse"] Name,
+  category [TEXT employee AS "#", contractor AS "@"] 
+    ENUMERATED { employee, contractor },
+  children SEQUENCE OF ChildInformation DEFAULT {},
+  assignedVehicle [NAME AS "assigned vehicle"] Vehicle,
+  certificate [BASE64] OCTET STRING
+}
+
+ChildInformation ::= SET {
+  name Name,
+  dateOfBirth [NAME AS "date of birth"] Date
+}
+
+Name ::= SEQUENCE {
+  givenName VisibleString,
+  initial VisibleString,
+  familyName VisibleString
+}
+
+EmployeeNumber ::= INTEGER
+
+Date ::= VisibleString (SIZE(8)) -- YYYYMMDD
+
+Vehicle ::= [UNWRAPPED] CHOICE {
+  bicycle ENUMERATED { road, mountain, hybrid },
+  car MakeAndModel,
+  other INTEGER -- number of axles
+}
+
+MakeAndModel ::= SEQUENCE {
+  make UTF8String,
+  model UTF8String
+}
+
+ENCODING-CONTROL JER
+  [ARRAY] SEQUENCE
+
+END

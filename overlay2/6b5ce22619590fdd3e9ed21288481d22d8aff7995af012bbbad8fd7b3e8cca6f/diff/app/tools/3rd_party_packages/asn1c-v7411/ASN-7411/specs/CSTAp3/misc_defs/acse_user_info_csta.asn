@@ -1,0 +1,374 @@
+CSTA-application-context-information-csta3
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) application-context-information( 200) }
+
+DEFINITIONS ::=
+BEGIN
+
+CSTAFunctionality ::= SEQUENCE
+ 	{switchingFunctionServices	[0] IMPLICIT SwitchingFunctionServicesC2	DEFAULT {},
+	 eventReportServices		[1] IMPLICIT EventReportServicesC2		DEFAULT {},
+	 computingFunctionServices	[2] IMPLICIT ComputingFunctionServicesC2	DEFAULT {},
+	 bidirectionalServices		[3] IMPLICIT BidirectionalServicesC2		DEFAULT {},
+	 statusReportingServices	[4] IMPLICIT StatusReportingServicesC2		DEFAULT {},
+	 inputOutputServices		[5] IMPLICIT InputOutputServicesC2		DEFAULT {},
+	 voiceUnitServices		[6] IMPLICIT VoiceUnitServicesC2		DEFAULT {} }
+
+SwitchingFunctionServicesC2 ::= BIT STRING
+	{alternateCall                  (0),
+	 answerCall                     (1),
+	 associateData                  (2),
+	 callCompletion                 (3),
+	 clearCall                      (4),
+	 clearConnection                (5),
+	 conferenceCall                 (6),
+	 consultationCall               (7),
+	 divertCall                     (8),
+	 holdCall                       (9),
+	 makeCall                       (10),
+	 makePredictiveCall             (11),
+	 parkCall                       (12),
+	 queryDevice                    (13),
+	 reconnectCall                  (14),
+	 retrieveCall                   (15),
+	 sendDTMFTones			(16),
+	 setFeature                     (17),
+	 singleStepConference           (18),
+	 singleStepTransfer             (19),
+	 transferCall                   (20)    }
+
+EventReportServicesC2 ::= BIT STRING
+	{
+
+	-- Call events
+
+	 callCleared                    (0),
+	 conferenced                    (1),
+	 connectionCleared              (2),
+	 delivered                      (3),
+	 diverted                       (4),
+	 established                    (5),
+	 failed                         (6),
+	 held                           (7),
+	 networkReached         	(8),
+	 originated                     (9),
+	 queued                 	(10),
+	 retrieved                      (11),
+	 serviceInitiated              	(12),
+	 transferred                    (13),
+
+	-- Feature events
+
+	 autoAnswer                     (14),
+	 callInformation                (15),
+	 doNotDisturb                   (16),
+	 forwarding                     (17),
+	 messageWaiting         	(18),
+	 microphoneMute         	(19),
+	 speakerMute                    (20),
+	 speakerVolume          	(21),
+
+	-- Agent state events
+
+	 agentBusy                      (22),
+	 loggedOn                       (23),
+	 loggedOff                      (24),
+	 notReady                       (25),
+	 ready                          (26),
+	 workingAfterCall               (27),
+
+	-- Maintenance events
+
+	 backInService                  (28),
+	 outOfServiceEvent              (29),
+
+	-- Private events
+
+	 privateEvent                   (30),
+
+	-- Voice unit events
+
+	 playEvent                      (31),
+	 recordEvent                    (32),
+	 reviewEvent                    (33),
+	 stopEvent                      (34),
+	 suspendPlayEvent               (35),
+	 suspendRecordEvent             (36),
+	 voiceAttributesChangeEvent     (37)    }
+
+ComputingFunctionServicesC2 ::= BIT STRING
+	{routeRequest                   (0),
+	 reRouteRequest         	(1),
+	 routeSelectRequest             (2),
+	 routeUsedRequest               (3),
+	 routeEndRequest                (4)     }
+
+BidirectionalServicesC2 ::= BIT STRING
+	{escapeService                  (0),
+	 systemStatus                   (1)     }
+
+StatusReportingServicesC2 ::= BIT STRING
+	{monitorStart                   (0),
+	 changeMonitorFilter            (1),
+	 monitorStop                    (2),
+	 snapshotDevice         	(3),
+	 snapshotCall                   (4)     }
+
+InputOutputServicesC2 ::= BIT STRING
+	{startDataPathService           (0),
+	 stopDataPathService            (1),
+	 sendDataService                (2),
+	 sendMulticastDataService       (3),
+	 sendBroadcastDataService       (4),
+	 suspendDataPathService 	(5),
+	 dataPathSuspendedService       (6),
+	 resumeDataPath         	(7),
+	 dataPathResumedService 	(8),
+	 fastData                       (9)     }
+
+VoiceUnitServicesC2 ::= BIT STRING
+	{concatenateMessage             (0),
+	 deleteMessage                  (1),
+	 playMessage                    (2),
+	 queryVoiceAttribute            (3),
+	 recordMessage          	(4),
+	 reposition                     (5),
+	 resume                 	(6),
+	 review                         (7),
+	 setVoiceAttribute              (8),
+	 stop                           (9),
+	 suspend                        (10),
+	 synthesizeMessage              (11)    }
+
+	 
+ACSEUserInformationForCSTA ::= CHOICE
+{	oldDefinition 				OldACSEUserInformationForCSTA,
+	newDefinition 		[0] IMPLICIT	NewACSEUserInformationForCSTA }
+
+
+OldACSEUserInformationForCSTA ::= SEQUENCE
+{	cSTAVersion 				CSTAVersion,
+	cSTAFunctionsRequiredByApplication	CSTAFunctionality,
+	cSTAFunctionsThatCanBeSupplied		CSTAFunctionality }
+
+
+NewACSEUserInformationForCSTA ::= SEQUENCE
+{ 	cSTAVersion 				CSTAVersion,
+--
+--	Note that the following two parameters are defined in ECMA-218 (CSTA Phase II).
+--	They are defined in the context of CSTA Phase II Services and Events for
+--	backward compatibility considerations.
+--	For CSTA Phase III (and later), implementations should use CSTA Capability Exchange Services
+--	to determine the Services and Events supported by a switching function.
+--
+	cSTAFunctionsRequiredByApplication	[0] IMPLICIT CSTAFunctionality			OPTIONAL,
+	cSTAFunctionsThatCanBeSupplied	        [1] IMPLICIT CSTAFunctionality			OPTIONAL,
+	cSTAPrivateDataVersionList	        [2] IMPLICIT CSTAPrivateDataVersionList	        OPTIONAL }
+
+
+CSTAPrivateDataVersionList	::=  SEQUENCE OF INTEGER
+
+
+CSTAVersion	::=  BIT STRING
+{	versionOne			( 0),  -- ECMA-180
+        versionTwo			( 1),  -- ECMA-218
+        versionThree			( 2),  -- ECMA-285, 1st Edition
+        versionFour			( 3),  -- ISO/IEC 18052
+        versionFive			( 4),  -- ECMA-285, 2nd Edition
+        versionSix			( 5),  -- ECMA-323
+        versionSeven			( 6),  -- ECMA-323, 2nd Edition
+        versionEight			( 7),  -- ECMA-323, 3rd Edition
+        versionNine			( 8),  -- ECMA-323, 4th Edition, Tag option
+        versionTen			( 9),  -- ECMA-323, 4th Edition, short Tag option
+        versionEleven			(10),  -- ECMA-323, 4th Edition, dynamic transformation option
+        versionTwelve			(11),  -- ECMA-323, 5th Edition, Tag option
+        versionThirteen			(12),  -- ECMA-323, 5th Edition, short Tag option
+        versionFourteen			(13),  -- ECMA-323, 5th Edition, dynamic transformation option
+        versionFifteen			(14),  -- ECMA-285, 3rd Edition
+	versionSixteen			(15),  -- ECMA-323, 6th Edition, Tag option
+	versionSeventeen		(16),  -- ECMA-323, 6th Edition, short Tag option
+	versionEighteen			(17),  -- ECMA-323, 6th Edition, dynamic transformation option
+	versionNineteen			(18),  -- ECMA-285, 4th Edition
+        versionTwenty			(19),  -- Reserved for future use
+        versionTwentyone		(20),  -- Reserved for future use
+        versionTwentytwo		(21),  -- Reserved for future use
+        versionTwentythree		(22),  -- Reserved for future use
+        versionTwentyfour		(23) } -- Reserved for future use
+
+
+CallControlServices ::= BIT STRING
+{	acceptCall						( 0),
+        alternateCall						( 1),
+        answerCall						( 2),
+        callBack						( 3),
+        callBackMessage						( 4),
+        campOnCall						( 5),
+        clearCall						( 6),
+        clearConnection						( 7),
+        conferenceCall						( 8),
+        consultationCall					( 9),
+        deflectCall						(10),
+        dialDigits						(11),
+        directedPickupCall					(12),
+        groupPickupCall						(13),
+        holdCall						(14),
+        intrudeCall						(15),
+        joinCall						(16),
+        makeCall						(17),
+        makeConnection						(25),
+        makePredictiveCall					(18),
+        parkCall						(19),
+        reconnectCall						(20),
+        retrieveCall						(21),
+        sendMessage						(26),
+        singleStepConference					(22),
+        singleStepTransfer					(23),
+        transferCall						(24) }
+
+
+CallAssociatedServices ::= BIT STRING
+{	associateData						( 0),
+        cancelTelephonyTones					( 1),
+        changeConnectionInformation				( 5),
+        generateDigits						( 2),
+        generateTelephonyTones					( 3),
+        sendUserInformation					( 4) }
+
+
+MediaAttachmentServices ::= BIT STRING
+{	attachMediaService					( 0),
+        detachMediaService					( 1) }
+
+
+RouteingServices ::= BIT STRING
+{	routeRegister						( 0),
+        routeRegisterCancel					( 1),
+        routeRegisterAbort					( 2),
+        reroute							( 3),
+        routeEnd						( 4),
+        routeReject						( 5),
+        routeRequest						( 6),
+        routeSelect						( 7),
+        routeUsed						( 8) }
+
+
+VoiceUnitServices ::= BIT STRING
+{	activate						(12),
+        clear							(13),
+        concatenateMessage					( 0),
+        deactivate						(14),
+        deleteMessage						( 1),
+        playMessage						( 2),
+        queryVoiceAttribute					( 3),
+        recordMessage						( 4),
+        reposition						( 5),
+        resume							( 6),
+        review							( 7),
+        setVoiceAttribute					( 8),
+        stop							( 9),
+        suspend							(10),
+        synthesizeMessage					(11) }
+
+LocationServices ::= BIT STRING
+{	getLocationInformation					( 0),
+	setLocationInformation					( 1),
+	locationTrackkingSessionResumed				( 2),
+	locationTrackkingSessionSuspended			( 3),
+	resumeLocationTrackingSession				( 4),
+	locationInformationReport				( 5),
+	startLocationTrackingSession				( 6),
+	stopLocationTrackingSession				( 7),
+	suspendLocationTrackingCapabilities			( 8),
+	locationSessionInfo					( 9) }
+
+CallControlEvents ::= BIT STRING
+{	bridged 						(15),
+        callCleared						( 0),
+        conferenced						( 1),
+        connectionCleared					( 2),
+        delivered						( 3),
+        digitsDialed						(14),
+        diverted						( 4),
+        established						( 5),
+        failed							( 6),
+        held							( 7),
+        networkCapabilitiesChanged				(16),
+        networkReached 						( 8),
+        offered 						(17),
+        originated						( 9),
+        queued							(10),
+        retrieved						(11),
+        serviceInitiated					(12),
+        transferred						(13) }
+
+CallAssociatedEvents ::= BIT STRING
+{	callInformation 					( 0),
+        charging 						( 1),
+        dTMFDigitsDetected 					( 2),
+        telephonyTonesDetected 	       	 			( 3),
+        serviceCompletionFailure 				( 4) }
+
+MediaAttachmentEvents ::= BIT STRING
+{	mediaAttached 						( 0),
+	mediaDetached 						( 1) }
+
+PhysicalDeviceFeatureEvents ::= BIT STRING
+{	buttonInformation 					( 0),
+	buttonPress 						( 1),
+	displayUpdated 						( 2),
+	hookswitch 						( 3),
+	lampMode 						( 4),
+	messageWaiting 						( 5),
+	microphoneGain 						( 6),
+	microphoneMute 						( 7),
+	ringerStatus						( 8),
+	speakerMute 						( 9),
+	speakerVolume 						(10) }
+
+LogicalDeviceFeatureEvents ::= BIT STRING
+{	agentBusy 						( 0),
+	agentLoggedOn 						( 1),
+	agentLoggedOff 						( 2),
+	agentNotReady 						( 3),
+	agentReady 						( 4),
+	agentWorkingAfterCall 					( 5),
+	autoAnswer 						( 6),
+	autoWorkMode 						( 7),
+	callBack 						( 8),
+	callBackMessage 					( 9),
+	callerIDStatus 						(10),
+	doNotDisturb 						(11),
+	forwarding 						(12),
+	presenceState						(14),
+	routeingMode 						(13) }
+
+DeviceMaintenanceEvents ::= BIT STRING
+{	backInService 						( 0),
+	deviceCapabilityChanged 				( 2),
+	outOfService 						( 1),
+	partiallyInService					( 3) }
+
+VoiceUnitEvents ::= BIT STRING
+{	bookmarkReached						( 7),
+	completed						( 8),
+	dtmfDetected						( 9),
+	emptied							(10),
+	interruptionDetected					(11),
+	notRecognized						(12),
+	play 							( 1),
+	recognized						(13),
+	record 							( 3),
+	review 							( 5),
+	started							(14),
+	silenceTimeoutExpired					(15),
+	speechDetected						(16),
+	stop 							( 0),
+	suspendPlay 						( 2),
+	suspendRecord 						( 4),
+	voiceAttributesChange 					( 6),
+	voiceErrorOccured					(17) }
+
+VendorSpecEvents::= BIT STRING
+{	privateEvent		 				(0) }
+
+END -- of CSTA-application-context-information-csta3

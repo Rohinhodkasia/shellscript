@@ -1,0 +1,70 @@
+CSTA-service-initiated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) service-initiated-event( 34) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS 
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+SubjectDeviceID, AssociatedCallingDeviceID, NetworkCalledDeviceID, 
+NetworkCallingDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CorrelatorData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageData, ServicesPermitted FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LocationInfoList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+MessageInfo, SubjectOfCall, LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CalledDeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionInformation, MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+ServiceInitiatedEvent ::= SEQUENCE
+{	initiatedConnection		ConnectionID,
+	initiatingDevice		SubjectDeviceID,
+	calledDevice			CalledDeviceID				OPTIONAL,
+	localConnectionInfo		LocalConnectionState			OPTIONAL,
+	correlatorData			[ 0] IMPLICIT CorrelatorData		OPTIONAL,
+	cause				EventCause,
+	servicesPermitted		[ 1] IMPLICIT ServicesPermitted		OPTIONAL,
+	mediaCallCharacteristics	[ 2] IMPLICIT MediaCallCharacteristics	OPTIONAL,
+	callCharacteristics		[ 3] IMPLICIT CallCharacteristics	OPTIONAL,
+	initiatedConnectionInfo		[ 4] IMPLICIT ConnectionInformation	OPTIONAL,
+	networkCallingDevice		NetworkCallingDeviceID			OPTIONAL,
+	networkCalledDevice		NetworkCalledDeviceID			OPTIONAL,
+	associatedCallingDevice	AssociatedCallingDeviceID			OPTIONAL,
+	callLinkageData			[ 5] IMPLICIT CallLinkageData		OPTIONAL,
+	subjectOfCall			[ 7] IMPLICIT SubjectOfCall		OPTIONAL,
+	messageInfo			[ 8] IMPLICIT MessageInfo		OPTIONAL,
+	languagePreferences		[ 9] IMPLICIT LanguagePreferences	OPTIONAL,
+	locationInfo			[10] IMPLICIT LocationInfoList		OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-service-initiated-event

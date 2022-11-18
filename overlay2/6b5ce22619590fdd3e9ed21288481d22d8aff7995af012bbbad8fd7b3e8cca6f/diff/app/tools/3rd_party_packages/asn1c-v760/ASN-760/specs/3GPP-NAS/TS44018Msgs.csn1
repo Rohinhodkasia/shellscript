@@ -1,0 +1,486 @@
+ASN1MODULE : TS44018Msgs;
+
+--9.1.21.a
+
+<NOTIFICATION FACCH> ::= 
+   --<RR short PD : bit> -- See 3GPP TS 24.007
+   --<message type : bit(5)> -- See 10.4
+   --<short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   { 0 <Group Call information>
+     | 1 <Paging Information>
+   }
+   { null | L -- Receiver compatible with earlier release
+      | H -- Additions in Release 6 :
+         { 0|1 <CELL_GLOBAL_COUNT : bit (2)>
+            <B22_COUNT : bit> 
+         }
+         { 0|1 <VSTK_RAND : bit (36)> }
+   }
+   { null | L -- Receiver compatible with earlier release
+      | H -- Additions in Release 7 :
+         <Priority Uplink Access>
+         <Emergency_Ind>
+         { 0|1 <AMR Config : bit (4)> }
+         { 0|1 <Paging Cause : bit (2)> }
+         { 0|1 < SMS Data Confidentiality Ind : bit (1)>
+               < SMS Guaranteed Privacy Ind : bit(1)>
+         }
+   }
+   <spare padding> ;
+  
+<Priority Uplink Access> ::=
+   <Priority_Uplink Access:bit==L> -- RACH access
+   | <Priority_Uplink Access:bit==H>; -- Group Channel access
+
+<Emergency_Ind> ::=
+   <Emergency_Ind:bit==L> -- emergency mode not set
+   | <Emergency_Ind:bit==H>; -- emergency mode set
+
+   
+-- <Mobile Allocation>: This field is syntactically and semantically equivalent
+-- to octet 2 to n+2 of the Mobile Allocation information element.
+-- See sub-clause 10.5.2.21.
+
+<Paging Information> ::=
+   <mobile identity : <MobileIdentity>>
+   <channel first: bit(2)>
+   {0|1 <eMLPP priority : bit(3)>} ;
+--<mobile identity>: This field is syntactically and semantically equivalent
+-- to octet 2-n of the Mobile Identity information element. See subclause
+-- 10.5.1.4.
+
+
+-- 9.1.21.h VBS/VGCS reconfigure
+-- Note: some of the fields for this message are defined in the text to
+-- correspond to certain IEs, or parts thereof.  Those IEs are defined in
+-- table format.  We could later improve on this by not having the generic
+-- bit(24) or whatever.
+<VBS/VGCS RECONFIGURE> ::=
+   --<RR short PD : bit> -- See 3GPP TS 24.007
+   --<message type : bit(5)> -- See 10.4
+   --<short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   <new Group Channel Description>
+   <Starting Time: bit(16)>
+   <Additional Segment: bit>
+-- Original (doesn't allow encoder to add padding bits):
+-- { null | 0 bit** = < no string >}; -- Receiver backward compatible with earlier version
+   <spare bit>**;
+
+<new Group Channel Description> ::=
+   <Channel Description : bit(24)>
+   { 0 -- Non hopping case
+     | 1 { 0 <Mobile-Allocation>
+           | 1 <Frequency Short List : bit(64)>
+          }
+   };
+   
+-- 9.1.21.i VBS/VGCS RECONFIGURE 2
+-- Note: new Cell Channel Description is syntactically and semantically
+-- equivalent to octets 2-17 of 10.5.2.1b Cell Channel Description.
+-- We could later improve on this.
+<VBS/VGCS RECONFIGURE2> ::=
+   -- <RR short PD : bit> -- See 3GPP TS 24.007
+   -- <message type : bit(5)> -- See 10.4
+   -- <short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   <new Cell Channel Description : bit(128)>
+   <Starting Time: bit(16)>
+   <spare bit>**;
+   -- was: { null | 0 bit** = < no string >} - Receiver backward compatible with earlier version
+
+-- 9.1.47 UPLINK FREE
+<UPLINK FREE> ::= 
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < message type : bit(5) > -- See 10.4
+   -- < short layer 2 header : bit(2) > -- See 3GPP TS 44.006
+   < Uplink Access Request : L | H >
+   { L | H < Uplink Identity Code : bit(6) >}
+   { null | L -- Receiver compatible with earlier release
+         | H -- Additions for Release-7
+            { 0|1 <Emergency_Ind: bit(1)>}
+   }
+   < spare padding > ;
+   
+-- 9.1.49a VGCS ADDITIONAL INFO
+<VGCS ADDITIONAL INFO> ::= 
+   -- <RR short PD : bit> -- See 3GPP TS 24.007
+   -- <message type : bit(5)> -- See sub-clause 10.4
+   -- <short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   <talker identity length: bit(5)>
+   <filler bits: bit(3)>
+   {<talker identity: bit(8 * val (talker identity length))>}
+   <spare padding>;
+
+-- 9.1.49b VGCS SMS INFORMATION
+<VGCS SMS INFORMATION> ::=
+   -- <RR short PD : bit> -- See 3GPP TS 24.007
+   -- <message type : bit(5)> -- See sub-clause 10.4
+   -- <short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   { 0 <Non-Segmented_SMS Description : <Non-Segmented_SMS Description struct>>
+     | 1 <Segmented_SMS Description : <Segmented_SMS Description struct>> 
+   }
+   <spare padding>;
+
+<Non-Segmented_SMS Description struct> ::=
+   < Length : bit (8) >
+   < SMS Reference Number: bit (4) >
+   < SMS_Final_Content : bit (val(Length)) >;
+
+<Segmented_SMS Description struct> ::=
+   < SMS Reference Number : bit (4) >
+   < Segment Number : bit (4) >
+   { 0 <SMS_Content:bit **> -- Not the last Segment
+     | 1 < Length : bit (8)>
+         < SMS_Final_Content : bit (val(Length)) > -- Last segment
+   };
+
+-- 9.1.50 System Information Type 10
+<SYSTEM INFORMATION TYPE 10> ::=
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < message type : bit(5) > -- See 10.4
+   -- < short layer 2 header : bit(2) > -- See 3GPP TS 44.006
+   < SI10 Rest Octets >; -- See 10.5.2.44
+
+-- 9.1.50a System Information Type 10bis
+<SYSTEM INFORMATION TYPE 10bis> ::=
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < message type : bit(5) > -- See 10.4
+   -- < short layer 2 header : bit(2) > -- See 3GPP TS 44.006
+   < SI10bis Rest Octets >; -- See 10.5.2.70
+
+-- 9.1.50b System Information Type 10ter
+<SYSTEM INFORMATION TYPE 10ter> ::=
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < message type : bit(5) > -- See 10.4
+   -- < short layer 2 header : bit(2) > -- See 3GPP TS 44.006
+   < Cell Channel Description : bit (128) >
+   < SI10ter Rest Octets>; -- See 10.5.2.71
+
+-- 9.1.54 Measurement Information
+<Measurement information> ::=
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < Message type : bit (5) > -- See 10.4
+   -- < Short layer 2 header : bit (2) > -- See 3GPP TS 44.006
+   < BA_IND : bit >
+   < 3G_BA_IND : bit >
+   < MP_CHANGE_MARK : bit >
+   < MI_INDEX : bit (4) >
+   < MI_COUNT : bit (4) >
+   < PWRC : bit >
+   < REPORT_TYPE : bit >
+   < REPORTING_RATE : bit >
+   < INVALID_BSIC_REPORTING : bit >
+   { 0 | 1 < Real Time Difference Description : < Real Time Difference Description struct >> }
+   { 0 | 1 < BSIC Description : < BSIC Description struct >> }
+   { 0 | 1 < REPORT PRIORITY Description : < REPORT PRIORITY Description struct >> }
+   { 0 | 1 < MEASUREMENT Parameters Description : < MEASUREMENT PARAMETERS Description struct >> }
+   { 0 | 1 < extension length : bit (8) >
+         -- For now, just let this be any bit
+         -- < spare bit (val(extension length)+1) > } -- used for future extensions of the 2G parameters
+            < bit (val(extension length)+1) > } -- used for future extensions of the 2G parameters
+   { 0 | 1 < 3G Neighbour Cell Description : < 3G Neighbour Cell Description struct >> }
+   { 0 | 1 < 3G MEASUREMENT Parameters Description : < 3G MEASUREMENT PARAMETERS Description struct >> }
+   { null | L -- Receiver compatible with earlier release
+          | H -- Additions in Rel-5:
+               { 0 | 1 < 3G ADDITIONAL MEASUREMENT Parameters Description 2 :
+                       < 3G Additional Measurement Parameters Description 2 struct >> }
+               { null | L -- Receiver compatible with earlier release
+                      | H -- Additions in Rel-7:
+                           { 0 | 1 < 700_REPORTING_OFFSET : bit (3) >
+                                 < 700_REPORTING_THRESHOLD : bit (3) > }
+                           { 0 | 1 < 810_REPORTING_OFFSET : bit (3) >
+                                 < 810_REPORTING_THRESHOLD : bit (3) > }
+                           { null | L -- Receiver compatible with earlier release
+                                  | H -- Additions in Rel-8
+                                       { 0 | 1 < 3G Supplementary Parameters Description :
+                                             < 3G Supplementary Parameters Description struct >> }
+                                       { 0 | 1 < E-UTRAN Parameters Description :
+                                             < E-UTRAN Parameters Description struct >> }
+                                       { 0 | 1 < E-UTRAN CSG Description : < E-UTRAN CSG Description struct >> }
+                                       { null | L -- Receiver compatible with earlier release
+                                              | H -- Additions in Rel-9
+                                                   { 0 | 1 < 3G CSG Description : < 3G CSG Description struct >> }
+                                                   { 0 | 1 < UTRAN CSG Cells Reporting Description :
+                                                         < UTRAN CSG Cells Reporting Description struct >> }
+                                       }
+                           }
+               }
+   }
+   < spare padding > ;
+
+< 3G Neighbour Cell Description struct > ::=
+   { 0 | 1 < 3G_Wait : bit (3) > }
+   { 0 | 1 < Index_Start_3G : bit (7) > }
+   { 0 | 1 < Absolute_Index_Start_EMR : bit (7) > }
+   { 0 | 1 < UTRAN FDD Description : < UTRAN FDD Description struct >> }
+   { 0 | 1 < UTRAN TDD Description : < UTRAN TDD Description struct >> }
+   { 0 | 1 < CDMA2000 Description : < CDMA2000 Description struct >> } ;
+
+< UTRAN FDD Description struct > ::=
+   { 0 | 1 < Bandwidth_FDD : bit (3) > }
+   { 1 < Repeated UTRAN FDD Neighbour Cells : < Repeated UTRAN FDD Neighbour Cells struct >> } ** 0 ;
+
+< Repeated UTRAN FDD Neighbour Cells struct > ::=
+   <zerobit : 0> < FDD-ARFCN : bit (14) > -- The value "1" was used in an earlier version of
+                              -- the protocol and shall not be used.
+   < FDD_Indic0 : bit >
+   < NR_OF_FDD_CELLS : bit (5) >
+   < FDD_CELL_INFORMATION Field : bit(p(NR_OF_FDD_CELLS)) >  -- p(x) defined in table 9.1.54.1.
+   ;
+
+< UTRAN TDD Description struct > ::=
+   { 0 | 1 < Bandwidth_TDD : bit (3) > }
+   { 1 < Repeated UTRAN TDD Neighbour Cells : <Repeated UTRAN TDD Neighbour Cells struct> > } ** 0 ;
+
+< Repeated UTRAN TDD Neighbour Cells struct > ::=
+   <zerobit: 0> < TDD-ARFCN : bit (14) > -- The value "1" was used in an earlier version of
+                              -- the protocol and shall not be used.
+   < TDD_Indic0 : bit >
+   < NR_OF_TDD_CELLS : bit (5) >
+   < TDD_CELL_INFORMATION Field : bit(q(NR_OF_TDD_CELLS)) > -- q(x) defined in table 9.1.54.1.
+   ;
+
+< CDMA2000 Description struct > ::=
+   < cdma2000 frequency band : bit(5)>
+   < cdma2000 frequency : bit(11)>
+   < number_cdma2000_cells : bit (5) >
+   { < Pilot PN offset : bit (9) > -- this information is enough for 1X Common Pilot
+      { 0 | 1 { 000 { < TD_MODE : bit (2) > < TD_POWER_LEVEL : bit (3) > }
+                  -- additional information for 1X Common Pilot with Transmit Diversity
+               | 001 { < QOF : bit (2) > < WALSH_LEN_A : bit (3) >
+                        < AUX_PILOT_WALSH : bit(val(WALSH_LEN_A)+6) > }
+                  -- additional information for 1X Auxiliary Pilot
+               | 010 { < QOF : bit (2) > < WALSH_LEN_B : bit (3) >
+                        < AUX_TD_WALSH : bit (val(WALSH_LEN_B)+6) >
+                        < AUX_TD_POWER_LEVEL : bit (2) > <TD_MODE : bit (2) > }
+                  -- additional information for 1X Auxiliary Pilot with Transmit Diversity
+               | 011 { < SR3_PRIM_PILOT : bit (2) > < SR3_PILOT_POWER1 : bit (3) >
+                        < SR3_PILOT_POWER2 : bit(3)> }
+                  -- additional information for 3X Common Pilot
+               | 110 { < SR3_PRIM_PILOT : bit (2) > < SR3_PILOT_POWER1 : bit (3) >
+                        < SR3_PILOT_POWER2 : bit (3) > < QOF : bit (2) >
+                        < WALSH_LEN_C : bit (3) >
+                        < AUX_WALSH_LEN : bit(val(WALSH_LEN_C)+6) >
+                        { 0 | 1 < QOF1 : bit (2) > < WALSH_LENGTH1 : bit (3) >
+                                 < AUX_PILOT_WALSH1 : bit(val(WALSH_LENGTH1)+6) > }
+                        { 0 | 1 < QOF2 : bit (2) > < WALSH_LENGTH2 : bit (3) >
+                                 < AUX_PILOT_WALSH2 : bit(val(WALSH_LENGTH2)+6)> }
+                     }
+                  -- additional information for 3X Auxiliary Pilot
+               }
+      }
+   } * val(number_cdma2000_cells) ;
+
+< Real Time Difference Description struct > ::=
+   { 0 | 1 { 0 | 1 < BA_Index_Start_RTD : bit (5) > } --default value=0
+            < RTD Struct : < RTD6 Struct >>
+            { 0 < RTD Struct : < RTD6 Struct >> }** 1   -- '0' indicates to increment by 1
+                                                        -- the index of the frequency in the BA (list)
+   }
+   { 0 | 1 { 0 | 1 < BA_Index_Start_RTD : bit (5) > } --default value=0
+            < RTD Struct : < RTD12 Struct >>
+            { 0 < RTD Struct : < RTD12 Struct >> } **1    -- '0' indicates to increment by 1
+                                                          -- the index of the frequency in the BA (list)
+   };
+
+< RTD6 Struct > ::=
+   { 0 < RTD : bit (6) > } ** 1; -- Repeat until '1' ; '1' means last RTD for this frequency
+
+< RTD12 Struct > ::=
+   { 0 < RTD : bit (12) > } ** 1; -- Repeat until '1' ; '1' means last RTD for this frequency
+
+< BSIC Description struct > ::=
+   { 0 | 1 < BA_Index_Start_BSIC : bit (5) > } -- default value=0
+   < BSIC : bit (6) >
+   < Number_Remaining_BSIC: bit (7) >
+   { < Frequency_Scrolling : bit > -- 0 means same frequency
+      < BSIC : bit (6) >
+   } * (val(Number_Remaining_BSIC)) ;
+
+< REPORT PRIORITY Description struct > ::=
+   < Number_Cells : bit (7) >
+   < REP_PRIORITY : bit > * (val(Number_Cells)) ;
+
+
+< MEASUREMENT PARAMETERS Description struct > ::=
+   { 0 | 1 < MULTIBAND_REPORTING: bit (2) > }
+   { 0 | 1 < SERVING_BAND_REPORTING: bit (2) > }
+   < SCALE_ORD : bit (2) >
+   { 0 | 1 < 900_REPORTING_OFFSET : bit (3) >
+            < 900_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < 1800_REPORTING_OFFSET : bit (3) >
+            < 1800_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < 400_REPORTING_OFFSET : bit (3) >
+            < 400_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < 1900_REPORTING_OFFSET : bit (3) >
+            < 1900_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < 850_REPORTING_OFFSET : bit (3) >
+            < 850_REPORTING_THRESHOLD : bit (3) > } ;
+
+< 3G MEASUREMENT PARAMETERS Description struct > ::=
+   < Qsearch_C : bit (4) >
+   -- just allow any bit
+   -- { 1 ! < Ignore : bit = < no string >> } -- this bit shall be ignored by the receiver
+                                           -- for backward compatibility with earlier releases
+   -- This can be mapped to INTEGER(0..1) DEFAULT 1
+   <spare1 : <bit> send 1>
+   < FDD_REP_QUANT : bit (1) > -- FDD Parameters
+   { 0 | 1 < FDD_MULTIRAT_REPORTING : bit (2) > }
+   { 0 | 1 < FDD_REPORTING_OFFSET : bit (3) >
+            < FDD_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < TDD_MULTIRAT_REPORTING : bit (2) > } -- TDD Parameters
+   { 0 | 1 < TDD_REPORTING_OFFSET : bit (3) >
+            < TDD_REPORTING_THRESHOLD : bit (3) > }
+   { 0 | 1 < CDMA2000_MULTIRAT_REPORTING : bit (2) > } -- CDMA2000 Parameters
+   { 0 | 1 < CDMA2000_REPORTING_OFFSET : bit (3) >
+            < CDMA2000_REPORTING_THRESHOLD : bit (3) > } ;
+
+< 3G ADDITIONAL MEASUREMENT Parameters Description 2 struct > ::=
+   { 0 | 1 < FDD_REPORTING_THRESHOLD_2 : bit (6) > } ;
+
+< 3G Supplementary Parameters Description struct > ::=
+   < UTRAN_Start : bit >
+   < UTRAN_Stop : bit >
+   { 0 | 1 < 3G Measurement Control Parameters Description :
+            < 3G Measurement Control Parameters Description struct >> } ;
+
+< 3G Measurement Control Parameters Description struct > ::=
+   { 0 | 1 < DEFAULT_Measurement_Control_UTRAN : bit(1) > }
+   { 1 < Repeated UTRAN Measurement Control Parameters :
+         < Repeated UTRAN Measurement Control Parameters struct >> } ** 0 ;
+
+< Repeated UTRAN Measurement Control Parameters struct > ::=
+   { 1 < UTRAN_FREQUENCY_INDEX : bit(5) > } ** 0
+   < Measurement_Control_UTRAN : bit(1) > ;
+
+< E-UTRAN Parameters Description struct > ::=
+   < E-UTRAN_Start : bit >
+   < E-UTRAN_Stop : bit >
+   { 0 | 1 < E-UTRAN Measurement Parameters Description :
+            < E-UTRAN Measurement Parameters Description struct >> }
+   { 1 < Repeated E-UTRAN Neighbour Cells : < Repeated E-UTRAN Neighbour Cells struct >> } ** 0
+   { 1 < Repeated E-UTRAN Not Allowed Cells : < Repeated E-UTRAN Not Allowed Cells struct >> } ** 0
+   { 0 | 1 < E-UTRAN Measurement Control Parameters Description :
+            < E-UTRAN Measurement Control Parameters Description struct >> } ;
+
+< Repeated E-UTRAN Neighbour Cells struct > ::=
+   < EARFCN : bit (16) >
+   { 1 < EARFCN : bit (16) > } ** 0
+   { 0 | 1 < Measurement Bandwidth : bit (3) > } ;
+
+< Repeated E-UTRAN Not Allowed Cells struct > ::=
+   < Not Allowed Cells : < PCID Group IE >>
+   { 1 < E-UTRAN_FREQUENCY_INDEX : bit(3) > } ** 0 ;
+
+< E-UTRAN Measurement Control Parameters Description struct > ::=
+   { 0 | 1 < DEFAULT_Measurement_Control_E-UTRAN : bit(1) > }
+   { 1 < Repeated E-UTRAN Measurement Control Parameters :
+      < Repeated E-UTRAN Measurement Control Parameters struct >> } ** 0 ;
+
+< Repeated E-UTRAN Measurement Control Parameters struct > ::=
+   { 1 < E-UTRAN_FREQUENCY_INDEX : bit(3) > } ** 0
+   < Measurement_Control_E-UTRAN : bit(1) > ;
+
+< E-UTRAN CSG Description struct > ::=
+   { 1 < CSG_PCI_SPLIT : < PCID Group IE >>
+      { 1 < E-UTRAN_FREQUENCY_INDEX : bit (3) > } ** 0 
+   } ** 0 ;
+
+
+-- UTRAN CSG Dedicated Frequencies
+< UTRAN CSG Cells Reporting Description struct > ::=
+   { 0 | 1 < UTRAN_CSG_FDD_REPORTING_THRESHOLD : bit(3) >
+            < UTRAN_CSG_FDD_REPORTING_THRESHOLD_2 : bit (6) > }
+   { 0 | 1 < UTRAN_CSG_TDD_REPORTING_THRESHOLD : bit(3) >} ;
+   
+
+-------------------------------------
+-- 9.1.55 Enhanced Measurement Report
+-------------------------------------
+<Enhanced Measurement report> ::=
+   -- < RR short PD : bit > -- See 3GPP TS 24.007
+   -- < Message type : bit (5) > -- See 10.4
+   -- < Short layer 2 header : bit (2) > -- See 3GPP TS 44.006
+   < BA_USED : bit >
+   < 3G_BA_USED : bit >
+   < BSIC_Seen : bit >
+   < SCALE : bit >
+   { 0 | 1 < Serving cell data : < Serving cell data struct >> }
+   { 1 < Repeated Invalid_BSIC_Information : < Repeated Invalid_BSIC_Information struct >> } ** 0
+   { 0 | 1 { 0 | 1 < REPORTING_QUANTITY : bit (6) > } ** } -- bitmap type reporting
+-- { null | L bit ** = < no string > -- Receiver compatible with earlier release
+   { null | L                        -- Receiver compatible with earlier release
+          | H -- Additions in Rel-8 :
+            < BITMAP_LENGTH : bit(7) >
+            { 0 | 1 < REPORTING_QUANTITY : bit (6) > } * (val(BITMAP_LENGTH) + 1 )
+            { 0 | 1 < E-UTRAN Measurement Report : < E-UTRAN Measurement Report struct > > }
+          --{ null | L bit ** = < no string > -- Receiver compatible with earlier release
+            { null | L                        -- Receiver compatible with earlier release
+                   | H -- Additions in Rel-9 :
+                     { 0 | 1 < UTRAN CSG Measurement Report : < UTRAN CSG Measurement Report IE > > }
+                   --{ null | L bit ** = < no string > -- Receiver compatible with earlier release
+                     { null | L                        -- Receiver compatible with earlier release
+                            | H -- Additions in Rel-11 :
+                              < SI23_BA_USED : bit >
+                     }
+            }
+   }
+   < spare padding > ;
+
+< Serving cell data struct > ::=
+   < DTX_USED : bit >
+   < RXLEV_VAL : bit (6) >
+   < RX_QUAL_FULL : bit (3) >
+   < MEAN_BEP : bit (5) >
+   < CV_BEP : bit (3) >
+   < NBR_RCVD_BLOCKS : bit (5) > ;
+
+< Repeated Invalid_BSIC_Information struct > ::=
+   < BCCH-FREQ-NCELL : bit (5) >
+   < BSIC : bit (6) >
+   < RXLEV-NCELL : bit (6) > ;
+
+< E-UTRAN Measurement Report struct > ::=
+   < N_E-UTRAN: bit (2) >
+   { < E-UTRAN_FREQUENCY_INDEX : bit (3) >
+      < CELL IDENTITY : bit (9) >
+      < REPORTING_QUANTITY : bit (6) > } * (val(N_E-UTRAN) + 1) ;
+
+
+-----------------------------------------
+-- 9.1.57 VGCS Neighbour Cell Information
+-----------------------------------------
+<VGCS Neighbour Cell Information> ::=
+   -- <RR short PD : bit> -- See 3GPP TS 24.007
+   -- <message type : bit(5)> -- See 10.4
+   -- <short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   < SI10bis Sequence : bit (2) > -- new sequence number i
+   {  0
+      { 0 | 1 <BSIC : bit (6)> }
+      < Validity Information > 
+   } ** 1
+   { 0 < SI10bis Neighbour Cell Info > } ** 1
+   <spare padding> ;
+
+< Validity Information > ::=
+   { 0 -- information for this cell with sequence number i-1 is still valid
+      | 1 < Validity bitmap : bit (3) > };
+
+
+---------------------------------
+-- 9.1.58 Notify Application Data
+---------------------------------
+<NOTIFY APPLICATION DATA > ::= 
+   -- <RR short PD : bit> -- See 3GPP TS 24.007
+   -- <message type : bit(5)> -- See sub-clause 10.4
+   -- <short layer 2 header : bit(2)> -- See 3GPP TS 44.006
+   <application data : bit(72) >
+   <data identity : bit(8) >
+   { 0 | 1 <MSISDN length : bit(4)>
+           <MSISDN : bit(8 * val (MSISDN length)) >
+   }
+   <spare padding>;
+
+
+<spare padding> ::= { <bit> send L }**;
+<spare bit> ::= <bit> send 0;
+<no string> ::= null;

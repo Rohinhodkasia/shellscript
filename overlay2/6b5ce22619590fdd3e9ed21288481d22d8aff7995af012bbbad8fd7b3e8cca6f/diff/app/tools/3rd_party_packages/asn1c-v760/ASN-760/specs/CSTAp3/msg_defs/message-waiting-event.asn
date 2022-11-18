@@ -1,0 +1,24 @@
+CSTA-message-waiting-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) message-waiting-event( 44) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+MessageWaitingEvent ::= SEQUENCE
+{	targetDevice			SubjectDeviceID,
+	deviceForMessage		DeviceID				OPTIONAL,
+	messageWaitingOn		BOOLEAN,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-message-waiting-event

@@ -1,0 +1,24 @@
+CSTA-call-back-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-back-event( 327) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+CallBackEvent ::= SEQUENCE
+{	originatingDevice		SubjectDeviceID,
+	targetDevice			SubjectDeviceID,
+	callBackSetCanceled		BOOLEAN,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-call-back-event

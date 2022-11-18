@@ -1,0 +1,40 @@
+CSTA-record-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) record( 76) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ResourceID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+ServicesPermitted FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) };
+
+RecordEvent ::= SEQUENCE
+{	connection			ConnectionID,
+	message				MessageID,
+	resource			[2] IMPLICIT ResourceID			OPTIONAL,
+	length				[0] IMPLICIT INTEGER			OPTIONAL,
+	currentPosition			[1] IMPLICIT INTEGER			OPTIONAL,
+	cause				EventCause				OPTIONAL,
+	servicesPermitted		ServicesPermitted			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-record-event

@@ -1,0 +1,8 @@
+<asn1config>
+  <includedir>../../cms2009</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../LPP/rel11</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <includedir>../v2_1</includedir>
+</asn1config>

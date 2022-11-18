@@ -1,0 +1,50 @@
+CSTA-intrude-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) intrude-call( 222) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ParticipationType, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CallLinkageDataList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+intrudeCall OPERATION ::=
+{ 	ARGUMENT 		IntrudeCallArgument
+	RESULT 			IntrudeCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 222 }
+
+IntrudeCallArgument ::= SEQUENCE
+{ 	intrude 			ConnectionID,
+	participationType 		ParticipationType 			DEFAULT active,
+	userData 			UserData 				OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+IntrudeCallResult ::= SEQUENCE
+{ 	conferencedCall 		ConnectionID 				OPTIONAL,
+	conferencedCallInfo 		ConnectionInformation 			OPTIONAL,
+	callLinkageDataList		[1] IMPLICIT CallLinkageDataList	OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-intrude-call

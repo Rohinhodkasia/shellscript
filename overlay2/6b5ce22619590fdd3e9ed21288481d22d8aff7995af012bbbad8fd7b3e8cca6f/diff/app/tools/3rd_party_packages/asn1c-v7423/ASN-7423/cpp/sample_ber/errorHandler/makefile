@@ -1,0 +1,51 @@
+# makefile to build the employee sample program
+
+include ../../platform.mk
+include ../../../sample.mk
+
+all : writer$(EXE) reader$(EXE)
+
+HFILES = $(BERCPPHFILES) $(RTSRCDIR)/asn1CppEvtHndlr.h
+
+OBJECTS = Employee$(OBJ) EmployeeEnc$(OBJ) EmployeeDec$(OBJ)
+OBJECTS2 = Employee2$(OBJ) Employee2Enc$(OBJ) Employee2Dec$(OBJ)
+
+writer$(EXE) : writer$(OBJ) $(OBJECTS2) $(LIBDIR)/$(BERLIBNAME)
+	$(LINK) writer$(OBJ) $(OBJECTS2) $(LINKOPT) $(LPATHS) $(BSLIBS)
+
+reader$(EXE) : reader$(OBJ) errorHandler$(OBJ) $(OBJECTS) \
+EmployeePrint$(OBJ) $(LIBDIR)/$(BERLIBNAME)
+	$(LINK) reader$(OBJ) errorHandler$(OBJ) $(OBJECTS) \
+	   EmployeePrint$(OBJ) $(LINKOPT) $(LPATHS) $(BSLIBS)
+
+writer$(OBJ) : writer.cpp Employee2.h $(HFILES)
+reader$(OBJ) : reader.cpp Employee.h errorHandler.h $(HFILES)
+errorHandler$(OBJ) : errorHandler.cpp errorHandler.h $(HFILES)
+
+Employee$(OBJ) : Employee.cpp Employee.h $(HFILES)
+EmployeeEnc$(OBJ) : EmployeeEnc.cpp Employee.h $(HFILES)
+EmployeeDec$(OBJ) : EmployeeDec.cpp Employee.h $(HFILES)
+EmployeePrint$(OBJ) : EmployeePrint.cpp Employee.h $(HFILES)
+
+Employee2$(OBJ) : Employee2.cpp Employee2.h $(HFILES)
+Employee2Dec$(OBJ) : Employee2Dec.cpp Employee2.h $(HFILES)
+Employee2Enc$(OBJ) : Employee2Enc.cpp Employee2.h $(HFILES)
+
+Employee.cpp EmployeeDec.cpp EmployeeEnc.cpp EmployeePrint.cpp Employee.h : employee.asn
+	$(ASN1C) employee.asn -c++ -ber -events -print
+
+Employee2.cpp Employee2Dec.cpp Employee2Enc.cpp Employee2.h : employee2.asn
+	$(ASN1C) employee2.asn -c++ -ber -events
+
+clean :
+	$(RM) Employee*.cpp
+	$(RM) Employee*.h
+	$(RM) *$(OBJ)
+	$(RM) *.exp
+	$(RM_MSVC_FILES)
+	$(RM) *.dat
+	$(RM) *.lib
+	$(RM) *~
+	$(RM) writer$(EXE)
+	$(RM) reader$(EXE)
+	$(RM) rtkey.h

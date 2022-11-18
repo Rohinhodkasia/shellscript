@@ -1,0 +1,70 @@
+CSTA-route-request
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) route-request( 81) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+AssociatedCallingDeviceID, AssociatedCalledDeviceID, CalledDeviceID, 
+CallingDeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CorrelatorData,SelectValue, RouteRegisterReqID, RouteingCrossRefID
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageData FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+MessageInfo,LanguagePreferences,SubjectOfCall,DeviceHistory
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+standard( 0) csta3( 285) device-feature-types( 127) }
+ConnectionInformation, MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+routeRequest OPERATION ::=
+{ 	ARGUMENT   		RouteRequestArgument
+	ERRORS	 		{universalFailure }
+	ALWAYS RESPONDS		FALSE
+	CODE			local: 31 }
+
+RouteRequestArgument ::= SEQUENCE
+{	crossRefIdentifier 		RouteingCrossRefID,
+	routeRegisterReqID		[ 0] IMPLICIT RouteRegisterReqID	OPTIONAL,
+	currentRoute 			CalledDeviceID,
+	callingDevice 			CallingDeviceID				OPTIONAL,
+	routeingDevice 			SubjectDeviceID				OPTIONAL,
+	routedCall 			ConnectionID				OPTIONAL,
+	routeSelAlgorithm		[ 1] IMPLICIT SelectValue 		OPTIONAL,
+	associatedCallingDevice 	AssociatedCallingDeviceID		OPTIONAL,
+	associatedCalledDevice 		AssociatedCalledDeviceID		OPTIONAL,
+	priority 			[ 2] IMPLICIT BOOLEAN			OPTIONAL,
+	replyTimeout			[ 3] IMPLICIT INTEGER			OPTIONAL,
+	correlatorData			[ 4] IMPLICIT CorrelatorData		OPTIONAL,
+	mediaCallCharacteristics	[ 5] IMPLICIT MediaCallCharacteristics	OPTIONAL,
+	callCharacteristics		[ 6] IMPLICIT CallCharacteristics	OPTIONAL,
+	routeCallInfo			[ 7] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageData			[ 8] IMPLICIT CallLinkageData		OPTIONAL,
+	subjectOfCall			[ 9] IMPLICIT SubjectOfCall		OPTIONAL,
+	messageInfo			[10] IMPLICIT MessageInfo		OPTIONAL,
+	languagePreferences		[11] IMPLICIT LanguagePreferences	OPTIONAL,
+	deviceHistory			[12] IMPLICIT DeviceHistory		OPTIONAL,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-route-request

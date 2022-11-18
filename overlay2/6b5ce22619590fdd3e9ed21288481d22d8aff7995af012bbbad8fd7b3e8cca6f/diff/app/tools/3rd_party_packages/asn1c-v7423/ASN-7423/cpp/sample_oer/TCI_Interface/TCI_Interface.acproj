@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/TCI_Interface/1609dot3/17419_CITSapplMgmtIDs_v1.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/1609dot3/wee.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/1609dot3/wsa.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/1609dot3/wsm.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCI16093.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCI16094.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCI29451.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCI80211.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCICommonTypes.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIDispatcher.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIEventHandling.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCISutControl.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIindication.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIip.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIresponseInfo.asn</UTF8String>
+      <UTF8String>../../../specs/TCI_Interface/TCIwsm.asn</UTF8String>
+   </schemas>
+   <language>
+      <cpp/>
+   </language>
+   <ruleset>
+      <oer/>
+   </ruleset>
+   <basicOptions>
+      <test/>
+      <importDirs>
+         <UTF8String>../../../specs/TCI_Interface</UTF8String>
+         <UTF8String>../../../specs/TCI_Interface/1609dot3</UTF8String>
+      </importDirs>
+      <pdu>TCIMsg</pdu>
+      <printOut/>
+      <printStrm/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <free/>
+         <strictSize/>
+         <x64/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

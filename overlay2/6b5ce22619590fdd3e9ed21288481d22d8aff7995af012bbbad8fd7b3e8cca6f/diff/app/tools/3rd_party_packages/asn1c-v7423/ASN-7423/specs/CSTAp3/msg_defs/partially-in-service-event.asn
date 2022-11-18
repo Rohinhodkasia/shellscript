@@ -1,0 +1,26 @@
+CSTA-partially-in-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) partially-in-service ( 379) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+PartiallyInServiceEvent ::= SEQUENCE
+{	device				SubjectDeviceID,
+	cause				EventCause				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-partially-in-service-event

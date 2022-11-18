@@ -1,0 +1,53 @@
+CSTA-fast-data
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) fast-data( 119) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTAObject FROM CSTA-switching-function-objects
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) switching-function-objects( 122) }
+DataPathType, IORegisterReqID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DisplayID FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) physical-device-feature( 137) };
+
+fastData	 OPERATION ::=
+{	ARGUMENT		FastDataArgument
+	RESULT			FastDataResult
+	ERRORS			{universalFailure }
+	CODE			local: 119 }
+
+FastDataArgument ::= SEQUENCE
+{	ioRegisterReqID			IORegisterReqID				OPTIONAL,
+	object				CSTAObject,
+	dataPathType			DataPathType				OPTIONAL,
+	displayAttributes		DisplayAttribute			OPTIONAL,
+	ioData				OCTET STRING,       	     --corrected 12/2000
+	extensions			CSTACommonArguments			OPTIONAL }
+
+FastDataResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+DisplayAttribute ::= SEQUENCE
+{	displayID			DisplayID 				OPTIONAL,
+	physicalBaseRowNumber		[0] IMPLICIT INTEGER			OPTIONAL,
+	physicalBaseColumnNumber	[1] IMPLICIT INTEGER			OPTIONAL,
+	offset				[2] IMPLICIT INTEGER			OPTIONAL }
+
+END  -- of CSTA-fast-data

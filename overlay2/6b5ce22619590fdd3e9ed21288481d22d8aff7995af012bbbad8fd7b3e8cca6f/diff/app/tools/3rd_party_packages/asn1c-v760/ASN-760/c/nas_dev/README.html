@@ -1,0 +1,239 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+<html>
+<head>
+  <meta name="generator" content=
+  "HTML Tidy for Linux (vers 25 March 2009), see www.w3.org">
+
+  <title>ASN1C NAS/RRC Add-on README</title></head>
+
+<body bgcolor="#FFFFFF">
+  <center>
+    <h1>ASN1C NAS/RRC Add-on</h1>
+  </center>
+
+  <p>This file contains instructions on using the ASN1C NAS/RRC C Development Add-on Component.</p>
+
+<h2>Contents</h2>
+
+  <ul>
+    <li><a href="#Intro">Introduction</a></li>
+    <li><a href="#WhatsNew">Release Notes</a></li>
+    <li><a href="#CodeGenChanges">Compatibility</a></li>
+    <li><a href="#Documentation">Documentation</a></li>
+    <li><a href="#WindowsInstall">Windows Installation</a></li>
+    <li><a href="#LinuxInstall">Linux Installation</a></li>
+    <li><a href="#RelContents">Contents of the Release</a></li>
+    <li><a href="#GettingStarted">Getting Started</a></li>
+    <li><a href="#ReportingBugs">Reporting Problems</a></li>
+  </ul>
+
+  <h2><a name="Intro" id="Intro"></a>Introduction</h2>
+
+  <blockquote>
+    <p>The ASN1C NAS/RRC C Development Add-on Component is an add-on that when installed within an existing ASN1C SDK installation, allows C code generation of 3GPP layer 3 components. Specific support for the following 3GPP standards is provided:</p>
+
+  <ul>
+    <li>TS 24.007 - Mobile radio interface signalling layer 3; General Aspects</li>
+    <li>TS 24.008 - Mobile radio interface Layer 3 specification; Core network protocols; Stage 3</li>
+    <li>TS 24.011 - Point-to-Point (PP) Short Message Service (SMS) support on mobile radio interface</li>
+    <li>TS 24.301 - Non-Access-Stratum (NAS) protocol for Evolved Packet System (EPS); Stage 3</li>
+    <li>TS 24.501 - Non-Access-Stratum (NAS) protocol for 5G System (5GS); Stage 3</li>
+    <li>TS 44.018 - Mobile radio interface layer 3 specification; Radio Resource Control (RRC) protocol</li>
+    </ul>
+    <p>This add-on provides code generation capabilities that allow C code to be generated based on ASN.1 and CSN.1 specifications for the above referenced standard protocols. The ASN.1 contains special markup to support the Layer 3 table-driven descriptions. Custom C code snippets are also injected in places where it was easier to directly support the encoding with C code rather than a formal syntax. Users can modify the existing specifications to generate derivative works or could potentially create and compile new specifications based on this methodology.</p>
+  </blockquote>
+<h2><a name="WhatsNew" id="WhatsNew"></a>Release Notes</h2>
+
+  <blockquote>
+  This is the initial release of the ASN1C NAS/RRC add-on.</blockquote>
+
+<h2><a name="CodeGenChanges" id="CodeGenChanges"></a>Compatibility</h2>
+
+  <blockquote>
+     <p>In version 7.4.1.1.0, various corrections to the input specifications were made.
+     These changes will require some changes to user code; they should not be
+     difficult to make.  The changes may be summarized as follows:     
+     </p>
+     <ul>
+         <li>TS24501Msg_MobileIdentity will be more like TS24008IE_MobileIdentity (a struct with a nested
+         union for each of the alternatives).
+         </li>
+         <li>Some fields at the end of types meant to capture all remaining bytes in an IE (e.g. "spare2"
+         in TS24501Msg_MMCapability) could not handle an arbitrary number of spare octets.
+         These fields were generated as a struct with a fixed-size array called "data" and will now be
+         generated using type OSDynOctStr.
+         </li>
+         <li>Some fields will be moved into nested structs. For example, TS24501Msg_MMCapability.v2xcnpc5
+         will now be TS24501Msg_MMCapability.octet4.v2xcnpc5 and there will be a new 
+         TS24501Msg_MMCapability.m.octet4Present field to indicate absence/presence of the octet4 field.
+         </li>
+     </ul>
+     
+</blockquote>
+
+  <h2><a name="Documentation" id="Documentation"></a>Documentation</h2>
+
+  <blockquote>
+Documentation for release is available in the doc subdirectory of the installation.</blockquote>
+
+<h2><a name="WindowsInstall" id="WindowsInstall"></a>Windows
+  Installation</h2>
+
+  <blockquote>
+    <p>The steps to install the ASN1C NAS/RRC Add-on on a Windows system are as follows:</p>
+
+    <ol>
+      <li>An ASN1C SDK (either licensed or evaluation version) must first be installed.</li>
+
+      <li>The ASN1C NAS/RRC Add-on for Windows is packaged in a self-extracting executable file
+      format. To install, all that is necessary is to double-click the file to launch the installer program.</li>
+
+      <li>The installer wizard will prompt you to enter a directory into which the add-on will be installed. 
+      This must be the same base directory in which the SDK was installed in step 1.</li>
+      
+      <li>The add-on will be installed in the <strong>c/nas_dev</strong> directory within the existing installation. 
+      If you wish to do development with a different C/C++ compiler, this can be accomplished by doing a cut-and-paste 
+      of this nas_dev subdirectory to move it under a different c_ directory. For example, the default version of Visual 
+      Studio for ASN1C v7.4 is VS 2017. If you would like to use the Visual Studio 2019 compiler, cut or copy the nas_dev
+      directory from under the c subdirectory and paste it under c_vs2019.</li>
+      
+      <li>Note also that if you're using the 64-bit Windows SDK, you will need to cut or copy the nas_dev directory from
+      under the c subdirectory and paste it under c_64.</li>
+      
+      <li>The add-on is now ready to use.</li>
+    </ol>
+</blockquote>
+
+<h2><a name="LinuxInstall" id="LinuxInstall"></a>Linux
+Installation</h2>
+
+  <blockquote>
+    <p>The steps to install the ASN1C NAS/RRC Add-on on a Linux system are as follows:</p>
+
+    <ol>
+      <li>An ASN1C SDK (either licensed or evaluation version) must first be installed.</li>
+
+      <li>Copy the distribution .tar.gz file to the root directory of the Linux installation.</li>
+
+	  <li>Untar and unzip the distribution file.  The result should be the creation of the c/nas_dev subdirectory.</li>
+
+      <li>The add-on is now ready to use.</li>
+    </ol>
+</blockquote>
+
+  <h2><a name="RelContents" id="RelContents"></a>Contents of the Release</h2>
+
+  <blockquote>
+    The nas_dev directory hierarchy is as follows
+
+    <dl>
+      <dt><tt>custsrc</tt></dt>
+
+      <dd>
+        <p>This directory contains custom C source code snippets that are inserted into 
+        the generated code by the ASN1C compiler to accomplish non-standard, one-off 
+        encoding/decoding tasks.</p>
+      </dd>
+
+      <dt><tt>debug</tt></dt>
+
+      <dd>
+        <p>This directory is the build area for debug libraries.  The debug/build subdirectory
+        contains the makefile for building the library.  The debug/lib subdirectory will hold 
+        the library after it is built.</p>
+      </dd>
+
+      <dt><tt>doc</tt></dt>
+
+      <dd>
+        <p>This is where documentation on how to use the API is maintained.</p>
+      </dd>
+
+      <dt><tt>release</tt></dt>
+
+      <dd>
+        <p>This directory is the build area for release libraries.  The release/build subdirectory
+        contains the makefile for building the library.  The release/lib subdirectory will hold 
+        the library after it is built.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\src</tt></dt>
+
+      <dd>
+        <p>This directory contains makefiles and dependencies for building the 3GPP libraries.</p>
+      </dd>
+
+      <dt><tt>&lt;installdir&gt;\src2</tt></dt>
+
+      <dd>
+        <p>This directory contains C source files for utility functions to 
+        decode ARFCN values.</p>
+      </dd>
+
+    </dl>
+  </blockquote>
+
+<h2><a name="GettingStarted" id="GettingStarted"></a>Getting
+  Started</h2>
+
+<blockquote>
+    <p>The procedure to build the library is as follows:</p>
+	<ol>
+      <li>Open a Windows Command Prompt (Start -&gt; Accessories -&gt;
+      Command Prompt) or other command shell window. If using Visual Studio,
+      it is best to open a command prompt window for that version under the
+      Visual Studio Tools group of the main menu pulldown item.</li>
+
+      <li>Change directory (cd) to <tt>c/nas_dev</tt> (or <tt>c_64/nas_dev</tt>).</li>
+
+      <li>Execute the top-level makefile.
+
+		<p>On Windows, this would be done by running the <tt>nmake</tt> utility program:</p>
+        
+        <p><tt>nmake</tt></p>
+
+        <p>(note: nmake is a make utility program that comes with the
+        Microsoft Visual Studio. It may be necessary to execute the
+        batch file <i>vcvars32.bat</i> that comes with Visual Studio in order
+        to set up the environment variables to use this utility).</p>
+        
+        <p>There is also a Visual Studio project file that can be used to build the API
+        using the Visual Studio IDE.</p>
+
+		<p>On Linux, run GNU make:</p>
+        
+        <p><tt>make</tt></p>
+
+        <p>The 3GPP debug and release libraries should now be built.  They 
+        can be found in the debug/lib and release/lib directories respectively.</p>
+      </li>
+
+      <li>To test the libraries, the test programs in the test_* subdirectories may be 
+      used.  Each test directory contains a writer and reader program, and a 
+      makefile to build the programs.  To run a test, change directory (cd) to the 
+      test subdirectory, execute nmake or make to build the reader and writer programs, 
+      and then run "writer -v" followed by "reader -v" to encode and decode the test
+      message (note: the "-v" enables verbose output to provide diagnostics on the 
+      encode and decode operations.  If not provided, the programs will still work, 
+      but will run silently and not provide any output).</li>
+
+    </ol>
+  </blockquote>
+
+  <h2><a name="ReportingBugs" id="ReportingBugs"></a>Reporting Problems</h2>
+
+  <blockquote>
+    <p>Report problems you encounter by sending E-mail to <a href=
+    "mailto:support@obj-sys.com">support@obj-sys.com</a>. The preferred
+    format of example programs is the same as the sample programs. Please
+    provide a writer and reader and indicate where in the code the problem
+    occurs.</p>
+
+    <p>If you have any further questions or comments on what you would like
+    to see in the product or what is difficult to use or understand, please
+    communicate them to us. Your feedback is important to us. Please let us
+    know how it works out for you - either good or bad.</p>
+  </blockquote>
+</body>
+</html>

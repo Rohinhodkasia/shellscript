@@ -1,0 +1,10 @@
+<asn1config>
+  <includedir>../../cms2009</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <module name="OCSP-2009">
+    <production name="OCSPRequest"><isPDU/></production>
+    <production name="OCSPResponse"><isPDU/></production>
+  </module>
+</asn1config>

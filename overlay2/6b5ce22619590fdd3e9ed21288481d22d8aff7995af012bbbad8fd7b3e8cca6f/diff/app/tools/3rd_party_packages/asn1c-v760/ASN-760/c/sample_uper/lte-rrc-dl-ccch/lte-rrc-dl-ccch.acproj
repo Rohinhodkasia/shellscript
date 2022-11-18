@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/lte-rrc/rel15/EUTRA-InterNodeDefinitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/EUTRA-RRC-Definitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/EUTRA-Sidelink-Preconf.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/EUTRA-UE-Variables.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/NBIOT-InterNodeDefinitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/NBIOT-RRC-Definitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/NBIOT-UE-Variables.asn</UTF8String>
+      <UTF8String>../../../specs/lte-rrc/rel15/PC5-RRC-Definitions.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <uper/>
+      <xml/>
+   </ruleset>
+   <translations>
+      <html/>
+   </translations>
+   <basicOptions>
+      <test/>
+      <importDirs>
+         <UTF8String>../../../specs/lte-rrc/rel15</UTF8String>
+      </importDirs>
+      <pdu>DL-CCCH-Message</pdu>
+      <printOut/>
+      <printStrm/>
+      <trace/>
+      <copy/>
+      <compare/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <fqenum/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

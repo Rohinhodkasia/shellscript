@@ -1,0 +1,71 @@
+CSTA-single-step-transfer
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) single-step-conference( 50) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+AccountInfo, AuthCode, CorrelatorData, UserData
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+CallCharacteristics, CallLinkageDataList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+singleStepTrans OPERATION ::=
+{ 	ARGUMENT 		SingleStepTransArgument
+	RESULT 			SingleStepTransResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 50 }
+
+SingleStepTransArgument ::= SEQUENCE
+{	activeCall 			ConnectionID,
+	transferredTo 			DeviceID,
+	accountCode 			[0] IMPLICIT AccountInfo 		OPTIONAL,
+	authCode 			[1] IMPLICIT AuthCode 			OPTIONAL,
+	correlatorData 			[2] IMPLICIT CorrelatorData 		OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	callCharacteristics		[3] IMPLICIT CallCharacteristics	OPTIONAL,
+	subjectOfCall			[4] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[5] IMPLICIT LanguagePreferences	OPTIONAL,
+	reason				[6] IMPLICIT EventCause			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+SingleStepTransResult ::= SEQUENCE
+{	transferredCall 		ConnectionID,
+	connections 			[0] IMPLICIT ConnectionList 		OPTIONAL,
+	transferredCallInfo 		[1] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageDataList		[2] IMPLICIT CallLinkageDataList	OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-single-step-transfer

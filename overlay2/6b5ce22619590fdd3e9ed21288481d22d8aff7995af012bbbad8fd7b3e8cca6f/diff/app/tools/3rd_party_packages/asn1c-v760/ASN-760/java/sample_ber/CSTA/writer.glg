@@ -1,0 +1,24 @@
+Encoding was successful
+Hex dump of encoded record:
+30 0e 80 08 35 35 35 2d 31 32 31 32 62 02 88 00  0...555-1212b...
+Binary dump:
+0000 : 30 0e                               : C [UNIVERSAL 16] 14
+0002 : 80 08                               : P [0] 8
+0004 : 35 35 35 2d 31 32 31 32             : 555-1212
+0012 : 62 02                               : C [APPLICATION 2] 2
+0014 : 88 00                               : P [8] 0
+Encoding was successful
+Hex dump of encoded record:
+a1 16 02 01 01 02 01 0a 30 0e 80 08 35 35 35 2d  ........0...555-
+31 32 31 32 62 02 88 00                          1212b...
+Binary dump:
+0000 : a1 16                               : C [1] 22
+0002 : 02 01                               : P [UNIVERSAL 2] 1
+0004 : 01                                  : .
+0005 : 02 01                               : P [UNIVERSAL 2] 1
+0007 : 0a                                  : .
+0008 : 30 0e                               : C [UNIVERSAL 16] 14
+0010 : 80 08                               : P [0] 8
+0012 : 35 35 35 2d 31 32 31 32             : 555-1212
+0020 : 62 02                               : C [APPLICATION 2] 2
+0022 : 88 00                               : P [8] 0

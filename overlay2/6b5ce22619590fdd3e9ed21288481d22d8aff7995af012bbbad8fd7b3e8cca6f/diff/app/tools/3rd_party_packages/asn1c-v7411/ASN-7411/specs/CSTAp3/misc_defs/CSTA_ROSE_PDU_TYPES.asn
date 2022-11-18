@@ -1,0 +1,168 @@
+CSTA-ROSE-PDU-types 
+DEFINITIONS    ::=
+BEGIN
+   IMPORTS ROS{} FROM Remote-Operations-Generic-ROS-PDUs 
+   {joint-iso-itu-t remote-operations(4) generic-ROS-PDUs(6) version1(0)}
+
+   OPERATION, ERROR FROM Remote-Operations-Information-Objects
+   {joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+   
+   alternateCall FROM CSTA-alternate-call
+   answerCall FROM CSTA-answer-call
+--   callCompletion FROM CSTA-call-completion
+   clearCall FROM CSTA-clear-call
+   clearConnection FROM CSTA-clear-connection
+   conferenceCall FROM CSTA-conference-call
+   consultationCall FROM CSTA-consultation-call
+--   divertCall FROM CSTA-divert-call
+   holdCall FROM CSTA-hold-call
+   makeCall FROM CSTA-make-call
+   makePredictiveCall FROM CSTA-make-predictive-call
+--   queryDevice FROM CSTA-query-device
+   reconnectCall FROM CSTA-reconnect-call
+   retrieveCall FROM CSTA-retrieve-call
+--   setFeature FROM CSTA-set-feature
+   transferCall FROM CSTA-transfer-call
+   cSTAEventReport FROM CSTA-event-report-definitions
+   routeRequest FROM CSTA-route-request
+   reRouteRequest FROM CSTA-re-route-request
+   routeSelectRequest FROM CSTA-Route-select-request
+   routeUsedRequest FROM CSTA-route-used-request
+   routeEndRequest FROM CSTA-route-end-request
+   escape FROM CSTA-escape-service
+   systemStatus FROM CSTA-system-status
+   monitorStart FROM CSTA-monitor-start
+   changeMonitorFilter FROM CSTA-change-monitor-filter
+   monitorStop FROM CSTA-monitor-stop
+   snapshotDevice FROM CSTA-snapshot-device
+   snapshotCall FROM CSTA-snapshot-call 
+   parkCall FROM CSTA-park-call
+   singleStepConf FROM CSTA-single-step-conference
+   routeReject FROM CSTA-route-reject
+   singleStepTrans FROM CSTA-single-step-transfer
+   snapshotCallData FROM CSTA-snapshot-call-data
+   snapshotDeviceData FROM CSTA-snapshot-device-data
+   acceptCall FROM CSTA-accept-call
+   callBack FROM CSTA-call-back-call-related 
+   callBackMessage FROM CSTA-call-back-message-call-related
+   camponCall FROM CSTA-camp-on-call 
+   deflectCall FROM CSTA-deflect-call
+   dialDigits FROM CSTA-dial-digits
+   directedPickupCall FROM CSTA-directed-pickup-call
+   groupPickupCall FROM CSTA-group-pickup-call
+   intrudeCall FROM CSTA-intrude-call
+   joinCall FROM CSTA-join-call
+   associateData FROM CSTA-associate-data
+   cancelTelephonyTones FROM CSTA-cancel-telephony-tones
+   generateDigits FROM CSTA-generate-digits
+   sendUserInfo FROM CSTA-send-user-information
+   attachMediaService FROM CSTA-attach-media-service
+   routeRegister FROM CSTA-route-register
+   routeRegisterCancel FROM CSTA-route-register-cancel
+   buttonPress FROM CSTA-button-press
+   getAuditoryApparatusInformation FROM CSTA-get-auditory-apparatus-information
+   getDisplay FROM CSTA-get-display
+   getHookswitchStatus FROM CSTA-get-hookswitch-status
+   getLogicalDeviceInformation FROM CSTA-get-logical-device-information
+   getButtonInformation FROM CSTA-get-button-information
+   generateTelephonyTones FROM CSTA-generate-telephony-tones
+   detachMediaService FROM CSTA-detach-media-service
+   routeRegisterAbort FROM CSTA-route-register-abort
+;
+
+   CSTA-ROSE-PDU ::= ROS {{InvokeIdSet}, {OperationSet}, {OperationSet}}
+
+   InvokeIdSet INTEGER ::=
+   {
+      InvokeIDs
+   }
+
+   InvokeIDs ::= INTEGER 
+
+   OperationSet OPERATION ::=
+   {
+      alternateCall |
+      answerCall |
+--     callCompletion |
+      clearCall |
+      clearConnection |
+      conferenceCall |
+      consultationCall |
+--     divertCall |
+      holdCall |
+      makeCall |
+      makePredictiveCall |
+--      queryDevice |
+      reconnectCall |
+      retrieveCall |
+--      setFeature |
+      transferCall |
+      parkCall |
+      singleStepConf |
+      cSTAEventReport |
+      routeRequest |
+      reRouteRequest |
+      routeSelectRequest |
+      routeUsedRequest |
+      routeEndRequest |
+      routeReject |
+      singleStepTrans |
+      escape |
+      monitorStart |
+      changeMonitorFilter |
+      monitorStop |
+      snapshotDevice |
+      snapshotCall |
+      snapshotCallData |
+      snapshotDeviceData | 
+      systemStatus |
+      acceptCall |
+      callBack |
+      callBackMessage |
+      camponCall |
+      deflectCall |
+      dialDigits |
+      directedPickupCall |
+      groupPickupCall |
+      intrudeCall |
+      joinCall |
+      associateData |
+      cancelTelephonyTones |
+      generateDigits |
+      generateTelephonyTones |
+      sendUserInfo |
+      attachMediaService |
+      detachMediaService |
+      routeRegister |
+      routeRegisterAbort |
+      routeRegisterCancel |
+      buttonPress |
+      getAuditoryApparatusInformation |
+      getButtonInformation |
+      getDisplay |
+      getHookswitchStatus |
+      getLogicalDeviceInformation,
+      ...
+   }
+
+--CSTA-accept-call, CSTA-get-auditory-apparatus-information, CSTA-button-press, CSTA-route-register-cancel, CSTA-route-register-abort, CSTA-detach-media-service, CSTA-attach-media-service, CSTA-cancel-telephony-tones, CSTA-generate-digits
+
+--CSTA-join-call
+--CSTA-associate-data,
+--CSTA-send-user-information
+
+
+
+--CSTA-call-back-call-related 
+--CSTA-call-back-message-call-related 
+--CSTA-camp-on-call 
+--CSTA-deflect-call
+--CSTA-group-pickup-call
+--CSTA-intrude-call 
+
+--CSTA-route-reject
+--CSTA-single-step-transfer
+--CSTA-snapshot-call-data
+--CSTA-snapshot-device-data
+
+END

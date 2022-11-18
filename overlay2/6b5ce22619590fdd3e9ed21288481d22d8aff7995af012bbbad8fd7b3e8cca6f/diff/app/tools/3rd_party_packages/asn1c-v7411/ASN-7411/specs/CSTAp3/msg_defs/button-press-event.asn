@@ -1,0 +1,27 @@
+CSTA-button-press-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) button-press-event( 284) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ButtonID FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+ButtonPressEvent ::= SEQUENCE
+{	device				SubjectDeviceID,
+	button				ButtonID,
+	buttonLabel			IA5String (SIZE(0..64))			OPTIONAL,
+	buttonAssociatedNumber		DeviceID				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-button-press-event

@@ -1,0 +1,213 @@
+Decode was successful
+personnelRecord {
+   name {
+      givenName = John
+      initial = P
+      familyName = Smith
+   }
+   number = 51
+   title = Director
+   dateOfHire = 19710917
+   nameOfSpouse {
+      givenName = Mary
+      initial = T
+      familyName = Smith
+   }
+   children [0] {
+      name {
+         givenName = Ralph
+         initial = T
+         familyName = Smith
+      }
+      dateOfBirth = 19571111
+   }
+   children [1] {
+      name {
+         givenName = Susan
+         initial = B
+         familyName = Jones
+      }
+      dateOfBirth = 19590717
+      sex = female
+   }
+}
+
+Binary trace:
+personnelRecord. extbit
+0------- -------- -------- --------     --------    ----                      
+
+personnelRecord. childrenPresent
+-1------ -------- -------- --------     --------    ----                      
+
+personnelRecord.name extbit
+--0----- -------- -------- --------     --------    ----                      
+
+personnelRecord.name.givenName extbit
+---0---- -------- -------- --------     --------    ----                      
+
+personnelRecord.name.givenName length
+----0000 11------ -------- --------     40------    @---                      
+
+personnelRecord.name.givenName value
+-------- --001011 10101010 00111010     --cbaa3a    -..:                      
+01------ -------- -------- --------     --------    ----                      
+
+personnelRecord.name.initial value
+--010001 -------- -------- --------     51------    Q---                      
+
+personnelRecord.name.familyName extbit
+-------- 0------- -------- --------     --------    ----                      
+
+personnelRecord.name.familyName length
+-------- -000100- -------- --------     --------    ----                      
+
+personnelRecord.name.familyName value
+-------- -------0 10100101 00010010     --08a512    -...                      
+01011111 00011--- -------- --------     5f------    _---                      
+
+personnelRecord.number extbit
+-------- -----0-- -------- --------     --------    ----                      
+
+personnelRecord.number value
+-------- ------00 00000011 0011----     --1803--    -..-                      
+
+personnelRecord.title len >= 128
+-------- -------- -------- ----0---     --------    ----                      
+
+personnelRecord.title length
+-------- -------- -------- -----000     ------30    ---0                      
+1000---- -------- -------- --------     --------    ----                      
+
+personnelRecord.title value
+----1000 10011010 01111001 01100101     889a7965    ..ye                      
+11000111 11010011 01111111 0010----     c7d37f--    ...-                      
+
+personnelRecord.dateOfHire extbit
+-------- -------- -------- ----0---     --------    ----                      
+
+personnelRecord.dateOfHire value
+-------- -------- -------- -----000     ------20    ---                       
+11001011 10001000 01001000 10111---     cb8848--    ..H-                      
+
+personnelRecord.nameOfSpouse extbit
+-------- -------- -------- -----0--     --------    ----                      
+
+personnelRecord.nameOfSpouse.givenName extbit
+-------- -------- -------- ------0-     --------    ----                      
+
+personnelRecord.nameOfSpouse.givenName length
+-------- -------- -------- -------0     ------b8    ---.                      
+00011--- -------- -------- --------     --------    ----                      
+
+personnelRecord.nameOfSpouse.givenName value
+-----001 11001110 01011011 10100---     19ce5b--    ..[-                      
+
+personnelRecord.nameOfSpouse.initial value
+-------- -------- -------- -----010     ------a2    ---.                      
+101----- -------- -------- --------     --------    ----                      
+
+personnelRecord.nameOfSpouse.familyName extbit
+---0---- -------- -------- --------     --------    ----                      
+
+personnelRecord.nameOfSpouse.familyName length
+----0001 00------ -------- --------     a1------    .---                      
+
+personnelRecord.nameOfSpouse.familyName value
+-------- --010100 10100010 01001011     --14a24b    -..K                      
+11100011 -------- -------- --------     e3------    .---                      
+
+personnelRecord.children extbit
+-------- 0------- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[0] extbit
+-------- -0------ -------- --------     --------    ----                      
+
+personnelRecord.children.elements[0].name extbit
+-------- --0----- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[0].name.givenName extbit
+-------- ---0---- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[0].name.givenName length
+-------- ----0001 00------ --------     --01----    -.--                      
+
+personnelRecord.children.elements[0].name.givenName value
+-------- -------- --010011 01110010     ----1372    --.r                      
+01111010 11100011 -------- --------     7ae3----    z.--                      
+
+personnelRecord.children.elements[0].name.initial value
+-------- -------- 010101-- --------     --------    ----                      
+
+personnelRecord.children.elements[0].name.familyName extbit
+-------- -------- ------0- --------     --------    ----                      
+
+personnelRecord.children.elements[0].name.familyName length
+-------- -------- -------0 00100---     ----54--    --T-                      
+
+personnelRecord.children.elements[0].name.familyName value
+-------- -------- -------- -----010     ------22    ---"                      
+10010100 01001001 01111100 011-----     94497c--    .I|-                      
+
+personnelRecord.children.elements[0].dateOfBirth extbit
+-------- -------- -------- ---0----     --------    ----                      
+
+personnelRecord.children.elements[0].dateOfBirth value
+-------- -------- -------- ----0001     ------61    ---a                      
+10010101 01110001 00010001 0001----     957111--    .q.-                      
+
+personnelRecord.children.elements[1] extbit
+-------- -------- -------- ----1---     --------    ----                      
+
+personnelRecord.children.elements[1].name extbit
+-------- -------- -------- -----0--     --------    ----                      
+
+personnelRecord.children.elements[1].name.givenName extbit
+-------- -------- -------- ------0-     --------    ----                      
+
+personnelRecord.children.elements[1].name.givenName length
+-------- -------- -------- -------0     ------18    ---.                      
+00100--- -------- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[1].name.givenName value
+-----010 10011000 01011100 11100101     22985ce5    ".\.                      
+001----- -------- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[1].name.initial value
+---00001 1------- -------- --------     21------    !---                      
+
+personnelRecord.children.elements[1].name.familyName extbit
+-------- -0------ -------- --------     --------    ----                      
+
+personnelRecord.children.elements[1].name.familyName length
+-------- --000100 -------- --------     --84----    -.--                      
+
+personnelRecord.children.elements[1].name.familyName value
+-------- -------- 00101110 10101010     ----2eaa    --..                      
+01100000 101110-- -------- --------     60------    `---                      
+
+personnelRecord.children.elements[1].dateOfBirth extbit
+-------- ------0- -------- --------     --------    ----                      
+
+personnelRecord.children.elements[1].dateOfBirth value
+-------- -------0 00110010 10110010     --b832b2    -.2.                      
+00001110 0010111- -------- --------     0e------    .---                      
+
+personnelRecord.children.elements[1] extbit
+-------- -------0 -------- --------     --2e----    -.--                      
+
+personnelRecord.children.elements[1] value
+-------- -------- 000000-- --------     --------    ----                      
+
+personnelRecord.children.elements[1] sexPresent
+-------- -------- ------1- --------     --------    ----                      
+
+personnelRecord.children.elements[1].sex len >= 128
+-------- -------- -------0 --------     ----02--    --.-                      
+
+personnelRecord.children.elements[1].sex length
+-------- -------- -------- 0000001-     --------    ----                      
+
+personnelRecord.children.elements[1].sex value
+-------- -------- -------- -------0     ------02    ---.                      
+1------- -------- -------- --------     --------    ----                      
+

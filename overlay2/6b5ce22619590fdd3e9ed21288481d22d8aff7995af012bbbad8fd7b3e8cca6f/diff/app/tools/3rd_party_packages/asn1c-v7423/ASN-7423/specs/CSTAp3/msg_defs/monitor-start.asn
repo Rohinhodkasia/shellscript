@@ -1,0 +1,44 @@
+CSTA-monitor-start
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) monitor-start( 101) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+MonitorObject, MonitorFilter, MonitorType, MonitorMediaClass,
+MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+monitorStart OPERATION ::=
+{ 	ARGUMENT 		MonitorStartArgument
+	RESULT 			MonitorStartResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 71 }
+
+MonitorStartArgument ::= SEQUENCE
+{ 	monitorObject 			MonitorObject,
+	requestedMonitorFilter 		[0] IMPLICIT MonitorFilter 	OPTIONAL,
+	monitorType 			MonitorType 			OPTIONAL,
+	requestedMonitorMediaClass 	[1] IMPLICIT MonitorMediaClass 	OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+MonitorStartResult ::= SEQUENCE
+{ 	crossRefIdentifier 		MonitorCrossRefID,
+	actualmonitorFilter 		[0] IMPLICIT MonitorFilter 	OPTIONAL,
+	actualMonitorMediaClass 	[1] IMPLICIT MonitorMediaClass 	OPTIONAL,
+	monitorExistingCalls 		BOOLEAN 			OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+END -- of CSTA-monitor-start

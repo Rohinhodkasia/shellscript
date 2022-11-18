@@ -1,0 +1,29 @@
+CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+CallID, ConnectionID;
+
+IMPORTS
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) };
+
+ConnectionID ::= [APPLICATION 11] CHOICE
+{ 	callID 			[0] IMPLICIT 		CallID,
+	deviceID 		[1] 			LocalDeviceID,
+	both SEQUENCE
+	{ 	callID 		[0] IMPLICIT		CallID,
+		deviceID 	[1] 			LocalDeviceID } }
+
+CallID ::= OCTET STRING
+
+LocalDeviceID ::= CHOICE
+{ 	staticID 		DeviceID,
+	dynamicID 		[3] IMPLICIT 		OCTET STRING }
+
+END -- of CSTA-call-connection-identifiers

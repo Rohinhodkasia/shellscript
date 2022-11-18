@@ -1,0 +1,35 @@
+Decode was successful
+value {
+   orderDate = 2003-04-01
+   shipTo {
+      country = US
+      name = Joe Smith
+      street = 1 Morning Light Rd
+      city = Glenmoore
+      state = PA
+      zip = 19343
+   }
+   billTo {
+      country = US
+      name = Bill Jones
+      street = 102 Pickering Way, Suite 506
+      city = Exton
+      state = PA
+      zip = 19341
+   }
+   comment = Need this ASAP!
+   items [0] {
+      partNum = 111-AA
+      productName = Acme Widget
+      quantity = 50
+      uSPrice = 200
+   }
+   items [1] {
+      partNum = 222-BB
+      productName = Wizbang Gadget
+      quantity = 99
+      uSPrice = 777
+      comment = I would like these in the color red
+      shipDate = 2003-03-26
+   }
+}

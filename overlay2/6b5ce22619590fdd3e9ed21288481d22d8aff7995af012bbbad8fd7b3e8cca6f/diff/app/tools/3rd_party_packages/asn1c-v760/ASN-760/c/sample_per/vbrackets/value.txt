@@ -1,0 +1,48 @@
+value TestSequence ::= 
+{
+  --TYPE INFORMATION: SEQUENCE
+  --OFFSET: 0,0
+  --extension flag: <.1>
+  --preamble: <1>
+    --bit #0 = 1: 'item-name' is present
+  item-code 29,
+    --TYPE INFORMATION: INTEGER (0..254)
+    --OFFSET: 0,2; LENGTH: 1,0
+    --contents: <000111.01>
+  item-name "SHERRY",
+    --TYPE INFORMATION: IA5String (SIZE(3..10)) OPTIONAL
+    --OFFSET: 1,2; LENGTH: 6,6
+    --length: <011> (decoded as 6)
+    --padding: <000>
+    --contents: .53.48.45.52.52.59
+  --extension preamble size flag: <.0> (preamble size <= 64)
+  --extension preamble length: <000001> (decoded as 2)
+  --extension preamble: <1.1>
+    --bit #0 = 1: extension 'urgency' is present
+    --bit #1 = 1: version brackets that contain:
+        --'alternate-item-code'
+        --'alternate-item-name'
+      --is present
+  --padding: <0000000>
+  --extension length: .01 (decoded as 1)
+  urgency high,
+    --TYPE INFORMATION: ENUMERATED {normal,high}
+    --OFFSET: 11,0; LENGTH: 0,1
+    --contents: <.1>
+    --trailing bits: <0000000>
+  --[[
+    --extension length: .06 (decoded as 6)
+    --preamble: <.1>
+      --bit #0 = 1: 'alternate-item-name' is present
+    alternate-item-code 45,
+      --TYPE INFORMATION: INTEGER (0..254)
+      --OFFSET: 13,1; LENGTH: 1,0
+      --contents: <0010110.1>
+    alternate-item-name "PORT"
+      --TYPE INFORMATION: IA5String (SIZE(3..20)) OPTIONAL
+      --OFFSET: 14,1; LENGTH: 4,7
+      --length: <00001> (decoded as 4)
+      --padding: <00>
+      --contents: .50.4F.52.54
+  --]]
+}

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Decoding TS24301Msg_PDU</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s08.html" title="Decoding Messages" />
+    <link rel="prev" href="ar01s08s01.html" title="Decoding Messages Other Than TS24301Msg_PDU" />
+    <link rel="next" href="ar01s09.html" title="NAS Security" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Decoding TS24301Msg_PDU</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s08s01.html">Prev</a> </td>
+          <th width="60%" align="center">Decoding Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s09.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Decoding TS24301Msg_PDU">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644178756"></a>Decoding TS24301Msg_PDU</h3>
+          </div>
+        </div>
+      </div>
+      <p>The procedure for decoding <code class="literal">TS24301Msg_PDU</code> is basically the same as given above.  When the encoded message is security protected, however, there are a few additional requirements. These steps are <span class="emphasis"><em>not</em></span> necessary when decoding a message <span class="emphasis"><em>without</em></span> security protection (but, unless you are certain the message is not security protected, you will need to follow these requirements).</p>
+      <p>For security protected messages, including <code class="literal">SERVICE REQUEST</code> messages (which always have integrity protection):
+            </p>
+      <div class="orderedlist">
+        <ol class="orderedlist" type="1">
+          <li class="listitem">
+            <p>Initialize the NAS security context</p>
+          </li>
+          <li class="listitem">
+            <p>Specify the algorithm and keys to use</p>
+          </li>
+          <li class="listitem">
+            <p>Set NAS security parameters</p>
+          </li>
+          <li class="listitem">
+            <p>Free the NAS security context when finished.</p>
+          </li>
+        </ol>
+      </div>
+      <p>
+            Each of these steps is illustrated in the encoding example above. The <code class="literal">NASDec_TS24301Msg_PDU</code> function will:
+            </p>
+      <div class="itemizedlist">
+        <ul class="itemizedlist" type="disc">
+          <li class="listitem">
+            <p>verify the message authentication code of an integrity protected message. The MAC (or short MAC) will be decoded into either <code class="literal">TS24301Msg_PDU.secHdr.msgAuthCode</code> or  <code class="literal">TS24301Msg_ServiceRequest.shortMAC</code>. If MAC verification fails, <code class="literal">RTERR_INVMAC</code> is returned.</p>
+          </li>
+          <li class="listitem">
+            <p>decrypt and further decode a confidentiality protected message</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s08s01.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s08.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s09.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Decoding Messages Other Than TS24301Msg_PDU </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> NAS Security</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

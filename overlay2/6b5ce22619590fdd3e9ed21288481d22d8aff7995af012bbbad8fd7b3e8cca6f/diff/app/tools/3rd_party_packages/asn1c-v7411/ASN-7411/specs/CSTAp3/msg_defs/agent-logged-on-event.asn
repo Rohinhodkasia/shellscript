@@ -1,0 +1,32 @@
+CSTA-agent-logged-on-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-logged-on-event( 321) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+AgentID, AgentPassword FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+AgentLoggedOnEvent ::= SEQUENCE
+{	agentDevice 			SubjectDeviceID,
+	agentID				[2] IMPLICIT AgentID			OPTIONAL,
+	acdGroup			DeviceID				OPTIONAL,
+	agentPassword			[3] IMPLICIT AgentPassword		OPTIONAL,
+	cause				EventCause				OPTIONAL,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-agent-logged-on-event

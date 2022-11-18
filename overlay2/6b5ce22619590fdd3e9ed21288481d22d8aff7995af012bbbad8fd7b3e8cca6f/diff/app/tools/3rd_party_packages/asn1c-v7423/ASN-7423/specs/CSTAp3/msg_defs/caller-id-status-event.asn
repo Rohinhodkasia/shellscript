@@ -1,0 +1,23 @@
+CSTA-caller-id-status-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) caller-id-status-event( 329) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+CallerIDStatusEvent ::= SEQUENCE
+{	device 				DeviceID,
+	callerIDProvided		BOOLEAN,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-caller-id-status-event

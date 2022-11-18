@@ -1,0 +1,59 @@
+CSTA-join-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) join-call( 223) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData, ParticipationType, UserData
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) }
+AutoOriginate, CallLinkageDataList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) };
+
+joinCall OPERATION ::=
+{ 	ARGUMENT 		JoinCallArgument
+	RESULT 			JoinCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 223 }
+
+JoinCallArgument ::= SEQUENCE
+{ 	activeCall 			ConnectionID,
+	joiningDevice 			DeviceID,
+	autoOriginate 			[0] IMPLICIT 	AutoOriginate 		DEFAULT prompt,
+	participationType 		[1] IMPLICIT 	ParticipationType 	DEFAULT active,
+	accountCode 			[2] IMPLICIT 	AccountInfo 		OPTIONAL,
+	authCode 			[3] IMPLICIT 	AuthCode 		OPTIONAL,
+	correlatorData 			[4] IMPLICIT 	CorrelatorData 		OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+JoinCallResult ::= SEQUENCE
+{ 	conferencedCall 		ConnectionID,
+	conferencedCallInfo 		ConnectionInformation 			OPTIONAL,
+	callLinkageDataList		[1] IMPLICIT CallLinkageDataList	OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-join-call

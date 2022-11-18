@@ -1,0 +1,17 @@
+-- Version brackets sample
+-- this was taken from "ASN.1 Complete" by John Larmouth, p. 368 
+-- (note: the encoding shown in the book is not correct; the encoding 
+-- produced here has been confirmed as being accurate)
+
+VersionBrackets DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+TestSequence ::= SEQUENCE {
+   item-code    INTEGER (0..254),
+   item-name    IA5String (SIZE (3..10)) OPTIONAL, 
+   ... ! 1,
+   urgency      ENUMERATED { normal, high } DEFAULT normal, 
+   [[ alternate-item-code       INTEGER (0..254), 
+      alternate-item-name       IA5String (SIZE (3..10)) OPTIONAL ]]
+}
+
+END

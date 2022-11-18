@@ -1,0 +1,1 @@
+valgrind --leak-check=full ../../../bin/asn1c ../../../specs/camel/camel.asn -cpp -ber -compare -copy -depends -html -I ../../../specs/camel -I ../../../specs/gsm_map -I ../../../specs/cap -I ../../../specs/ROSE -print -prttostr -prttostrm -strict-size -table-unions -test

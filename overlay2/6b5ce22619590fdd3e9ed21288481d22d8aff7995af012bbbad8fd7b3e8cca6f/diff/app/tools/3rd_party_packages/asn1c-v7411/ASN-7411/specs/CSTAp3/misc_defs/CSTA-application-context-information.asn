@@ -1,0 +1,159 @@
+CSTA-application-context-information
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta2( 218) application-context-information( 200) }
+DEFINITIONS ::=
+BEGIN
+
+ACSEUserInformationForCSTA ::= SEQUENCE
+	{cSTAVersion                                    CSTAVersion,
+	 cSTAFunctionsRequiredByApplication             CSTAFunctionality,
+	 cSTAFunctionsThatCanBeSupplied         CSTAFunctionality       }
+
+CSTAVersion ::= BIT STRING
+	{versionOne             (0),
+	 versionTwo             (1)
+
+	 -- others to be added in future
+
+	}
+
+--      When requesting an application association, the requestor will set the corresponding bits for each
+--      version that it supports. When responding, the responder shall specify only one bit corresponding
+--      to the version selected (the highest common to both systems).
+
+ CSTAFunctionality ::= SEQUENCE
+ {switchingFunctionServices	[0] IMPLICIT SwitchingFunctionServices	DEFAULT {},
+	  eventReportServices		[1] IMPLICIT EventReportServices	DEFAULT {},
+	  computingFunctionServices	[2] IMPLICIT ComputingFunctionServices	DEFAULT {},
+	  bidirectionalServices		[3] IMPLICIT BidirectionalServices	DEFAULT {},
+	  statusReportingServices		[4] IMPLICIT StatusReportingServices	DEFAULT {},
+	  inputOutputServices		[5] IMPLICIT InputOutputServices		DEFAULT {},
+	  voiceUnitServices		[6] IMPLICIT VoiceUnitServices		DEFAULT {} }
+
+SwitchingFunctionServices ::= BIT STRING
+	{alternateCall                  (0),
+	 answerCall                     (1),
+	 associateData                  (2),
+	 callCompletion                 (3),
+	 clearCall                      (4),
+	 clearConnection                (5),
+	 conferenceCall                 (6),
+	 consultationCall               (7),
+	 divertCall                     (8),
+	 holdCall                       (9),
+	 makeCall                       (10),
+	 makePredictiveCall             (11),
+	 parkCall                       (12),
+	 queryDevice                    (13),
+	 reconnectCall                  (14),
+	 retrieveCall                   (15),
+	 sendDTMFTones          (16),
+	 setFeature                     (17),
+	 singleStepConference           (18),
+	 singleStepTransfer             (19),
+	 transferCall                   (20)    }
+
+EventReportServices ::= BIT STRING
+	{
+
+	-- Call events
+
+	 callCleared                    (0),
+	 conferenced                    (1),
+	 connectionCleared              (2),
+	 delivered                      (3),
+	 diverted                       (4),
+	 established                    (5),
+	 failed                         (6),
+	 held                           (7),
+	 networkReached         (8),
+	 originated                     (9),
+	 queued                 (10),
+	 retrieved                      (11),
+	 serviceInitiated                       (12),
+	 transferred                    (13),
+
+	-- Feature events
+
+	 autoAnswer                     (14),
+	 callInformation                        (15),
+	 doNotDisturb                   (16),
+	 forwarding                     (17),
+	 messageWaiting         (18),
+	 microphoneMute         (19),
+	 speakerMute                    (20),
+	 speakerVolume          (21),
+
+	-- Agent state events
+
+	 agentBusy                      (22),
+	 loggedOn                       (23),
+	 loggedOff                      (24),
+	 notReady                       (25),
+	 ready                          (26),
+	 workingAfterCall               (27),
+
+	-- Maintenance events
+
+	 backInService                  (28),
+	 outOfServiceEvent              (29),
+
+	-- Private events
+
+	 privateEvent                   (30),
+
+	-- Voice unit events
+
+	 playEvent                      (31),
+	 recordEvent                    (32),
+	 reviewEvent                    (33),
+	 stopEvent                      (34),
+	 suspendPlayEvent               (35),
+	 suspendRecordEvent             (36),
+	 voiceAttributesChangeEvent     (37)    }
+
+ComputingFunctionServices ::= BIT STRING
+	{routeRequest                   (0),
+	 reRouteRequest         (1),
+	 routeSelectRequest             (2),
+	 routeUsedRequest               (3),
+	 routeEndRequest                (4)     }
+
+BidirectionalServices ::= BIT STRING
+	{escapeService                  (0),
+	 systemStatus                   (1)     }
+
+StatusReportingServices ::= BIT STRING
+	{monitorStart                   (0),
+	 changeMonitorFilter            (1),
+	 monitorStop                    (2),
+	 snapshotDevice         (3),
+	 snapshotCall                   (4)     }
+
+InputOutputServices ::= BIT STRING
+	{startDataPathService           (0),
+	 stopDataPathService            (1),
+	 sendDataService                (2),
+	 sendMulticastDataService       (3),
+	 sendBroadcastDataService       (4),
+	 suspendDataPathService (5),
+	 dataPathSuspendedService       (6),
+	 resumeDataPath         (7),
+	 dataPathResumedService (8),
+	 fastData                       (9)     }
+
+VoiceUnitServices ::= BIT STRING
+	{concatenateMessage             (0),
+	 deleteMessage                  (1),
+	 playMessage                    (2),
+	 queryVoiceAttribute            (3),
+	 recordMessage          (4),
+	 reposition                     (5),
+	 resume                 (6),
+	 review                         (7),
+	 setVoiceAttribute              (8),
+	 stop                           (9),
+	 suspend                        (10),
+	 synthesizeMessage              (11)    }
+
+END  -- of CSTA-application-context-information

@@ -1,0 +1,43 @@
+CSTA-stop-location-tracking-session
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) stop-location-tracking-session( 537) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LocCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) };
+
+stopLocationTrackingSession OPERATION ::=
+{ 	ARGUMENT		StopLocationTrackingSessionArgument
+	RESULT			StopLocationTrackingSessionResult
+	ERRORS			{universalFailure }
+	CODE			local: 537}
+
+StopLocationTrackingSessionArgument ::= SEQUENCE
+{	locCrossRefID			LocCrossRefID,
+	reason				EventCause				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+StopLocationTrackingSessionResult ::= SEQUENCE 
+{	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-stop-location-tracking-session

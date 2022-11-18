@@ -1,0 +1,24 @@
+BitString DEFINITIONS ::= BEGIN
+
+SizedBitStr ::= BIT STRING (SIZE (1..100))
+
+SmallerSizedBitStr ::= SizedBitStr (SIZE (20..90))
+
+FixedSizeBitStr ::= BIT STRING (SIZE (100))
+
+FixedSizeBitStr2 ::= SizedBitStr (SIZE (100))
+
+BitStr ::= BIT STRING
+
+NamedBits ::= BIT STRING { a(1), b(3), c(5) }
+
+BitStrSeq ::= SEQUENCE {
+   simpleBitStr BitStr, 
+   sizedBitStr SizedBitStr,
+   inSz1to10   BIT STRING (SIZE (1..100)), 
+   inFxdSz     BIT STRING (SIZE (100)),
+   defFixed    FixedSizeBitStr, 
+   namedBits   NamedBits
+}
+
+END

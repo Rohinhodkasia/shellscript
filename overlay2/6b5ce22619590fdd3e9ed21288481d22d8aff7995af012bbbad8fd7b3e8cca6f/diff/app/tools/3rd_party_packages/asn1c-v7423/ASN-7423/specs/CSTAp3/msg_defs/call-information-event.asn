@@ -1,0 +1,55 @@
+CSTA-call-information-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-information-event( 41) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+CallingDeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageDataList, CallQualifyingData, ServicesPermitted 
+FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LanguagePreferences,SubjectOfCall FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+CallInformationEvent ::= SEQUENCE
+{	connection			ConnectionID,
+	device				SubjectDeviceID,
+	callingDevice			CallingDeviceID				OPTIONAL,
+	accountInfo			[0] IMPLICIT AccountInfo		OPTIONAL,
+	authCode			[1] IMPLICIT AuthCode			OPTIONAL,
+	correlatorData			[2] IMPLICIT CorrelatorData		OPTIONAL,
+	servicesPermitted		[3] IMPLICIT ServicesPermitted		OPTIONAL,
+	userData			UserData	 			OPTIONAL,
+	callQualifyingData		[4] IMPLICIT CallQualifyingData		OPTIONAL,
+	connectionInfo			ConnectionInformation			OPTIONAL,
+	callLinkageDataList		[5] IMPLICIT CallLinkageDataList	OPTIONAL,
+	callCharacteristics		[6] IMPLICIT CallCharacteristics	OPTIONAL,
+	subjectOfCall			[7] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[8] IMPLICIT LanguagePreferences	OPTIONAL,
+	deviceInfo			[9] IMPLICIT DeviceID			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-call-information-event

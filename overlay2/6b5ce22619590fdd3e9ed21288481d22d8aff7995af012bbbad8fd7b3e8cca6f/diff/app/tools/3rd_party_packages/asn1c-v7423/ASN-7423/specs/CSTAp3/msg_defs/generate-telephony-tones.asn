@@ -1,0 +1,42 @@
+CSTA-generate-telephony-tones
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) generate-telephony-tones( 233) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+TelephonyTone FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+generateTelephonyTones	 OPERATION ::=
+{	ARGUMENT		GenerateTelephonyTonesArgument
+	RESULT			GenerateTelephonyTonesResult
+	ERRORS			{universalFailure }
+	CODE			local: 233 }
+
+GenerateTelephonyTonesArgument ::= SEQUENCE
+{	connectionToSendTone		ConnectionID,
+	toneToSend			TelephonyTone,
+	toneDuration			INTEGER				OPTIONAL,
+	extensions			CSTACommonArguments		OPTIONAL } 
+
+GenerateTelephonyTonesResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+END  -- of CSTA-generate-telephony-tones

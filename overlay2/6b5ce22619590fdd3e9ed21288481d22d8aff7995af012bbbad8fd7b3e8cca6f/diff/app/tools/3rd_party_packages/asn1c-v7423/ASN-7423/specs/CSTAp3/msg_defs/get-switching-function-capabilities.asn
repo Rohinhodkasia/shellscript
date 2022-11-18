@@ -1,0 +1,202 @@
+CSTA-get-switching-function-capabilities
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-switching-function-capabilities( 203) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+MonitorMediaClass, MonitorFilter FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+TimeInfo FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ACDModels, CapExchangeServList, DeviceIDFormat, FilterThreshold,
+IgnoreUnsupportedParameters, CallControlServList, CallControlEvtsList,
+CallAssociatedServList, CallAssociatedEvtsList, MediaServList, MediaEvtsList,
+RouteingServList, PhysDevEvtsList, PhysDevServList, LogicalEvtsList, LogicalServList,
+DeviceMaintEvtsList, IOServicesServList, DataCollectionServList, VoiceUnitServList,
+VoiceUnitEvtsList, CDRServList, VendorSpecificServList, VendorSpecificEvtsList,
+MaxLengthParameters, TransAndConfSetup, MediaServiceCapsList, MiscMonitorCaps,
+MonitoringServList, PauseTime, SnapshotServList, SwAppearanceAddressability, 
+MaxLengthParametersContinued,SwAppearanceTypes, SwDomainFeatures, SystemStatusServList, 
+TimeStampMode, LocationServicesServList
+FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+
+NumberOfChannels, MaxChannelBind, ConnectionRateList, DelayToleranceList
+
+FROM CSTA-data-call-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) data-call-types( 134) };
+
+getSwitchingFunctionCapabilities OPERATION ::=
+{ 	ARGUMENT 		GetSwitchingFunctionCapsArgument
+	RESULT 			GetSwitchingFunctionCapsResult
+	ERRORS 			{universalFailure }
+	CODE 			local:203 }
+
+GetSwitchingFunctionCapsArgument ::= CHOICE
+{ 	extensions 		CSTACommonArguments,
+	noData 			NULL }
+
+GetSwitchingFunctionCapsResult ::= SEQUENCE
+{ 	switchingSubDomainName 			IA5String (SIZE(0..64)),
+	manufacturerName 			IA5String (SIZE(0..64)),
+	profiles 				Profiles,
+	deviceIDFormat 				DeviceIDFormat,
+	swDomainFeatures 			SwDomainFeatures,
+	swAppearanceAddressability 		SwAppearanceAddressability,
+	swAppearanceTypes 			SwAppearanceTypes,
+	ignoreUnsupportedParameters 		IgnoreUnsupportedParameters,
+	callCharacteristicsSupported 		[ 0] IMPLICIT 	CallCharacteristics 		OPTIONAL,
+	mediaClassSupport 			[ 1] IMPLICIT 	MonitorMediaClass 		OPTIONAL,
+	numberOfChannels 			[ 2] IMPLICIT 	NumberOfChannels 		OPTIONAL,
+	maxChannelBind 				[ 3] IMPLICIT 	MaxChannelBind 			OPTIONAL,
+	miscMediaCallCharacteristics 		[ 4] IMPLICIT 	MiscMediaCallCharacteristics 	OPTIONAL,
+	connectionRateList 			[ 5] IMPLICIT 	ConnectionRateList 		OPTIONAL,
+	delayToleranceList 			[ 6] IMPLICIT 	DelayToleranceList 		OPTIONAL,
+	pauseTime 				[ 7] IMPLICIT 	PauseTime 			OPTIONAL,
+	currentTime 				[ 8] IMPLICIT 	TimeInfo 			OPTIONAL,
+	messageSeqNumbers 			[ 9] IMPLICIT 	MessageSeqNumbers 		OPTIONAL,
+	timeStampMode 				[10] IMPLICIT 	TimeStampMode 			OPTIONAL,
+	securityMode 				[11] IMPLICIT 	SecurityMode 			OPTIONAL,
+	securityFormat 				[12] IMPLICIT 	SecurityFormat			OPTIONAL,
+	privateDataFormat 			[13] IMPLICIT 	SecurityFormat 			OPTIONAL,
+	transAndConfSetup 			[14] IMPLICIT 	TransAndConfSetup 		OPTIONAL,
+	monitorFilterItems 			[15] IMPLICIT 	MonitorFilterItems 		OPTIONAL,
+	miscMonitorCaps 			[16] IMPLICIT 	MiscMonitorCaps 		OPTIONAL,
+	correlatorDataSupported 		[17] IMPLICIT 	BOOLEAN 			OPTIONAL,
+	dynamicFeatureSupported 		[18] IMPLICIT 	DynamicFeatureSupported 	OPTIONAL,
+	callLinkageOptions 			[28] IMPLICIT 	CallLinkageOptions 		OPTIONAL,
+	aCDModels 				[19] IMPLICIT 	ACDModels 			OPTIONAL,
+	agentLogOnModels 			[20] IMPLICIT 	AgentLogOnModels 		OPTIONAL,
+	agentStateModels 			[21] IMPLICIT 	AgentStateModels 		OPTIONAL,
+	connectionView 				ConnectionView,
+	maxLengthParameters 			MaxLengthParameters,
+	maxLengthParametersContinued		[28] IMPLICIT 	MaxLengthParametersContinued	OPTIONAL,
+	servEvtsList 				[22] IMPLICIT 	ServEvtsList 			OPTIONAL,
+	privateDataVersionList 			[23] IMPLICIT 	PrivateDataVersionList		OPTIONAL,
+	systemStatusTimer 			[24] IMPLICIT 	INTEGER (0..180) 		OPTIONAL,
+	simpleThreshold 			[25] IMPLICIT 	INTEGER 			OPTIONAL,
+	filterThreshold 			[26] IMPLICIT 	FilterThreshold 		OPTIONAL,
+	mediaServiceCapsList 			[27] IMPLICIT 	MediaServiceCapsList 		OPTIONAL,
+	maxDeviceHistoryLength			[29] IMPLICIT 	INTEGER				OPTIONAL,
+	maxDestinationDevicesForDeflect		[30] IMPLICIT	INTEGER				OPTIONAL,
+	extensions 				CSTACommonArguments 				OPTIONAL }
+
+MonitorFilterItems ::= SEQUENCE
+{ 	deviceOnDeviceMonitorFilter 		[0] IMPLICIT 	MonitorFilter 			OPTIONAL,
+	deviceOnConnectionMonitorFilter 	[1] IMPLICIT 	MonitorFilter 			OPTIONAL,
+	callOnDeviceMonitorFilter 		[2] IMPLICIT 	MonitorFilter 			OPTIONAL,
+	callOnConnectionMonitorFilter 		[3] IMPLICIT 	MonitorFilter 			OPTIONAL }
+
+MessageSeqNumbers ::= BIT STRING
+{ 	allEvents 					(0),
+	allAcks 					(1),
+	allServReqs 					(2) }
+
+SecurityMode ::= ENUMERATED
+{ 	allEvents 					(0),
+	allAcks 					(1),
+	allServReqs 					(2) }
+
+SecurityFormat ::= BIT STRING
+{ 	octetStringFromSF 				(0),
+	otherTypeFromSF 				(1),
+	octetStringToSF 				(2),
+	otherTypeToSF 					(3) }
+
+Profiles ::= BIT STRING
+{ 	basicTelephonyProfile 				( 0),
+	routeingProfile 				( 1),
+	level1aVoiceBrowserProfile			( 2),
+	level1bVoiceBrowserProfile			( 3),
+	level2VoiceBrowserProfile			( 4),
+	minimalUaCSTACallControlProfile			( 5),
+	basicUaCSTACallControlProfile			( 6),
+	advancedUaCSTACallControlProfile		( 7),
+	conferencingUaCSTACallControlProfile		( 8),
+	basicUaCSTADeviceFeatureProfile			( 9),
+	advancedUaCSTADeviceFeatureProfile		(10),
+	speakerUACSTADeviceFeatureProfile		(11),
+	basicSpeechServiceProfile			(12),
+	advancedSpeechServiceProfile			(13) }
+
+DynamicFeatureSupported ::= ENUMERATED
+{ 	none 						(0),
+	all 						(1),
+	some 						(2) }
+
+CallLinkageOptions ::= BIT STRING
+{ 	callLinkageFeatureSupported 			(0),
+	threadLinkageFeatureSupported 			(1) }
+
+AgentLogOnModels ::= BIT STRING
+{ 	logOnACDDevice 					(0),
+	logOnACDGroupExplOneStep 			(1),
+	logOnACDGroupExplTwoSteps 			(2),
+	logOnACDGroupImplOneStep 			(3) }
+
+AgentStateModels ::= BIT STRING
+{ 	multiState 					(0),
+	multiStateSemiIndependentLinked 		(1),
+	agentOriented 					(2) }
+
+ConnectionView ::= ENUMERATED
+{	fixed 						(0),
+	local 						(1) }
+
+ServEvtsList ::= SEQUENCE
+{	capExchangeServList 			[ 0] IMPLICIT 	CapExchangeServList 		OPTIONAL,
+	systemServList 				[ 1] IMPLICIT 	SystemStatusServList 		OPTIONAL,
+	monitoringServList 			[ 2] IMPLICIT 	MonitoringServList 		OPTIONAL,
+	snapshotServList 			[ 3] IMPLICIT 	SnapshotServList 		OPTIONAL,
+	callControlServList 			[ 4] IMPLICIT 	CallControlServList 		OPTIONAL,
+	callControlEvtsList 			[ 5] IMPLICIT 	CallControlEvtsList 		OPTIONAL,
+	callAssociatedServList 			[ 6] IMPLICIT 	CallAssociatedServList 		OPTIONAL,
+	callAssociatedEvtsList 			[ 7] IMPLICIT 	CallAssociatedEvtsList 		OPTIONAL,
+	mediaServList 				[ 8] IMPLICIT 	MediaServList 			OPTIONAL,
+	mediaEvtsList 				[ 9] IMPLICIT 	MediaEvtsList 			OPTIONAL,
+	routeingServList 			[10] IMPLICIT 	RouteingServList 		OPTIONAL,
+	physDevServList 			[11] IMPLICIT 	PhysDevServList 		OPTIONAL,
+	physDevEvtsList 			[12] IMPLICIT 	PhysDevEvtsList 		OPTIONAL,
+	logicalServList 			[13] IMPLICIT 	LogicalServList 		OPTIONAL,
+	logicalEvtsList 			[14] IMPLICIT 	LogicalEvtsList 		OPTIONAL,
+	deviceMaintEvtsList 			[15] IMPLICIT 	DeviceMaintEvtsList 		OPTIONAL,
+	iOServicesServList 			[16] IMPLICIT 	IOServicesServList 		OPTIONAL,
+	dataCollectionServList 			[17] IMPLICIT 	DataCollectionServList 		OPTIONAL,
+	voiceUnitServList 			[18] IMPLICIT 	VoiceUnitServList 		OPTIONAL,
+	voiceUnitEvtsList 			[19] IMPLICIT 	VoiceUnitEvtsList 		OPTIONAL,
+	cdrServList 				[20] IMPLICIT 	CDRServList 			OPTIONAL,
+	vendorSpecificServList 			[21] IMPLICIT 	VendorSpecificServList 		OPTIONAL,
+	vendorSpecificEvtsList 			[22] IMPLICIT 	VendorSpecificEvtsList 		OPTIONAL,
+	statusReportingServList 		[23] IMPLICIT 	StatusReportingServList 	OPTIONAL,
+	locationServList			[24] IMPLICIT	LocationServicesServList	OPTIONAL }
+
+StatusReportingServList ::= SEQUENCE
+{ 	monitoringServices 			[ 0] IMPLICIT 	MonitoringServList 		OPTIONAL,
+	snapshotServices 			[ 1] IMPLICIT 	SnapshotServList 		OPTIONAL,
+	systemServices 				[ 2] IMPLICIT 	SystemStatusServList 		OPTIONAL }
+
+MiscMediaCallCharacteristics ::= BIT STRING
+{ 	supportAdjustment 				(0) }
+
+PrivateDataVersionList ::= SEQUENCE OF INTEGER
+
+END -- of CSTA-get-switching-function-capabilities

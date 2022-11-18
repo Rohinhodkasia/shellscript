@@ -1,0 +1,38 @@
+CSTA-change-monitor-filter
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) change-monitor-filter( 102) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+MonitorFilter, MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+changeMonitorFilter OPERATION ::=
+{ 	ARGUMENT 		ChangeMonitorFilterArgument
+	RESULT 			ChangeMonitorFilterResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 72 }
+
+ChangeMonitorFilterArgument ::= SEQUENCE
+{	crossRefIdentifier 		MonitorCrossRefID,
+	requestedFilterList 		MonitorFilter,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+ChangeMonitorFilterResult ::= SEQUENCE
+{	actualFilterList 		MonitorFilter 			OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+END -- of CSTA-change-monitor-filter

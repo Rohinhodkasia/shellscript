@@ -1,0 +1,12 @@
+<asn1config>
+  <includedir>../../CryptoMsgSyntax</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/AttrCert</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <includedir>../../PKIX/OSCP</includedir>
+  <module name="SCVP-2009">
+    <production name="CVRequest"><isPDU/></production>
+    <production name="CVResponse"><isPDU/></production>
+  </module>
+</asn1config>

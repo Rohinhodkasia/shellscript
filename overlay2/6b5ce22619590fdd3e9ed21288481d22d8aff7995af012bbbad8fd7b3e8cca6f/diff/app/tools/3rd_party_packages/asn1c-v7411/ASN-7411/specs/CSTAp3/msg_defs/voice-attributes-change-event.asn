@@ -1,0 +1,61 @@
+CSTA-voice-attributes-change-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) voice-attributes-change-event( 74) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ServicesPermitted FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ResourceID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+standard( 0) csta3( 285) device-feature-types( 127) }
+Volume FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) physical-device-feature( 137) };
+
+VoiceAttributesChangeEvent ::= SEQUENCE
+{	connection			ConnectionID,
+	resource			[ 4] IMPLICIT ResourceID		OPTIONAL,
+	message				MessageID,
+	playVolume			[ 0] Volume				OPTIONAL,
+	recordingGain			[ 1] IMPLICIT INTEGER (0 .. 100)	OPTIONAL,
+	speed				[ 2] IMPLICIT INTEGER 			OPTIONAL,
+	currentPosition			[ 3] IMPLICIT INTEGER			OPTIONAL,
+	grammars			[ 5] IMPLICIT IA5String			OPTIONAL,
+	language			[ 6] IMPLICIT IA5String			OPTIONAL,
+	mode				[ 7] IMPLICIT ENUMERATED
+					{	automatic	(0),
+						single		(1),
+						multiple	(2) }		OPTIONAL,
+	retainAudio			[ 8] IMPLICIT BOOLEAN			OPTIONAL,
+	silenceTimeout			[ 9] IMPLICIT INTEGER			OPTIONAL,
+	maxTimeout			[10] IMPLICIT INTEGER			OPTIONAL,
+	babbleTimeout			[11] IMPLICIT INTEGER			OPTIONAL,
+	endSilence			[12] IMPLICIT INTEGER			OPTIONAL,
+	rejectionThreshold		[13] IMPLICIT INTEGER			OPTIONAL,
+	autoInterruptible		[14] IMPLICIT BOOLEAN			OPTIONAL,
+	innerXML			[15] IMPLICIT IA5String			OPTIONAL,
+	interDigitTimeout		[16] IMPLICIT INTEGER			OPTIONAL,
+	preflush			[17] IMPLICIT BOOLEAN			OPTIONAL,
+	cause				EventCause				OPTIONAL,
+	servicesPermitted		ServicesPermitted			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-voice-attributes-change-event

@@ -1,0 +1,38 @@
+CSTA-call-back-message-non-call-related
+{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) call-back-message-non-call-related( 301) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+callBackMessageNonCallRelated OPERATION ::=
+{	ARGUMENT 		CallBackMessageNonCallRelatedArgument
+	RESULT 			CallBackMessageNonCallRelatedResult
+	ERRORS 			{universalFailure }
+	CODE			local: 301 }
+
+CallBackMessageNonCallRelatedArgument ::= SEQUENCE
+{	originatingDevice		DeviceID,
+	targetDevice 			DeviceID,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+CallBackMessageNonCallRelatedResult ::= CHOICE
+{ 	extensions			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-call-back-message-non-call-related

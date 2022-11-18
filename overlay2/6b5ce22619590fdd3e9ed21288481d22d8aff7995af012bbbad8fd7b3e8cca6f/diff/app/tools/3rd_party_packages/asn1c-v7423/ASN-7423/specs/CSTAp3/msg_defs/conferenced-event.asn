@@ -1,0 +1,61 @@
+CSTA-conferenced-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) conferenced-event( 23) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types –-
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState, ConnectionList FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageDataList, ServicesPermitted FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+LocationInfoList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+LanguagePreferences, DeviceHistory FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+ConferencedEvent ::= SEQUENCE
+{ 	primaryOldCall 			ConnectionID,
+	secondaryOldCall 		ConnectionID 				OPTIONAL,
+	conferencingDevice 		SubjectDeviceID,
+	addedParty 			SubjectDeviceID,
+	conferenceConnections 		ConnectionList,
+	localConnectionInfo 		LocalConnectionState 			OPTIONAL,
+	correlatorData 			[1] IMPLICIT CorrelatorData 		OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	cause 				EventCause,
+	servicesPermitted 		[2] IMPLICIT ServicesPermitted 		OPTIONAL,
+	mediaCallCharacteristics 	[3] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	callCharacteristics 		[4] IMPLICIT CallCharacteristics 	OPTIONAL,
+	callLinkageDataList 		[6] IMPLICIT CallLinkageDataList 	OPTIONAL,
+	languagePreferences		[7] IMPLICIT LanguagePreferences	OPTIONAL,
+	deviceHistory			[8] IMPLICIT DeviceHistory		OPTIONAL,
+	locationInfo			[9] IMPLICIT LocationInfoList		OPTIONAL,
+	extensions 			[5] IMPLICIT CSTACommonArguments 	OPTIONAL }
+
+END -- of CSTA-conferenced-event

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/camel/camel.asn</UTF8String>
+   </schemas>
+   <language>
+      <java/>
+   </language>
+   <ruleset>
+      <ber/>
+      <xml/>
+   </ruleset>
+   <basicOptions>
+      <depends/>
+      <test/>
+      <importDirs>
+         <UTF8String>../../../specs/ROSE</UTF8String>
+         <UTF8String>../../../specs/camel</UTF8String>
+         <UTF8String>../../../specs/cap</UTF8String>
+         <UTF8String>../../../specs/gsm_map</UTF8String>
+      </importDirs>
+      <printOut/>
+      <reader/>
+      <writer/>
+      <copy/>
+      <compare/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <java>
+         <toDirs/>
+         <ant/>
+         <pkgPfx>sample_ber.Camel</pkgPfx>
+      </java>
+   </languageOpts>
+</ASN1COptions>

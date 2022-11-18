@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>bigInt.asn</UTF8String>
+   </schemas>
+   <language>
+      <python/>
+   </language>
+   <ruleset>
+      <der/>
+   </ruleset>
+   <basicOptions>
+      <printOut/>
+   </basicOptions>
+   <languageOpts>
+      <python/>
+   </languageOpts>
+</ASN1COptions>

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CMS-AES-CCM-and-AES-GCM-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CMS-AuthEnvelopedData-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CMSAesRsaesOaep-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CMSFirmwareWrapper-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CryptographicMessageSyntax-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/CryptographicMessageSyntaxAlgorithms-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/ERS-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/ExtendedSecurityServices-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/SMIMESymmetricKeyDistribution-2009.asn</UTF8String>
+      <UTF8String>../../../specs/CryptoMsgSyntax/SecureMimeMessageV3dot1-2009.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <der/>
+      <xml/>
+   </ruleset>
+   <basicOptions>
+      <config>../../../specs/CryptoMsgSyntax/acconfig.xml</config>
+      <depends/>
+      <importDirs>
+         <UTF8String>../../../specs/CryptoMsgSyntax</UTF8String>
+      </importDirs>
+      <usedPDU>ContentInfo</usedPDU>
+      <printStrm/>
+      <trace/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <strictSize/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

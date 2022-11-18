@@ -1,0 +1,62 @@
+CSTA-get-switching-function-devices
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-switching-function-devices( 204) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ServiceCrossRefID FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+getSwitchingFunctionDevices OPERATION ::=
+{ 	ARGUMENT 		GetSwitchingFunctionDevicesArgument
+	RESULT 			GetSwitchingFunctionDevicesResult
+	ERRORS 			{universalFailure }
+	CODE 			local:204 }
+
+GetSwitchingFunctionDevicesArgument ::= SEQUENCE
+{ 	requestedDeviceID 		DeviceID 			OPTIONAL,
+	requestedDeviceCategory 	ReqDeviceCategory 		OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+GetSwitchingFunctionDevicesResult ::= SEQUENCE
+{ 	serviceCrossRefID 		ServiceCrossRefID,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+ReqDeviceCategory ::= ENUMERATED
+{	acd 				( 0),
+	conference			(11),
+	dtmfIV				(12),
+	genericIV			(13),
+	groupACD 			( 1),
+	groupHunt 			( 2),
+	groupPick 			( 3),
+	groupOther 			( 4),
+	groupUser			(14),
+	listenerIV			(15),
+	messageIV			(16),
+	networkInterface 		( 5),
+	park 				( 6),
+	promptIV			(17),
+	promptQueue			(18),
+	routeingDevice			( 7),
+	station 			( 8),
+	voiceUnit 			( 9),
+	other 				(10) }
+
+END -- of CSTA-get-switching-function-devices

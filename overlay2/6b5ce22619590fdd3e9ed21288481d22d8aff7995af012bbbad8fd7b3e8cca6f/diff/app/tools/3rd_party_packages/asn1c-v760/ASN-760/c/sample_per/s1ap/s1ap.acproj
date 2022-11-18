@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-CommonDataTypes.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-Constants.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-Containers.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-IEs.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-PDU-Contents.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/S1AP-PDU-Descriptions.asn</UTF8String>
+      <UTF8String>../../../specs/S1AP/rel15/SonTransfer-IEs.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <per/>
+   </ruleset>
+   <basicOptions>
+      <importDirs>
+         <UTF8String>../../../specs/S1AP/rel15</UTF8String>
+      </importDirs>
+      <pdu>S1AP-PDU</pdu>
+      <printOut/>
+      <trace/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <strictSize/>
+         <x64/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

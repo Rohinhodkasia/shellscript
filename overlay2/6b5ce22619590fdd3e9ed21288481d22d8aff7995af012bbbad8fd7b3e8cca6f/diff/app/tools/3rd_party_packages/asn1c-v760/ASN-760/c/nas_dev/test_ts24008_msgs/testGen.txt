@@ -1,0 +1,110 @@
+Procedure to generate a new message test:
+
+1. Execute newTest.pl script with name of type test is being generated for:
+
+   perl newTest.pl <type>
+
+where <type> would be replaced with a type name.  For example:
+
+   perl newTest.pl CMServicePrompt
+
+all message types are defined in TS24008Msgs.asn.
+
+
+2. Check if message object has a type associated with it.  If not (type name
+is NULL), go to step 6.
+
+For example, 9.2.5 (CM service accept), does not have an associated type:
+
+/* 9.2.5 - CM service accept */
+
+mt-CMServiceAccept INTEGER ::= 33
+
+obj-CMServiceAccept NAS-PROTOCOL-CLASS ::= { 
+   ID { protoDiscr mobMgmt, msgType mt-CMServiceAccept }
+   TYPE NULL  <---- type is declared here!
+}
+
+on the other hand, 9.2.5a - CM service prompt, has a type:
+
+/* 9.2.5a - CM service prompt */
+
+mt-CMServicePrompt INTEGER ::= 37
+
+obj-CMServicePrompt NAS-PROTOCOL-CLASS ::= { 
+   ID { protoDiscr mobMgmt, msgType mt-CMServicePrompt }
+   TYPE CMServicePrompt  <---- type is declared here!
+}
+
+CMServicePrompt ::= SEQUENCE {  <---- this is the type!
+   pdAndSAPI PDAndSAPI
+}
+
+
+3. Open the writer.c program with a text editor program.  A variable named
+'data' of the message type must first be declared after the declaration
+of 'pdu'.  This variable will normally be of type TS24008Msg_<type>, but 
+it may also be a direct reference to an Information Element (IE) in which 
+case it would have prefix TS24008IE_.
+
+Then declare a pointer variable name 'pvalue' which would be of the same 
+type name followed by '*' and set to &data.
+
+So, for example, the variables for 9.2.5a above would be: 
+
+   TS24008Msg_CMServicePrompt data;
+   TS24008Msg_CMServicePrompt* pvalue = &data;
+
+
+4. Code then needs to be added to populate the data structure.  This code 
+for the most part can be copy/pasted from the generated test code.  This 
+code is in file TS24008MsgsTest.c.
+
+First, find the line that sets the pdu.data.t value.  It will be of the form:
+
+   pdu.data.t = T_TS24008Msgs_PROTOCOL_IE_OBJECTSET_<object>;
+
+where <object> is the name of an information object.
+
+Directly after this line, add a line to set the union (u) value for this 
+alternative to the pvalue variable declared in step 3.  The general form is: 
+
+   pdu.data.u.<object> = pvalue;
+
+So, for example, for 9.2.5a, the following would be added: 
+
+   pdu.data.u.obj_CMServicePrompt = pvalue;
+
+
+5. After that, the section to populate the variable pointed to by pvalue 
+must be entered.  It should be possible to copy/paste this from generated 
+test code.  Search ../../src/TS24008MsgsTest.c for asn1Test_TS24008Msg_<type>.
+Then copy the lines starting with the asn1Init function down to the line 
+before the return statement.  Then paste this into writer.c.  Remove all 
+of the comments in this code (lines with /* .. */).
+
+For 9.2.5a, the result of doing this will be:
+
+   asn1Init_TS24008Msg_CMServicePrompt (pvalue);
+   pvalue->pdAndSAPI.spare = 0;
+   pvalue->pdAndSAPI.sapi = 2;
+   pvalue->pdAndSAPI.pd = 13;
+
+Save and close the file.
+
+
+6. You can now do a test build by entering nmake on a Visual Studio 2008 
+command prompt:
+
+   nmake
+
+
+7. If successful, the writer and reader can be run:
+
+   .\writer -v
+   .\reader -v
+
+
+8. If both seem to complete successfully (no crashes or errors reported), 
+the makefile, reader.c, and writer.c programs may be added to Perforce.
+

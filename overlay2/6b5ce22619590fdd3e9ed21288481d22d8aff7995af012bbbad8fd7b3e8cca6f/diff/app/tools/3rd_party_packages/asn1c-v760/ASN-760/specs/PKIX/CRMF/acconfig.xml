@@ -1,0 +1,11 @@
+<asn1config>
+  <includedir>../../CryptoMsgSyntax</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/AttrCert</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <module name="PKIXCRMF-2009">
+    <production name="CertReqMessages"><isPDU/></production>
+    <production name="CertReqMsg"><isPDU/></production>
+  </module>
+</asn1config>

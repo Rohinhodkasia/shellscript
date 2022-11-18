@@ -1,0 +1,17 @@
+<asn1config>
+  <includedir>../../cms2009</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/Common</includedir>
+
+  <module name="PKIX1Explicit-2009">
+    <production name="CertificateSerialNumber">
+      <isBigInteger/>
+    </production>
+  </module>
+
+  <module name="PKIXAlgs-2009">
+     <production name="DSA-Params">
+       <isBigInteger/>
+     </production>
+  </module>
+</asn1config>

@@ -1,0 +1,102 @@
+{
+   name {
+      givenName "John",
+      initial "P",
+      familyName "Smith"
+   },
+   number 51,
+   title "Director",
+   dateOfHire "19710917",
+   nameOfSpouse {
+      givenName "Mary",
+      initial "T",
+      familyName "Smith"
+   },
+   children {
+      {
+         name {
+            givenName "Ralph",
+            initial "T",
+            familyName "Smith"
+         },
+         dateOfBirth "19571111"
+      },
+      {
+         name {
+            givenName "Susan",
+            initial "B",
+            familyName "Jones"
+         },
+         dateOfBirth "19590717"
+      }
+   }
+}
+
+
+{
+   name {
+      givenName "Francis",
+      initial "R",
+      familyName "Blackwell"
+   },
+   number 78,
+   title "CEO",
+   dateOfHire "20081213",
+   nameOfSpouse {
+      givenName "Freda",
+      initial "A",
+      familyName "Blackwell"
+   },
+   children {
+      {
+         name {
+            givenName "Freddy",
+            initial "S",
+            familyName "Blackwell"
+         },
+         dateOfBirth "19990122"
+      },
+      {
+         name {
+            givenName "Fantine",
+            initial "Q",
+            familyName "Blackwell"
+         },
+         dateOfBirth "20020623"
+      }
+   }
+}
+
+{
+   name {
+      givenName "Lisa",
+      initial "B",
+      familyName "Klink"
+   },
+   number 48,
+   title "CFO",
+   dateOfHire "19980815",
+   nameOfSpouse {
+      givenName "Larry",
+      initial "R",
+      familyName "Klink"
+   },
+   children {
+      {
+         name {
+            givenName "Luna",
+            initial "S",
+            familyName "Klink"
+         },
+         dateOfBirth "20080521"
+      },
+      {
+         name {
+            givenName "Leslie",
+            initial "M",
+            familyName "Klink"
+         },
+         dateOfBirth "200100503"
+      }
+   }
+}

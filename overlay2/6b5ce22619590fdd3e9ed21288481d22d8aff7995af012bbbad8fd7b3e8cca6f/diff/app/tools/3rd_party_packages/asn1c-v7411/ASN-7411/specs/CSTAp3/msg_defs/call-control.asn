@@ -1,0 +1,211 @@
+CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+AutoOriginate, CallCharacteristics, CallLinkageData, CallLinkageDataList, CallQualifyingData,
+ConsultOptions, NetworkCapability,LocationInfo,LocationInfoList,
+ProgressIndicator, ServicesPermitted;
+
+IMPORTS
+TimeInfo FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12) 
+		standard( 0) csta3( 285) security( 128) }
+CallControlServices, CallAssociatedServices, MediaAttachmentServices, RouteingServices,
+VoiceUnitServices FROM CSTA-application-context-information-csta3
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) application-context-information( 200) };
+
+AutoOriginate ::= ENUMERATED
+{ 	prompt 						( 0),
+	doNotPrompt 					( 1) }
+
+CallCharacteristics ::= BIT STRING
+{ 	acdCall 					( 0),
+	lowPriorityCall					(11),
+	priorityCall 					( 1),
+	highPriorityCall				(12),
+	maintainanceCall 				( 2),
+	directAgent 					( 3),
+	assistCall 					( 4),
+	voiceUnitCall 					( 5),
+	privateCall					( 6),
+	personalCall					( 7),
+	sensitiveCall					( 8),
+	confidentialCall				( 9),
+	encryptedCall					(10) }
+
+CallQualifyingData ::= OCTET STRING
+
+ConsultOptions ::= ENUMERATED
+{ 	unrestricted 					( 0),
+	consultOnly 					( 1),
+	transferOnly 					( 2),
+	conferenceOnly 					( 3) }
+
+NetworkCapability ::= SEQUENCE
+{ 	networkType ENUMERATED
+	{ 	iSDNPublic 				( 0),
+		nonISDNPublic 				( 1),
+		iSDNPrivate 				( 2),
+		nonISDNPrivate 				( 3),
+		other 					( 4) },
+	eventsProvided BIT STRING
+	{ 	bridged 				( 0),
+		allCleared 				( 1),
+		conferenced 				( 2),
+		connectionCleared 			( 3),
+		delivered 				( 4),
+		digitsDialed 				( 5),
+		diverted 				( 6),
+		established 				( 7),
+		failed 					( 8),
+		held 					( 9),
+		networkCapabilitiesChange 		(10),
+		networkReached 				(11),
+		offered 				(12),
+		originated 				(13),
+		queued 					(14),
+		retrieved 				(15),
+		serviceInitiated 			(16),
+		transferred 				(17) } OPTIONAL }
+
+ProgressIndicator ::= SEQUENCE
+{ 	progressLocation ENUMERATED
+	{ 	user 					( 0),
+		privateNetServingLocal 			( 1),
+		publicNetServingLocal 			( 2),
+		transitNetwork 				( 3),
+		publicNetServingRemote 			( 4),
+		privateNetServingRemote 		( 5),
+		localInterface 				( 6),
+		internationalNetwork 			( 7),
+		networkBeyondInterwk 			( 8),
+		other 					( 9) },
+	progressDescription ENUMERATED
+	{ 	iSDNProgressDesc 			( 0),
+		qSIGProgressDesc 			( 1),
+		other 					( 2) } }
+
+ServicesPermitted ::= SEQUENCE
+{ 	callControlServices 				CallControlServices,
+	callAssociatedServices 				CallAssociatedServices,
+	mediaAttachmentServices 			MediaAttachmentServices,
+	routeingServices 				RouteingServices,
+	voiceUnitServices 				VoiceUnitServices }
+
+CallLinkageDataList ::= SEQUENCE
+{ 	newCallLinkageData 				CallLinkageData,
+	oldCallLinkageData 				CallLinkageData }
+
+CallLinkageData ::= SEQUENCE
+{ 	globalCallData 					GlobalCallData,
+	threadData 					ThreadData                  	OPTIONAL }
+
+GlobalCallData ::= SEQUENCE 
+{	globalCallSwitchingSubDomainName		IA5String (SIZE(1..64))		OPTIONAL, 
+	globalCallLinkageID				GlobalCallLinkageID, 
+	callLinkageIDTimestamp				TimeInfo			OPTIONAL }
+
+GlobalCallLinkageID ::= CHOICE
+{	subDomainCallLinkageID 				[0] IMPLICIT OCTET STRING (SIZE(1..8)),
+	globallyUniqueCallLinkageID 			[1] IMPLICIT OCTET STRING (SIZE(1..16)) }
+
+ThreadData ::= SEQUENCE
+{ 	threadSwitchingSubDomainName 			IA5String (SIZE(1..64)) 	OPTIONAL,
+	threadLinkageID 				ThreadLinkageID,
+	threadIDTimeStamp 				TimeInfo 			OPTIONAL }
+
+ThreadLinkageID ::= CHOICE
+{ 	subDomainThreadID 				[0] IMPLICIT OCTET STRING (SIZE(1..8)),
+	globallyUniqueThreadID 				[1] IMPLICIT OCTET STRING (SIZE(1..16)) }
+
+Method ::= ENUMERATED -- http://www.iana.org/assignments/method-tokens/method-tokens.xhtml
+{	a-GPS 				( 0),	-- "Method" defines, what location tracking system has been used 
+	aOA				( 1),	-- to allocate the presented Location Data
+	cell				( 2),
+	derived				( 3),
+	deviceAssistedAGps		( 4),
+	deviceBasedAGps			( 5),
+	dHCP				( 6),
+	gPS				( 7),
+	handsetAflt			( 8),
+	handsetEflt			( 9),
+	hybridAGps			(10),
+	ipdl				(11),
+	lldpMed				(12),
+	manual				(13),
+	mpl				(14),
+	nmr				(15),
+	otdoa				(16),
+	rfid				(17),
+	rssi				(18),
+	rssiRtt				(19),
+	rtt				(20),
+	ta				(21),
+	taNmr				(22),
+	triangulation			(23),
+	utdoa				(24),
+	wiremap				(25),
+	locMet80211			(26) }
+
+NenaCompanyIDType ::= IA5String	        -- NenaCompanyIds at http://www.nena.org/nena-company-id
+
+TelUri247Type ::= IA5String		-- must be a RFC-3966 conform Tel URI
+
+ProvidedBy ::=	SEQUENCE                -- This DataType contains information about the organization
+{					-- which provided the allocated location data
+	dataproviderID	NenaCompanyIDType,
+	telUri		TelUri247Type,			-- Standard Telephone URI,
+	uRL		IA5String }			-- must be a emergency number, avalaible 24/7
+
+
+UsageRules ::= SEQUENCE
+{	retransmissionAllowed		BOOLEAN,
+	retentionExpires		TimeInfo,	-- TimeInfo Already defined in CSTA-security
+	rulesetReference		IA5String,	-- rulesetReference must be a URI
+	noteWell			IA5String	OPTIONAL }
+
+GpLocationInfo ::= SEQUENCE 
+{	civicLocGml	SEQUENCE
+	{	gmlFormat OCTET STRING,	-- must conform xsd schemas of GML 3.0 
+									-- http://www.opengeospatial.org/standards/gml#downloads
+		civicLoc SEQUENCE
+		{	country		IA5String (SIZE(0..2)),			       -- must conform the ISO 3166 country code
+			a1		[ 0] IMPLICIT IA5String	OPTIONAL,              -- NationalSubdivisions
+			a2		[ 1] IMPLICIT IA5String	OPTIONAL,              -- CountryOrParishOrDistrict
+			a3		[ 2] IMPLICIT IA5String	OPTIONAL,              -- City
+			a4		[ 3] IMPLICIT IA5String	OPTIONAL,              -- CityDivision
+			a5		[ 4] IMPLICIT IA5String	OPTIONAL,              -- NeighborhoodOrBlock
+			a6		[ 5] IMPLICIT IA5String	OPTIONAL,              -- Street
+			prd		[ 6] IMPLICIT IA5String	OPTIONAL,              -- LeadingStreetDirection
+			pod		[ 7] IMPLICIT IA5String	OPTIONAL,              -- TrailingStreetSuffix
+			sts		[ 8] IMPLICIT IA5String	OPTIONAL,              -- StreetSuffix
+			hno		[ 9] IMPLICIT IA5String	OPTIONAL,              -- HouseNumber
+			hns		[10] IMPLICIT IA5String	OPTIONAL,              -- HouseNumberSuffix
+			lmk		[11] IMPLICIT IA5String	OPTIONAL,              -- LandmarkVanity
+			loc		[12] IMPLICIT IA5String	OPTIONAL,              -- AdditionalLocationInformation
+			flr		[13] IMPLICIT IA5String	OPTIONAL,              -- Floor
+			nam		[14] IMPLICIT IA5String	OPTIONAL,              -- ResidenceOrOfficeName
+			pc		[15] IMPLICIT IA5String	OPTIONAL } OPTIONAL    -- PostalCode
+	}
+}
+
+GpLocationInfoList ::= SEQUENCE OF GpLocationInfo
+
+--GeoPriv has been defined, regarding the ECMA-269 respective Definition of LocationInfo
+GeoPriv ::= SEQUENCE									-- Conforming RFC 4119
+{	gpLocationInfo			GpLocationInfoList,
+	usageRules			[0] IMPLICIT UsageRules				OPTIONAL,
+	method				[1] IMPLICIT Method				OPTIONAL,
+	providedBy			[2] IMPLICIT ProvidedBy 			OPTIONAL }
+
+LocationInfo ::= SEQUENCE OF GeoPriv
+
+LocationInfoList ::= SEQUENCE OF LocationInfo
+
+
+END -- of CSTA-call-control

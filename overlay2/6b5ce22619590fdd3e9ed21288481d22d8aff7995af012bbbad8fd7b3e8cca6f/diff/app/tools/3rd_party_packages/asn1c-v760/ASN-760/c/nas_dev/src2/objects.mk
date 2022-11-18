@@ -1,0 +1,3 @@
+SRC2OBJECTS =  \
+TS44018Misc$(OBJ)
+

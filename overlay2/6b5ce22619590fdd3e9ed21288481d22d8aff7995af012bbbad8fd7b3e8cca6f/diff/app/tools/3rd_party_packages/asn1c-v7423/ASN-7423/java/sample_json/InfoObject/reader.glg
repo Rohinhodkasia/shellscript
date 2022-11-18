@@ -1,0 +1,7 @@
+Decode was successful
+value {
+   formatOwner {
+      id = { 1 3 133 16 840 9 84 4 1 10 }
+   }
+   formatType = true
+}

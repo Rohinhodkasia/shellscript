@@ -1,0 +1,3 @@
+XERCESDIR = $(ACJAVAROOT)/xerces
+XERCESJAR = $(XERCESDIR)/xercesImpl.jar$(FS)$(XERCESDIR)/xml-apis.jar
+XMLPJAR   = $(XERCESJAR)

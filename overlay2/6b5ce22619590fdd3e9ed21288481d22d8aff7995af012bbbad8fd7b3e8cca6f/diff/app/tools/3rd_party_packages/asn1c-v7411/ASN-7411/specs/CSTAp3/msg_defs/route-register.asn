@@ -1,0 +1,45 @@
+CSTA-route-register
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) route-register( 248) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+RouteRegisterReqID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+MediaClass FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+routeRegister OPERATION ::=
+{	ARGUMENT		RouteRegisterArgument
+	RESULT			RouteRegisterResult
+	ERRORS			{universalFailure }
+	CODE			local: 248 }
+
+RouteRegisterArgument ::= SEQUENCE
+{	routeingDevice			DeviceID				OPTIONAL,
+	requestedRouteingMediaClass	MediaClass				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+RouteRegisterResult ::= SEQUENCE
+{	routeRegisterReqID		RouteRegisterReqID,
+	actualRouteingMediaClass	MediaClass				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-route-register

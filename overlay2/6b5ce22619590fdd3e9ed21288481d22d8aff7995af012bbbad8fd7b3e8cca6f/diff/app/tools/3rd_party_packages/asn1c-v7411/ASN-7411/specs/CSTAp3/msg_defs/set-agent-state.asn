@@ -1,0 +1,51 @@
+CSTA-set-agent-state
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) set-agent-state( 312) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+AgentID, AgentPassword, PendingAgentState FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+setAgentState OPERATION ::=
+{	ARGUMENT 		SetAgentStateArgument
+	RESULT 			SetAgentStateResult
+	ERRORS 			{universalFailure }
+	CODE			local: 312 }
+
+SetAgentStateArgument ::= SEQUENCE
+{	device 				DeviceID,
+	requestedAgentState		ReqAgentState,
+	agentID				[2] IMPLICIT AgentID			OPTIONAL,
+	password			[3] IMPLICIT AgentPassword		OPTIONAL,
+	group				DeviceID				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+SetAgentStateResult ::= SEQUENCE
+{	pendingAgentState		PendingAgentState			OPTIONAL,
+	extensions	 		CSTACommonArguments			OPTIONAL }
+
+ReqAgentState ::= ENUMERATED
+{	loggedOn			(0),
+	loggedOff			(1),
+	notReady			(2),
+	ready				(3),
+	workingAfterCall		(4) }
+
+END -- of CSTA-set-agent-state

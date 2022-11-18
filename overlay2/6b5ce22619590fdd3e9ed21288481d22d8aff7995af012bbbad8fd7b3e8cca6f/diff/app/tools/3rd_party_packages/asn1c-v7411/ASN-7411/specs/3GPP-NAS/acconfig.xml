@@ -1,0 +1,186 @@
+<asn1config>
+   <protocol>NAS</protocol>
+   <module>
+      <name>TS24008IES</name>
+      <typePrefix>TS24008IE_</typePrefix>
+      <storage>dynamicArray</storage>
+                  
+      <production name="IMSI">
+         <ctype>chararray</ctype>
+      </production>
+      
+      <production name="IMEI">
+         <ctype>chararray</ctype>
+      </production>
+      
+      <production name="IMEISV">
+         <ctype>chararray</ctype>
+      </production>
+      
+      <production name="InterRATInfoContainer">
+         <storage>dynamic</storage>
+      </production>
+
+      <production name="MobileIdentity">
+         <cEncFuncFname>TS24008IESEnc_MobileIdentity.c</cEncFuncFname>
+         <cDecFuncFname>TS24008IESDec_MobileIdentity.c</cDecFuncFname>
+      </production>
+
+      <production name="MobileIdentity-TMGI">
+         <noEncoder/>
+         <noDecoder/>
+      </production>
+
+      <production name="MobileStationClassmark2">
+         <cEncFuncFname>TS24008IESEnc_MobileStationClassmark2.c</cEncFuncFname>
+         <cDecFuncFname>TS24008IESDec_MobileStationClassmark2.c</cDecFuncFname>
+      </production>
+
+      <production name="MultibandSupported">
+         <cEncFuncFname>TS24008IESEnc_MultibandSupported.c</cEncFuncFname>
+         <cDecFuncFname>TS24008IESDec_MultibandSupported.c</cDecFuncFname>
+      </production>
+
+      <production name="PartySubaddress">
+         <element name="subaddrInfo"><inline/></element>
+      </production>
+
+      <production name="PLMNList">
+         <cEncFuncFname>TS24008IESEnc_PLMNList.c</cEncFuncFname>
+         <cDecFuncFname>TS24008IESDec_PLMNList.c</cDecFuncFname>
+         <storage>array</storage>
+      </production>
+
+      <production name="SupportedCodecList">
+         <element name="codecs"><inline/></element>
+      </production>
+
+      <production name="TBCDString">
+         <isTBCDString/>
+      </production>
+
+      <production name="TBCDString3">
+         <isTBCDString/>
+         <ctype>chararray</ctype>
+      </production>
+
+      <production name="TFT">
+         <cEncFuncFname>TS24008IESEnc_TFT.c</cEncFuncFname>
+         <cDecFuncFname>TS24008IESDec_TFT.c</cDecFuncFname>
+      </production>
+      
+   </module>
+   
+   <module>
+      <name>TS24007L3</name>
+      <typePrefix>TS24007L3_</typePrefix>
+
+      <production name="L3HdrOptions">
+         <cEncFuncFname>NASEnc_TS24007L3_L3HdrOptions.c</cEncFuncFname>
+         <cDecFuncFname>NASDec_TS24007L3_L3HdrOptions.c</cDecFuncFname>
+      </production>
+   </module>
+   
+   <module>
+      <name>TS24008Msgs</name>
+      <typePrefix>TS24008Msg_</typePrefix>
+
+      <production name="DetachAccept">
+         <cEncFuncFname>TS24008MsgEnc_DetachAccept.c</cEncFuncFname>
+         <cDecFuncFname>TS24008MsgDec_DetachAccept.c</cDecFuncFname>
+      </production>
+   </module>
+   
+   <module>
+      <name>TS24011IES</name>
+      <typePrefix>TS24011IE_</typePrefix>
+   </module>
+
+   <module>
+      <name>TS24011Msgs</name>
+      <typePrefix>TS24011Msg_</typePrefix>
+   </module>
+   
+   <module>
+      <name>TS24301IES</name>
+      <typePrefix>TS24301IE_</typePrefix>
+      <storage>array</storage>
+
+      <production name="EPSMobileIdentity">
+         <cEncFuncFname>TS24301IESEnc_EPSMobileIdentity.c</cEncFuncFname>
+         <cDecFuncFname>TS24301IESDec_EPSMobileIdentity.c</cDecFuncFname>
+      </production>
+   </module>
+   
+   <module>
+      <name>TS24301Msgs</name>
+      <typePrefix>TS24301Msg_</typePrefix>
+      <valuePrefix>ts24301Msg_</valuePrefix>
+   </module>
+   
+   <module>
+      <name>TS24501Msgs</name>
+      <typePrefix>TS24501Msg_</typePrefix>
+      <valuePrefix>ts24501Msg_</valuePrefix>
+      <storage>array</storage>
+
+      <production name="MobileIdentity">
+         <cEncFuncFname>TS24501MsgEnc_MobileIdentity.c</cEncFuncFname>
+         <cDecFuncFname>TS24501MsgDec_MobileIdentity.c</cDecFuncFname>
+      </production>
+
+      <production name="MobileIdentity_suci">
+         <noEncoder/>
+         <noDecoder/>
+      </production>
+   </module>
+   
+   <module>
+      <name>TS44018Msgs</name>
+      <typePrefix>TS44018Msg_</typePrefix>
+      <valuePrefix>ts44018Msg_</valuePrefix>
+      <storage>array</storage>
+   </module>
+
+   <module>
+      <name>TS44018IES</name>
+      <typePrefix>TS44018IE_</typePrefix>
+      <storage>array</storage>
+
+      <production name="SI3-Rest-Octets">
+         <addarg name="iuModeSupported" type="OSBOOL" func="decode"/>
+         <element name="iu-Indicator">
+            <cDecSrcFname>TS44018Dec_SI3_Rest_Octets_IuInd.c</cDecSrcFname>
+            <cEncSrcFname>TS44018Enc_SI3_Rest_Octets_IuInd.c</cEncSrcFname>
+         </element>
+         <element name="system_Information_21_Indicator">
+            <cDecSrcFname>TS44018Dec_SI3_Rest_Octets_SI21Ind.c</cDecSrcFname>
+            <cEncSrcFname>TS44018Enc_SI3_Rest_Octets_SI21Ind.c</cEncSrcFname>            
+         </element>
+      </production>
+
+      <production name="SI7-Rest-Octets">
+         <addarg name="acs" type="OSBOOL" func="decode"/>
+         <element name="si4-Rest-Octets-O">
+            <cDecSrcFname>TS44018Dec_SI4ROO.c</cDecSrcFname>
+            <cEncSrcFname>TS44018Enc_SI4ROO.c</cEncSrcFname>
+         </element>
+      </production>
+
+      <production name="SI8-Rest-Octets">
+         <addarg name="acs" type="OSBOOL" func="decode"/>
+         <element name="si4-Rest-Octets-O">
+            <cDecSrcFname>TS44018Dec_SI4ROO.c</cDecSrcFname>
+            <cEncSrcFname>TS44018Enc_SI4ROO.c</cEncSrcFname>
+         </element>
+      </production>
+
+   </module>
+
+   <module>
+      <name>TS44060IES</name>
+      <typePrefix>TS44060IE_</typePrefix>
+      <storage>array</storage>
+   </module>
+
+</asn1config>

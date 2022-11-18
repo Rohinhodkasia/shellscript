@@ -1,0 +1,34 @@
+CSTA-emptied-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) emptied-event(520) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ServicesPermitted FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ResourceID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+standard( 0) csta3( 285) device-feature-types( 127) };
+
+EmptiedEvent ::= SEQUENCE
+{	overConnection			ConnectionID,
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	cause				EventCause				OPTIONAL,
+	servicesPermitted		ServicesPermitted			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-emptied-event

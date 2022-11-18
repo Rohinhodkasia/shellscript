@@ -1,0 +1,4 @@
+<asn1config>
+  <includedir>../ACSE</includedir>
+  <includedir>../ROSE</includedir>
+</asn1config>

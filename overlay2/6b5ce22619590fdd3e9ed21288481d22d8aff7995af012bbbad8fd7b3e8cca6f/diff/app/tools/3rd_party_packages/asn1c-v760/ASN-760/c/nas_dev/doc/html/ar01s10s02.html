@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>L2 Pseudo Length</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s10.html" title="Working with GERAN RRC Messages" />
+    <link rel="prev" href="ar01s10s01.html" title="RR Short Protocol Discriminator" />
+    <link rel="next" href="ar01s10s03.html" title="Standard L3 Formatted messages" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">L2 Pseudo Length</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s10s01.html">Prev</a> </td>
+          <th width="60%" align="center">Working with GERAN RRC Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s10s03.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="L2 Pseudo Length">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644189556"></a>L2 Pseudo Length</h3>
+          </div>
+        </div>
+      </div>
+      <p>For messges using the L2 pseudo length format, use the following PDU:</p>
+      <pre class="screen">L2-PSEUDO-LEN-PDU ::= SEQUENCE {
+    l2PseudoLen L2-Pseudo-Length,
+    l3HdrOpts  L3HdrOptions, -- L3 header, octet 1, bits 5 thru 8
+    protoDiscr L2-PSEUDO-LEN-CLASS.&amp;protoDiscr ({L2-PSEUDO-LEN-PDU-Messages}), 
+    msgType L2-PSEUDO-LEN-CLASS.&amp;msgType ({L2-PSEUDO-LEN-PDU-Messages}), 
+    data    L2-PSEUDO-LEN-CLASS.&amp;Value ({L2-PSEUDO-LEN-PDU-Messages}{@protoDiscr,@msgType}),
+    restOctets  L2-PSEUDO-LEN-CLASS.&amp;RestOctets ({L2-PSEUDO-LEN-PDU-Messages}{@protoDiscr,@msgType})
+}            
+        </pre>
+      <p>Fields <code class="literal">protoDiscr</code> and <code class="literal">msgType</code> determine the types of the values in <code class="literal">data</code> and 
+            <code class="literal">restOctets</code>.</p>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s10s01.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s10.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s10s03.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">RR Short Protocol Discriminator </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> Standard L3 Formatted messages</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

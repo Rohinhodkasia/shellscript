@@ -1,0 +1,133 @@
+Encoding was successful
+Hex dump of encoded record:
+80 04 4a 6f 68 6e 01 50 05 53 6d 69 74 68 01 33  ..John.P.Smith.3
+08 44 69 72 65 63 74 6f 72 08 31 39 37 31 30 39  .Director.197109
+31 37 04 4d 61 72 79 01 54 05 53 6d 69 74 68 02  17.Mary.T.Smith.
+05 52 61 6c 70 68 01 54 05 53 6d 69 74 68 08 31  .Ralph.T.Smith.1
+39 35 37 31 31 31 31 05 53 75 73 61 6e 01 42 05  9571111.Susan.B.
+4a 6f 6e 65 73 08 31 39 35 39 30 37 31 37        Jones.19590717
+Binary dump:
+personnelRecord. bitmask
+1xxxxxxx -------- -------- --------     80------    .---                      
+
+personnelRecord.name.givenName length
+-------- 00000100 -------- --------     --04----    -.--                      
+
+personnelRecord.name.givenName value
+-------- -------- 01001010 01101111     ----4a6f    --Jo                      
+01101000 01101110 -------- --------     686e----    hn--                      
+
+personnelRecord.name.initial length
+-------- -------- 00000001 --------     ----01--    --.-                      
+
+personnelRecord.name.initial value
+-------- -------- -------- 01010000     ------50    ---P                      
+
+personnelRecord.name.familyName length
+00000101 -------- -------- --------     05------    .---                      
+
+personnelRecord.name.familyName value
+-------- 01010011 01101101 01101001     --536d69    -Smi                      
+01110100 01101000 -------- --------     7468----    th--                      
+
+personnelRecord.number length
+-------- -------- 00000001 --------     ----01--    --.-                      
+
+personnelRecord.number value
+-------- -------- -------- 00110011     ------33    ---3                      
+
+personnelRecord.title length
+00001000 -------- -------- --------     08------    .---                      
+
+personnelRecord.title value
+-------- 01000100 01101001 01110010     --446972    -Dir                      
+01100101 01100011 01110100 01101111     6563746f    ecto                      
+01110010 -------- -------- --------     72------    r---                      
+
+personnelRecord.dateOfHire length
+-------- 00001000 -------- --------     --08----    -.--                      
+
+personnelRecord.dateOfHire value
+-------- -------- 00110001 00111001     ----3139    --19                      
+00110111 00110001 00110000 00111001     37313039    7109                      
+00110001 00110111 -------- --------     3137----    17--                      
+
+personnelRecord.nameOfSpouse.givenName length
+-------- -------- 00000100 --------     ----04--    --.-                      
+
+personnelRecord.nameOfSpouse.givenName value
+-------- -------- -------- 01001101     ------4d    ---M                      
+01100001 01110010 01111001 --------     617279--    ary-                      
+
+personnelRecord.nameOfSpouse.initial length
+-------- -------- -------- 00000001     ------01    ---.                      
+
+personnelRecord.nameOfSpouse.initial value
+01010100 -------- -------- --------     54------    T---                      
+
+personnelRecord.nameOfSpouse.familyName length
+-------- 00000101 -------- --------     --05----    -.--                      
+
+personnelRecord.nameOfSpouse.familyName value
+-------- -------- 01010011 01101101     ----536d    --Sm                      
+01101001 01110100 01101000 --------     697468--    ith-                      
+
+personnelRecord.children length
+-------- -------- -------- 00000010     ------02    ---.                      
+
+personnelRecord.children.element[0].name.givenName length
+00000101 -------- -------- --------     05------    .---                      
+
+personnelRecord.children.element[0].name.givenName value
+-------- 01010010 01100001 01101100     --52616c    -Ral                      
+01110000 01101000 -------- --------     7068----    ph--                      
+
+personnelRecord.children.element[0].name.initial length
+-------- -------- 00000001 --------     ----01--    --.-                      
+
+personnelRecord.children.element[0].name.initial value
+-------- -------- -------- 01010100     ------54    ---T                      
+
+personnelRecord.children.element[0].name.familyName length
+00000101 -------- -------- --------     05------    .---                      
+
+personnelRecord.children.element[0].name.familyName value
+-------- 01010011 01101101 01101001     --536d69    -Smi                      
+01110100 01101000 -------- --------     7468----    th--                      
+
+personnelRecord.children.element[0].dateOfBirth length
+-------- -------- 00001000 --------     ----08--    --.-                      
+
+personnelRecord.children.element[0].dateOfBirth value
+-------- -------- -------- 00110001     ------31    ---1                      
+00111001 00110101 00110111 00110001     39353731    9571                      
+00110001 00110001 00110001 --------     313131--    111-                      
+
+personnelRecord.children.element[1].name.givenName length
+-------- -------- -------- 00000101     ------05    ---.                      
+
+personnelRecord.children.element[1].name.givenName value
+01010011 01110101 01110011 01100001     53757361    Susa                      
+01101110 -------- -------- --------     6e------    n---                      
+
+personnelRecord.children.element[1].name.initial length
+-------- 00000001 -------- --------     --01----    -.--                      
+
+personnelRecord.children.element[1].name.initial value
+-------- -------- 01000010 --------     ----42--    --B-                      
+
+personnelRecord.children.element[1].name.familyName length
+-------- -------- -------- 00000101     ------05    ---.                      
+
+personnelRecord.children.element[1].name.familyName value
+01001010 01101111 01101110 01100101     4a6f6e65    Jone                      
+01110011 -------- -------- --------     73------    s---                      
+
+personnelRecord.children.element[1].dateOfBirth length
+-------- 00001000 -------- --------     --08----    -.--                      
+
+personnelRecord.children.element[1].dateOfBirth value
+-------- -------- 00110001 00111001     ----3139    --19                      
+00110101 00111001 00110000 00110111     35393037    5907                      
+00110001 00110111 -------- --------     3137----    17--                      
+

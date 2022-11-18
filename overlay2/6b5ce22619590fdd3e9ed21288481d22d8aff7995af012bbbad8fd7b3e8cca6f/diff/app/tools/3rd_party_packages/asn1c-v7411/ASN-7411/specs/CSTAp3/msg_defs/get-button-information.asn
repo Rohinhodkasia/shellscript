@@ -1,0 +1,51 @@
+CSTA-get-button-information
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-button-information( 262) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ButtonID, LampID FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+getButtonInformation OPERATION ::=
+{	ARGUMENT 		GetButtonInformationArgument
+	RESULT			GetButtonInformationResult
+	ERRORS			{universalFailure }
+	CODE			local: 262 }
+
+GetButtonInformationArgument ::= SEQUENCE
+{	device 				DeviceID,
+	button 				ButtonID				OPTIONAL,
+	extensions 			CSTACommonArguments	 		OPTIONAL }
+
+GetButtonInformationResult ::= SEQUENCE
+{	buttonList 			ButtonList,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+ButtonList ::= SEQUENCE OF SEQUENCE
+{	button				ButtonID,
+	buttonLabel			[0] IMPLICIT IA5String			OPTIONAL,
+	buttonLabelSettable		[1] IMPLICIT BOOLEAN			OPTIONAL,
+	buttonFunction			[2] IMPLICIT IA5String			OPTIONAL,
+	buttonAssociatedNumber		[3] IMPLICIT DeviceID			OPTIONAL,
+	buttonAssociatedNumberSettable	[4] IMPLICIT BOOLEAN			OPTIONAL,
+	buttonPressIndicator		[5] IMPLICIT BOOLEAN			OPTIONAL,
+	lampList  			SEQUENCE OF LampID			OPTIONAL }
+
+END -- of CSTA-get-button-information

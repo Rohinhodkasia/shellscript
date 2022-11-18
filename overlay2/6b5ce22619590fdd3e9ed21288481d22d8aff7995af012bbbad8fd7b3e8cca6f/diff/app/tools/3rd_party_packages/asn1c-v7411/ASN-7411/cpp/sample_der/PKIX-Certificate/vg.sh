@@ -1,0 +1,1 @@
+valgrind --leak-check=full ../../../bin/asn1c ../../../specs/PKIX/Certificate/PKIX1Explicit-2009.asn -cpp -der -config ../../../specs/PKIX/Certificate/acconfig.xml -depends -I ../../../specs/PKIX/Certificate -I ../../../specs/PKIX/Common -noindeflen -print

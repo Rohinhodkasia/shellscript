@@ -1,0 +1,83 @@
+CSTA-get-logical-device-information
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) get-logical-device-information( 201) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+MonitorFilter, MonitorMediaClass FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceCategory, GroupDeviceAttributes, NamedDeviceTypes, ACDModels, AgentLogOnModels,
+AppearanceType, MiscMonitorCaps, TransAndConfSetup, MediaServiceCapsList,RouteingServList, 
+LogDevServList, LogDevEvtsList, DeviceMaintEvtsList 
+FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+NumberOfChannels, MaxChannelBind, ConnectionRateList, DelayToleranceList
+FROM CSTA-data-call-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) data-call-types( 134) };
+
+getLogicalDeviceInformation OPERATION ::=
+{ 	ARGUMENT 		GetLogicalDeviceInformationArgument
+	RESULT 			GetLogicalDeviceInformationResult
+	ERRORS 			{universalFailure }
+	CODE 			local:201 }
+
+GetLogicalDeviceInformationArgument ::= SEQUENCE
+{	device 					DeviceID,
+	extensions 				CSTACommonArguments 			OPTIONAL }
+
+GetLogicalDeviceInformationResult ::= SEQUENCE
+{ 	deviceCategory 				[ 0] IMPLICIT 	DeviceCategory 		DEFAULT station,
+	groupDeviceAttributes 			[ 1] IMPLICIT 	GroupDeviceAttributes 	OPTIONAL,
+	namedDeviceTypes 			[ 2] IMPLICIT 	NamedDeviceTypes 	OPTIONAL,
+	shortFormDeviceID 			[ 3] DeviceID 				OPTIONAL,
+	hasPhysicalElement 			BOOLEAN,
+	acdModels 				ACDModels,
+	agentLogOnModels 			[ 4] IMPLICIT 	AgentLogOnModels 	OPTIONAL,
+	appearanceAddressable 			BOOLEAN,
+	appearanceType 				AppearanceType,
+	appearanceList 				[ 5] IMPLICIT 	SEQUENCE OF IA5String 	OPTIONAL,
+	otherPhysicalDeviceList 		[ 6] IMPLICIT 	SEQUENCE OF DeviceID 	OPTIONAL,
+	miscMonitorCaps 			[ 7] IMPLICIT 	MiscMonitorCaps 	OPTIONAL,
+	associatedGroupList 			[ 8] IMPLICIT 	SEQUENCE OF DeviceID 	OPTIONAL,
+	maxCallbacks 				[ 9] IMPLICIT 	INTEGER 		OPTIONAL,
+	maxAutoAnswerRings 			[10] IMPLICIT 	INTEGER 		OPTIONAL,
+	maxActiveCalls 				[11] IMPLICIT 	INTEGER 		OPTIONAL,
+	maxHeldCalls 				[12] IMPLICIT 	INTEGER 		OPTIONAL,
+	maxFwdSettings 				[13] IMPLICIT 	INTEGER 		OPTIONAL,
+	maxDevicesInConf 			[14] IMPLICIT 	INTEGER 		OPTIONAL,
+	transAndConfSetup 			[15] IMPLICIT 	TransAndConfSetup 	OPTIONAL,
+	deviceOnDeviceMonitorFilter 		[16] IMPLICIT 	MonitorFilter 		OPTIONAL,
+	deviceOnConnectionMonitorFilter		[17] IMPLICIT 	MonitorFilter 		OPTIONAL,
+	callOnDeviceMonitorFilter 		[18] IMPLICIT 	MonitorFilter 		OPTIONAL,
+	callOnConnectionMonitorFilter 		[19] IMPLICIT 	MonitorFilter 		OPTIONAL,
+	mediaClassSupport 			[20] IMPLICIT 	MonitorMediaClass 	OPTIONAL,
+	mediaServiceCapsList 			[21] IMPLICIT 	MediaServiceCapsList 	OPTIONAL,
+	connectionRateList 			[22] IMPLICIT 	ConnectionRateList 	OPTIONAL,
+	delayToleranceList 			[23] IMPLICIT 	DelayToleranceList 	OPTIONAL,
+	numberOfChannels 			[24] IMPLICIT 	NumberOfChannels 	OPTIONAL,
+	maxChannelBind 				[25] IMPLICIT 	MaxChannelBind 		OPTIONAL,
+	routeingServList 			[26] IMPLICIT 	RouteingServList 	OPTIONAL,
+	logDevServList 				[27] IMPLICIT 	LogDevServList 		OPTIONAL,
+	logDevEvtsList 				[28] IMPLICIT 	LogDevEvtsList 		OPTIONAL,
+	deviceMaintEvtsList 			[29] IMPLICIT 	DeviceMaintEvtsList 	OPTIONAL,
+	extensions 				CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-get-logical-device-information

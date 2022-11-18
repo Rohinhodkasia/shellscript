@@ -1,0 +1,129 @@
+Encoding was successful
+Hex dump of encoded record:
+00 80 06 00 08 91 4a 00 02 00 00 40 80 c1 01 41  ......J....@...A
+81 c2 02 42 82 c3 03 43 83 c4 00 12 43 08 80 40  ...B...C....C..@
+80 c1 01 41 81 c2 02 42 82 c3 03 43 83 c4 00 00  ...A...B...C....
+80 00 80 00                                      ....
+Binary dump:
+userInfo. extbit
+0------- -------- -------- --------     --------    ----                      
+
+userInfo. bitmask
+-0------ -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu extbit
+--0----- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu bitmask
+---0---- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body extbit
+----0--- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body index
+-----000 -------- -------- --------     00------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup extbit
+-------- 1------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup bitmask
+-------- -0000000 -------- --------     --80----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.protocolIdentifier length
+-------- -------- 00000110 --------     ----06--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.protocolIdentifier value
+-------- -------- -------- 00000000     ------00    ---.                      
+00001000 10010001 01001010 00000000     08914a00    ..J.                      
+00000010 -------- -------- --------     02------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo extbit
+-------- 0------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo bitmask
+-------- -000000- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo.mc value
+-------- -------0 -------- --------     --00----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo.undefinedNode value
+-------- -------- 0------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.activeMC value
+-------- -------- -0------ --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceID value
+-------- -------- --000000 01000000     ----0040    --.@                      
+10000000 11000001 00000001 01000001     80c10141    ...A                      
+10000001 11000010 00000010 01000010     81c20242    ...B                      
+10000010 11000011 00000011 01000011     82c30343    ...C                      
+10000011 11000100 00------ --------     83c4----    ..--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceGoal extbit
+-------- -------- --0----- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceGoal index
+-------- -------- ---00--- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callType extbit
+-------- -------- -----0-- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callType index
+-------- -------- ------00 --------     ----00--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup value
+-------- -------- -------- 0001001-     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup sourceCallSignalAddress opt bit
+-------- -------- -------- -------0     ------12    ---.                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup remoteExtensionAddress opt bit
+0------- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup callIdentifier opt bit
+-1------ -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup h245SecurityCapability opt bit
+--0----- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup tokens opt bit
+---0---- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup cryptoTokens opt bit
+----0--- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup fastStart opt bit
+-----0-- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup mediaWaitForConnect opt bit
+------1- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup canOverlapSend opt bit
+-------1 -------- -------- --------     43------    C---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup endpointIdentifier opt bit
+-------- 0------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier length
+-------- -0001000 1------- --------     --08----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier value
+-------- -------- -0000000 01000000     ----8040    --.@                      
+10000000 11000001 00000001 01000001     80c10141    ...A                      
+10000001 11000010 00000010 01000010     81c20242    ...B                      
+10000010 11000011 00000011 01000011     82c30343    ...C                      
+10000011 11000100 00000000 0-------     83c400--    ...-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.mediaWaitForConnect length
+-------- -------- -------- -0000000     ------00    ---.                      
+1------- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.mediaWaitForConnect value
+-0000000 0------- -------- --------     80------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.canOverlapSend length
+-------- -0000000 1------- --------     --00----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.canOverlapSend value
+-------- -------- -0000000 0-------     ----80--    --.-                      
+

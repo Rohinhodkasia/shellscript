@@ -1,0 +1,40 @@
+personnelRecord {
+   name {
+      givenName = John
+      initial = P
+      familyName = Smith
+   }
+   number = 51
+   title = Director
+   dateOfHire = 19710917
+   nameOfSpouse {
+      givenName = Mary
+      initial = T
+      familyName = Smith
+   }
+   children [0] {
+      name {
+         givenName = Ralph
+         initial = T
+         familyName = Smith
+      }
+      dateOfBirth = 19571111
+   }
+   children [1] {
+      name {
+         givenName = Susan
+         initial = B
+         familyName = Jones
+      }
+      dateOfBirth = 19590717
+   }
+}
+
+Encoding CANONICAL was successful
+Hex dump of encoded CANONICAL record:
+04 4a 6f 68 6e 01 50 05 53 6d 69 74 68 01 33 08  .John.P.Smith.3.
+44 69 72 65 63 74 6f 72 08 31 39 37 31 30 39 31  Director.1971091
+37 04 4d 61 72 79 01 54 05 53 6d 69 74 68 01 02  7.Mary.T.Smith..
+05 52 61 6c 70 68 01 54 05 53 6d 69 74 68 08 31  .Ralph.T.Smith.1
+39 35 37 31 31 31 31 05 53 75 73 61 6e 01 42 05  9571111.Susan.B.
+4a 6f 6e 65 73 08 31 39 35 39 30 37 31 37        Jones.19590717

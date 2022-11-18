@@ -1,0 +1,5 @@
+Test DEFINITIONS ::= BEGIN
+
+MyString ::= IA5String (SIZE (1..10))
+
+END

@@ -1,0 +1,37 @@
+Decode MessageType was successful
+messageType {
+   undirectional {
+      components[0] {
+         returnResultLast {
+            invokeID = 1
+            result {
+               operationCode = 26116
+               parameter = 3081b79f2d017bbf327a8278000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f70717273747576778b06000102030405bf6d1c81033132338302303984010185010086016f870854657374557365729f5707546573744f434e9f530210e1
+            }
+         }
+      }
+   }
+}
+
+Decode CallInfoFromResource_RESULT was successful
+result {
+   resourceType = 123
+   strParameterBlock {
+      flexParameterBlock = 000102030405060708090a0b0c0d0e0f101112131415161718191a1b1c1d1e1f202122232425262728292a2b2c2d2e2f303132333435363738393a3b3c3d3e3f404142434445464748494a4b4c4d4e4f505152535455565758595a5b5c5d5e5f606162636465666768696a6b6c6d6e6f7071727374757677
+   }
+   amp1 = 000102030405
+   amp2 {
+      ampAINNodeID {
+         spcID = 313233
+      }
+      ampCLogSeqNo = 12345
+      ampCLogRepInd = requestReport
+      ampCallProgInd = callProgressVoiceAnnouncements
+      ampTestReqInd = 111
+      ampCLogName = 5465737455736572
+   }
+   serviceProviderID {
+      ocn = TestOCN
+   }
+   serviceContext = 4321
+}

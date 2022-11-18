@@ -1,0 +1,72 @@
+CSTA-offered-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) offered-event( 227) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types –-
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+SubjectDeviceID, CallingDeviceID, CalledDeviceID, RedirectionDeviceID, AssociatedCalledDeviceID,
+AssociatedCallingDeviceID, NetworkCalledDeviceID, NetworkCallingDeviceID
+FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageData, ServicesPermitted FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+DeviceHistory, LanguagePreferences, SubjectOfCall, 
+MessageInfo FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+LocationInfoList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+ConnectionInformation, MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+OfferedEvent ::= SEQUENCE
+{ 	offeredConnection 		ConnectionID,
+	offeredDevice 			SubjectDeviceID,
+	callingDevice 			CallingDeviceID,
+	calledDevice 			CalledDeviceID,
+	lastRedirectionDevice 		RedirectionDeviceID,
+	originatingNIDConnection 	ConnectionID 				OPTIONAL,
+	localConnectionInfo 		LocalConnectionState 			OPTIONAL,
+	correlatorData 			CorrelatorData 				OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	cause 				EventCause,
+	servicesPermitted 		[0] IMPLICIT ServicesPermitted 		OPTIONAL,
+	networkCallingDevice 		NetworkCallingDeviceID 			OPTIONAL,
+	networkCalledDevice 		NetworkCalledDeviceID 			OPTIONAL,
+	associatedCallingDevice 	AssociatedCallingDeviceID 		OPTIONAL,
+	associatedCalledDevice 		AssociatedCalledDeviceID 		OPTIONAL,
+	mediaCallCharacteristics 	[1] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	callCharacteristics 		[2] IMPLICIT CallCharacteristics 	OPTIONAL,
+	offeredConnectionInfo 		[3] IMPLICIT ConnectionInformation 	OPTIONAL,
+	callLinkageData 		[4] IMPLICIT CallLinkageData 		OPTIONAL,
+	subjectOfCall			[5] IMPLICIT SubjectOfCall		OPTIONAL,
+	messageInfo			[6] IMPLICIT MessageInfo		OPTIONAL,
+	languagePreferences		[7] IMPLICIT LanguagePreferences	OPTIONAL,
+	deviceHistory			[8] IMPLICIT DeviceHistory		OPTIONAL,
+	locationInfo			[9] IMPLICIT LocationInfoList		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-offered-event

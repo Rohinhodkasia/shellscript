@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/lte-nr-rrc/rel15/NR-InterNodeDefinitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-nr-rrc/rel15/NR-RRC-Definitions.asn</UTF8String>
+      <UTF8String>../../../specs/lte-nr-rrc/rel15/NR-UE-Variables.asn</UTF8String>
+   </schemas>
+   <language>
+      <java/>
+   </language>
+   <ruleset>
+      <uper/>
+      <xml/>
+   </ruleset>
+   <basicOptions>
+      <printOut/>
+      <copy/>
+      <compare/>
+   </basicOptions>
+   <languageOpts>
+      <java>
+         <toDirs/>
+         <ant/>
+         <getset/>
+      </java>
+   </languageOpts>
+</ASN1COptions>

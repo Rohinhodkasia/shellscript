@@ -1,0 +1,7 @@
+Test DEFINITIONS ::= BEGIN
+
+PDU ::= SEQUENCE {
+   nbs   BIT STRING { one(1), sixteen(16) }
+}
+
+END

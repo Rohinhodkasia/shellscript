@@ -1,0 +1,66 @@
+QSIG-ROSE DEFINITIONS ::= BEGIN
+
+   IMPORTS ROS{} FROM Remote-Operations-Generic-ROS-PDUs 
+   {joint-iso-itu-t remote-operations(4) generic-ROS-PDUs(6) version1(0)}
+
+   OPERATION, ERROR FROM Remote-Operations-Information-Objects
+   {joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0)}
+
+   AOC-Operations FROM SS-AOC-Operations-asn1-97
+   CC-Operations FROM SS-CC-Operations-asn1-97 
+   Call-Diversion-Operations FROM Call-Diversion-Operations-asn1-97
+   Call-Intrusion-Operations FROM Call-Intrusion-Operations-asn1-97
+   CallIdentification-Operations 
+      FROM Call-Identification-and-Call-Linkage-Operations-asn1-97
+   Call-Interception-Operations FROM Call-Interception-Operations-asn1-97
+   CMN-Operations FROM Common-Information-Operations-asn1-97
+   Call-Offer-Operations FROM Call-Offer-Operations-asn1-97
+   Call-Interruption-Operations FROM Call-Interruption-Operations-asn1-97
+   Call-Transfer-Operations FROM Call-Transfer-Operations-asn1-97
+   Do-Not-Disturb-Operations FROM Do-Not-Disturb-Operations-asn1-97
+   MCM-Operations FROM SS-MCM-Operations-asn1-97
+   Make-Call-Request-Operations FROM SS-MCR-Operations-asn97
+   MID-Operations FROM SS-MID-Operations-asn1-97
+   Name-Operations FROM Name-Operations-asn1-97
+   Path-Replacement-Operations FROM Path-Replacement-Operations-asn1-97
+   Private-User-Mobility-Call-Handling-Operations
+      FROM Private-User-Mobility-Call-Handling-Operations-asn1-97
+   PUM-Registration-Operations FROM PUM-Registration-Operations-asn1-97
+   Recall-Operations FROM Recall-Operations-asn1-97
+   SD-Operations FROM SS-SD-Operations-asn1-97
+   Sms-Operations FROM Short-Message-Service-Operations-asn1-97
+   Single-Step-Call-Transfer-Operations 
+      FROM Single-Step-Call-Transfer-Operations-asn1-97
+   Synchronization-Operations FROM Synchronization-Operations-asn1-97
+   WTMAuth-Operations FROM WTM-Authentication-Operations-asn1-97
+   WTMCH-Operations FROM Wireless-Terminal-Call-Handling-Operations-asn1-97
+   WTMLR-Operations FROM WTM-Location-Registration-Operations-asn1-97
+;
+
+   QSIG-ROSE-PDU ::= ROS {{InvokeIdSet}, {OperationSet}, {OperationSet}}
+
+   InvokeIdSet INTEGER ::=
+   {
+      InvokeIDs
+   }
+
+   InvokeIDs ::= INTEGER 
+
+   OperationSet OPERATION ::=
+   {
+      AOC-Operations | CC-Operations | Call-Diversion-Operations |
+      Call-Intrusion-Operations | CallIdentification-Operations  |
+      Call-Interception-Operations | CMN-Operations | Call-Offer-Operations |
+      Call-Interruption-Operations | Call-Transfer-Operations |
+      Do-Not-Disturb-Operations | MCM-Operations | 
+      Make-Call-Request-Operations | MID-Operations | Name-Operations |
+      Path-Replacement-Operations | 
+      Private-User-Mobility-Call-Handling-Operations |
+      PUM-Registration-Operations | Recall-Operations |
+      SD-Operations | Sms-Operations | 
+      Single-Step-Call-Transfer-Operations | Synchronization-Operations |
+      WTMAuth-Operations | WTMCH-Operations | WTMLR-Operations
+      , ...
+   }
+
+END

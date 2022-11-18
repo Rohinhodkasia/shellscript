@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>makeCallArgument.asn</UTF8String>
+      <UTF8String>simple-ROSE.asn</UTF8String>
+   </schemas>
+   <language>
+      <python/>
+   </language>
+   <ruleset>
+      <ber/>
+   </ruleset>
+   <basicOptions>
+      <printOut/>
+   </basicOptions>
+   <languageOpts>
+      <python/>
+   </languageOpts>
+</ASN1COptions>

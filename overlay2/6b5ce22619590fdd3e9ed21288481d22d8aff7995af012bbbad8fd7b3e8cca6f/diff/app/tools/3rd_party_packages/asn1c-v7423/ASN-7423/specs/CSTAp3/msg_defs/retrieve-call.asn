@@ -1,0 +1,37 @@
+CSTA-retrieve-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) retrieve-call( 14) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+retrieveCall OPERATION ::=
+{ 	ARGUMENT 		RetrieveCallArgument
+	RESULT 			RetrieveCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 14 }
+
+RetrieveCallArgument ::= SEQUENCE
+{ 	callToBeRetrieved 		ConnectionID,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+RetrieveCallResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-retrieve-call

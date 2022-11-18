@@ -1,0 +1,41 @@
+Decode was successful
+megacoMessage {
+   mess {
+      version = 1
+      mId {
+         ip4Address {
+            address = 7c7c7cde
+         }
+      }
+      messageBody {
+         transactions[0] {
+            transactionRequest {
+               transactionId = 9998
+               actions[0] {
+                  contextId = 0
+                  commandRequests[0] {
+                     command {
+                        serviceChangeReq {
+                           terminationID[0] {
+                              id = ffffffffffffffff
+                           }
+                           serviceChangeParms {
+                              serviceChangeMethod = restart
+                              serviceChangeAddress {
+                                 portNumber = 55555
+                              }
+                              serviceChangeProfile {
+                                 profileName = 00fe
+                                 version = 1
+                              }
+                              serviceChangeReason = 393031206d6720636f6c20626f6f74
+                           }
+                        }
+                     }
+                  }
+               }
+            }
+         }
+      }
+   }
+}

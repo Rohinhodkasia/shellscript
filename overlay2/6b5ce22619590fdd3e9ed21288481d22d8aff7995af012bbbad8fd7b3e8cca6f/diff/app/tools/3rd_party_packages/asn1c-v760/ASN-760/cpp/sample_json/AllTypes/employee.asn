@@ -1,0 +1,145 @@
+AllTypes DEFINITIONS EXPLICIT TAGS ::= BEGIN
+EXPORTS;
+
+Enum ::= ENUMERATED { a(0), b (1) }
+
+oid OBJECT IDENTIFIER ::= { 1 2 100000 4 5 6 }
+roid RELATIVE-OID ::= { 100 2 100000 4 5 6 }
+
+BigIntType ::= [78] IMPLICIT INTEGER
+BigIntType2 ::= [77] INTEGER
+BigIntType3 ::= [76] BigIntType2
+
+BiometricSyntax ::= CHOICE {  
+   name Name,
+   child ChildInformation,
+   int INTEGER,
+   ch CHOICE {
+      a [3] INTEGER
+   }
+}
+
+BiometricSyntaxSet ::= SET {  
+   name  [5] Name,
+   child [10] ChildInformation OPTIONAL,
+   int   [4] INTEGER,
+   ch CHOICE {
+      a [3] INTEGER,
+      aa [30] INTEGER
+   }
+}
+
+BigInt2 ::= [66] BigIntType
+
+Null2 ::= [44] NULL
+
+OS ::= [100] IMPLICIT OCTET STRING
+OS1 ::= [101] IMPLICIT OS
+
+OS2 ::= [105] OCTET STRING
+OS3 ::= [104] OS2
+
+CS ::= [100] IMPLICIT IA5String
+CS1 ::= [101] IMPLICIT CS
+BMPS ::= [13] BMPString
+Unis ::= [23] UniversalString
+BITS ::= [32] BIT STRING
+
+PersonnelRecord ::= [APPLICATION 0]  SEQUENCE {
+   i [0] INTEGER (2..MAX) OPTIONAL,
+   i2 [10] IMPLICIT INTEGER OPTIONAL,
+   e [1] ENUMERATED { a(0), b (1) } OPTIONAL,
+   e2 [2] Enum OPTIONAL,
+   b [3] BOOLEAN OPTIONAL,
+
+   bs0 BIT STRING OPTIONAL,
+   bs [30] IMPLICIT BIT STRING OPTIONAL,
+   bs1 [31] BIT STRING OPTIONAL,
+   bs2 [150] BIT STRING OPTIONAL,
+   bs3 BITS OPTIONAL,
+
+   cs [56] IA5String OPTIONAL,
+   cs1 [57] IMPLICIT IA5String OPTIONAL,
+   cs2 IA5String OPTIONAL,
+   cs3 [58] IMPLICIT CS1 OPTIONAL,
+
+   os [34] IMPLICIT OCTET STRING OPTIONAL,
+   os1 [33] OCTET STRING OPTIONAL,
+   os2 OCTET STRING OPTIONAL,
+   os3 [102] OS1 OPTIONAL,
+   os4 [103] OS3 OPTIONAL,
+   
+   oid OBJECT IDENTIFIER OPTIONAL,
+   roid RELATIVE-OID OPTIONAL,
+   nul NULL OPTIONAL,
+   nul2 Null2 OPTIONAL,
+   vids VideotexString OPTIONAL,
+   viss VisibleString OPTIONAL,
+   gras GraphicString OPTIONAL,
+   gens GeneralString OPTIONAL,
+
+   unis UniversalString OPTIONAL,
+   unis2 [21] UniversalString OPTIONAL,
+   unis3 [35] UniversalString OPTIONAL,
+   unis4 [22] Unis OPTIONAL,
+   unis5 [24] IMPLICIT UniversalString OPTIONAL,
+   
+   bmps BMPString OPTIONAL,
+   bmps2 [11] BMPString OPTIONAL,
+   bmps3 [36] BMPString OPTIONAL,
+   bmps4 [12] BMPS OPTIONAL,
+   bmps5 [14] IMPLICIT BMPString OPTIONAL,
+   
+   utf8 UTF8String OPTIONAL,
+
+   gt GeneralizedTime OPTIONAL,
+   ut UTCTime OPTIONAL,
+
+   r1 REAL OPTIONAL,
+
+   bi [6] BigInt2 OPTIONAL,
+   bi2 [8] BigIntType3 OPTIONAL,
+
+   choiceSeq [37] SEQUENCE SIZE(1..MAX) OF [21] BiometricSyntax OPTIONAL,
+   primSeq   [38] SEQUENCE SIZE(1..MAX) OF [21] INTEGER OPTIONAL,
+   primSeqSt SEQUENCE SIZE(2) OF [21] INTEGER OPTIONAL,
+   choice    [23] CHOICE {
+      name Name,
+--      child ChildInformation,
+      int INTEGER
+      --,...
+   } OPTIONAL,
+   ...,
+
+   child [42] ChildInformation,
+   bioSet [41] SET OF BiometricSyntax OPTIONAL,
+   bioSet2 [40] SET OF BiometricSyntaxSet OPTIONAL
+}
+
+Set ::= SET {
+   dateOfBirth [0] Date
+}
+
+ChildInformation ::= [4] SET {
+   name Name,
+   dateOfBirth [0] Date,
+   ch CHOICE {
+      givenName [20] IA5String,
+      initial   [12] IA5String,
+      ...
+   } OPTIONAL,
+   ...
+--   [[2: -- -- Extension addition added in protocol version 2
+--   lastLoggedIn GeneralizedTime
+--   ]]
+}
+
+Name ::= [APPLICATION 1] IMPLICIT SEQUENCE {
+   givenName   IA5String,
+   initial  IA5String,
+   familyName  IA5String
+}
+
+Date ::= IA5String
+
+END

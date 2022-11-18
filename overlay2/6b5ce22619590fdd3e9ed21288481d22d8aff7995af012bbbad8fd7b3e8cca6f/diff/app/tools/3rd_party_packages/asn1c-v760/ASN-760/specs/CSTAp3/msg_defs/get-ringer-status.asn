@@ -1,0 +1,50 @@
+CSTA-get-ringer-status
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-ringer-status( 270) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+RingerID, RingMode FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) physical-device-feature( 137) };
+
+getRingerStatus OPERATION ::=
+{	ARGUMENT 		GetRingerStatusArgument
+	RESULT			GetRingerStatusResult
+	ERRORS			{universalFailure }
+	CODE			local: 270 }
+
+GetRingerStatusArgument ::= SEQUENCE
+{	device 				DeviceID,
+	ringer				RingerID				OPTIONAL,
+	extensions 			CSTACommonArguments	 		OPTIONAL }
+
+GetRingerStatusResult ::= SEQUENCE
+{	ringerStatusList		RingerStatusList,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+RingerStatusList ::= SEQUENCE OF SEQUENCE
+{	ringer 				RingerID,
+	ringMode 			RingMode,
+	ringCount 			[0] IMPLICIT INTEGER (0..1000) 		OPTIONAL,
+	ringDuration			[3] IMPLICIT INTEGER			OPTIONAL,
+	ringPattern 			[1] IMPLICIT INTEGER 			OPTIONAL,
+	ringVolAbs 			[2] IMPLICIT INTEGER (0..100) 		OPTIONAL }
+
+
+END -- of CSTA-get-ringer-status

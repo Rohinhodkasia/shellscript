@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Methodology</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="prev" href="ar01s01.html" title="Introduction" />
+    <link rel="next" href="ar01s03.html" title="Contents of the Package" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">Methodology</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s01.html">Prev</a> </td>
+          <th width="60%" align="center"> </th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s03.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="Methodology">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h2 xmlns="http://www.w3.org/1999/xhtml" class="title" style="clear: both"><a id="idp638380020"></a>Methodology</h2>
+          </div>
+        </div>
+      </div>
+      <p>This API has been developed in the C programming language, using Objective Systems' ASN1C compiler to generate the structures and encode/decode functions.  The code was generated from a mixture of ASN.1 and CSN.1 specifications. In cases where the relevant technical specifications did not use either ASN.1 or CSN.1, we approximated the given message or information element using one of these notations.  Since this was an approximation, it was also necessary to use a combination of configuration directives and custom code to achieve the desired results.  The configuration directives are made effective by using the '-3gl3' command-line option with ASN1C. Our white paper, <a class="link" href="http://www.obj-sys.com/docs/UsingASNtoDescribe3GPPMessages.pdf" target="_top">"Using ASN.1 to Describe 3GPP Messages"</a>, describes how messages were approximated using ASN.1. (Note that this paper does not reflect our more recent capability to directly compile CSN.1 notation.)
+    </p>
+      <p>The end result is an API that consisted of C types and structures similar to what a user would get by compiling a standard ASN.1 specification. The other benefit of this approach is that in addition to encode/decode functions, supporting functions such as print, copy, compare, etc. can be generated from the definitions.</p>
+      <p>Note that one or more ASN.1 modules are associated with each of the above 3GPP specifications. In some of these modules, PDU (“Protocol Definition Unit”) types are defined. These PDU types are used to represent an entire group of (or possibly all) messages from that module. Common fields are also factored out into the PDU type.</p>
+      <p>The prefixes for each of the types in the API are given in the following table: 
+        </p>
+      <table border="3" frame="border" rules="all" cellpadding="5" id="idp644108916">
+        <caption>Table 1. Module Prefixes</caption>
+        <tbody>
+          <tr>
+                <td>
+                    <p>TS24008IE</p>
+                </td>
+                <td>
+                    <p>prefix for the information elements defined in 24.008</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24008Msg</p>
+                </td>
+                <td>
+                    <p>prefix for the messages defined in 24.008</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24011IE</p>
+                </td>
+                <td>
+                    <p>prefix for the information elements defined in 24.011</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24011Msg</p>
+                </td>
+                <td>
+                    <p>prefix for the messages defined in 24.011</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24301IE</p>
+                </td>
+                <td>
+                    <p>prefix for the information elements defined in 24.301</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24301Msg</p>
+                </td>
+                <td><p>prefix for the messages defined in 24.301</p></td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS24501Msg</p>
+                </td>
+                <td><p>prefix for the messages defined in 24.501</p></td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS44018IE</p>
+                </td>
+                <td>
+                    <p>prefix for the information elements defined in 44.018</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS44018Msg</p>
+                </td>
+                <td>
+                    <p>prefix for the messages defined in 44.018</p>
+                </td>
+            </tr>
+          <tr>
+                <td>
+                    <p>TS44060IE</p>
+                </td>
+                <td>
+                    <p>prefix for the information elements defined in 44.060</p>
+                </td>
+            </tr>
+        </tbody>
+      </table>
+      <p>The PDU types we have defined are given in the following table:
+        </p>
+      <table border="3" frame="border" rules="all" cellpadding="5" id="idp644121044">
+        <caption>Table 2. PDUs</caption>
+        <tbody>
+          <tr>
+                    <td>
+                        <p>TS24008Msg_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for the messages defined in 24.008</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS24011Msg_CP_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for the CP messages defined in 24.011</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS24011Msg_RP_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for the RP messages defined in 24.011</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS24301Msg_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for the messages defined in 24.301</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS24501Msg_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for the messages defined in 24.501</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS44018Msg_L2_PSEUDO_LEN_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for 44.018 RRC messages using an L2 Pseudo Length</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS44018Msg_RR_Short_PD_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for 44.018 RRC messages using a short protocol discriminator</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS44018Msg_DL_DCCH_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for 44.018 RRC standard L3 messages transmitted on the main DCCH from network to MS (downlink)</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS44018Msg_UL_DCCH_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for 44.018 RRC standard L3 messages transmitted on the main DCCH from MS to network (uplink)</p>
+                    </td>
+                </tr>
+          <tr>
+                    <td>
+                        <p>TS44018Msg_UL_SACCH_PDU</p>
+                    </td>
+                    <td>
+                        <p>PDU for 44.018 RRC standard L3 messages transmitted on the SACCH from MS to network (uplink)</p>
+                    </td>
+                </tr>
+        </tbody>
+      </table>
+      <p>
+    </p>
+      <p>Note that for 44.018 RRC messages, you must choose the PDU type according to the message format and (in some cases) the channel and message direction.</p>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s01.html">Prev</a> </td>
+          <td width="20%" align="center"> </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s03.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Introduction </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> Contents of the Package</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

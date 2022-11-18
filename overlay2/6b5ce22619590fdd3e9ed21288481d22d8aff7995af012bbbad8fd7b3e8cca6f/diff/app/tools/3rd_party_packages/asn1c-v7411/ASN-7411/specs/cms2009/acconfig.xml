@@ -1,0 +1,12 @@
+<asn1config>
+  <includedir>../PKIX/AttrCert</includedir>
+  <includedir>../PKIX/Certificate</includedir>
+  <includedir>../PKIX/Common</includedir>
+  <includedir>../PKIX/CRMF</includedir>
+  <includedir>../PKIX/EnrollMsgSyntax</includedir>
+  <module name="PKIX1Explicit-2009">
+    <production name="CertificateSerialNumber">
+      <isBigInteger/>
+    </production>
+  </module>
+</asn1config>

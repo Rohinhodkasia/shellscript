@@ -1,0 +1,31 @@
+Test DEFINITIONS ::= BEGIN
+
+Int ::= INTEGER
+
+UInt32 ::= INTEGER (0..4294967295)
+
+UIntMax ::= INTEGER (0..MAX)
+
+UInt8 ::= INTEGER (0..255)
+
+ConstrUInt32 ::= UInt32 (0..255)
+
+UInt-0-2000 ::= INTEGER (0..2000)
+
+UInt-1999-2000 ::= INTEGER (1999..2000)
+
+UInt32-1200-1250 ::= UInt32 (1200..1250)
+
+UInt8Ext ::= INTEGER (0..255,...)
+
+Int8 ::= INTEGER (-128..127)
+
+Int-Neg1000-1000 ::= INTEGER (-1000..1000)
+
+IntWithNamedNumbers ::= INTEGER {a(1),b(2)}
+
+ConstrIntWithNamedNumbers ::= INTEGER {a(1),b(2)}(0..65535)
+
+IntWith2Ranges ::= INTEGER (-128..127)(0..MAX)
+
+END

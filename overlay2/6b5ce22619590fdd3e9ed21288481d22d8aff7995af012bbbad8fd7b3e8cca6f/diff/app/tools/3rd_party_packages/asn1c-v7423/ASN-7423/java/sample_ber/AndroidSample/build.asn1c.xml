@@ -1,0 +1,40 @@
+<project default="compile">
+	
+	<target name="init">
+		<tstamp>
+      		<format property="start.time" pattern="MM/dd/yyyy hh:mm:ss"/>
+		</tstamp>
+	</target>
+
+	<target name="compile" depends="init">
+		<echo>Compiling ASN.1 at ${start.time}</echo>
+		
+		<exec executable="${ASN1C_HOME}/bin/asn1c">
+			<arg value="asn1/employee.asn"/>
+			<arg value="-o"/> <arg value="gensrc/com/objsys/sample/Employee" />
+			<arg value="-java"/>
+			<arg value="-ber"/>
+			<arg value="-stream"/>
+			<arg value="-print"/>
+			<arg value="-pkgname"/> <arg value="com.objsys.sample.Employee" />			
+		</exec>
+
+		<exec executable="${ASN1C_HOME}/bin/asn1c">
+			<arg value="asn1/nbapSample.asn"/>
+			<arg value="-dirs"/>
+			<arg value="-o"/> <arg value="gensrc/com/objsys/sample" />
+			<arg value="-java"/>
+			<arg value="-tables"/>
+			<arg value="-per"/>
+			<arg value="-print"/>
+			<arg value="-pkgpfx"/> <arg value="com.objsys.sample" />			
+		</exec>
+	
+	</target>
+	
+	<target name="clean">
+		<delete includeemptydirs="true">
+    		<fileset dir="gensrc" includes="**/*"/>
+  		</delete>
+	</target>
+</project>

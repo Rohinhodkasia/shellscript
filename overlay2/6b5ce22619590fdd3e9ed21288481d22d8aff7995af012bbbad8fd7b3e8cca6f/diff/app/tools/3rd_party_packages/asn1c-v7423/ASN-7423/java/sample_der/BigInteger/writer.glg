@@ -1,0 +1,18 @@
+dssParms.p = 88962710306127702866241727433142015
+Encoding was successful
+Hex dump of encoded record:
+30 37 02 0f 11 22 33 44 55 66 77 88 99 aa bb cc  07..."3DUfw.....
+dd ee ff 02 11 fc 5f 36 df 8a 3f 24 0c 47 53 43  ......_6..?$.GSC
+a0 69 31 c0 f5 2e 02 11 03 a0 c9 20 75 c0 db f3  .i1........ u...
+b8 ac bc 5f 96 ce 3f 0a d2                       ..._..?..
+Binary dump:
+0000 : 30 37                               : C [UNIVERSAL 16] 55
+0002 : 02 0f                               : P [UNIVERSAL 2] 15
+0004 : 11 22 33 44 55 66 77 88 99 aa bb cc : ."3DUfw.....
+     : dd ee ff                            : ...
+0019 : 02 11                               : P [UNIVERSAL 2] 17
+0021 : fc 5f 36 df 8a 3f 24 0c 47 53 43 a0 : ._6..?$.GSC.
+     : 69 31 c0 f5 2e                      : i1...
+0038 : 02 11                               : P [UNIVERSAL 2] 17
+0040 : 03 a0 c9 20 75 c0 db f3 b8 ac bc 5f : ... u......_
+     : 96 ce 3f 0a d2                      : ..?..

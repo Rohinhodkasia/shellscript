@@ -1,0 +1,85 @@
+ERS-2021
+{ iso(1) identified-organization(3) dod(6) internet(1)
+  security(5) mechanisms(5) ltans(11) id-mod(0)
+id-mod-ers(1) id-mod-ers-v2(2) }
+
+DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+
+EXPORTS ALL;
+
+IMPORTS
+
+ContentInfo
+FROM CryptographicMessageSyntax-2010 -- in [RFC6268]
+{ iso(1) member-body(2) us(840) rsadsi(113549) pkcs(1)
+pkcs-9(9) smime(16) modules(0) id-mod-cms-2009(58) }
+
+AlgorithmIdentifier{}, DIGEST-ALGORITHM
+FROM AlgorithmInformation-2009 -- in [RFC5912]
+{ iso(1) identified-organization(3) dod(6) internet(1)
+  security(5) mechanisms(5) pkix(7) id-mod(0)
+id-mod-algorithmInformation-02(58) }
+
+AttributeSet{}, ATTRIBUTE
+FROM PKIX-CommonTypes-2009 -- in [RFC5912]
+{ iso(1) identified-organization(3) dod(6) internet(1)
+  security(5) mechanisms(5) pkix(7) id-mod(0)
+id-mod-pkixCommon-02(57) }
+;
+
+ltans OBJECT IDENTIFIER ::= { iso(1) identified-organization(3)
+dod(6) internet(1) security(5) mechanisms(5) ltans(11) }
+
+EvidenceRecord ::= SEQUENCE {
+  version  INTEGER { v1(1) },
+  digestAlgorithms  SEQUENCE OF AlgorithmIdentifier
+  {DIGEST-ALGORITHM, {...}},
+  cryptoInfos  [0] CryptoInfos OPTIONAL,
+  encryptionInfo  [1] EncryptionInfo OPTIONAL,
+  archiveTimeStampSequence  ArchiveTimeStampSequence }
+
+CryptoInfos ::= SEQUENCE SIZE (1..MAX) OF Attribute
+
+ArchiveTimeStamp ::= SEQUENCE {
+  digestAlgorithm [0] AlgorithmIdentifier
+  {DIGEST-ALGORITHM, {...}} OPTIONAL,
+  attributes      [1] Attributes OPTIONAL,
+  reducedHashtree [2] SEQUENCE OF PartialHashtree OPTIONAL,
+timeStamp       ContentInfo }
+
+PartialHashtree ::= SEQUENCE OF OCTET STRING
+
+Attributes ::= SET SIZE (1..MAX) OF Attribute
+
+ArchiveTimeStampChain ::= SEQUENCE OF ArchiveTimeStamp
+
+ArchiveTimeStampSequence ::= SEQUENCE OF ArchiveTimeStampChain
+
+EncryptionInfo ::= SEQUENCE {
+  encryptionInfoType  ENCINFO-TYPE.&id
+  ({SupportedEncryptionAlgorithms}),
+  encryptionInfoValue  ENCINFO-TYPE.&Type
+({SupportedEncryptionAlgorithms}{@encryptionInfoType}) }
+
+ENCINFO-TYPE ::= TYPE-IDENTIFIER
+
+SupportedEncryptionAlgorithms ENCINFO-TYPE ::= { ... }
+
+aa-er-internal ATTRIBUTE ::=
+{ TYPE EvidenceRecord IDENTIFIED BY id-aa-er-internal }
+
+id-aa-er-internal  OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+us(840) rsadsi(113549) pkcs(1) pkcs9(9) smime(16) id-aa(2) 49 }
+
+aa-er-external ATTRIBUTE ::=
+{ TYPE EvidenceRecord IDENTIFIED BY id-aa-er-external }
+
+id-aa-er-external  OBJECT IDENTIFIER ::= { iso(1) member-body(2)
+us(840) rsadsi(113549) pkcs(1) pkcs9(9) smime(16) id-aa(2) 50 }
+
+ERSAttrSet ATTRIBUTE ::= { aa-er-internal | aa-er-external, ... }
+
+Attribute ::= AttributeSet {{ERSAttrSet}}
+
+END

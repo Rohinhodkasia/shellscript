@@ -1,0 +1,345 @@
+CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+AccountInfo, AgentID, AgentPassword, AgentState, AuthCode, CallOrigination, CorrelatorData,
+DataPathType, DisplayAttributeList, ForwardList, IOCrossRefID, IORegisterReqID,
+MessageID, ParticipationType, PendingAgentState, RetryValue, RouteRegisterReqID,
+RouteingCrossRefID, SelectValue, SysStatRegisterID, SystemStatus, TerminatingConditions,
+ForwardingType, ForwardDefault, AttributeInfo, EncodingAlgorithm, ControlData, UserData,
+TelephonyTone, DeviceHistory, SubjectOfCall, LanguagePreferences, MessageInfo,
+LocReason, LocCrossRefID, ResourceID, PresenceState;
+
+IMPORTS
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) };
+
+AccountInfo ::= OCTET STRING 
+
+AgentID ::= OCTET STRING 
+
+AgentPassword ::= OCTET STRING
+
+AgentState ::= ENUMERATED
+{	agentNotReady 			(0),
+	agentNull 			(1),
+	agentReady 			(2),
+	agentBusy 			(3),
+	agentWorkingAfterCall 		(4) }
+
+AuthCode ::= OCTET STRING 
+
+CorrelatorData ::= OCTET STRING 
+
+IOCrossRefID ::= CHOICE
+{	switchProvided 		[0] OCTET STRING ,
+	computerProvided 	[1] OCTET STRING }
+
+IORegisterReqID ::= OCTET STRING 
+
+MessageID ::= OCTET STRING 
+
+ParticipationType ::= ENUMERATED
+{ 	silent 				(0),
+	active 				(1),
+	none				(2) }
+
+RouteRegisterReqID ::= OCTET STRING 
+
+RouteingCrossRefID ::= [APPLICATION 24] IMPLICIT OCTET STRING 
+
+SelectValue ::= ENUMERATED
+{	normal 				(0),
+	leastCost 			(1),
+	emergency 			(2),
+	aCD 				(3),
+	userDefined 			(4) }
+
+RetryValue ::= CHOICE -- used in RouteSelect Request service
+{	noListAvailable			[0] IMPLICIT BOOLEAN,
+	noCountAvailable 		[1] IMPLICIT BOOLEAN,
+	retryCount 			[2] IMPLICIT INTEGER }
+
+SysStatRegisterID ::= OCTET STRING
+
+SystemStatus ::= ENUMERATED
+{ 	disabled 			(4),
+	partiallyDisabled 		(8),
+	enabled 			(1),
+	initializing 			(0),
+	messagesLost 			(3),
+	normal 				(2),	
+	overloadImminent 		(5),
+	overloadReached 		(6),
+	overloadRelieved 		(7) }
+
+CallOrigination ::= BIT STRING
+{ 	internal 			(0),
+	external 			(1) }
+
+ForwardList ::= SEQUENCE OF SEQUENCE
+{ 	forwardingType 			ForwardingType 			OPTIONAL,
+	forwardStatus 			BOOLEAN,
+	forwardDN 			DeviceID 			OPTIONAL,
+	forwardDefault 			ForwardDefault 			OPTIONAL,
+	ringDuration			[0] IMPLICIT INTEGER		OPTIONAL,
+	ringCount 			INTEGER (1..100) 		OPTIONAL }
+
+ForwardingType ::= ENUMERATED
+{ 	forwardImmediate 		( 0),
+	forwardBusy 			( 1),
+	forwardNoAns 			( 2),
+	forwardDND 			( 9),
+	forwardBusyInt 			( 3),
+	forwardBusyExt 			( 4),
+	forwardNoAnsInt 		( 5),
+	forwardNoAnsExt	 		( 6),
+	forwardImmInt 			( 7),
+	forwardImmExt 			( 8),
+	forwardDNDInt 			(10),
+	forwardDNDExt 			(11) }
+
+ForwardDefault ::= ENUMERATED
+{ 	forwardingTypeAndForwardDN 	( 0),
+	forwardingType 			( 1),
+	forwardDN 			( 2) }
+
+PendingAgentState ::= ENUMERATED
+{ 	agentNotReady 			( 0),
+	agentNull 			( 1),
+	agentReady 			( 2),
+	agentWorkingAfterCall 		( 3) }
+
+DataPathType ::= ENUMERATED
+{ 	text 				( 0),
+	voice 				( 1) }
+
+DisplayAttributeList ::= SEQUENCE
+{ 	physicalBaseRowNumber 		[0] IMPLICIT INTEGER OPTIONAL,
+	physicalBaseColumnNumber 	[1] IMPLICIT INTEGER OPTIONAL,
+	offset 				[2] IMPLICIT INTEGER OPTIONAL }
+
+TerminatingConditions ::= BIT STRING
+{ 	durationExceeded 		( 0),
+	dTMFDigitDetected 		( 1),
+	endOfMessageDetected 		( 2),
+	speechDetected 			( 3) }
+
+AttributeInfo ::= CHOICE
+{ 	encodingAlgorithm 		[0] IMPLICIT EncodingAlgorithm,
+	samplingRate 			[1] IMPLICIT INTEGER,
+	duration 			[2] IMPLICIT INTEGER,
+	filename 			[3] IMPLICIT IA5String,
+	currentPosition 		[4] IMPLICIT INTEGER,
+	currentSpeed 			[5] IMPLICIT INTEGER,
+	currentVolume 			[6] IMPLICIT INTEGER (0 .. 100),
+	currentGain 			[7] IMPLICIT INTEGER (0 .. 100),
+	currentState 			[8] IMPLICIT CurrentState }
+
+EncodingAlgorithm ::= ENUMERATED
+{ 	aDPCM6K 			( 0),
+	aDPCM8K 			( 1),
+	muLawPCM6K 			( 2),
+	aLawPCM6K 			( 3) }
+
+LocReason ::= ENUMERATED
+{	connectionToDeviceOrNetworkRestored		( 0),
+	performanceConditionRelieved			( 1) }
+
+LocCrossRefID ::= IA5String
+
+CurrentState ::= ENUMERATED
+{	dtmfDetected			( 6),
+	formed				( 7),
+	play 				( 1),
+	playing				( 8),
+	ready				( 9),
+	record 				( 2),
+	review 				( 5),
+	speechDetected			(10),
+	started				(11),
+	stop 				( 0),
+	suspendPlay 			( 3),
+	suspendRecord 			( 4) }
+
+ResourceID ::= IA5String
+
+MessageInfo ::= SEQUENCE
+{ 	contents			IA5String,
+	contentTypeAndSubtype		IA5String	OPTIONAL,
+	contentsLength			INTEGER		OPTIONAL }
+
+DeviceHistory ::= SEQUENCE
+{	oldDeviceID			DeviceID,
+	eventCause			[1] IMPLICIT	EventCause		OPTIONAL,
+	oldConnectionID			[2] IMPLICIT	ConnectionID		OPTIONAL }
+
+SubjectOfCall ::= IA5String
+
+LanguagePreferences ::= IA5String
+
+ControlData ::= SEQUENCE
+{ 	gender 		ENUMERATED
+	{	male 		(0),
+		female 		(1) },
+	language 	OCTET STRING }
+
+UserData ::= [APPLICATION 29] OCTET STRING
+
+TelephonyTone ::= ENUMERATED
+{ 	beep 			(  0),
+	billing 		(  1),
+	busy 			(  2),
+	carrier 		(  3),
+	confirmation 		(  4),
+	dial 			(  5),
+	faxCNG 			(  6),
+	hold 			(  7),
+	howler 			(  8),
+	intrusion 		(  9),
+	modemCNG 		( 10),
+	park 			( 11),
+	recordWarning 		( 12),
+	reorder 		( 13),
+	ringback 		( 14),
+	silence 		( 15),
+	sitVC 			( 16),
+	sitIC 			( 17),
+	sitRO 			( 18),
+	sitNC 			( 19),
+	switchSpec0 		( 20),
+	switchSpec1 		( 21),
+	switchSpec2 		( 22),
+	switchSpec3 		( 23),
+	switchSpec4 		( 24),
+	switchSpec5 		( 25),
+	switchSpec6 		( 26),
+	switchSpec7 		( 27),
+	switchSpec8 		( 28),
+	switchSpec9 		( 29),
+	switchSpec10 		( 30),
+	switchSpec11 		( 31),
+	switchSpec12	 	( 32),
+	switchSpec13	 	( 33),
+	switchSpec14 		( 34),
+	switchSpec15	 	( 35),
+	switchSpec16 		( 36),
+	switchSpec17 		( 37),
+	switchSpec18 		( 38),
+	switchSpec19 		( 39),
+	switchSpec20 		( 40),
+	switchSpec21 		( 41),
+	switchSpec22 		( 42),
+	switchSpec23 		( 43),
+	switchSpec24 		( 44),
+	switchSpec25 		( 45),
+	switchSpec26 		( 46),
+	switchSpec27 		( 47),
+	switchSpec28 		( 48),
+	switchSpec29 		( 49),
+	switchSpec30 		( 50),
+	switchSpec31 		( 51),
+	switchSpec32 		( 52),
+	switchSpec33 		( 53),
+	switchSpec34 		( 54),
+	switchSpec35 		( 55),
+	switchSpec36 		( 56),
+	switchSpec37 		( 57),
+	switchSpec38 		( 58),
+	switchSpec39 		( 59),
+	switchSpec40 		( 60),
+	switchSpec41 		( 61),
+	switchSpec42 		( 62),
+	switchSpec43 		( 63),
+	switchSpec44 		( 64),
+	switchSpec45 		( 65),
+	switchSpec46 		( 66),
+	switchSpec47 		( 67),
+	switchSpec48 		( 68),
+	switchSpec49 		( 69),
+	switchSpec50 		( 70),
+	switchSpec51 		( 71),
+	switchSpec52 		( 72),
+	switchSpec53 		( 73),
+	switchSpec54 		( 74),
+	switchSpec55 		( 75),
+	switchSpec56 		( 76),
+	switchSpec57 		( 77),
+	switchSpec58 		( 78),
+	switchSpec59 		( 79),
+	switchSpec60 		( 80),
+	switchSpec61 		( 81),
+	switchSpec62 		( 82),
+	switchSpec63 		( 83),
+	switchSpec64 		( 84),
+	switchSpec65 		( 85),
+	switchSpec66 		( 86),
+	switchSpec67 		( 87),
+	switchSpec68 		( 88),
+	switchSpec69 		( 89),
+	switchSpec70 		( 90),
+	switchSpec71 		( 91),
+	switchSpec72 		( 92),
+	switchSpec73 		( 93),
+	switchSpec74 		( 94),
+	switchSpec75 		( 95),
+	switchSpec76 		( 96),
+	switchSpec77 		( 97),
+	switchSpec78 		( 98),
+	switchSpec79 		( 99),
+	switchSpec80 		(100),
+	switchSpec81 		(101),
+	switchSpec82 		(102),
+	switchSpec83 		(103),
+	switchSpec84 		(104),
+	switchSpec85 		(105),
+	switchSpec86 		(106),
+	switchSpec87 		(107),
+	switchSpec88 		(108),
+	switchSpec89 		(109),
+	switchSpec90 		(110),
+	switchSpec91 		(111),
+	switchSpec92 		(112),
+	switchSpec93 		(113),
+	switchSpec94 		(114),
+	switchSpec95 		(115),
+	switchSpec96 		(116),
+	switchSpec97 		(117),
+	switchSpec98 		(118),
+	switchSpec99 		(119),
+	switchSpec100		(120) }
+
+PresenceState ::= BIT STRING
+{ 	available 		( 0),
+	away 			( 1),
+	busy 			( 2),
+	calling			( 3),
+	dnd 			( 4),
+	meeting			( 5),
+	offline 		( 6),
+	unknown			( 7),
+	vacation		( 8),
+	applicationSpec0 	( 9),
+	applicationSpec1 	(10),
+	applicationSpec2 	(11),
+	applicationSpec3 	(12),
+	applicationSpec4 	(13),
+	applicationSpec5 	(14),
+	applicationSpec6 	(15),
+	applicationSpec7 	(16),
+	applicationSpec8 	(17),
+	applicationSpec9 	(18),
+	applicationSpec10 	(19) }
+	
+END -- of CSTA-device-feature-types

@@ -1,0 +1,44 @@
+CSTA-get-location-tracking-sessions
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-location-tracking-sessions( 540) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LocationSessionInfoList FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+ServiceCrossRefID FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+getLocationTrackingSessions OPERATION ::=
+{ 	ARGUMENT		GetLocationTrackingSessionsArgument
+	RESULT			GetLocationTrackingSessionsResult
+	ERRORS			{universalFailure }
+	CODE			local: 540}
+
+GetLocationTrackingSessionsArgument ::= SEQUENCE
+{	extensions			CSTACommonArguments			OPTIONAL }
+
+GetLocationTrackingSessionsResult::= SEQUENCE
+{	crossRefIDorRegistrationData	CHOICE
+	{	serviceCrossRefID	ServiceCrossRefID,
+		locationSessionInfoList	LocationSessionInfoList },
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-get-location-tracking-sessions

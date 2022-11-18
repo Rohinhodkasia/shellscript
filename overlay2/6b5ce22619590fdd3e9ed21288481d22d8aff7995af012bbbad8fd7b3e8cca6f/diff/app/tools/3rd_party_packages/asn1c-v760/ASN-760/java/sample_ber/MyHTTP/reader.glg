@@ -1,0 +1,9 @@
+Decode was successful
+getRequest {
+   header_only = TRUE
+   lock = FALSE
+   accept_types {
+      standards = (html(1), plain_text(1), gif(0), jpeg(0))
+   }
+   url = www.asn1.com
+}

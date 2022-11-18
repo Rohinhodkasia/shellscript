@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<aliasAddressList xmlns="http://www.obj-sys.com/ExtChoice"
+                  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                  xsi:schemaLocation= "http://www.obj-sys.com/ExtChoice ExtChoice.xsd">
+   <AliasAddress>
+      <e164>#39047752,937</e164>
+   </AliasAddress>
+   <AliasAddress>
+      <h323-ID>TESTSTRING</h323-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <url-ID>http://www.obj-sys.com</url-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <transportID>
+        <TransportAddress>Truck</TransportAddress>
+        <INTEGER>111</INTEGER>
+      </transportID>
+   </AliasAddress>
+   <AliasAddress>
+      <email-ID>objective@obj-sys.com</email-ID>
+   </AliasAddress>
+   <AliasAddress>
+      <partyNumber>555</partyNumber>
+   </AliasAddress>
+</aliasAddressList>

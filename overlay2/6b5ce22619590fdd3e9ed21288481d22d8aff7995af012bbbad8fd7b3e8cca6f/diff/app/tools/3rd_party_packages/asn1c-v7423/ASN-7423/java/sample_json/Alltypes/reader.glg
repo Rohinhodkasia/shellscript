@@ -1,0 +1,121 @@
+Decode was successful
+value {
+   utc = 030922190538-0400
+   utc1 = 040229190538Z
+   gtc = 20040922190538.3141+0430
+   gtc1 = 20040229190538.3141Z
+   nullval = NULL
+   bs3 = 110101xx
+   bs1 = 110101xx
+   bs0 = 
+0xAA 0x54 0xFE 0xA8 0x52 0xFC 0xA6 0x50 0xFA 101001xx
+   bs2 = 
+   val1 = 21
+   val2 = 22
+   enum_ = yes
+   real = 3.1415900000000003
+   nan = NaN
+   iri = /books / lewis / c.s. / Mere_Christianity
+   riri = vegetables / green_beans
+   boolean_ = TRUE
+   name {
+      givenName = John
+      initial = P
+      familyName = Smith
+   }
+   gens = C.S. Lewis
+   grs = The Great Divorce
+   t61 = The Last Battle
+   vs = The Silver Chair
+   seqofEnum [0] = married
+   seqofEnum [1] = single
+   seqofEnum [2] = divorced
+   seqofEnum [3] = children
+   bsseqof1 [0] = 0xCC 0x98 0x64 0x30 1111110x
+   bsseqof1 [1] = 0x98 0x30 0xC8 0x60 1111100x
+   bsseqof1 [2] = 0x64 0xC8 0x2C 0x90 1111010x
+   bsseqof1 [3] = 0x30 0x60 0x90 0xC0 1111000x
+   bsseqof2 [0] = 1100110x
+   bsseqof2 [1] = 1001100x
+   bsseqof2 [2] = 0110010x
+   bsseqof2 [3] = 0011000x
+   osseqof1 [0] = cc986430fc
+   osseqof1 [1] = 9830c860f8
+   osseqof1 [2] = 64c82c90f4
+   osseqof1 [3] = 306090c0f0
+   csseqof1 [0] = Objective
+   csseqof1 [1] = Systems
+   csseqof1 [2] = Inc.
+   rseqof [0] = 1.0
+   rseqof [1] = 3.1415900000000003
+   rseqof [2] = 0.02
+   rseqof [3] = -0.0
+   rseqof [4] = -Infinity
+   rseqof [5] = NaN
+   rseqof [6] = Infinity
+   rseqof [7] = 0.0
+   bseqof [0] = FALSE
+   bseqof [1] = TRUE
+   bseqof [2] = TRUE
+   bseqof [3] = FALSE
+   bseqof [4] = TRUE
+   iseqof [0] = 0
+   iseqof [1] = 1
+   iseqof [2] = 2
+   iseqof [3] = 3
+   iseqof [4] = 4
+   iseqof1 [0] = 0
+   iseqof1 [1] = 1
+   iseqof1 [2] = 2
+   iseqof1 [3] = 3
+   iseqof1 [4] = 4
+   iseqof1 [5] = 5
+   iseqof1 [6] = 6
+   iseqof1 [7] = 7
+   iseqof1 [8] = 8
+   iseqof1 [9] = 9
+   iseqof1 [10] = 10
+   iseqof1 [11] = 11
+   iseqof1 [12] = 12
+   iseqof1 [13] = 13
+   iseqof1 [14] = 14
+   iseqof1 [15] = 15
+   iseqof1 [16] = 16
+   iseqof1 [17] = 17
+   iseqof1 [18] = 18
+   iseqof1 [19] = 19
+   iseqof2 [0] = 1
+   iseqof2 [1] = 2
+   iseqof2 [2] = 3
+   iseqof2 [3] = 4
+   iseqof2 [4] = 5
+   seqofChoice [0] {
+      e1 = 1
+   }
+   seqofChoice [1] {
+      e2 = String data
+   }
+   seqofChoice [2] {
+      e3 {
+         givenName = Art
+         initial = S
+         familyName = Bolgar
+      }
+   }
+   children [0] {
+      name {
+         givenName = Ralph
+         initial = T
+         familyName = Smith
+      }
+      dateOfBirth = 19571111
+   }
+   children [1] {
+      name {
+         givenName = Susan
+         initial = B
+         familyName = Jones
+      }
+      dateOfBirth = 19590717
+   }
+}

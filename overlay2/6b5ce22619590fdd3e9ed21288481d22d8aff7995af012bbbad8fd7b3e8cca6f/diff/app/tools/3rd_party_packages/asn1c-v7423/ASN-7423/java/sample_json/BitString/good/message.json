@@ -1,0 +1,14 @@
+{
+   "bs1":{
+      "value":"3FFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFFD0",
+      "length":612
+   },
+   "bs2":{
+      "value":"0040",
+      "length":10
+   },
+   "bs3":{
+      "value":"44",
+      "length":6
+   }
+}

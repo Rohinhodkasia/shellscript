@@ -1,0 +1,34 @@
+{
+	"Name" : {
+		"GivenName" : "John",
+		"Initial" : "P",
+		"FamilyName" : "Smith"
+	},
+	"Number" : 51,
+	"Title" : "Director",
+	"DateOfHire" : "19710917",
+	"NameOfSpouse" : {
+		"GivenName" : "Mary",
+		"Initial" : "T",
+		"FamilyName" : "Smith"
+	},
+	"Children" :  [
+		{
+			"Name" : {
+				"GivenName" : "Ralph",
+				"Initial" : "T",
+				"FamilyName" : "Smith"
+			},
+			"DateOfBirth" : "19571111"
+		},
+		{
+			"Name" : {
+				"GivenName" : "Susan",
+				"Initial" : "B",
+				"FamilyName" : "Jones"
+			},
+			"DateOfBirth" : "19590717",
+			"Sex" : 2
+		}
+	]
+}

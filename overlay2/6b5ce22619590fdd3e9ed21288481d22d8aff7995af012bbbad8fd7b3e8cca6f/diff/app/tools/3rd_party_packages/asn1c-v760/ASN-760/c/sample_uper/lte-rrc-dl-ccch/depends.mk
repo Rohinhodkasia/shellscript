@@ -1,0 +1,1691 @@
+EUTRA-InterNodeDefinitions$(OBJ): EUTRA-InterNodeDefinitions.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-InterNodeDefinitionsCompare$(OBJ): EUTRA-InterNodeDefinitionsCompare.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+EUTRA-InterNodeDefinitionsCopy$(OBJ): EUTRA-InterNodeDefinitionsCopy.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+EUTRA-InterNodeDefinitionsDec$(OBJ): EUTRA-InterNodeDefinitionsDec.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-InterNodeDefinitionsEnc$(OBJ): EUTRA-InterNodeDefinitionsEnc.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-InterNodeDefinitionsPrint$(OBJ): EUTRA-InterNodeDefinitionsPrint.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+EUTRA-InterNodeDefinitionsPrtToStrm$(OBJ): \
+ EUTRA-InterNodeDefinitionsPrtToStrm.c EUTRA-InterNodeDefinitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h \
+ ../../../rtsrc/rtPrintToStream.h ../../../rtxsrc/rtxPrintStream.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+EUTRA-InterNodeDefinitionsTest$(OBJ): EUTRA-InterNodeDefinitionsTest.c \
+ EUTRA-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-RRC-Definitions$(OBJ): EUTRA-RRC-Definitions.c EUTRA-RRC-Definitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h
+EUTRA-RRC-DefinitionsCompare$(OBJ): EUTRA-RRC-DefinitionsCompare.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ ../../../rtsrc/rtCompare.h ../../../rtsrc/asn1type.h \
+ ../../../rtsrc/rtconv.h ../../../rtsrc/rtPrintToString.h
+EUTRA-RRC-DefinitionsCopy$(OBJ): EUTRA-RRC-DefinitionsCopy.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ ../../../rtsrc/rtCopy.h
+EUTRA-RRC-DefinitionsDec$(OBJ): EUTRA-RRC-DefinitionsDec.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h
+EUTRA-RRC-DefinitionsEnc$(OBJ): EUTRA-RRC-DefinitionsEnc.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h
+EUTRA-RRC-DefinitionsPrint$(OBJ): EUTRA-RRC-DefinitionsPrint.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ ../../../rtsrc/rtPrint.h ../../../rtxsrc/rtxPrint.h \
+ ../../../rtxsrc/rtxHexDump.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+EUTRA-RRC-DefinitionsPrtToStrm$(OBJ): EUTRA-RRC-DefinitionsPrtToStrm.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ ../../../rtsrc/rtPrintToStream.h ../../../rtxsrc/rtxPrintStream.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+EUTRA-RRC-DefinitionsTest$(OBJ): EUTRA-RRC-DefinitionsTest.c \
+ EUTRA-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h
+EUTRA-Sidelink-Preconf$(OBJ): EUTRA-Sidelink-Preconf.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-Sidelink-PreconfCompare$(OBJ): EUTRA-Sidelink-PreconfCompare.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+EUTRA-Sidelink-PreconfCopy$(OBJ): EUTRA-Sidelink-PreconfCopy.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+EUTRA-Sidelink-PreconfDec$(OBJ): EUTRA-Sidelink-PreconfDec.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-Sidelink-PreconfEnc$(OBJ): EUTRA-Sidelink-PreconfEnc.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-Sidelink-PreconfPrint$(OBJ): EUTRA-Sidelink-PreconfPrint.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+EUTRA-Sidelink-PreconfPrtToStrm$(OBJ): EUTRA-Sidelink-PreconfPrtToStrm.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrintToStream.h \
+ ../../../rtxsrc/rtxPrintStream.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+EUTRA-Sidelink-PreconfTest$(OBJ): EUTRA-Sidelink-PreconfTest.c \
+ EUTRA-Sidelink-Preconf.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+EUTRA-UE-Variables$(OBJ): EUTRA-UE-Variables.c EUTRA-UE-Variables.h rtkey.h \
+ ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+EUTRA-UE-VariablesCompare$(OBJ): EUTRA-UE-VariablesCompare.c \
+ EUTRA-UE-Variables.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+EUTRA-UE-VariablesCopy$(OBJ): EUTRA-UE-VariablesCopy.c EUTRA-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h \
+ ../../../rtsrc/rtCopy.h
+EUTRA-UE-VariablesDec$(OBJ): EUTRA-UE-VariablesDec.c EUTRA-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+EUTRA-UE-VariablesEnc$(OBJ): EUTRA-UE-VariablesEnc.c EUTRA-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+EUTRA-UE-VariablesPrint$(OBJ): EUTRA-UE-VariablesPrint.c EUTRA-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h \
+ ../../../rtsrc/rtPrint.h ../../../rtxsrc/rtxPrint.h \
+ ../../../rtxsrc/rtxHexDump.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+EUTRA-UE-VariablesPrtToStrm$(OBJ): EUTRA-UE-VariablesPrtToStrm.c \
+ EUTRA-UE-Variables.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrintToStream.h \
+ ../../../rtxsrc/rtxPrintStream.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+EUTRA-UE-VariablesTest$(OBJ): EUTRA-UE-VariablesTest.c EUTRA-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+NBIOT-InterNodeDefinitions$(OBJ): NBIOT-InterNodeDefinitions.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h
+NBIOT-InterNodeDefinitionsCompare$(OBJ): NBIOT-InterNodeDefinitionsCompare.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+NBIOT-InterNodeDefinitionsCopy$(OBJ): NBIOT-InterNodeDefinitionsCopy.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+NBIOT-InterNodeDefinitionsDec$(OBJ): NBIOT-InterNodeDefinitionsDec.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h
+NBIOT-InterNodeDefinitionsEnc$(OBJ): NBIOT-InterNodeDefinitionsEnc.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h
+NBIOT-InterNodeDefinitionsPrint$(OBJ): NBIOT-InterNodeDefinitionsPrint.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+NBIOT-InterNodeDefinitionsPrtToStrm$(OBJ): \
+ NBIOT-InterNodeDefinitionsPrtToStrm.c NBIOT-InterNodeDefinitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h \
+ EUTRA-InterNodeDefinitions.h NBIOT-RRC-Definitions.h \
+ ../../../rtsrc/rtPrintToStream.h ../../../rtxsrc/rtxPrintStream.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+NBIOT-InterNodeDefinitionsTest$(OBJ): NBIOT-InterNodeDefinitionsTest.c \
+ NBIOT-InterNodeDefinitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h EUTRA-InterNodeDefinitions.h \
+ NBIOT-RRC-Definitions.h
+NBIOT-RRC-Definitions$(OBJ): NBIOT-RRC-Definitions.c NBIOT-RRC-Definitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+NBIOT-RRC-DefinitionsCompare$(OBJ): NBIOT-RRC-DefinitionsCompare.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+NBIOT-RRC-DefinitionsCopy$(OBJ): NBIOT-RRC-DefinitionsCopy.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+NBIOT-RRC-DefinitionsDec$(OBJ): NBIOT-RRC-DefinitionsDec.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-RRC-DefinitionsEnc$(OBJ): NBIOT-RRC-DefinitionsEnc.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-RRC-DefinitionsPrint$(OBJ): NBIOT-RRC-DefinitionsPrint.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+NBIOT-RRC-DefinitionsPrtToStrm$(OBJ): NBIOT-RRC-DefinitionsPrtToStrm.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrintToStream.h \
+ ../../../rtxsrc/rtxPrintStream.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+NBIOT-RRC-DefinitionsTest$(OBJ): NBIOT-RRC-DefinitionsTest.c \
+ NBIOT-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-UE-Variables$(OBJ): NBIOT-UE-Variables.c NBIOT-UE-Variables.h rtkey.h \
+ ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-UE-VariablesCompare$(OBJ): NBIOT-UE-VariablesCompare.c \
+ NBIOT-UE-Variables.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-UE-Variables.h EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+NBIOT-UE-VariablesCopy$(OBJ): NBIOT-UE-VariablesCopy.c NBIOT-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+NBIOT-UE-VariablesDec$(OBJ): NBIOT-UE-VariablesDec.c NBIOT-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-UE-VariablesEnc$(OBJ): NBIOT-UE-VariablesEnc.c NBIOT-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h
+NBIOT-UE-VariablesPrint$(OBJ): NBIOT-UE-VariablesPrint.c NBIOT-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+NBIOT-UE-VariablesPrtToStrm$(OBJ): NBIOT-UE-VariablesPrtToStrm.c \
+ NBIOT-UE-Variables.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-UE-Variables.h EUTRA-RRC-Definitions.h \
+ ../../../rtsrc/rtPrintToStream.h ../../../rtxsrc/rtxPrintStream.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+NBIOT-UE-VariablesTest$(OBJ): NBIOT-UE-VariablesTest.c NBIOT-UE-Variables.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-UE-Variables.h \
+ EUTRA-RRC-Definitions.h
+PC5-RRC-Definitions$(OBJ): PC5-RRC-Definitions.c PC5-RRC-Definitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+PC5-RRC-DefinitionsCompare$(OBJ): PC5-RRC-DefinitionsCompare.c \
+ PC5-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCompare.h \
+ ../../../rtsrc/asn1type.h ../../../rtsrc/rtconv.h \
+ ../../../rtsrc/rtPrintToString.h
+PC5-RRC-DefinitionsCopy$(OBJ): PC5-RRC-DefinitionsCopy.c \
+ PC5-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtCopy.h
+PC5-RRC-DefinitionsDec$(OBJ): PC5-RRC-DefinitionsDec.c PC5-RRC-Definitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+PC5-RRC-DefinitionsEnc$(OBJ): PC5-RRC-DefinitionsEnc.c PC5-RRC-Definitions.h \
+ rtkey.h ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h EUTRA-RRC-Definitions.h
+PC5-RRC-DefinitionsPrint$(OBJ): PC5-RRC-DefinitionsPrint.c \
+ PC5-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrint.h \
+ ../../../rtxsrc/rtxPrint.h ../../../rtxsrc/rtxHexDump.h \
+ ../../../rtsrc/rtBCD.h ../../../rtxsrc/rtxTBCD.h
+PC5-RRC-DefinitionsPrtToStrm$(OBJ): PC5-RRC-DefinitionsPrtToStrm.c \
+ PC5-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h ../../../rtsrc/rtPrintToStream.h \
+ ../../../rtxsrc/rtxPrintStream.h ../../../rtsrc/rtBCD.h \
+ ../../../rtxsrc/rtxTBCD.h
+PC5-RRC-DefinitionsTest$(OBJ): PC5-RRC-DefinitionsTest.c \
+ PC5-RRC-Definitions.h rtkey.h ../../../rtpersrc/asn1per.h \
+ ../../../rtsrc/asn1type.h ../../../rtxsrc/rtxExternDefs.h \
+ ../../../rtxsrc/rtxSList.h ../../../rtxsrc/rtxContext.h \
+ ../../../rtxsrc/rtxDList.h ../../../rtxsrc/osSysTypes.h \
+ ../../../rtxsrc/rtxCommonDefs.h ../../../rtxsrc/osMacros.h \
+ ../../../rtxsrc/rtxStack.h ../../../rtxsrc/rtxUTF8.h \
+ ../../../rtsrc/asn1tag.h ../../../rtsrc/asn1ErrCodes.h \
+ ../../../rtsrc/rtExternDefs.h ../../../rtxsrc/rtxBitString.h \
+ ../../../rtsrc/rtContext.h ../../../rtsrc/asn1CEvtHndlr.h \
+ ../../../rtxsrc/rtxError.h ../../../rtxsrc/rtxErrCodes.h \
+ ../../../rtxsrc/rtxMemory.h ../../../rtsrc/asn1CharSet.h \
+ ../../../rtxsrc/rtxBitEncode.h ../../../rtxsrc/rtxBitDecode.h \
+ ../../../rtxsrc/rtxBuffer.h ../../../rtxsrc/rtxDiagBitTrace.h \
+ ../../../rtxsrc/rtxMemBuf.h ../../../rtxsrc/rtxPrintToStream.h \
+ ../../../rtxmlsrc/asn1xml.h ../../../rtxmlsrc/osrtxml.h \
+ ../../../rtxsrc/rtxCommon.h ../../../rtxsrc/rtxBigInt.h \
+ ../../../rtxsrc/rtxCharStr.h ../../../rtxsrc/rtxDateTime.h \
+ ../../../rtxsrc/rtxDiag.h ../../../rtxsrc/rtxEnum.h \
+ ../../../rtxsrc/rtxFile.h ../../../rtxsrc/rtxPattern.h \
+ ../../../rtxsrc/rtxReal.h ../../../rtxsrc/rtxUtil.h \
+ ../../../rtxmlsrc/rtSaxDefs.h ../../../rtxmlsrc/rtXmlExternDefs.h \
+ ../../../rtxmlsrc/rtXmlErrCodes.h ../../../rtxmlsrc/rtXmlNamespace.h \
+ ../../../rtxsrc/rtxDynPtrArray.h ../../../rtxsrc/rtxXmlQName.h \
+ EUTRA-RRC-Definitions.h
+reader$(OBJ): reader.c EUTRA-RRC-Definitions.h rtkey.h \
+ ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h ../../../rtxsrc/rtxPrintStream.h
+writer$(OBJ): writer.c EUTRA-RRC-Definitions.h rtkey.h \
+ ../../../rtpersrc/asn1per.h ../../../rtsrc/asn1type.h \
+ ../../../rtxsrc/rtxExternDefs.h ../../../rtxsrc/rtxSList.h \
+ ../../../rtxsrc/rtxContext.h ../../../rtxsrc/rtxDList.h \
+ ../../../rtxsrc/osSysTypes.h ../../../rtxsrc/rtxCommonDefs.h \
+ ../../../rtxsrc/osMacros.h ../../../rtxsrc/rtxStack.h \
+ ../../../rtxsrc/rtxUTF8.h ../../../rtsrc/asn1tag.h \
+ ../../../rtsrc/asn1ErrCodes.h ../../../rtsrc/rtExternDefs.h \
+ ../../../rtxsrc/rtxBitString.h ../../../rtsrc/rtContext.h \
+ ../../../rtsrc/asn1CEvtHndlr.h ../../../rtxsrc/rtxError.h \
+ ../../../rtxsrc/rtxErrCodes.h ../../../rtxsrc/rtxMemory.h \
+ ../../../rtsrc/asn1CharSet.h ../../../rtxsrc/rtxBitEncode.h \
+ ../../../rtxsrc/rtxBitDecode.h ../../../rtxsrc/rtxBuffer.h \
+ ../../../rtxsrc/rtxDiagBitTrace.h ../../../rtxsrc/rtxMemBuf.h \
+ ../../../rtxsrc/rtxPrintToStream.h ../../../rtxmlsrc/asn1xml.h \
+ ../../../rtxmlsrc/osrtxml.h ../../../rtxsrc/rtxCommon.h \
+ ../../../rtxsrc/rtxBigInt.h ../../../rtxsrc/rtxCharStr.h \
+ ../../../rtxsrc/rtxDateTime.h ../../../rtxsrc/rtxDiag.h \
+ ../../../rtxsrc/rtxEnum.h ../../../rtxsrc/rtxFile.h \
+ ../../../rtxsrc/rtxPattern.h ../../../rtxsrc/rtxReal.h \
+ ../../../rtxsrc/rtxUtil.h ../../../rtxmlsrc/rtSaxDefs.h \
+ ../../../rtxmlsrc/rtXmlExternDefs.h ../../../rtxmlsrc/rtXmlErrCodes.h \
+ ../../../rtxmlsrc/rtXmlNamespace.h ../../../rtxsrc/rtxDynPtrArray.h \
+ ../../../rtxsrc/rtxXmlQName.h ../../../rtxsrc/rtxPrint.h \
+ ../../../rtxsrc/rtxHexDump.h

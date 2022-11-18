@@ -1,0 +1,18 @@
+BitString DEFINITIONS ::= BEGIN
+
+BS1 ::= BIT STRING
+
+BS2 ::= BIT STRING (SIZE (1..10))
+
+BS3 ::= BIT STRING { a(1), b(3), c(5) }
+
+BS4 ::= BIT STRING (SIZE (100))
+
+BSSeq ::= SEQUENCE {
+   bs1 BS1,
+   bs2 BS2,
+   bs3 BS3, 
+   bs4 BS4
+}
+
+END

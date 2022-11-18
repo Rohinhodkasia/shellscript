@@ -1,0 +1,60 @@
+CSTA-associate-data
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) associate-data( 230) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+LanguagePreferences,SubjectOfCall FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CallCharacteristics, CallLinkageData, ServicesPermitted FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CallQualifyingData FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) };
+
+associateData OPERATION ::=
+{	ARGUMENT		AssociateDataArgument
+	RESULT			AssociateDataResult
+	ERRORS			{universalFailure }
+	CODE			local: 230 }
+
+AssociateDataArgument ::= SEQUENCE
+{	existingCall			ConnectionID,
+	accountCode			[0] IMPLICIT AccountInfo		OPTIONAL,
+	authCode			[1] IMPLICIT AuthCode			OPTIONAL,
+	correlatorData			[2] IMPLICIT CorrelatorData		OPTIONAL,
+	callQualifyingData		[3] IMPLICIT CallQualifyingData		OPTIONAL,
+	callCharacteristics		[4] IMPLICIT CallCharacteristics	OPTIONAL,
+	subjectOfCall			[5] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[6] IMPLICIT LanguagePreferences	OPTIONAL,
+	deviceInfo			[7] IMPLICIT DeviceID			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL } 
+
+AssociateDataResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+END  -- of CSTA-associate-data

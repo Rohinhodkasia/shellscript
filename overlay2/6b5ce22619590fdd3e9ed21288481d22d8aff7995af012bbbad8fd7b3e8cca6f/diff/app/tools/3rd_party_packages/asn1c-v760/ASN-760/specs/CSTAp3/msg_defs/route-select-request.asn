@@ -1,0 +1,42 @@
+CSTA-route-select-request
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) route-select-request( 83) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CorrelatorData, RetryValue, RouteingCrossRefID, RouteRegisterReqID
+FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+routeSelectRequest OPERATION ::=
+{	ARGUMENT 		RouteSelectRequestArgument
+	ERRORS	 		{universalFailure }
+	ALWAYS RESPONDS		FALSE
+	CODE			local: 33 }
+
+RouteSelectRequestArgument ::= SEQUENCE
+{	crossRefIdentifier		RouteingCrossRefID,
+	routeRegisterReqID		[ 0] IMPLICIT RouteRegisterReqID	OPTIONAL,
+	routeSelected			[ 1] DeviceID,
+	alternateRoutes			[ 2] IMPLICIT SEQUENCE OF DeviceID	OPTIONAL,
+	remainRetries			[ 3] RetryValue				OPTIONAL,
+	routeUsedReq			[ 4] IMPLICIT BOOLEAN			OPTIONAL,
+	correlatorData			[ 5] IMPLICIT CorrelatorData		OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-route-select-request

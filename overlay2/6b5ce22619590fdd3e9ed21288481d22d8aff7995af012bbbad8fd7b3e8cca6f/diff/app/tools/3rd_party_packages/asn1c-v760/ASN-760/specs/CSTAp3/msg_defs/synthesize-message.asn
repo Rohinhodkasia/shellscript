@@ -1,0 +1,38 @@
+CSTA-synthesize-message
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) synthesize-message( 510) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ControlData, MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+synthesizeMessage OPERATION ::=
+{	ARGUMENT		SynthesizeMessageArgument
+	RESULT			SynthesizeMessageResult
+	ERRORS			{universalFailure }
+	CODE			local: 510 }
+
+SynthesizeMessageArgument ::= SEQUENCE
+{	textToBeSynthesized		IA5String,
+	control				ControlData				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+SynthesizeMessageResult ::= SEQUENCE
+{	synthesizedMessage		MessageID,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-synthesize-message

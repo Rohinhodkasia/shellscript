@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../SkipElements/test.asn</UTF8String>
+   </schemas>
+   <language>
+      <java/>
+   </language>
+   <ruleset>
+      <ber/>
+   </ruleset>
+   <basicOptions>
+      <asnstd>
+         <x680/>
+      </asnstd>
+      <constraints>
+         <normal/>
+      </constraints>
+      <srcdir>full</srcdir>
+      <printOut/>
+      <prtfmt>
+         <bracetext/>
+      </prtfmt>
+      <noUnique/>
+   </basicOptions>
+   <languageOpts>
+      <java>
+         <toDirs/>
+         <pkgPfx>full</pkgPfx>
+      </java>
+   </languageOpts>
+</ASN1COptions>

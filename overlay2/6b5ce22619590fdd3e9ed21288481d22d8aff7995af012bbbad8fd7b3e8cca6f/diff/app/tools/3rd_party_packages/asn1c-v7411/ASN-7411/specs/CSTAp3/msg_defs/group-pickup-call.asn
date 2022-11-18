@@ -1,0 +1,54 @@
+CSTA-group-pickup-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) group-pickup-call( 221) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+groupPickupCall OPERATION ::=
+{ 	ARGUMENT 		GroupPickupCallArgument
+	RESULT 			GroupPickupCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 221 }
+
+GroupPickupCallArgument ::=SEQUENCE
+{ 	newDestination 			DeviceID,
+	pickGroup 			DeviceID 			OPTIONAL,
+	correlatorData 			CorrelatorData 			OPTIONAL,
+	userData 			UserData 			OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+GroupPickupCallResult ::= SEQUENCE
+{ 	pickedCall 			ConnectionID 			OPTIONAL,
+	pickedCallInfo 			ConnectionInformation 		OPTIONAL,
+	callLinkageData 		[1] IMPLICIT CallLinkageData 	OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+END -- of CSTA-group-pickup-call

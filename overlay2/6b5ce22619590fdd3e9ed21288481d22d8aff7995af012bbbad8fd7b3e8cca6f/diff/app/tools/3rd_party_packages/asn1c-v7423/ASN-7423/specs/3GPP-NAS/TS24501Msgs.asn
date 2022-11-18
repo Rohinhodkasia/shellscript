@@ -1,0 +1,2582 @@
+/* 
+Module for 3GPP TS 24.501 Messages
+Messages initially added using version 15.0.0
+Current versions:
+    v15.6.0
+    v16.3.0
+*/
+TS24501Msgs DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+IMPORTS
+AuthParamAUTN, AuthParamRAND, AuthFailureParam,
+GPRSTimer, GPRSTimer2, GPRSTimer3,
+ExtProtoConfigOptions, IMEISVRequest, MCCMNCPair,
+IMEI, IMEISV, NetworkName, TimeZone, TimeZoneAndTime, DaylightSavingTime,
+PLMNList, EmergencyNumberList, MobileStationClassmark2, SupportedCodecList,
+ExtDRXParams, Non3GPPNetPolicies, TBCDString
+FROM TS24008IES
+
+IMPORTS
+AuthRespParam, NASKeySetIdentifier, NASSecurityAlgorithms,
+UENetworkCapability, UEStatus, ExtEmergencyNumberList, EPSBearerContextStatus,
+UERadioCapId, UERadioCapIdDeletionInd, ReleaseAssistInd, NASMessageContainer,
+UEStatus
+FROM TS24301IES
+;
+
+PDU ::= SEQUENCE {
+   --<cEncSrcFname>TS24501MsgEnc_PDU_secHdr.c</cEncSrcFname>
+   --<cDecSrcFname>TS24501MsgDec_PDU_secHdr.c</cDecSrcFname>
+   secHdr     NAS5GSecProtMsgHdr OPTIONAL, 
+   protoDiscr NAS5G-PROTOCOL-CLASS.&protoDiscr ({TS24501-IE-OBJECTSET}), 
+   --<inline/>
+   hdrData CHOICE {
+      --<selector element="protoDiscr" value="126"/>
+      mm SEQUENCE {
+         spare1     INTEGER (0..15) DEFAULT 0, 
+         secHdrType NAS5GSecHdrType
+      },
+      --<selector element="protoDiscr" value="46"/>
+      sm SEQUENCE {
+         pduSessIdent PDUSessionIdentity, 
+         procTransIdent INTEGER (0..255)
+      }
+   },
+   msgType    NAS5G-PROTOCOL-CLASS.&msgType ({TS24501-IE-OBJECTSET}), 
+   data       NAS5G-PROTOCOL-CLASS.&Value 
+                ({TS24501-IE-OBJECTSET}{@protoDiscr,@msgType}), 
+   --<cEncSrcFname>TS24501MsgEnc_PDU_eom.c</cEncSrcFname>   
+   --<cDecSrcFname>TS24301MsgDec_PDU_eom.c</cDecSrcFname>   
+   eom NULL       
+}
+
+NAS5GProtoDiscr ::= ENUMERATED {
+   sessMgmt5G(46), -- 0x2E - session management
+   mobMgmt5G(126),  -- 0x7E - mobility management
+   maxProtoDiscr(255)  -- to set encoded bit field size
+}
+
+NAS5G-PROTOCOL-CLASS ::= CLASS {
+   &protoDiscr NAS5GProtoDiscr, 
+   &msgType INTEGER (0..255), 
+   &Value
+}
+WITH SYNTAX {
+   ID &protoDiscr, &msgType
+   TYPE &Value
+}
+
+NAS5GSecHdrType ::= ENUMERATED {
+   noSec, integProt, integProtAndCipher, integProtAnd5GSecCtxt, 
+   integProtAndCipherAnd5GSecCtxt, secMax(15)
+}
+
+NAS5GSecProtMsgHdr ::= SEQUENCE {
+   protoDiscr NAS5GProtoDiscr, 
+   spare1 INTEGER (0..15) DEFAULT 0, 
+   secHdrType NAS5GSecHdrType,
+   msgAuthCode INTEGER(0..4294967295), -- Message authentication code (MAC)
+   seqNumber   INTEGER(0..255)   -- Sequence number
+}
+   
+PDUSessionIdentity ::= ENUMERATED {
+   noPduId(0), pduId1(1), pduId2(2), pduId3(3), pduId4(4), pduId5(5),
+   pduId6(6), pduId7(7), pduId8(8), pduId9(9), pduId10(10), pduId11(11),
+   pduId12(12), pduId13(13), pduId14(14), pduId15(15), pduIdMax(255)
+}
+
+TS24501-IE-OBJECTSET NAS5G-PROTOCOL-CLASS ::= {
+   -- Mobility messages
+   obj-MMAuthRequest5G | obj-MMAuthResponse5G | obj-MMAuthResult5G |
+   obj-MMAuthFailure5G | obj-MMAuthReject5G |
+   obj-RegRequest5G | obj-RegAccept5G |obj-RegComplete5G | obj-RegReject5G |
+   obj-ULNASTrans5G | obj-DLNASTrans5G |
+   obj-DeregReqUEOrig5G | obj-DeregAcceptUEOrig5G |
+   obj-DeregReqUETerm5G | obj-DeregAcceptUETerm5G |
+   obj-ServRequest5G | obj-ServAccept5G | obj-ServReject5G |
+   obj-CfgUpdateCmd5G | obj-CfgUpdateDone5G |
+   obj-IdentityRequest5G | obj-IdentityResponse5G |
+   obj-Notify5G | obj-NotifyResponse5G |
+   obj-SecModeCmd5G | obj-SecModeDone5G | obj-SecModeReject5G |
+   obj-MMStatus5G |
+   -- Session messages
+   obj-EstablishRequest5G | obj-EstablishAccept5G | obj-EstablishReject5G |
+   obj-SMAuthCmd5G | obj-SMAuthDone5G | obj-SMAuthResult5G |
+   obj-ModifyRequest5G | obj-ModifyReject5G | obj-ModifyCmd5G |
+   obj-ModifyDone5G | obj-ModifyCmdReject5G |
+   obj-ReleaseRequest5G | obj-ReleaseReject5G |
+   obj-ReleaseCmd5G | obj-ReleaseDone5G |
+   obj-SMStatus5G | obj-ControlPlaneServReq5G
+}
+
+
+/* -- TYPE DEFINITIONS --- */
+
+/* OpaqueData can be used for any case where the specification has
+   some number of octets preceded by a 2-octet length. */
+OpaqueData ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<length fixed-size="0"/>
+   contents OCTET STRING  
+}
+
+
+/* 9.11.2.1 - Additional information */
+AdditionalInfo ::= OCTET STRING
+
+/* 9.11.2.1A - Access type */
+AccessType ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   typeOfAccess ENUMERATED {
+      access3gpp(1), accessNon3gpp(2)
+   }
+}
+
+/* 9.11.2.1B - DNN */
+DNNList ::= OCTET STRING
+
+/* 9.11.2.2 - EAP message */
+EAPMessage ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<asn1typename>EAPPacketFormat</asn1typename>
+   packetFormat SEQUENCE {
+      code EAPFormatCode,
+      id INTEGER (1..255),
+      length INTEGER (1..65535),
+      --<length expr="@.length"/>
+      data OCTET STRING
+   }
+}
+
+EAPFormatCode ::= ENUMERATED {
+   request(1), response(2), success(3), failure(4),
+   codeMax(255)
+}
+
+/* 9.11.2.6 - Intra N1 mode NAS transparent container */
+IntraN1NASContainer ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   authCode OCTET STRING (SIZE (4)),
+   cipherType INTEGER (0..15),
+   integrityType INTEGER (0..15),
+   spare1 INTEGER (0..7) DEFAULT 0,
+   kacf BOOLEAN,
+   tsc BOOLEAN,
+   keysetId INTEGER (0..7),
+   seqNumber INTEGER (1..255)
+}
+
+/* 9.11.2.7 - N1 mode to S1 mode NAS transparent container */
+N1ToS1NASContainer ::= INTEGER (1..255)
+
+/* 9.11.2.9 - S1 mode to N1 mode NAS transparent container */
+S1ToN1NASContainer ::= SEQUENCE {   
+   --<is3GLength/>
+   length INTEGER (1..255),
+   authCode OCTET STRING (SIZE (4)),
+   cipherType INTEGER (0..15),
+   integrityType INTEGER (0..15),
+   spare1 BOOLEAN DEFAULT FALSE,
+   ncc INTEGER (0..7),
+   tsc BOOLEAN,
+   keysetId INTEGER (0..7),
+   spare2 INTEGER (1..65535) DEFAULT 0
+}
+
+/* 9.11.2.8 - S-NSSAI */
+SNSSAI ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   sst SST,
+   --<noPresentBit/>
+   sd SD OPTIONAL,
+   --<noPresentBit/>
+   mappedSST OCTET STRING (SIZE (1)) OPTIONAL,
+   --<noPresentBit/>
+   mappedSD OCTET STRING (SIZE (3)) OPTIONAL
+}
+
+SST ::= INTEGER (1..255)
+
+SD ::= INTEGER (1..16777215)
+
+/* 9.11.3.1 - MM capability */
+MMCapability ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255) DEFAULT 1,
+
+   /* octet 3 */
+   sgc BOOLEAN,
+   hcCpCIoT BOOLEAN,
+   n3Data BOOLEAN,
+   cpCIoT BOOLEAN,
+   restrictedEC BOOLEAN,
+   lppSupported BOOLEAN,
+   handoverSupported BOOLEAN,
+   s1Supported BOOLEAN,
+   --<noPresentBit/>
+   octet4 SEQUENCE {
+      racs BOOLEAN,
+      nssaa BOOLEAN,
+      lcs BOOLEAN,
+      v2xcnpc5 BOOLEAN,
+      v2xcepc5 BOOLEAN,
+      v2x BOOLEAN,
+      upCIoT BOOLEAN,
+      srvcc BOOLEAN
+   } OPTIONAL,
+   --<noPresentBit/>
+   octet5 SEQUENCE {
+      spare1 INTEGER (0..127) DEFAULT 0,
+      cag BOOLEAN
+   } OPTIONAL,
+   --<noPresentBit/>
+   --<length fixed-size="0"/>
+   spare2 OCTET STRING OPTIONAL
+}
+
+/* 9.11.3.2 - MM cause */
+MMCause ::= ENUMERATED {
+   illegalUE(3), peiNotAccept(5), illegalME(6), svcNotAllowed(7),
+   idNotDerived(9), implDereg(10), plmnNotAllowed(11), trkAreaNotAllowed(12),
+   roamNotAllowed(13), noCells(15), macFailure(20), synchFailure(21),
+   congestion(22), secCapMismatch(23), secModeRej(24), authUnaccept(26),
+   n1ModeNotAllowed(27), restrictedArea(28), redirToEpc(31), ladnUnavail(43),
+   noNetSlices(62), maxSessions(65), insuffResDNN(67), insuffResSlice(69),
+   ngksiInUse(71), accTo5GNotAllowed(72), netNotAuth(73), noTempAuthSnpn(74),
+   noPermAuthSnpn(75), noAuthCag(76), notForwarded(90), dnnUnsupp(91),
+   insuffRes(92), semIncorrectMsg(95), invMandInfo(96), msgTypeNotExist(97),
+   msgTypeNotCompat(98), infoElemNotExist(99), condIEError(100),
+   msgNotCompat(101), unspecProtoErr(111), mmCauseMAX(255)
+} 
+
+/* 9.11.3.2A - DRX parameters */
+DRXParams ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1), 
+   spare INTEGER (0..15) DEFAULT 0, 
+   drxValue INTEGER (0..15)
+}
+
+/* 9.11.3.3 - Identity type */
+IdentityType ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   typeOfIdent TypeOfIdentity
+}
+
+TypeOfIdentity ::= ENUMERATED {
+   none(0), suci(1), guti(2), imei(3), stmsi(4), imeisv(5), macAddr(6),
+   eui64(7) }
+
+/* 9.11.3.4 - 5G mobile identity */
+MobileIdentity ::= CHOICE {
+   none NULL,   
+   suci CHOICE {
+      -- The supiFormat bit in the MobileIdentity determines which of these
+      -- choices is present in an encoding.
+      supiImsi MobileIdentity_SUCI_IMSI,
+      supiNetSpecificId MobileIdentity_SUCI_NetId
+   },
+   guti MobileIdentity_GUTI,
+   imei IMEI,
+   stmsi MobileIdentity_STMSI,
+   imeisv IMEISV,
+   mac MobileIdentity_MAC,
+   eui-64 OCTET STRING (SIZE(8))
+}
+
+MobileIdentity_GUTI ::= SEQUENCE {
+   mcc-mnc MCCMNCPair,
+   amfRegionID INTEGER (0..255),
+   amfSetID INTEGER (0..1023),
+   amfPointer INTEGER (0..63),
+   tmsi OCTET STRING (SIZE (4))
+}
+
+MobileIdentity_STMSI ::= SEQUENCE {
+   amfSetID INTEGER (0..1023),
+   amfPointer INTEGER (0..63),
+   tmsi OCTET STRING (SIZE (4))
+}
+
+MobileIdentity_SUCI_IMSI ::= SEQUENCE {
+   mcc-mnc MCCMNCPair,
+   routingInd2 INTEGER (0..15),
+   routingInd1 INTEGER (0..15),
+   routingInd4 INTEGER (0..15),
+   routingInd3 INTEGER (0..15),
+   spare INTEGER (0..15) DEFAULT 0,
+   protSchemeId INTEGER (0..15),
+   homeNetId INTEGER (0..255),
+   --<length fixed-size="0"/>
+   schemeOutput OCTET STRING
+}
+
+MobileIdentity_SUCI_NetId ::= SEQUENCE {
+   --<length fixed-size="0">
+   nai OCTET STRING
+}
+
+MobileIdentity_MAC ::= SEQUENCE {
+   mauri BOOLEAN,
+   macaddr OCTET STRING (SIZE(6))
+}
+
+/* 9.11.3.5 - 5GS network feature support */
+NetworkFeatureSupport ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+
+   /* octet 3 */
+   mpsInd BOOLEAN, 
+   withoutN26Ind BOOLEAN,
+   emfInd INTEGER (0..3), 
+   emcInd INTEGER (0..3), 
+   imsVoPSInd BOOLEAN,
+   imsVoPS3GInd BOOLEAN,
+
+   --<noPresentBit/>
+   /* octet 4 */
+   octet4 SEQUENCE {
+      lcs BOOLEAN,
+      upCIoT BOOLEAN,
+      hcCpCIoT BOOLEAN,
+      n3Data BOOLEAN,
+      cpCIoT BOOLEAN,
+      restrictedEC BOOLEAN,
+      mcsi BOOLEAN,
+      emcn3 BOOLEAN
+   } OPTIONAL,
+
+   --<noPresentBit/>
+   spare OCTET STRING OPTIONAL
+}
+
+/* 9.11.3.6 - Registration result */
+RegistrationResult ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   spare INTEGER (0..3) DEFAULT 0,
+   emergencyRegistered BOOLEAN,
+   nssaa BOOLEAN,
+   smsAllowed BOOLEAN,
+   regResult RegistrationResultValue
+}
+
+RegistrationResultValue ::= ENUMERATED {
+   access(1), nonAccess(2), accessAndNonAccess(3), regResultMAX(7)
+} 
+
+/* 9.11.3.7 - Registration type */
+RegistrationType ::= SEQUENCE {
+   forBit BOOLEAN,
+   regisType RegistrationTypeValue
+}
+
+RegistrationTypeValue ::= ENUMERATED {
+   initial(1), mobilityUpdate(2), periodicUpdate(3), emergency(4),
+   regisTypeMAX(7)
+} 
+
+/* 9.11.3.8 - Tracking area identity */
+/* Mostly the same as 24.301 except the TAC is 3 octets instead of 2... */
+TrackingAreaIdent ::= SEQUENCE {
+   mcc-mnc MCCMNCPair,
+   tac TrackingAreaCode
+}
+
+TrackingAreaCode ::= OCTET STRING (SIZE (3))
+
+/* 9.11.3.9 - Tracking area identity list */
+/* Mostly the same as 24.301 except the TAC is 3 octets instead of 2... */
+/* Also used for Service Area List type (9.11.3.49)... */
+TrackingAreaIdentList ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255), 
+   --<is3GVarLenList lengthElem="length"/>
+   idents SEQUENCE (SIZE (1..16)) OF TrackingAreaIdentListItem
+}
+
+TrackingAreaIdentListItem ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   typeOfList INTEGER (0..3),
+   numElements INTEGER (0..31),
+   --<inline/>
+   elements CHOICE {
+      --<selector element="typeOfList" value="0"/>
+      --<asn1typename>PartialTrkAreaIdent0</asn1typename>
+      partTrkIdentList0 SEQUENCE {
+         mcc-mnc MCCMNCPair,
+         --<inline/>
+         --<length expr="@...numElements"/>
+         tacs SEQUENCE (SIZE (1..32)) OF TrackingAreaCode
+      },      
+      --<selector element="typeOfList" value="1"/>
+      --<asn1typename>PartialTrkAreaIdent1</asn1typename>
+      partTrkIdentList1 SEQUENCE {
+         mcc-mnc MCCMNCPair,
+         tac TrackingAreaCode
+      },
+      --<selector element="typeOfList" value="2"/>
+      --<length expr="@.numElements"/>
+      --<asn1typename>PartialTrkAreaIdent2</asn1typename>
+      partTrkIdentList2 SEQUENCE (SIZE (1..32)) OF TrackingAreaIdent,
+      --<selector element="typeOfList" value="3"/>
+      partTrkIdentList3 MCCMNCPair
+   }
+}
+
+
+/* 9.11.3.9A - Update type */
+UpdateType  ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   spare INTEGER (0..3) DEFAULT 0,
+   epsPnbCIoT INTEGER (1..3),
+   pnbCIoT INTEGER (1..3),
+   ngranUpd BOOLEAN,
+   smsReq BOOLEAN
+}
+
+/* 9.11.3.10 - ABBA */
+ABBA ::= OCTET STRING  -- (preceeded by 1 octet length)
+
+/* 9.11.3.12 - Additional security information */
+AddlSecurityInfo ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   spare INTEGER (0..63) DEFAULT 0,
+   rinmr BOOLEAN,
+   hdp BOOLEAN
+}
+
+/* 9.11.3.12A - Additional information requested */
+AdditionalInfoRequested ::= SEQUENCE {
+   spare INTEGER (0..127) DEFAULT 0,
+   cipherKey BOOLEAN
+}
+
+/* 9.11.3.13 - Allowed PDU session status */
+AllowedPDUSessionStatus ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   psi SEQUENCE (SIZE (16)) OF BOOLEAN,
+   --<noPresentBit/>
+   spare OCTET STRING OPTIONAL
+}
+
+/* 9.11.3.18 - Configuration update indication */
+ConfigUpdateIndication ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   regRequested BOOLEAN,
+   ack BOOLEAN
+}
+
+/* 9.11.3.18A - CAG information list */
+CAGInfoList ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (0..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   --<noPresentBit/>
+   entries SEQUENCE OF CAGEntry OPTIONAL
+}
+
+CAGEntry ::= SEQUENCE {
+   length INTEGER (1..255),
+   mcc-mnc MCCMNCPair,
+   spare INTEGER (0..127) DEFAULT 0,
+   cagOnly BOOLEAN,
+   cagID SEQUENCE OF OCTET STRING
+}
+
+/* 9.11.3.18B - CIoT small data container */
+CIoTSmallDataContainer ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   --<is3GVarLenList lengthElem="length"/>
+   --<storage>array</storage>
+   dataType CIoTDataTypes,
+   --<inline/>
+   containerContents CHOICE {
+      --<selector element="dataType" value="0"/>
+      ctrlPlaneUserData SEQUENCE {
+         ddx INTEGER (0..3),
+         pduSessionId INTEGER (0..7)
+      },
+      --<selector element="dataType" value="1"/>
+      sms SEQUENCE {
+         spare INTEGER (0..31) DEFAULT 0
+      },
+      --<selector element="dataType" value="2"/>
+      locSvcsMsgContainer SEQUENCE {
+         ddx INTEGER (0..3),
+         spare INTEGER (0..7) DEFAULT 0,
+         addlInfoLen INTEGER (0..255),
+         --<noPresentBit/>
+         --<length expr="@.addlInfoLen"/>
+         addlInfo OCTET STRING OPTIONAL
+      }
+   },
+   --<length fixed-size="0"/>
+   contents OCTET STRING
+}
+
+CIoTDataTypes ::= ENUMERATED {
+   ciotCtrlPlaneUserData(0), ciotSMS(1), ciotLocSvcsMsg(2), ciotMAX(7)
+} 
+
+/* 9.11.3.18C - Ciphering key data */
+CipheringKeyData ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   --<storage>array</storage>
+   dataSet SEQUENCE (SIZE (1..16)) OF CipherDataSet
+}
+
+CipherDataSet ::= SEQUENCE {
+   cipherKey OCTET STRING (SIZE (16)),
+   spare1 INTEGER (0..7) DEFAULT 0,
+   c0Len INTEGER (0..31),
+   --<length expr="@c0Len"/>
+   c0 OCTET STRING,
+   spare2 INTEGER (0..15) DEFAULT 0,
+   eutraPosSIBLen INTEGER (0..15),
+   eutraPosSIBType SEQUENCE (SIZE (32)) OF BOOLEAN,
+   spare3 INTEGER (0..15) DEFAULT 0,
+   nrPosSIBLen INTEGER (0..15),
+   nrPosSIBType SEQUENCE (SIZE (34)) OF BOOLEAN,
+   spare4 INTEGER (0..63) DEFAULT 0,
+   validityStartTime TimeZoneAndTime,
+   validityDuration INTEGER (0..65535),
+   taiList TrackingAreaIdentList
+}
+
+/* 9.11.3.18D - Control plane service type */
+ControlPlaneServiceType ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   value INTEGER (0..7)
+}
+
+/* 9.11.3.20 - Deregistration type */
+DeregistrationType ::= SEQUENCE {
+   switchOff BOOLEAN,
+   reregReqd BOOLEAN,
+   accessType INTEGER (0..3)
+}
+
+/* 9.11.3.24 - EPS NAS message container */
+EPSMessageContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   contents SEQUENCE OF NASMessageContainer
+}
+
+/* 9.11.3.29 - LADN Indication */
+LADNIndication ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   --<noPresentBit/>
+   contents SEQUENCE (SIZE (0..8)) OF DNNList OPTIONAL
+}
+
+/* 9.11.3.30 - LADN */
+LADNList ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..1715),
+   --<is3GVarLenList lengthElem="length"/>
+   contents SEQUENCE (SIZE (0..8)) OF LADN
+}
+
+LADN ::= SEQUENCE {
+   dnn DNNList,
+   tai TrackingAreaIdent
+}
+
+/* 9.11.3.31 - MICO indication */
+MICOIndication ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   sprti BOOLEAN,
+   raai BOOLEAN
+}
+
+/* 9.11.3.31B - Mapped NSSAI */
+MappedNSSAI ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   --<is3GVarLenList lengthElem="length"/>
+   contents SEQUENCE (SIZE (1..8)) OF MappedSNSSAIContent
+}
+
+MappedSNSSAIContent ::= SEQUENCE {
+   length INTEGER (1..255),
+   mappedSST OCTET STRING (SIZE (1)),
+   mappedSD OCTET STRING (SIZE (3))
+}
+
+/* 9.11.3.33 - NAS message container */
+/* Different from NASMessageContainer defined in 24.301... */
+NASMessageContainer2 ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<length fixed-size="0"/>
+   contents OCTET STRING (SIZE (1..65535))
+} 
+
+/* 9.11.3.34 - NAS security algorithms */
+NASSecurityAlgorithm ::= SEQUENCE {
+   cipherType INTEGER (0..15),
+   protectionType INTEGER (0..15)
+} 
+
+/* 9.11.3.36 - Network slicing indication */
+NetSliceIndication ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   dcni BOOLEAN,
+   nssci BOOLEAN
+}
+
+/* 9.11.3.37 - NSSAI */
+NSSAI ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   --<is3GVarLenList lengthElem="length"/>
+   contents SEQUENCE (SIZE (1..16)) OF SNSSAI
+}
+
+/* 9.11.3.37A - NSSAI inclusion mode */
+NSSAIInclusionMode ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   inclusionMode ENUMERATED {
+      modeA(0), modeB(1), modeC(2), modeD(3)
+   }
+}
+
+/* 9.11.3.38 - Operator defined access category definitions */
+AccessCategoryDefinitions ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   --<noPresentBit/>
+   contents SEQUENCE OF AccessCategoryDefinition OPTIONAL
+}
+
+AccessCategoryDefinition ::= SEQUENCE {
+   precedence INTEGER (1..255),
+   psac BOOLEAN,
+   spare INTEGER (0..3) DEFAULT 0,
+   categoryNum INTEGER (0..31),
+   --<is3GLength/>
+   length INTEGER (1..255),
+   --<is3GVarLenList lengthElem="length"/>
+   criteria SEQUENCE OF OCTET STRING,
+   spare2 INTEGER (0..7) DEFAULT 0,
+   accessCategory INTEGER (0..31)
+}
+
+/* 9.11.3.39 - Payload container
+   Warning: this type covers the specific case where the payload container
+   type is 15 (Multiple payloads).
+*/
+MultiPayloadContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..65535),
+   contents PayloadContainerContents
+} 
+
+PayloadContainerContents ::= SEQUENCE {
+   numEntries INTEGER (0..255),
+   --<inline/>
+   --<length expr="@numEntries"/>
+   entries SEQUENCE (SIZE (0..255)) OF PayloadContainerEntry
+}
+
+PayloadContainerEntry ::= SEQUENCE {
+   entryLength INTEGER (1..255),
+   numOptIEs INTEGER (1..15),
+   type PayloadContainerType,
+   --<inline/>
+   --<length expr="@numOptIEs"/>
+   optionalIEs SEQUENCE (SIZE (1..15)) OF OptionalIE,
+   contents OCTET STRING (SIZE (0..65535))
+}
+
+OptionalIE ::= SEQUENCE {
+   type INTEGER (0..255),
+   value OCTET STRING   -- (preceeded by 1 octet length)
+}
+
+/* 9.11.3.40 - Payload container type */
+PayloadContainerType ::= ENUMERATED {
+   n1SmInfo(1), sms(2), lppMessage(3), transparent(4), uePolicy(5),
+   ueParams(6), locSvcs(7), ciotUserData(8), multPayloads(15)
+} 
+
+/* 9.11.3.41 - PDU session identity 2 */
+PDUSessionId2 ::= INTEGER (0..255)
+
+/* 9.11.3.42 - PDU session reactivation result */
+SessionReactivateRslt ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   psi SEQUENCE (SIZE (16)) OF BOOLEAN,
+   --<length fixed-size="0"/>
+   --<noPresentBit/>
+   spare OCTET STRING OPTIONAL
+}
+
+/* 9.11.3.43 - PDU session reactivation result error cause */
+SessionReactivateCause ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (1..512),
+   --<is3GVarLenList lengthElem="length"/>
+   reactivateCause SEQUENCE (SIZE (1..255)) OF ReactivateCause
+}
+
+ReactivateCause ::= SEQUENCE {
+   sessionId INTEGER (0..255),
+   cause MMCause
+}
+
+/* 9.11.3.44 - PDU session status */
+PDUSessionStatus ::= SessionReactivateRslt
+
+/* 9.11.3.46 - Rejected NSSAI */
+RejectedNSSAIList ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   --<is3GVarLenList lengthElem="length"/>
+   rejectedNSSAI SEQUENCE (SIZE (1..8)) OF RejectedNSSAI
+}
+
+RejectedNSSAI ::= SEQUENCE {
+   length INTEGER (1..15),
+   cause  ENUMERATED { unavailInCurrPlmn(0), unavailInCurrRegisArea(1),
+                       authPending(2), causeMAX(15) },
+   sst SST,
+   --<noPresentBit/>
+   sd SD OPTIONAL
+}
+
+/* 9.11.3.47 - Request type */
+RequestType ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   reqType RequestTypes
+}
+
+RequestTypes ::= ENUMERATED {
+ initialReq(1), existPduSession(2), initialEmerReq(3), emerPduSession(4),
+ modifyReq(5), reqTypeMAX(7)
+}
+
+/* 9.11.3.50 - Service type */
+ServiceType ::= ENUMERATED {
+   signaling(0), data(1), mobTermSvc(2), emerSvc(3), emerSvcFallback(4),
+   hiPriAccess(5), elevSignal(6), serviceTypeMAX(15)
+}
+
+/* 9.11.3.50A - SMS indication */
+SMSIndication ::= SEQUENCE {
+   spare INTEGER (0..7) DEFAULT 0,
+   sai BOOLEAN
+}
+
+/* 9.11.3.51 - SOR transparent container */
+
+/* This IE requires custom decoding due to the lowest bit in the header octet
+   determining whether the IE contains steering or ack of steering information.
+*/
+SORTransparentContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (0..65535),
+   steeringOrAck CHOICE {
+      steering SORSteering,
+      ack SORAck
+   }
+}
+
+/* SOR for data type = 0 (steering of roaming information) */
+SORSteering ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   ack BOOLEAN,
+   listType INTEGER(0..1),
+   listInd BOOLEAN,
+   dataType INTEGER(0..1) DEFAULT 0,   /* always 0 */
+   sorMAC OCTET STRING (SIZE (16)),
+   counter OCTET STRING (SIZE (2)),
+   --<inline/>
+   --<noPresentBit/>
+   content CHOICE {
+      --<selector element="listType" value="0"/>      
+      --<length fixed-size="0"/>
+      securedPacket OCTET STRING,
+      --<selector element="listType" value="1"/>    
+      --<length fixed-size="0"/>
+      plmnAccess SEQUENCE OF PLMNTechList
+   } OPTIONAL
+}
+
+/* SOR for data type = 1 (ack of steering of roaming information) */
+SORAck ::= SEQUENCE {
+   spare INTEGER (0..127) DEFAULT 0,
+   dataType INTEGER(0..1) DEFAULT 1,   /* always 1 */
+   sorMAC OCTET STRING(SIZE(16))
+}
+
+PLMNTechList ::= SEQUENCE {
+    id OCTET STRING (SIZE(3)),
+    techId OCTET STRING (SIZE(2))
+}
+
+/* 9.11.3.53A - UE Parameters Update Transparent Container */
+
+/* This IE requires custom decoding due to the lowest bit in the header octet
+   determining whether the IE contains an update list or ack of an update list.
+*/   
+UEParamUpdateContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (0..65535),
+   updateOrAck CHOICE {
+      update UEParamUpdate,
+      ack UEParamUpdateAck
+   }
+}
+
+/* UE Param Update for data type = 0 (UE parameters update list) */
+UEParamUpdate ::= SEQUENCE {
+   spare INTEGER (0..31) DEFAULT 0,
+   reg BOOLEAN,
+   ack BOOLEAN,
+   dataType INTEGER(0..1) DEFAULT 0, /* always 0 */
+   mac OCTET STRING (SIZE(16)),
+   counter OCTET STRING (SIZE(2)),
+   --<length fixed-size="0"/>
+   updateList SEQUENCE OF UEParamUpdateDataSet
+}
+
+UEParamUpdateDataSet ::= SEQUENCE {
+   spare INTEGER (0..15),
+   dataSetType INTEGER(0..15),
+   dataSetLen INTEGER(0..65535),
+   --<inline/>
+   dataSet CHOICE {
+      --<selector element="dataSetType" value="1"/>      
+      --<length expr="@dataSetLen"/>
+      securedPacket OCTET STRING,
+      --<selector element="dataSetType" value="2"/>      
+      --<length expr="@dataSetLen"/>
+      defCfgNSSAI OCTET STRING
+   }
+}
+
+/* UE Param Update for data type = 1 (UE parameters update list acknowledgement)
+*/
+UEParamUpdateAck ::= SEQUENCE {
+   spare INTEGER (0..127) DEFAULT 0,
+   dataType INTEGER(0..1) DEFAULT 1, /* always 1 */
+   mac OCTET STRING (SIZE(16))
+}
+
+/* 9.11.3.54 - UE security capability */
+UESecurityCapability ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (0..255),
+
+   /* octet 3 */
+   ea0 BOOLEAN,
+   ea1 BOOLEAN,
+   ea2 BOOLEAN,
+   ea3 BOOLEAN,
+   ea4 BOOLEAN,
+   ea5 BOOLEAN,
+   ea6 BOOLEAN,
+   ea7 BOOLEAN,
+
+   /* octet 4 */
+   ia0 BOOLEAN,
+   ia1 BOOLEAN,
+   ia2 BOOLEAN,
+   ia3 BOOLEAN,
+   ia4 BOOLEAN,
+   ia5 BOOLEAN,
+   ia6 BOOLEAN,
+   ia7 BOOLEAN,
+
+   /* octet 5 */
+   --<noPresentBit/>
+   octet5 SEQUENCE {
+      eea0 BOOLEAN,
+      eea1 BOOLEAN,
+      eea2 BOOLEAN,
+      eea3 BOOLEAN,
+      eea4 BOOLEAN,
+      eea5 BOOLEAN,
+      eea6 BOOLEAN,
+      eea7 BOOLEAN
+   } OPTIONAL,
+
+   /* octet 6 */
+   --<noPresentBit/>
+   octet6 SEQUENCE {
+      eia0 BOOLEAN,
+      eia1 BOOLEAN,
+      eia2 BOOLEAN,
+      eia3 BOOLEAN,
+      eia4 BOOLEAN,
+      eia5 BOOLEAN,
+      eia6 BOOLEAN,
+      eia7 BOOLEAN
+   } OPTIONAL,
+
+   --<noPresentBit/>
+   spare OCTET STRING OPTIONAL
+}
+
+/* 9.11.3.55 - UE usage setting */
+UEUsageSetting ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (0..255) DEFAULT 3, 
+   spare INTEGER (0..127) DEFAULT 0, 
+   usage BOOLEAN
+}
+
+/* 9.11.3.57 - Uplink data status */
+UplinkDataStatus ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (2..255),
+   spare1 BOOLEAN DEFAULT FALSE,
+   psi SEQUENCE (SIZE (15)) OF BOOLEAN,
+   --<noPresentBit/>
+   spare2 OCTET STRING OPTIONAL
+}
+
+
+/* 9.11.4.1 - SM capability */
+SMCapability ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (0..255),
+
+   /* octet 3 */
+   spare INTEGER (0..3) DEFAULT 0,
+   tpmic BOOLEAN,
+   mptc BOOLEAN,
+   atsll BOOLEAN,
+   epts1 BOOLEAN,
+   mh6Pdu BOOLEAN,
+   rqos BOOLEAN,
+
+   --<noPresentBit/>
+   spare2 OCTET STRING OPTIONAL
+}
+
+/* 9.11.4.2 - SM cause */
+SMCause ::= ENUMERATED {
+ opBarring(8), insuffResources(26), unkOrMissDNN(27), unknownPDUType(28),
+ userAuthFailed(29), reqRejectUnspecified(31), optNotSupported(32),
+ reqSvcOptNotSubscr(33), svcOptTempOutOfOrder(34), ptiAlreadyInUse(35),
+ regularDeactivation(36), networkFailure(38), reactivateRequest(39),
+ semanticErrTft(41), syntaxErrTft(42), invPduId(43), semanticErrInFilter(44),
+ syntaxErrInFilter(45), outOfArea(46), ptiMismatch(47),
+ pdnTypeIPv4OnlyAllow(50), pdnTypeIPv6OnlyAllow(51), pduNotExist(54),
+ pdnTypeIPv4v6OnlyAllow(57), pdnTypeUnstructOnlyAllow(58),
+ pdnTypeEthOnlyAllow(61), insufResForDNN(67), notSuppSSCMode(68),
+ insufResForSlice(69), unkOrMissDNNInSlice(70), invPTIValue(81),
+ maxDRTooLow(82), semanticErrQoS(83), syntaxErrQoS(84), invEpsId(85),
+ semIncorrectMessage(95), invMandatoryInfo(96), msgTypeNonExistOrNotImpl(97),
+ msgTypeNotCompatWithProtoState(98), ieNonExistOrNotImpl(99), condIEError(100),
+ msgNotCompatWithProtoState(101), protocolErrorUnspecified(111),
+ smCauseMAX(255)
+}
+
+/* 9.11.4.3 - Always-on PDU session indication */
+AlwaysOnPDUSessionInd ::= SEQUENCE {
+   spare INTEGER (0..7) DEFAULT 0,
+   apsi BOOLEAN
+}
+
+/* 9.11.4.4 - Always-on PDU session requested */
+AlwaysOnPDUSessionReq ::= SEQUENCE {
+   spare INTEGER (0..7) DEFAULT 0,
+   apsr BOOLEAN
+}
+
+/* 9.11.4.5 - Allowed SSC mode */
+AllowedSSCMode ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   ssc3 BOOLEAN,
+   ssc2 BOOLEAN,
+   ssc1 BOOLEAN
+}
+
+/* 9.11.4.7 - Integrity protection maximum data rate */
+IntegrityProtMaxDataRate ::= SEQUENCE {
+   maxUEDataRateUplink MaxDataRates,
+   maxUEDataRateDownlink MaxDataRates
+}
+
+MaxDataRates ::= ENUMERATED {
+   dr64kbps(0), drFull(255)
+}
+
+/* 9.11.4.8 - Mapped EPS bearer contexts */
+EPSBearerCtxts ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (7..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   epsBearerCtxts SEQUENCE OF EPSBearerCtxt
+}
+
+EPSBearerCtxt ::= SEQUENCE {
+   bearerId INTEGER (0..255),
+   bearerCtxtLen INTEGER (0..65535),
+   opCode INTEGER (0..3),
+   spare BOOLEAN DEFAULT FALSE,
+   eBit BOOLEAN,
+   numParams INTEGER (0..15),
+   --<inline/>
+   --<length expr="@numParams"/>
+   paramsList SEQUENCE (SIZE (0..15)) OF ParamsList
+}
+
+ParamsList ::= SEQUENCE {
+   paramId INTEGER (0..255),
+   paramContentLen INTEGER (0..255),
+   paramContent OCTET STRING (SIZE (1..17))
+}
+
+/* 9.11.4.9 - Maximum number of supported packet filters */
+MaxSupportedPacketFilters ::= SEQUENCE {
+   maxFilters INTEGER (1..2047),
+   spare INTEGER (0..31) DEFAULT 0
+}
+
+/* 9.11.4.10 - PDU address */
+PDUAddress ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   spare INTEGER (0..31) DEFAULT 0,
+   sessionType INTEGER (0..7),
+   addressInfo OCTET STRING (SIZE (4..12))
+}
+
+/* 9.11.4.11 - PDU session type */
+PDUSessionType ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   sessionType INTEGER (0..7)
+}
+
+/* 9.11.4.12 - QoS flow descriptions */
+QOSFlowDescriptions ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (6..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   qosFlowDesr SEQUENCE OF QOSFlowDescription
+}
+
+QOSFlowDescription ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   qfi INTEGER (0..63),
+   opCode FlowOpCodes,
+   spare2 INTEGER (0..31) DEFAULT 0,
+   spare3 BOOLEAN DEFAULT FALSE,
+   eBit BOOLEAN,
+   numParams INTEGER (0..63),
+   --<inline/>
+   --<length expr="@numParams"/>
+   --<noPresentBit/>
+   paramsList SEQUENCE (SIZE (0..63)) OF Parameter OPTIONAL
+}
+
+Parameter ::= SEQUENCE {
+   id INTEGER (0..255),
+   contents OCTET STRING   -- (preceeded by 1 octet length)
+}
+
+FlowOpCodes ::= ENUMERATED {
+   flowCreate(1), flowDelete(2), flowModify(3), ruleOpMax(7)
+}
+
+/* 9.11.4.13 - QoS rules */
+QoSRules ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (0..65535),
+   --<is3GVarLenList lengthElem="length"/>
+   rules SEQUENCE OF QoSRule
+}
+
+QoSRule ::= SEQUENCE {
+   ruleId INTEGER (0..255),
+   ruleLen INTEGER (0..65535),
+   ruleOpCode RuleOpCodes,
+   dqr BOOLEAN,
+   numPacketFilters INTEGER (0..15),
+   --<inline/>
+   packetFilterList CHOICE {
+      --<selector element="ruleOpCode" value="1"/>
+      --<length expr="@numPacketFilters"/>
+      createNew SEQUENCE (SIZE (0..15)) OF PFCreateNew,
+      --<selector element="ruleOpCode" value="2"/>
+      delete NULL,
+      --<selector element="ruleOpCode" value="3"/>
+      --<length expr="@numPacketFilters"/>
+      modifyAndAdd SEQUENCE (SIZE (1..15)) OF PFCreateNew,
+      --<selector element="ruleOpCode" value="4"/>
+      --<length expr="@numPacketFilters"/>
+      modifyAndReplace SEQUENCE (SIZE (0..15)) OF PFCreateNew,
+      --<selector element="ruleOpCode" value="5"/>
+      --<length expr="@numPacketFilters"/>
+      modifyAndDelete SEQUENCE (SIZE (1..15)) OF PFModifyAndDelete,
+      --<selector element="ruleOpCode" value="6"/>
+      modifyNoModify NULL
+   },
+   precedence INTEGER (0..255),
+   spare1 BOOLEAN DEFAULT FALSE,
+   segregation BOOLEAN,
+   flowId INTEGER (0..63)
+}
+
+RuleOpCodes ::= ENUMERATED {
+   createNew(1), delete(2), modifyAndAdd(3), modifyAndReplace(4), 
+   modifyAndDelete(5), modifyNoModify(6), ruleOpMax(7)
+}
+
+PFModifyAndDelete ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   filterId INTEGER (0..15)
+}
+
+PFCreateNew ::= SEQUENCE {
+   spare INTEGER (0..3) DEFAULT 0,
+   filterDirection INTEGER (0..3),
+   filterId INTEGER (0..15),
+   --<is3GLength/>
+   filterContentLen INTEGER (0..255),
+   --<is3GVarLenList lengthElem="filterContentLen"/>
+   filterContent SEQUENCE OF PFComponent
+}
+
+PFComponent ::= SEQUENCE {
+   typeId PacketFilterTypeId,
+   --<inline/>
+   value CHOICE {
+      --<selector element="typeId" value="1"/>
+      matchAll NULL,
+      --<selector element="typeId" value="16"/>
+      ipv4Remote OCTET STRING (SIZE (8)),
+      --<selector element="typeId" value="17"/>
+      ipv4Local OCTET STRING (SIZE (8)),
+      --<selector element="typeId" value="33"/>
+      ipv6Remote OCTET STRING (SIZE (17)),
+      --<selector element="typeId" value="35"/>
+      ipv6Local OCTET STRING (SIZE (17)),
+      --<selector element="typeId" value="48"/>
+      protId OCTET STRING (SIZE (1)),
+      --<selector element="typeId" value="64"/>
+      singleLocalPort OCTET STRING (SIZE (2)),
+      --<selector element="typeId" value="65"/>
+      localPortRange OCTET STRING (SIZE (4)),
+      --<selector element="typeId" value="80"/>
+      singleRemPort OCTET STRING (SIZE (2)),
+      --<selector element="typeId" value="81"/>
+      remPortRange OCTET STRING (SIZE (4)),
+      --<selector element="typeId" value="96"/>
+      secParam OCTET STRING (SIZE (4)),
+      --<selector element="typeId" value="112"/>
+      typeOfSvc OCTET STRING (SIZE (2)),
+      --<selector element="typeId" value="128"/>
+      flowLabel OCTET STRING (SIZE (3)),
+      --<selector element="typeId" value="129"/>
+      destMacAddr OCTET STRING (SIZE (6)),
+      --<selector element="typeId" value="130"/>
+      srcMacAddr OCTET STRING (SIZE (6)),
+      --<selector element="typeId" value="131"/>
+      ctagVid OCTET STRING (SIZE (2)),
+      --<selector element="typeId" value="132"/>
+      stagVid OCTET STRING (SIZE (2)),
+      --<selector element="typeId" value="133"/>
+      ctagPcp OCTET STRING (SIZE (1)),
+      --<selector element="typeId" value="134"/>
+      stagPcp OCTET STRING (SIZE (1)),
+      --<selector element="typeId" value="135"/>
+      ethernet OCTET STRING (SIZE (2))
+   }
+}
+
+PacketFilterTypeId ::= ENUMERATED {
+   matchAll(1), ipv4Remote(16), ipv4Local(17), ipv6Remote(33), ipv6Local(35),
+   protId(48), singleLocalPort(64), localPortRange(65), singleRemPort(80),
+   remPortRange(81), secParam(96), typeOfSvc(112), flowLabel(128),
+   destMacAddr(129), srcMacAddr(130), ctagVid(131), stagVid(132),
+   ctagPcp(133), stagPcp(134), ethernet(135), typeIdMax(255)
+}
+
+/* 9.11.4.14 - Session AMBR */
+SessionAMBR ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (0..255) DEFAULT 8,
+   unitAmbrDL SessionUnits,
+   sessionAmbrDL INTEGER (0..65535),
+   unitAmbrUL SessionUnits,
+   sessionAmbrUL INTEGER (0..65535)
+}
+
+SessionUnits ::= ENUMERATED {
+   unused(0),
+   mult1kbps(1), mult4kbps(2), mult16kbps(3), mult64kbps(4), mult256kbps(5),
+   mult1mbps(6), mult4mbps(7), mult16mbps(8), mult64mbps(9), mult256mbps(10),
+   mult1gbps(11), mult4gbps(12), mult16gbps(13), mult64gbps(14), mult256gbps(15),
+   mult1tbps(16), unitsMax(255)
+}
+
+/* 9.11.4.15 - SM PDU DN request container */
+SmPduDnReqContainer ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (3..255),
+   --<is3GVarLenList lengthElem="length"/>
+   --<noPresentBit/>
+   dnSpecificId OCTET STRING OPTIONAL
+}
+
+/* 9.11.4.16 - SSC mode */
+SSCMode ::= SEQUENCE {
+   spare BOOLEAN DEFAULT FALSE,
+   sscMode INTEGER (0..7)
+}
+
+/* 9.11.4.17 - Re-attempt indicator */
+ReattemptIndicator ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1),
+   spare INTEGER (0..63) DEFAULT 0,
+   eplmnc BOOLEAN,
+   ratc BOOLEAN
+}
+
+/* 9.11.4.18 - 5GSM network feature support */
+SMNetworkFeatureSupport ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255), 
+   spare INTEGER (0..127) DEFAULT 0, 
+   eptS1 BOOLEAN,
+   --<noPresentBit/>
+   spare2 OCTET STRING OPTIONAL
+}
+
+/* 9.11.4.19 - Session TMBR - removed in 16.3 */
+--SessionTMBR ::= SEQUENCE {
+--   length INTEGER (0..255) DEFAULT 8,
+--   unitTmbrDL INTEGER (0..255),
+--   sessionTmbrDL INTEGER (0..65535),
+--   unitTmbrUL INTEGER (0..255),
+--   sessionTmbrUL INTEGER (0..65535)
+--}
+
+/* 9.11.4.21 - 5GSM congestion re-attempt indicator */
+CongestionReattemptIndicator ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   spare INTEGER (0..127) DEFAULT 0,
+   abo BOOLEAN
+}
+
+/* 9.11.4.22 - ATSSS container */
+ATSSSContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (3..65535),
+   contents OCTET STRING (SIZE(0..65535))
+}
+
+/* 9.11.4.23 - Control plane only indication */
+ControlPlaneIndication ::= SEQUENCE {
+   spare INTEGER (0..7) DEFAULT 0,
+   cpoi BOOLEAN
+}
+
+/* 9.11.4.24 - Header compression configuration */
+HeaderCompressionConfig ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (3..255),
+   spare BOOLEAN DEFAULT FALSE,
+   p0x0104 BOOLEAN,
+   p0x0103 BOOLEAN,
+   p0x0102 BOOLEAN,
+   p0x0006 BOOLEAN,
+   p0x0004 BOOLEAN,
+   p0x0003 BOOLEAN,
+   p0x0002 BOOLEAN,
+   maxCID OCTET STRING (SIZE(2)),
+   --<noPresentBit/>
+   addlCompressParamsType INTEGER (0..255) OPTIONAL,
+   --<noPresentBit/>
+   addlCompressParamsContainer OCTET STRING OPTIONAL
+}
+
+/* 9.11.4.25 - DS-TT Ethernet port MAC address */
+DSTTEthMACAddr ::= SEQUENCE {
+   --<is3GLength/>
+   length INTEGER (1..255),
+   contents OCTET STRING (SIZE(6))
+}
+
+/* 9.11.4.26 - DS-TT residence time */
+DSTTResidenceTime ::= SEQUENCE {
+   length INTEGER (1..255),
+   contents OCTET STRING (SIZE(8))
+}
+
+/* 9.11.4.27 - Port management information container */
+PortMgmtInfoContainer ::= SEQUENCE {
+   --<is3GLength bitFieldSize="16"/>
+   length INTEGER (0..65535),
+   --<noPresentBit/>
+   container OCTET STRING OPTIONAL
+}
+
+
+/* -- MOBILITY MANAGEMENT MESSAGES --- */
+
+/* 8.2.1 Authentication request */
+
+mt-AuthRequest5G INTEGER ::= 86
+
+obj-MMAuthRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-AuthRequest5G
+   TYPE AuthRequest
+}
+
+--<is3GMessage/>
+AuthRequest ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0, 
+   nasKeySetIdent NASKeySetIdentifier,
+   /* This field was added as optional in 15.1 and made mandatory in 15.3... */
+   abba ABBA, -- 9.11.3.10
+   --<iei format="tv" length="17">21</iei>
+   authParamRAND AuthParamRAND OPTIONAL,
+   --<iei format="tlv">20</iei>
+   authParamAUTN AuthParamAUTN OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL
+}
+   
+/* 8.2.2 Authentication response */
+
+mt-AuthResponse5G INTEGER ::= 87
+
+obj-MMAuthResponse5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-AuthResponse5G
+   TYPE AuthResponse
+}
+
+--<is3GMessage/>
+AuthResponse ::= SEQUENCE {
+   --<iei format="tlv">2D</iei>
+   authRespParam AuthRespParam OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL
+}
+
+/* 8.2.3 Authentication result */
+
+mt-AuthResult5G INTEGER ::= 90
+
+obj-MMAuthResult5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-AuthResult5G
+   TYPE AuthResult
+}
+
+--<is3GMessage/>
+AuthResult ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   nasKeySetIdent NASKeySetIdentifier,
+   eapMessage EAPMessage,
+   --<iei format="tlv">38</iei>
+   abba ABBA OPTIONAL -- added in v15.2.0
+}
+
+/* 8.2.4 Authentication failure */
+
+mt-AuthFailure5G INTEGER ::= 89
+
+obj-MMAuthFailure5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-AuthFailure5G
+   TYPE AuthFailure
+}
+
+--<is3GMessage/>
+AuthFailure ::= SEQUENCE {
+   cause MMCause,
+   --<iei format="tlv">30</iei>
+   authFailureParam AuthFailureParam OPTIONAL
+}
+   
+/* 8.2.5 Authentication reject */
+
+mt-AuthReject5G INTEGER ::= 88
+
+obj-MMAuthReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-AuthReject5G
+   TYPE AuthReject
+}
+
+--<is3GMessage/>
+AuthReject ::= SEQUENCE {
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL -- added in v15.2.0
+}
+
+/* 8.2.6 Registration request */
+
+mt-RegRequest5G INTEGER ::= 65
+
+obj-RegRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-RegRequest5G
+   TYPE RegRequest
+}
+
+--<is3GMessage/>
+RegRequest ::= SEQUENCE {
+   nasKeySetIdent NASKeySetIdentifier,
+   registrationType RegistrationType,
+   mobileId MobileIdentity,
+   --<iei format="tv" length="1">0C</iei>
+   nativeNasKeySetIdent NASKeySetIdentifier OPTIONAL,
+   --<iei format="tlv">10</iei>
+   capability MMCapability OPTIONAL,
+   --<iei format="tlv">2E</iei>
+   securityCapability UESecurityCapability OPTIONAL,
+   --<iei format="tlv">2F</iei>
+   requestedNSSAI NSSAI OPTIONAL,
+   --<iei format="tv" length="7">52</iei>
+   lastVisitedTAI TrackingAreaIdent OPTIONAL,
+   --<iei format="tlv">17</iei>
+   s1NetworkCapability UENetworkCapability OPTIONAL,
+   --<iei format="tlv">40</iei>
+   uplinkStat UplinkDataStatus OPTIONAL,
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tv" length="1">0B</iei>
+   micoInd MICOIndication OPTIONAL,
+   --<iei format="tlv">2B</iei>
+   ueStat UEStatus OPTIONAL,
+   --<iei format="tlv-e">77</iei>
+   addlGUTI MobileIdentity OPTIONAL,
+   --<iei format="tlv">25</iei>
+   allowedSessionStat AllowedPDUSessionStatus OPTIONAL,
+   --<iei format="tlv">18</iei>
+   ueUsage UEUsageSetting OPTIONAL,
+   --<iei format="tlv">51</iei>
+   reqDrxParams DRXParams OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv-e">70</iei>
+   epsContainer EPSMessageContainer OPTIONAL,
+   --<iei format="tlv-e">74</iei>
+   ladnInd LADNIndication OPTIONAL, -- added in v15.1.0
+   --<iei format="tv" length="1">8</iei>
+   containerType PayloadContainerType OPTIONAL, -- added in v15.3.0
+   --<iei format="tlv-e">7B</iei>
+   --<inline/>
+   container CHOICE {
+      /* The only option currently allowed is UE Policy.  See 8.2.6.17A. */
+      --<selector element="containerType" value="5"/>
+      uePolicy OpaqueData
+   } OPTIONAL,  
+   --<iei format="tv" length="1">9</iei>
+   netSliceInd NetSliceIndication OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv">53</iei>
+   updateType UpdateType OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv-e">71</iei>
+   nasContainer NASMessageContainer2 OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv">60</iei>
+   epsBearerStat EPSBearerContextStatus OPTIONAL, -- added in v15.4.0
+   ...,
+   [[ 16:
+   --<iei format="tlv">41</iei>
+   mobileStationClassmark2 MobileStationClassmark2 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">42</iei>
+   supportedCodecs SupportedCodecList OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">6E</iei>
+   reqDRXParams ExtDRXParams OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">6A</iei>
+   t3324 GPRSTimer3 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">67</iei>
+   ueRadioCapabilityId UERadioCapId OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">35</iei>
+   reqMappedNSSAI MappedNSSAI OPTIONAL, -- added in v16.3.0
+   --<iei format="tlv">48</iei>
+   addlInfoRequested AdditionalInfoRequested OPTIONAL -- added in v16.3.0
+   ]]
+}
+
+/* 8.2.7 Registration accept */
+
+mt-RegAccept5G INTEGER ::= 66
+
+obj-RegAccept5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-RegAccept5G
+   TYPE RegAccept
+}
+
+--<is3GMessage/>
+RegAccept ::= SEQUENCE {
+   regResult RegistrationResult,
+   --<iei format="tlv-e">77</iei>
+   guti MobileIdentity OPTIONAL,
+   --<iei format="tlv">4A</iei>
+   plmnList PLMNList OPTIONAL,
+   --<iei format="tlv">54</iei>
+   taiList TrackingAreaIdentList OPTIONAL,
+   --<iei format="tlv">15</iei>
+   allowedNSSAI NSSAI OPTIONAL,
+   --<iei format="tlv">11</iei>
+   rejectedNSSAI RejectedNSSAIList OPTIONAL,
+   --<iei format="tlv">31</iei>
+   configuredNSSAI NSSAI OPTIONAL,
+   --<iei format="tlv">21</iei>
+   netSupport NetworkFeatureSupport OPTIONAL,
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tlv">26</iei>
+   reactivateRslt SessionReactivateRslt OPTIONAL,
+   --<iei format="tlv-e">72</iei>
+   reactivateRsltCause SessionReactivateCause OPTIONAL,
+   --<iei format="tlv-e">79</iei>
+   ladn LADNList OPTIONAL,
+   --<iei format="tv" length="1">B</iei>
+   micoInd MICOIndication OPTIONAL,
+   --<iei format="tv" length="1">9</iei>
+   netSliceInd NetSliceIndication OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv">27</iei>
+   svcAreaList TrackingAreaIdentList OPTIONAL,
+   --<iei format="tlv">5E</iei>
+   t3512 GPRSTimer3 OPTIONAL,
+   --<iei format="tlv">5D</iei>
+   non3GPPDeregTimer GPRSTimer2 OPTIONAL,
+   --<iei format="tlv">16</iei>
+   t3502 GPRSTimer2 OPTIONAL,
+   --<iei format="tlv">34</iei>
+   emergencyNumList EmergencyNumberList OPTIONAL,
+   --<iei format="tlv-e">7A</iei>
+   extEmergencyNumList ExtEmergencyNumberList OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">73</iei>
+   transparentContainer SORTransparentContainer OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tv" length="1">A</iei>
+   inclusionMode NSSAIInclusionMode OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv-e">76</iei>
+   accessDefs AccessCategoryDefinitions OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv">51</iei>
+   negotiatedDrxParams DRXParams OPTIONAL, -- added in v15.2.0
+   --<iei format="tv" length="1">D</iei>
+   non3GPPNWPolicies Non3GPPNetPolicies OPTIONAL, -- added in v15.4.0
+   --<iei format="tlv">60</iei>
+   epsBearerStat EPSBearerContextStatus OPTIONAL, -- added in v15.4.0
+   ...,
+   [[ 16:
+   --<iei format="tlv">6E</iei>
+   negotiatedExtDrxParams ExtDRXParams OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">6C</iei>
+   t3447 GPRSTimer3 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">6B</iei>
+   t3448 GPRSTimer3 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">6A</iei>
+   t3324 GPRSTimer3 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">67</iei>
+   ueRadioCapabilityId UERadioCapId OPTIONAL, -- added in v16.2.0
+   --<iei format="tv" length="1">68</iei>
+   ueRadioCapIdDeletionIndication UERadioCapIdDeletionInd OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">39</iei>
+   pendingNSSAI NSSAI OPTIONAL, -- added in v16.3
+   --<iei format="tlv-e">74</iei>
+   cipherKeyData CipheringKeyData OPTIONAL -- added in v16.3
+   ]]
+}
+
+/* 8.2.8 Registration complete */
+
+mt-RegComplete5G INTEGER ::= 67
+
+obj-RegComplete5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-RegComplete5G
+   TYPE RegComplete
+}
+
+--<is3GMessage/>
+RegComplete ::= SEQUENCE {
+   --<iei format="tlv-e">73</iei>
+   transparentContainer SORTransparentContainer OPTIONAL -- added in v15.1.0
+}
+
+/* 8.2.9 Registration reject */
+
+mt-RegReject5G INTEGER ::= 68
+
+obj-RegReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-RegReject5G
+   TYPE RegReject
+}
+
+--<is3GMessage/>
+RegReject ::= SEQUENCE {
+   cause MMCause,
+   --<iei format="tlv">5F</iei>
+   t3346 GPRSTimer2 OPTIONAL,
+   --<iei format="tlv">16</iei>
+   t3502 GPRSTimer2 OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">69</iei>
+   rejectedNSSAI RejectedNSSAIList OPTIONAL -- added in v16.2.0
+   ]]
+}
+
+/* 8.2.10 UL NAS transport */
+
+mt-ULNASTrans5G INTEGER ::= 103
+
+obj-ULNASTrans5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-ULNASTrans5G
+   TYPE ULNASTrans
+}
+
+--<is3GMessage/>
+ULNASTrans ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   containerType PayloadContainerType,
+   --<inline/>
+   container CHOICE {
+      --<selector element="containerType" value="1"/>      
+      n1sm OpaqueData,
+      --<selector element="containerType" value="2"/>
+      sms OpaqueData,
+      --<selector element="containerType" value="3"/>
+      lpp OpaqueData,
+      --<selector element="containerType" value="4"/>
+      sor SORAck,
+      --<selector element="containerType" value="5"/>
+      uePolicy OpaqueData,
+      --<selector element="containerType" value="6"/>
+      ueParamUpdate OpaqueData,
+      --<selector element="containerType" value="7"/>
+      locSvcs OpaqueData,
+      --<selector element="containerType" value="8"/>
+      cIOTUserData OpaqueData,
+      --<selector element="containerType" value="15"/>
+      multiple MultiPayloadContainer
+   },
+   --<iei format="tv" length="2">12</iei>
+   pduSessionId PDUSessionId2 OPTIONAL,
+   --<iei format="tv" length="2">59</iei>
+   oldPduSessionId PDUSessionId2 OPTIONAL,
+   --<iei format="tv" length="1">8</iei>
+   requestType RequestType OPTIONAL,
+   --<iei format="tlv">22</iei>
+   snssai SNSSAI OPTIONAL,
+   --<iei format="tlv">25</iei>
+   dnn DNNList OPTIONAL,
+   --<iei format="tlv">24</iei>
+   addlInfo AdditionalInfo OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tv" length="1">A</iei>
+   maPduSessionInfo INTEGER (0..15) OPTIONAL, -- added in v16.3
+   --<iei format="tv" length="1">F</iei>
+   relAssistInd ReleaseAssistInd OPTIONAL -- added in v16.3
+   ]]
+}
+
+/* 8.2.11 DL NAS transport */
+
+mt-DLNASTrans5G INTEGER ::= 104
+
+obj-DLNASTrans5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-DLNASTrans5G
+   TYPE DLNASTrans
+}
+
+--<is3GMessage/>
+DLNASTrans ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   containerType PayloadContainerType,
+   --<inline/>
+   container CHOICE {
+      --<selector element="containerType" value="1"/>      
+      n1sm OpaqueData,
+      --<selector element="containerType" value="2"/>
+      sms OpaqueData,
+      --<selector element="containerType" value="3"/>
+      lpp OpaqueData,
+      --<selector element="containerType" value="4"/>
+      sor SORSteering,
+      --<selector element="containerType" value="5"/>
+      uePolicy OpaqueData,
+      --<selector element="containerType" value="6"/>
+      ueParamUpdate UEParamUpdate,
+      --<selector element="containerType" value="7"/>
+      locSvcs OpaqueData,
+      --<selector element="containerType" value="8"/>
+      cIOTUserData OpaqueData,
+      --<selector element="containerType" value="15"/>
+      multiple MultiPayloadContainer
+   },   
+   --<iei format="tv" length="2">12</iei>
+   pduSessionId PDUSessionId2 OPTIONAL,
+   --<iei format="tlv">24</iei>
+   addlInfo AdditionalInfo OPTIONAL,
+   --<iei format="tv" length="2">58</iei>
+   cause MMCause OPTIONAL,
+   --<iei format="tlv">37</iei>
+   backoffTimer GPRSTimer3 OPTIONAL
+}
+
+/* 8.2.12 De-registration request - UE originating */
+
+mt-DeregReqUEOrig5G INTEGER ::= 69
+
+obj-DeregReqUEOrig5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-DeregReqUEOrig5G
+   TYPE DeregReqUEOrig
+}
+
+--<is3GMessage/>
+DeregReqUEOrig ::= SEQUENCE {
+   nasKeySetIdent NASKeySetIdentifier, -- added in v15.1.0
+   deregType DeregistrationType,
+   mobileId MobileIdentity
+}
+
+/* 8.2.13 De-registration accept - UE originating */
+
+mt-DeregAcceptUEOrig5G INTEGER ::= 70
+
+obj-DeregAcceptUEOrig5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-DeregAcceptUEOrig5G
+   TYPE NULL
+}
+
+/* 8.2.14 De-registration request - UE terminated */
+
+mt-DeregReqUETerm5G INTEGER ::= 71
+
+obj-DeregReqUETerm5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-DeregReqUETerm5G
+   TYPE DeregReqUETerm
+}
+
+--<is3GMessage/>
+DeregReqUETerm ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   deregType DeregistrationType,
+   --<iei format="tv" length="2">58</iei>
+   cause MMCause OPTIONAL,
+   --<iei format="tlv">5F</iei>
+   t3346 GPRSTimer2 OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">6D</iei>
+   rejectedNSSAI RejectedNSSAIList OPTIONAL -- added in 16.3
+   ]]
+}
+
+/* 8.2.15 De-registration accept - UE terminated */
+
+mt-DeregAcceptUETerm5G INTEGER ::= 72
+
+obj-DeregAcceptUETerm5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-DeregAcceptUETerm5G
+   TYPE NULL
+}
+
+/* 8.2.16 Service request */
+
+mt-ServRequest5G INTEGER ::= 76
+
+obj-ServRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-ServRequest5G
+   TYPE ServRequest
+}
+
+--<is3GMessage/>
+ServRequest ::= SEQUENCE {
+   serviceType ServiceType,
+   nasKeySetIdent NASKeySetIdentifier,
+   stmsi MobileIdentity,
+   --<iei format="tlv">40</iei>
+   uplinkStat UplinkDataStatus OPTIONAL,
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tlv">25</iei>
+   allowedSessionStat AllowedPDUSessionStatus OPTIONAL,
+   --<iei format="tlv-e">71</iei>
+   nasContainer NASMessageContainer2 OPTIONAL -- added in v15.2.0
+}
+
+/* 8.2.17 Service accept */
+
+mt-ServAccept5G INTEGER ::= 78
+
+obj-ServAccept5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-ServAccept5G
+   TYPE ServAccept
+}
+
+--<is3GMessage/>
+ServAccept ::= SEQUENCE {
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tlv">26</iei>
+   reactivateRslt SessionReactivateRslt OPTIONAL,
+   --<iei format="tlv-e">72</iei>
+   reactivateRsltCause SessionReactivateCause OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">6B</iei>
+   t3448 GPRSTimer3 OPTIONAL -- added in v16.2.0
+   ]]
+}
+
+/* 8.2.18 Service reject */
+
+mt-ServReject5G INTEGER ::= 77
+
+obj-ServReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-ServReject5G
+   TYPE ServReject
+}
+
+--<is3GMessage/>
+ServReject ::= SEQUENCE {
+   cause MMCause,
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tlv">5F</iei>
+   t3346 GPRSTimer2 OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">6B</iei>
+   t3448 GPRSTimer3 OPTIONAL -- added in v16.2.0
+   ]]
+}
+
+/* 8.2.19 Configuration update command */
+
+mt-CfgUpdateCmd5G INTEGER ::= 84
+
+obj-CfgUpdateCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-CfgUpdateCmd5G
+   TYPE CfgUpdateCmd
+}
+
+--<is3GMessage/>
+CfgUpdateCmd ::= SEQUENCE {
+   --<iei format="tv" length="1">0D</iei>
+   cfgUpdIndication ConfigUpdateIndication OPTIONAL,
+   --<iei format="tlv-e">77</iei>
+   guti MobileIdentity OPTIONAL,
+   --<iei format="tlv">54</iei>
+   taiList TrackingAreaIdentList OPTIONAL,
+   --<iei format="tlv">15</iei>
+   allowedNSSAI NSSAI OPTIONAL,
+   --<iei format="tlv">27</iei>
+   svcAreaList TrackingAreaIdentList OPTIONAL,
+   --<iei format="tlv">43</iei>
+   fullNetworkName NetworkName OPTIONAL,
+   --<iei format="tlv">45</iei>
+   shortNetworkName NetworkName OPTIONAL,
+   --<iei format="tv" length="2">46</iei>
+   localTZ TimeZone OPTIONAL,
+   --<iei format="tv" length="8">47</iei>
+   univAndLocalTZ TimeZoneAndTime OPTIONAL,
+   --<iei format="tlv">49</iei>
+   dst DaylightSavingTime OPTIONAL,
+   --<iei format="tlv-e">79</iei>
+   ladn LADNList OPTIONAL,
+   --<iei format="tv" length="1">0B</iei>
+   micoInd MICOIndication OPTIONAL,
+   --<iei format="tv" length="1">9</iei>
+   netSliceInd NetSliceIndication OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv">31</iei>
+   configuredNSSAI NSSAI OPTIONAL,
+   --<iei format="tlv">11</iei>
+   rejectedNSSAI RejectedNSSAIList OPTIONAL,
+   --<iei format="tlv-e">76</iei>
+   accessDefs AccessCategoryDefinitions OPTIONAL, -- added in v15.2.0
+   --<iei format="tv" length="1">F</iei>
+   smsInd SMSIndication OPTIONAL, -- added in v15.2.0
+   ...,
+   [[ 16:
+   --<iei format="tlv">6C</iei>
+   t3447 GPRSTimer3 OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv-e">75</iei>
+   cagInfoList CAGInfoList OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">67</iei>
+   ueRadioCapabilityId UERadioCapId OPTIONAL, -- added in v16.2.0
+   --<iei format="tv" length="1">68</iei>
+   ueRadioCapIdDeletionIndication UERadioCapIdDeletionInd OPTIONAL, -- added in v16.2.0
+   --<iei format="tlv">44</iei>
+   regResult RegistrationResult OPTIONAL -- added in v16.3
+   ]]
+}
+
+/* 8.2.20 Configuration update complete */
+
+mt-CfgUpdateDone5G INTEGER ::= 85
+
+obj-CfgUpdateDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-CfgUpdateDone5G
+   TYPE NULL
+}
+
+/* 8.2.21 Identity request */
+
+mt-IdentityRequest5G INTEGER ::= 91
+
+obj-IdentityRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-IdentityRequest5G
+   TYPE IdentityRequest
+}
+
+--<is3GMessage/>
+IdentityRequest ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   identity IdentityType
+}
+
+/* 8.2.22 Identity response */
+
+mt-IdentityResponse5G INTEGER ::= 92
+
+obj-IdentityResponse5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-IdentityResponse5G
+   TYPE IdentityResponse
+}
+
+--<is3GMessage/>
+IdentityResponse ::= SEQUENCE {
+   mobileId MobileIdentity
+}
+
+/* 8.2.23 Notification */
+
+mt-Notify5G INTEGER ::= 101
+
+obj-Notify5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-Notify5G
+   TYPE Notify
+}
+
+--<is3GMessage/>
+Notify ::= SEQUENCE {
+   spare INTEGER (0..15) DEFAULT 0,
+   access AccessType
+}
+
+/* 8.2.24 Notification response */
+
+mt-NotifyResponse5G INTEGER ::= 102
+
+obj-NotifyResponse5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-NotifyResponse5G
+   TYPE NotifyResponse
+}
+
+--<is3GMessage/>
+NotifyResponse ::= SEQUENCE {
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL
+}
+
+/* 8.2.25 Security mode command */
+
+mt-SecModeCmd5G INTEGER ::= 93
+
+obj-SecModeCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-SecModeCmd5G
+   TYPE SecModeCmd
+}
+
+--<is3GMessage/>
+SecModeCmd ::= SEQUENCE {
+   nasSecAlgorithm NASSecurityAlgorithm,
+   spare INTEGER (0..15) DEFAULT 0, 
+   nasKeySetIdent NASKeySetIdentifier,
+   replayedUECapabilities UESecurityCapability,
+   --<iei format="tv" length="1">0E</iei>
+   imeisvReq IMEISVRequest OPTIONAL,
+   --<iei format="tv" length="2">57</iei>
+   epsSecAlgorithm NASSecurityAlgorithms OPTIONAL,
+   --<iei format="tlv">36</iei>
+   addlSecInfo AddlSecurityInfo OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tlv">38</iei>
+   abba ABBA OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv">19</iei>
+   replayedS1UECapabilities UESecurityCapability OPTIONAL -- added in v15.2.0
+}
+
+/* 8.2.26 Security mode complete */
+
+mt-SecModeDone5G INTEGER ::= 94
+
+obj-SecModeDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-SecModeDone5G
+   TYPE SecModeDone
+}
+
+--<is3GMessage/>
+SecModeDone ::= SEQUENCE {
+   --<iei format="tlv-e">77</iei>
+   imeisv MobileIdentity OPTIONAL,
+   --<iei format="tlv-e">71</iei>
+   nasMsgContainer NASMessageContainer2 OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv-e">78</iei>
+   nonImeisvPei MobileIdentity OPTIONAL -- added in 16.3
+   ]]
+}
+
+/* 8.2.27 Security mode reject */
+
+mt-SecModeReject5G INTEGER ::= 95
+
+obj-SecModeReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-SecModeReject5G
+   TYPE SecModeReject
+}
+
+--<is3GMessage/>
+SecModeReject ::= SEQUENCE {
+   cause MMCause
+}
+
+/* 8.2.29 5GMM status */
+
+mt-MMStatus5G INTEGER ::= 100
+
+obj-MMStatus5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-MMStatus5G
+   TYPE MMStatus
+}
+
+--<is3GMessage/>
+MMStatus ::= SEQUENCE {
+   cause MMCause
+}
+
+/* 8.2.30 Control Plane Service Request - message added in v16.2.0 */
+
+mt-ControlPlaneServReq5G INTEGER ::= 79
+
+obj-ControlPlaneServReq5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-ControlPlaneServReq5G
+   TYPE ControlPlaneServReq
+}
+
+--<is3GMessage/>
+ControlPlaneServReq ::= SEQUENCE {
+   nasKeySetIdent NASKeySetIdentifier,
+   ctrlPlaneServType ControlPlaneServiceType,
+   -- format="tlv">xx<
+   -- ciotSmallDataContainer CIoTSmallDataContainer OPTIONAL,  No IEI yet
+   --<iei format="tv" length="1">08</iei>
+   containerType PayloadContainerType OPTIONAL,
+   --<iei format="tlv-e">7B</iei>
+   --<inline/>
+   container CHOICE {
+      --<selector element="containerType" value="1"/>      
+      n1sm OpaqueData,
+      --<selector element="containerType" value="2"/>
+      sms OpaqueData,
+      --<selector element="containerType" value="3"/>
+      lpp OpaqueData,
+      --<selector element="containerType" value="4"/>
+      sor OpaqueData,
+      --<selector element="containerType" value="5"/>
+      uePolicy OpaqueData,
+      --<selector element="containerType" value="6"/>
+      ueParamUpdate OpaqueData,
+      --<selector element="containerType" value="7"/>
+      locSvcs OpaqueData,
+      --<selector element="containerType" value="8"/>
+      cIOTUserData OpaqueData,
+      --<selector element="containerType" value="15"/>
+      multiple MultiPayloadContainer
+   } OPTIONAL,
+   --<iei format="tv" length="2">12</iei>
+   pduSessionId PDUSessionId2 OPTIONAL,
+   --<iei format="tlv">50</iei>
+   sessionStat PDUSessionStatus OPTIONAL,
+   --<iei format="tv" length="1">0F</iei>
+   releaseAssistIndication ReleaseAssistInd OPTIONAL,
+   --<iei format="tlv">40</iei>
+   uplinkStat UplinkDataStatus OPTIONAL,
+   --<iei format="tlv-e">71</iei>
+   nasMsgContainer NASMessageContainer2 OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">24</iei>
+   addlInfo AdditionalInfo OPTIONAL -- added in 16.3
+   ]]
+}
+
+
+/* 8.2.31 Network slice-specific authentication command - message added in v16.3 but no Message Type value (Section 9.7)
+
+mt-NetSliceAuthCmd5G INTEGER ::= XX
+
+obj-NetSliceAuthCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-NetSliceAuthCmd5G
+   TYPE NetSliceAuthCmd
+}
+
+--<is3GMessage/>
+NetSliceAuthCmd ::= SEQUENCE {
+   snssai SNSSAI,
+   eapMessage EAPMessage
+}*/
+
+/* 8.2.32 Network slice-specific authentication complete - message added in v16.3 but no Message Type value (Section 9.7)
+
+mt-NetSliceAuthDone5G INTEGER ::= XX
+
+obj-NetSliceAuthDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-NetSliceAuthDone5G
+   TYPE NetSliceAuthDone
+}
+
+--<is3GMessage/>
+NetSliceAuthDone ::= SEQUENCE {
+   snssai SNSSAI,
+   eapMessage EAPMessage
+}*/
+
+/* 8.2.33 Network slice-specific authentication result - message added in v16.3 but no Message Type value (Section 9.7)
+
+mt-NetSliceAuthResult5G INTEGER ::= XX
+
+obj-NetSliceAuthResult5G NAS5G-PROTOCOL-CLASS ::= {
+   ID mobMgmt5G, mt-NetSliceAuthResult5G
+   TYPE NetSliceAuthResult
+}
+
+--<is3GMessage/>
+NetSliceAuthResult ::= SEQUENCE {
+   snssai SNSSAI,
+   eapMessage EAPMessage
+}*/
+
+
+/* -- SESSION MANAGEMENT MESSAGES --- */
+
+/* 8.3.1 PDU session establishment request */
+
+st-EstablishRequest5G INTEGER ::= 193
+
+obj-EstablishRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-EstablishRequest5G
+   TYPE EstablishRequest
+}
+
+--<is3GMessage/>
+EstablishRequest ::= SEQUENCE {
+   integProtMaxRate IntegrityProtMaxDataRate, -- added in v15.1.0
+   --<iei format="tv" length="1">9</iei>
+   pduSessionType PDUSessionType OPTIONAL,
+   --<iei format="tv" length="1">0A</iei>
+   sscMode SSCMode OPTIONAL,
+   --<iei format="tlv">28</iei>
+   capability SMCapability OPTIONAL,
+   --<iei format="tv" length="3">55</iei>
+   maxPktFilters MaxSupportedPacketFilters OPTIONAL,
+   --<iei format="tv" length="1">B</iei>
+   alwaysOnPDUSession AlwaysOnPDUSessionReq OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv">39</iei>
+   reqContainer SmPduDnReqContainer OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv">66</iei>
+   headerCompressionCfg HeaderCompressionConfig OPTIONAL, -- Added in v16.2.0
+   --<iei format="tlv">6E</iei>
+   dsttPortMacAddr DSTTEthMACAddr OPTIONAL, -- Added in v16.3
+   --<iei format="tlv">6F</iei>
+   dsttResidenceTime DSTTResidenceTime OPTIONAL, -- Added in v16.3
+   --<iei format="tlv-e">7C</iei>
+   portMgmtInfoContainer PortMgmtInfoContainer OPTIONAL -- Added in v16.3
+   ]]
+}
+
+/* 8.3.2 PDU session establishment accept */
+
+st-EstablishAccept5G INTEGER ::= 194
+
+obj-EstablishAccept5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-EstablishAccept5G
+   TYPE EstablishAccept
+}
+
+--<is3GMessage/>
+EstablishAccept ::= SEQUENCE {
+   sscMode SSCMode,
+   pduSessionType PDUSessionType,
+   qosRules QoSRules,
+   sessionAMBR SessionAMBR,
+   --<iei format="tv" length="2">59</iei>
+   cause SMCause OPTIONAL,
+   --<iei format="tlv">29</iei>
+   pduAddress PDUAddress OPTIONAL,
+   --<iei format="tv" length="2">56</iei>
+   rqTimer GPRSTimer OPTIONAL,
+   --<iei format="tlv">22</iei>
+   snssai SNSSAI OPTIONAL,
+   --<iei format="tv" length="1">8</iei>
+   alwaysOnPDUSession AlwaysOnPDUSessionInd OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">75</iei>
+   epsBearerCtxts EPSBearerCtxts OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tlv-e">79</iei>
+   qosFlowDesr QOSFlowDescriptions OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   --<iei format="tlv">25</iei>
+   dnn DNNList OPTIONAL,
+   ...,
+   [[ 16:
+   -- format="tlv">xx<
+   -- smNetFeatureSupport SMNetworkFeatureSupport OPTIONAL,  Added in v16.1.0 but no IEI yet
+   -- format="tlv">TBD<
+   -- servingPLMNRateCtrl ServPLMNRateCtrl OPTIONAL,  Added in v16.1.0 but no IEI yet
+   -- format="tlv-e">XX<
+   -- atsssContainer ATSSSContainer OPTIONAL,  Added in v16.1.0 but no IEI yet
+   -- format="tv" length="1">XX<
+   -- ctrlPlaneOnlyIndication ControlPlaneIndication OPTIONAL,  added in v16.1.0 but no IEI yet
+   --<iei format="tlv">66</iei>
+   headerCompressionCfg HeaderCompressionConfig OPTIONAL -- Added in v16.2.0
+   ]]
+}
+
+/* 8.3.3 PDU session establishment reject */
+
+st-EstablishReject5G INTEGER ::= 195
+
+obj-EstablishReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-EstablishReject5G
+   TYPE EstablishReject
+}
+
+--<is3GMessage/>
+EstablishReject ::= SEQUENCE {
+   cause SMCause,
+   --<iei format="tlv">37</iei>
+   backoffTimer GPRSTimer3 OPTIONAL,
+   --<iei format="tv" length="1">0F</iei>
+   allowedSSCMode AllowedSSCMode OPTIONAL, 
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   --<iei format="tlv">61</iei>
+   congestionReattemptInd CongestionReattemptIndicator OPTIONAL -- Added in v15.4.0
+   -- ...,
+   -- [[ 16:
+   -- format="tlv">TBD<
+   -- reattemptInd ReattemptIndicator OPTIONAL  Added in v16.1.0 but no IEI yet
+   -- ]]
+}
+
+/* 8.3.4 PDU session authentication command */
+
+st-AuthCmd5G INTEGER ::= 197
+
+obj-SMAuthCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-AuthCmd5G
+   TYPE SMAuthCmd
+}
+
+--<is3GMessage/>
+SMAuthCmd ::= SEQUENCE {
+   eapMessage EAPMessage,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.5 PDU session authentication complete */
+
+st-AuthDone5G INTEGER ::= 198
+
+obj-SMAuthDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-AuthDone5G
+   TYPE SMAuthDone
+}
+
+--<is3GMessage/>
+SMAuthDone ::= SEQUENCE {
+   eapMessage EAPMessage,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.6 PDU session authentication result */
+
+st-AuthResult5G INTEGER ::= 199
+
+obj-SMAuthResult5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-AuthResult5G
+   TYPE SMAuthResult
+}
+
+--<is3GMessage/>
+SMAuthResult ::= SEQUENCE {
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.7 PDU session modification request */
+
+st-ModifyRequest5G INTEGER ::= 201
+
+obj-ModifyRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ModifyRequest5G
+   TYPE ModifyRequest
+}
+
+--<is3GMessage/>
+ModifyRequest ::= SEQUENCE {
+   --<iei format="tlv">28</iei>
+   capability SMCapability OPTIONAL,
+   --<iei format="tv" length="2">59</iei>
+   cause SMCause OPTIONAL, -- added in v15.1.0
+   --<iei format="tv" length="3">55</iei>
+   maxPktFilters MaxSupportedPacketFilters OPTIONAL,
+   --<iei format="tv" length="1">B</iei>
+   alwaysOnPDUSession AlwaysOnPDUSessionReq OPTIONAL, -- added in v15.1.0
+   --<iei format="tv" length="3">13</iei>
+   integProtMaxRate IntegrityProtMaxDataRate OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7A</iei>
+   qosRules QoSRules OPTIONAL,
+   --<iei format="tlv-e">79</iei>
+   qosFlowDesr QOSFlowDescriptions OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">75</iei>
+   epsBearerCtxts EPSBearerCtxts OPTIONAL, -- added in v15.2.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv-e">7C</iei>
+   portMgmtInfoContainer PortMgmtInfoContainer OPTIONAL -- Added in v16.3
+   -- format="tlv">TBD<
+   -- headerCompressionCfg HeaderCompressionConfig OPTIONAL Added in v16.3.0, but no IEI yet
+   ]]
+}
+
+/* 8.3.8 PDU session modification reject */
+
+st-ModifyReject5G INTEGER ::= 202
+
+obj-ModifyReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ModifyReject5G
+   TYPE ModifyReject
+}
+
+--<is3GMessage/>
+ModifyReject ::= SEQUENCE {
+   cause SMCause,
+   --<iei format="tlv">37</iei>
+   backoffTimer GPRSTimer3 OPTIONAL,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   --<iei format="tlv">61</iei>
+   congestionReattemptInd CongestionReattemptIndicator OPTIONAL -- Added in v15.4.0
+   -- ...,
+   -- [[ 16:
+   -- format="tlv">TBD<
+   -- reattemptInd ReattemptIndicator OPTIONAL  Added in v16.1.0 but no IEI yet
+   -- ]]
+}
+
+/* 8.3.9 PDU session modification command */
+
+st-ModifyCmd5G INTEGER ::= 203
+
+obj-ModifyCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ModifyCmd5G
+   TYPE ModifyCmd
+}
+
+--<is3GMessage/>
+ModifyCmd ::= SEQUENCE {
+   --<iei format="tv" length="2">59</iei>
+   cause SMCause OPTIONAL,
+   --<iei format="tlv">2A</iei>
+   sessionAMBR SessionAMBR OPTIONAL,
+   --<iei format="tv" length="2">56</iei>
+   rqTimer GPRSTimer OPTIONAL,
+   --<iei format="tv" length="1">8</iei>
+   alwaysOnPDUSession AlwaysOnPDUSessionReq OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7A</iei>
+   qosRules QoSRules OPTIONAL,
+   --<iei format="tlv-e">75</iei>
+   epsBearerCtxts EPSBearerCtxts OPTIONAL,
+   --<iei format="tlv-e">79</iei>
+   qosFlowDesr QOSFlowDescriptions OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   ...,
+   [[ 16:
+   -- format="tlv-e">XX<
+   -- atsssContainer ATSSSContainer OPTIONAL,  Added in v16.2.0 but no IEI yet
+   --<iei format="tlv">66</iei>
+   headerCompressionCfg HeaderCompressionConfig OPTIONAL, -- Added in v16.2.0
+   --<iei format="tlv-e">7C</iei>
+   portMgmtInfoContainer PortMgmtInfoContainer OPTIONAL -- Added in v16.3
+   -- format="tlv">TBD<
+   -- servingPLMNRateCtrl ServPLMNRateCtrl OPTIONAL,  Added in v16.3.0 but no IEI yet
+   ]]
+}
+
+/* 8.3.10 PDU session modification complete */
+
+st-ModifyDone5G INTEGER ::= 204
+
+obj-ModifyDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ModifyDone5G
+   TYPE ModifyDone
+}
+
+--<is3GMessage/>
+ModifyDone ::= SEQUENCE {
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL,
+   ...,
+   [[ 16:
+   --<iei format="tlv-e">7C</iei>
+   portMgmtInfoContainer PortMgmtInfoContainer OPTIONAL -- Added in v16.3
+   ]]
+}
+
+/* 8.3.11 PDU session modification command reject */
+
+st-ModifyCmdReject5G INTEGER ::= 205
+
+obj-ModifyCmdReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ModifyCmdReject5G
+   TYPE ModifyCmdReject
+}
+
+--<is3GMessage/>
+ModifyCmdReject ::= SEQUENCE {
+   cause SMCause,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.12 PDU session release request */
+
+st-ReleaseRequest5G INTEGER ::= 209
+
+obj-ReleaseRequest5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ReleaseRequest5G
+   TYPE ReleaseRequest
+}
+
+--<is3GMessage/>
+ReleaseRequest ::= SEQUENCE {
+   --<iei format="tv" length="2">59</iei>
+   cause SMCause OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.13 PDU session release reject */
+
+st-ReleaseReject5G INTEGER ::= 210
+
+obj-ReleaseReject5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ReleaseReject5G
+   TYPE ReleaseReject
+}
+
+--<is3GMessage/>
+ReleaseReject ::= SEQUENCE {
+   cause SMCause,
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.14 PDU session release command */
+
+st-ReleaseCmd5G INTEGER ::= 211
+
+obj-ReleaseCmd5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ReleaseCmd5G
+   TYPE ReleaseCmd
+}
+
+--<is3GMessage/>
+ReleaseCmd ::= SEQUENCE {
+   cause SMCause,
+   --<iei format="tlv">37</iei>
+   backoffTimer GPRSTimer3 OPTIONAL,
+   --<iei format="tlv-e">78</iei>
+   eapMessage EAPMessage OPTIONAL,
+   --<iei format="tlv">61</iei>
+   congestionReattemptInd CongestionReattemptIndicator OPTIONAL, -- Added in v15.4.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+   -- ...,
+   -- [[ 16:
+   -- iei format="tv" length="1">TBD
+   -- accessType AccessType OPTIONAL - Added in v16.3 but no IEI yet
+   -- ]]
+}
+
+/* 8.3.15 PDU session release complete */
+
+st-ReleaseDone5G INTEGER ::= 212
+
+obj-ReleaseDone5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-ReleaseDone5G
+   TYPE ReleaseDone
+}
+
+--<is3GMessage/>
+ReleaseDone ::= SEQUENCE {
+   --<iei format="tv" length="2">59</iei>
+   cause SMCause OPTIONAL, -- added in v15.1.0
+   --<iei format="tlv-e">7B</iei>
+   extProtoCfgOpts ExtProtoConfigOptions OPTIONAL
+}
+
+/* 8.3.16 5GSM status */
+
+st-SMStatus5G INTEGER ::= 214
+
+obj-SMStatus5G NAS5G-PROTOCOL-CLASS ::= {
+   ID sessMgmt5G, st-SMStatus5G
+   TYPE SMStatus
+}
+
+--<is3GMessage/>
+SMStatus ::= SEQUENCE {
+   cause SMCause
+}
+
+END
+

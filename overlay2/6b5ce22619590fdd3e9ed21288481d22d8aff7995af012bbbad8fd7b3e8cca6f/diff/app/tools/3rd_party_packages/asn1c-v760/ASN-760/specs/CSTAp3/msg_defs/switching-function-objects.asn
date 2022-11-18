@@ -1,0 +1,22 @@
+CSTA-switching-function-objects
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) switching-function-objects( 122) }
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+CSTAObject;
+
+IMPORTS
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) };
+
+CSTAObject ::= CHOICE
+{	deviceObject DeviceID,
+	callObject   ConnectionID }
+
+END -- of CSTA-switching-function-objects

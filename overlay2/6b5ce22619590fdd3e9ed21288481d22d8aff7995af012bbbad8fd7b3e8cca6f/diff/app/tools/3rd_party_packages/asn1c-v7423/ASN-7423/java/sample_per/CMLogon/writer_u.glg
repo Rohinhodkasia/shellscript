@@ -1,0 +1,128 @@
+Encoding CM message..
+
+CM Encoding was successful
+Hex dump of encoded record:
+04 3a b0 5c b0 62 82 84 72 60 62 1a 1a 1a 18 1c  .:.\.b..r`b.....
+98 18 1c 98 18 c9 72 60 c4 93 6a 25 30           ......r`..j%0
+Binary dump:
+cmAircraftMessage. extbit
+0------- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage. index
+-00----- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest bitmask
+---00100 0------- -------- --------     04------    .---                      
+
+cmAircraftMessage.cmLogonRequest.aircraftFlightIdentification length
+-------- -011---- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.aircraftFlightIdentification value
+-------- ----1010 10110000 01011100     --3ab05c    -:.\                      
+10110000 0110001- -------- --------     b0------    .---                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.rDP value
+-------- -------0 10000010 10000100     --628284    -b..                      
+01110010 01100000 0110001- --------     7260----    r`--                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap bitmask
+-------- -------- -------0 --------     ----62--    --b-                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap.locSysNselTsel length
+-------- -------- -------- 0-------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap.locSysNselTsel value
+-------- -------- -------- -0011010     ------1a    ---.                      
+00011010 00011010 00011000 00011100     1a1a181c    ....                      
+10011000 00011000 00011100 10011000     98181c98    ....                      
+00011000 1------- -------- --------     18------    .---                      
+
+cmAircraftMessage.cmLogonRequest.facilityDesignation length
+-------- -100---- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.facilityDesignation value
+-------- ----1001 01110010 01100000     --c97260    -.r`                      
+11000100 10010011 01101010 00100101     c4936a25    ..j%                      
+0011---- -------- -------- --------     --------    ----                      
+
+
+Encoding ACSE AARQ APDU..
+
+ACSE Encoding was successful
+Hex dump of encoded record:
+00 30 10 42 b1 b0 30 10 18 ac 6c 06 0d d0 00 01  .0.B..0...l.....
+01 0a 03 90 10 ea c1 72 c1 8a 0a 11 c9 81 88 68  .......r.......h
+68 68 60 72 60 60 72 60 63 25 c9 83 12 4d a8 94  hh`r``r`c%...M..
+c0                                               .
+Binary dump:
+acse. extbit
+0------- -------- -------- --------     --------    ----                      
+
+acse. index
+-000---- -------- -------- --------     --------    ----                      
+
+acse.aarq extbit
+----0--- -------- -------- --------     --------    ----                      
+
+acse.aarq bitmask
+-----000 00110000 0001---- --------     0030----    .0--                      
+
+acse.aarq.application_context_name length
+-------- -------- ----0000 0100----     ----10--    --.-                      
+
+acse.aarq.application_context_name value
+-------- -------- -------- ----0010     ------42    ---B                      
+10110001 10110000 00110000 0001----     b1b030--    ..0-                      
+
+acse.aarq.calling_AP_title extbit
+-------- -------- -------- ----0---     --------    ----                      
+
+acse.aarq.calling_AP_title index
+-------- -------- -------- -----0--     --------    ----                      
+
+acse.aarq.calling_AP_title.ap_title_form2 length
+-------- -------- -------- ------00     ------10    ---.                      
+000110-- -------- -------- --------     --------    ----                      
+
+acse.aarq.calling_AP_title.ap_title_form2 value
+------00 10101100 01101100 00000110     18ac6c06    ..l.                      
+00001101 11010000 000000-- --------     0dd0----    ..--                      
+
+acse.aarq.calling_AE_qualifier extbit
+-------- -------- ------0- --------     --------    ----                      
+
+acse.aarq.calling_AE_qualifier index
+-------- -------- -------0 --------     ----00--    --.-                      
+
+acse.aarq.calling_AE_qualifier.ae_qualifier_form2 length
+-------- -------- -------- 00000001     ------01    ---.                      
+
+acse.aarq.calling_AE_qualifier.ae_qualifier_form2 value
+00000001 -------- -------- --------     01------    .---                      
+
+acse.aarq.user_information extbit
+-------- 0------- -------- --------     --------    ----                      
+
+acse.aarq.user_information.element[0] bitmask
+-------- -000---- -------- --------     --------    ----                      
+
+acse.aarq.user_information.element[0].encoding index
+-------- ----10-- -------- --------     --------    ----                      
+
+acse.aarq.user_information.element[0].encoding.arbitrary extlen
+-------- ------1- -------- --------     --------    ----                      
+
+acse.aarq.user_information.element[0].encoding.arbitrary length
+-------- -------0 00000011 100100--     --0a03--    -..-                      
+
+acse.aarq.user_information.element[0].encoding.arbitrary value
+-------- -------- -------- ------00     ------90    ---.                      
+00010000 11101010 11000001 01110010     10eac172    ...r                      
+11000001 10001010 00001010 00010001     c18a0a11    ....                      
+11001001 10000001 10001000 01101000     c9818868    ...h                      
+01101000 01101000 01100000 01110010     68686072    hh`r                      
+01100000 01100000 01110010 01100000     60607260    ``r`                      
+01100011 00100101 11001001 10000011     6325c983    c%..                      
+00010010 01001101 10101000 10010100     124da894    .M..                      
+11------ -------- -------- --------     --------    ----                      
+

@@ -1,0 +1,22 @@
+Asn1TagFilter DEFINITIONS AUTOMATIC TAGS ::= BEGIN
+
+Asn1TagPath ::= SEQUENCE {
+  -- tag path in format [t1][t2]...[tn] where t is U, A, P, or empty
+  path UTF8String, 
+
+  -- name to use in place of tags in printed output (for example, CSV column)
+  name UTF8String OPTIONAL, 
+
+  -- type of data 
+  type ENUMERATED { 
+    boolean, integer, charstr, oid, ipv4addr, tbcdstring } OPTIONAL, 
+
+  -- Hard-coded value to use for tag match in place of value at location.
+  -- This is used for CSV to indicate what type of data is at a given 
+  -- path (for example, what type of event in a CDR).
+  value UTF8String OPTIONAL
+}
+
+Asn1TagFilter ::= SEQUENCE OF Asn1TagPath
+
+END

@@ -1,0 +1,14 @@
+<asn1config>
+   <module name="Employee">
+      <production name="PersonnelRecord">
+         <element name="children">
+            <element name="name">
+               <partial-decode-group name="ChildName">
+                  <element name="givenName"/>
+                  <element name="familyName"/>
+               </partial-decode-group>
+            </element>
+         </element>
+      </production>
+   </module>
+</asn1config>

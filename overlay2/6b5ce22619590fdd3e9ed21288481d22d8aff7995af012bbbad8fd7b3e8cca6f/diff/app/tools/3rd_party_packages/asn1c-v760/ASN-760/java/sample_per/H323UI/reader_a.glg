@@ -1,0 +1,201 @@
+Decode was successful
+userInfo {
+   h323_uu_pdu {
+      h323_message_body {
+         setup {
+            protocolIdentifier = { 0 0 8 2250 0 2 }
+            sourceInfo {
+               mc = FALSE
+               undefinedNode = FALSE
+            }
+            activeMC = FALSE
+            conferenceID = 0102030405060708090a0b0c0d0e0f10
+            conferenceGoal {
+               create = NULL
+            }
+            callType {
+               pointToPoint = NULL
+            }
+            callIdentifier {
+               guid = 0102030405060708090a0b0c0d0e0f10
+            }
+            mediaWaitForConnect = FALSE
+            canOverlapSend = FALSE
+         }
+      }
+   }
+}
+
+Binary trace:
+userInfo. extbit
+0------- -------- -------- --------     --------    ----                      
+
+userInfo. user_dataPresent
+-0------ -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu extbit
+--0----- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu nonStandardDataPresent
+---0---- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body extbit
+----0--- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body index
+-----000 -------- -------- --------     00------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup extbit
+-------- 1------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup h245AddressPresent
+-------- -0------ -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup sourceAddressPresent
+-------- --0----- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup destinationAddressPresent
+-------- ---0---- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup destCallSignalAddressPresent
+-------- ----0--- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup destExtraCallInfoPresent
+-------- -----0-- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup destExtraCRVPresent
+-------- ------0- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup callServicesPresent
+-------- -------0 -------- --------     --80----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.protocolIdentifier extlen1
+-------- -------- 0------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.protocolIdentifier length
+-------- -------- -0000110 --------     ----06--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.protocolIdentifier value
+-------- -------- -------- 00000000     ------00    ---.                      
+00001000 10010001 01001010 00000000     08914a00    ..J.                      
+00000010 -------- -------- --------     02------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo extbit
+-------- 0------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo nonStandardDataPresent
+-------- -0------ -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo vendorPresent
+-------- --0----- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo gatekeeperPresent
+-------- ---0---- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo gatewayPresent
+-------- ----0--- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo mcuPresent
+-------- -----0-- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo terminalPresent
+-------- ------0- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo.mc value
+-------- -------0 -------- --------     --00----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.sourceInfo.undefinedNode value
+-------- -------- 0------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.activeMC value
+-------- -------- -0xxxxxx --------     ----00--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceID value
+-------- -------- -------- 00000001     ------01    ---.                      
+00000010 00000011 00000100 00000101     02030405    ....                      
+00000110 00000111 00001000 00001001     06070809    ....                      
+00001010 00001011 00001100 00001101     0a0b0c0d    ....                      
+00001110 00001111 00010000 --------     0e0f10--    ...-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceGoal extbit
+-------- -------- -------- 0-------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.conferenceGoal index
+-------- -------- -------- -00-----     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callType extbit
+-------- -------- -------- ---0----     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callType index
+-------- -------- -------- ----00--     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup extbit
+-------- -------- -------- ------0-     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup value
+-------- -------- -------- -------0     ------00    ---.                      
+01001--- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup sourceCallSignalAddressPresent
+-----0-- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup remoteExtensionAddressPresent
+------0- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup callIdentifierPresent
+-------1 -------- -------- --------     49------    I---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup h245SecurityCapabilityPresent
+-------- 0------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup tokensPresent
+-------- -0------ -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup cryptoTokensPresent
+-------- --0----- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup fastStartPresent
+-------- ---0---- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup mediaWaitForConnectPresent
+-------- ----1--- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup canOverlapSendPresent
+-------- -----1-- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup endpointIdentifierPresent
+-------- ------0x -------- --------     --0c----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier extlen1
+-------- -------- 0------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier length
+-------- -------- -0010001 --------     ----11--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier extbit
+-------- -------- -------- 0xxxxxxx     ------00    ---.                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.callIdentifier.guid value
+00000001 00000010 00000011 00000100     01020304    ....                      
+00000101 00000110 00000111 00001000     05060708    ....                      
+00001001 00001010 00001011 00001100     090a0b0c    ....                      
+00001101 00001110 00001111 00010000     0d0e0f10    ....                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.mediaWaitForConnect extlen1
+0------- -------- -------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.mediaWaitForConnect length
+-0000001 -------- -------- --------     01------    .---                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.mediaWaitForConnect value
+-------- 0xxxxxxx -------- --------     --00----    -.--                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.canOverlapSend extlen1
+-------- -------- 0------- --------     --------    ----                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.canOverlapSend length
+-------- -------- -0000001 --------     ----01--    --.-                      
+
+userInfo.h323_uu_pdu.h323_message_body.setup.canOverlapSend value
+-------- -------- -------- 0-------     --------    ----                      
+

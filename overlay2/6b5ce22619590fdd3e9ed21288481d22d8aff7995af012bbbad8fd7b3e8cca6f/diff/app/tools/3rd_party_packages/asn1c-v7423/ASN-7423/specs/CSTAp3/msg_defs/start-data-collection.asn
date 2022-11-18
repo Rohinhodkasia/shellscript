@@ -1,0 +1,58 @@
+CSTA-start-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) start-data-collection( 347) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DcollCrossRefID FROM CSTA-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) data-collection( 138) };
+
+startDataCollection OPERATION ::=
+{	ARGUMENT 		StartDataCollectionArgument
+	RESULT 			StartDataCollectionResult
+	ERRORS 			{universalFailure }
+	CODE			local: 347 }
+
+StartDataCollectionArgument ::= SEQUENCE
+{	object				CallObject,
+	dataCollType			DataCollType				OPTIONAL,
+	digitsReportingCriteria		DigitsReportingCriteria			OPTIONAL,
+	extensions	 		CSTACommonArguments 			OPTIONAL }
+
+StartDataCollectionResult ::= SEQUENCE
+{	dcollCrossRefID			DcollCrossRefID,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+CallObject ::= CHOICE 
+{	device				DeviceID,
+	call				ConnectionID }
+
+DataCollType ::= ENUMERATED
+{	digits				(0),
+	telTones			(1) }
+
+DigitsReportingCriteria ::= SEQUENCE
+{	numChars			[0] IMPLICIT INTEGER	 		OPTIONAL,
+	flushChar			IA5String (SIZE(1..1))			OPTIONAL,
+	timeout				[1] IMPLICIT INTEGER 			OPTIONAL }
+
+END -- of CSTA-start-data-collection

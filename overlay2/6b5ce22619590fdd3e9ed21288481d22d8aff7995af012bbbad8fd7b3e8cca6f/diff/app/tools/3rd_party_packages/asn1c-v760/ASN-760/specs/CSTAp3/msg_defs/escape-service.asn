@@ -1,0 +1,41 @@
+CSTA-escape-service
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) escape-service( 91) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTASecurityData FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+CSTACommonArguments, CSTAPrivateData FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+EscapeRegisterID FROM CSTA-escape-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) escape-types( 135) };
+
+escape OPERATION ::=
+{ 	ARGUMENT 		EscapeArgument
+	RESULT			EscapeResult
+	ERRORS			{universalFailure }
+	CODE			local: 51 }
+
+EscapeArgument ::= SEQUENCE 
+{	escapeRegisterID		EscapeRegisterID			OPTIONAL,
+	security			CSTASecurityData			OPTIONAL,
+	privateData			CSTAPrivateData				         }
+
+EscapeResult  ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+END -- of CSTA-escape-service

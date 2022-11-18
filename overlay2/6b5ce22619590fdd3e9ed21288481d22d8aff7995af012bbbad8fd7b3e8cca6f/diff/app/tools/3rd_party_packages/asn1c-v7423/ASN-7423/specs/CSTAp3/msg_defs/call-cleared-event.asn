@@ -1,0 +1,48 @@
+CSTA-call-cleared-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-cleared-event( 22) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types –-
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CallCharacteristics, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+LocationInfoList FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+CallClearedEvent ::= SEQUENCE
+{ 	clearedCall 			ConnectionID,
+	correlatorData 			[1] IMPLICIT CorrelatorData 		OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	cause 				EventCause,
+	mediaCallCharacteristics 	[2] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	callCharacteristics 		[3] IMPLICIT CallCharacteristics 	OPTIONAL,
+	callLinkageData 		[4] IMPLICIT CallLinkageData 		OPTIONAL,
+	languagePreferences		[5] IMPLICIT LanguagePreferences	OPTIONAL,
+	locationInfo			[6] IMPLICIT LocationInfoList		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-call-cleared-event

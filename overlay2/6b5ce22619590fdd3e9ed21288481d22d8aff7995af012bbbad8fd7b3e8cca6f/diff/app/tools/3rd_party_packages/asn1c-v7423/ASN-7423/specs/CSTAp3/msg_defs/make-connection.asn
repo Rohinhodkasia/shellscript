@@ -1,0 +1,74 @@
+CSTA-make-connection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) make-connection( 375) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+AutoOriginate, CallCharacteristics, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+TimeInfo FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) }
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionInformation, MediaCallCharacteristics FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+makeConnection OPERATION ::=
+{ 	ARGUMENT 		MakeConnectionArgument
+	RESULT 			MakeConnectionResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 375 }
+
+MakeConnectionArgument ::= SEQUENCE
+{ 	initiatingDevice 		DeviceID,
+	accountCode 			[ 0] IMPLICIT AccountInfo 			OPTIONAL,
+	authCode 			[ 1] IMPLICIT AuthCode 				OPTIONAL,
+	autoOriginate 			[ 2] IMPLICIT AutoOriginate 			DEFAULT prompt,
+	correlatorData 			[ 3] IMPLICIT CorrelatorData 			OPTIONAL,
+	callCharacteristics 		[ 4] IMPLICIT CallCharacteristics 		OPTIONAL,
+	mediaCallCharacteristics 	[ 5] IMPLICIT MediaCallCharacteristics 		OPTIONAL,
+	connectionInfo			[ 6] IMPLICIT ConnectionInformation		OPTIONAL,
+	subjectOfCall			[ 7] IMPLICIT SubjectOfCall			OPTIONAL,
+	languagePreferences		[ 8] IMPLICIT LanguagePreferences		OPTIONAL,
+	reason				[ 9] IMPLICIT EventCause			OPTIONAL,
+	maxDevices			[10] IMPLICIT INTEGER				OPTIONAL,
+	startTime			[11] IMPLICIT TimeInfo				OPTIONAL,
+	duration			[12] IMPLICIT INTEGER				OPTIONAL,
+	extensions 			CSTACommonArguments 				OPTIONAL }
+
+MakeConnectionResult ::= SEQUENCE
+{ 	initiatingDevice 		ConnectionID,
+	mediaCallCharacteristics 	[0] IMPLICIT MediaCallCharacteristics 		OPTIONAL,
+	initiatedCallInfo 		[1] IMPLICIT ConnectionInformation 		OPTIONAL,
+	callLinkageData 		[2] IMPLICIT CallLinkageData 			OPTIONAL,
+	extensions 			CSTACommonArguments 				OPTIONAL }
+
+END -- of CSTA-make-connection

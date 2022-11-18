@@ -1,0 +1,38 @@
+CSTA-set-caller-id-status
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) set-caller-id-status( 315) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+setCallerIDStatus OPERATION ::=
+{	ARGUMENT 		SetCallerIDStatusArgument
+	RESULT 			SetCallerIDStatusResult
+	ERRORS 			{universalFailure }
+	CODE			local: 315 }
+
+SetCallerIDStatusArgument ::= SEQUENCE
+{	device 				DeviceID,
+	callerIDProvided		BOOLEAN,	
+	extensions			CSTACommonArguments 			OPTIONAL }
+
+SetCallerIDStatusResult  ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-set-caller-id-status

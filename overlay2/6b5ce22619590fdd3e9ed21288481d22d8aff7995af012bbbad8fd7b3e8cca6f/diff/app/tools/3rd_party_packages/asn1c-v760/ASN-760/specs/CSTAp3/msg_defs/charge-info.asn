@@ -1,0 +1,39 @@
+CSTA-charge-info
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) charge-info( 133) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+ChargingInfo;
+
+ChargingInfo ::= SEQUENCE
+{ 	numberUnits 			NumberUnits,
+	typeOfChargingInfo 		ENUMERATED
+	{ 	subTotal 		(0),
+		total 			(1) } }
+
+NumberUnits ::= CHOICE
+{ 	numberOfChargeUnits 		[0] IMPLICIT 	NumberOfChargingUnits,
+	numberOfCurrencyUnits 		[1] IMPLICIT 	NumberOfCurrencyUnits }
+
+NumberOfChargingUnits ::= SEQUENCE OF SEQUENCE
+{ 	chargingUnits 		INTEGER,
+	typeOfUnits 		OCTET STRING 	OPTIONAL }
+
+NumberOfCurrencyUnits ::= SEQUENCE
+{ 	currencyType 		OCTET STRING, 	-- size 0 indicates default currency
+	currencyAmount 		INTEGER,
+	currencyMultiplier 	ENUMERATED
+	{ 	oneThousandth 		(0),
+		oneHundredth 		(1),
+		oneTenth 		(2),
+		one 			(3),
+		ten 			(4),
+		hundred 		(5),
+		thousand 		(6)
+ 	}
+}
+
+END -- of CSTA-charge-info

@@ -1,0 +1,9 @@
+Test DEFINITIONS ::= BEGIN
+
+MyEnum ::= ENUMERATED {a(1), b(2), c(3)}
+
+MyExtEnum ::= ENUMERATED {a(1), b(2), c(3), ...}
+
+bValue MyEnum ::= b
+
+END

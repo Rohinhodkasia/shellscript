@@ -1,0 +1,37 @@
+CSTA-stop-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) stop-data-collection( 348) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DcollCrossRefID FROM CSTA-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) data-collection( 138) };
+
+stopDataCollection OPERATION ::=
+{	ARGUMENT 		StopDataCollectionArgument
+	RESULT 			StopDataCollectionResult
+	ERRORS 			{universalFailure }
+	CODE			local: 348 }
+
+StopDataCollectionArgument ::= SEQUENCE
+{	dcollCrossRefID			DcollCrossRefID,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+StopDataCollectionResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-stop-data-collection

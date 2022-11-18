@@ -1,0 +1,34 @@
+CSTA-dtmf-detected-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) dtmf-detected-event(519) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ResourceID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+standard( 0) csta3( 285) device-feature-types( 127) }
+ServicesPermitted FROM CSTA-call-control 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) };
+
+DtmfDetectedEvent ::= SEQUENCE
+{	overConnection			ConnectionID,
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	dtmfChar			IA5String,
+	cause				EventCause				OPTIONAL,
+	servicesPermitted		ServicesPermitted			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-dtmf-detected-event

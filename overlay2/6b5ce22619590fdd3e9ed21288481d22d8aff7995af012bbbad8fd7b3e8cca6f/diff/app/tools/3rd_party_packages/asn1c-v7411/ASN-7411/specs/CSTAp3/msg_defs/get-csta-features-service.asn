@@ -1,0 +1,70 @@
+CSTA-get-csta-features-service
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-csta-features-service ( 370 ) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+LocationServicesServList FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+RouteingServList, DeviceMaintEvtsList, 
+CapExchangeServList,SystemStatusServList, MonitoringServList, SnapshotServList,
+CallControlServList,CallAssociatedServList,MediaServList,PhysDevServList,LogicalServList,
+IOServicesServList,DataCollectionServList,VoiceUnitServList,CDRServList,VendorSpecificServList,
+CallControlEvtsList,CallAssociatedEvtsList,MediaEvtsList,PhysDevEvtsList,LogicalEvtsList,
+VoiceUnitEvtsList,VendorSpecificEvtsList
+FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+getCSTAFeature OPERATION ::=
+{ 	ARGUMENT 		GetCSTAFeatureArgument
+	RESULT 			GetCSTAFeatureResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 370 }
+
+GetCSTAFeatureArgument::= SEQUENCE
+{	extensions 				CSTACommonArguments 		OPTIONAL }
+
+GetCSTAFeatureResult::= SEQUENCE
+{	supportedServices SEQUENCE 
+	{	capExchangeServList 		[ 0] CapExchangeServList	OPTIONAL,
+		systemStatServList 		[ 1] SystemStatusServList 	OPTIONAL,
+		monitoringServList 		[ 2] MonitoringServList 	OPTIONAL,
+		snapshotServList  		[ 3] SnapshotServList 		OPTIONAL,
+		callControlServList 		[ 4] CallControlServList 	OPTIONAL,
+		callAssociatedServList 		[ 5] CallAssociatedServList 	OPTIONAL,
+		mediaServList			[ 6] MediaServList 		OPTIONAL,
+		routeingServList		[ 7] RouteingServList 		OPTIONAL,
+		physDevServList			[ 8] PhysDevServList		OPTIONAL,
+		logicalServList			[ 9] LogicalServList 		OPTIONAL,
+		iOServicesServList		[10] IOServicesServList 	OPTIONAL,
+		dataCollectionServList		[11] DataCollectionServList 	OPTIONAL,
+		voiceServList			[12] VoiceUnitServList 		OPTIONAL,
+		cDRServList			[13] CDRServList 		OPTIONAL,
+		vendorSpecificServList		[14] VendorSpecificServList 	OPTIONAL,
+		locationServicesServList	[15] LocationServicesServList 	OPTIONAL },
+	supportedEvents SEQUENCE 
+	{	callControlEvtsList		[0] CallControlEvtsList 	OPTIONAL,
+		callAssociatedEvtsList		[1] CallAssociatedEvtsList 	OPTIONAL,
+		mediaEvtsList			[2] MediaEvtsList 		OPTIONAL,
+		physDevEvtsList			[3] PhysDevEvtsList 		OPTIONAL,
+		logicalEvtsList			[4] LogicalEvtsList 		OPTIONAL,
+		deviceMaintEvtsList		[5] DeviceMaintEvtsList 	OPTIONAL,
+		voiceEvtsList			[6] VoiceUnitEvtsList 		OPTIONAL,
+		vendorSpecificEvtsList		[7] VendorSpecificEvtsList 	OPTIONAL }	OPTIONAL,
+	extensions				CSTACommonArguments				OPTIONAL }
+
+END -- of CSTA-get-csta-features-service

@@ -1,0 +1,56 @@
+CSTA-system-register
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) system-register( 207) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+SysStatRegisterID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+systemRegister OPERATION ::=
+{ 	ARGUMENT 		SystemRegisterArgument
+	RESULT 			SystemRegisterResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 207 }
+
+SystemRegisterArgument ::= SEQUENCE
+{ 	requestTypes 			RequestTypes,
+	requestedStatusFilter 		StatusFilter 			OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+SystemRegisterResult ::= SEQUENCE
+{ 	sysStatRegisterID 		SysStatRegisterID,
+	actualStatusFilter 		StatusFilter 			OPTIONAL,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+StatusFilter ::= BIT STRING
+{ 	initializing 				( 0),
+	enabled 				( 1),
+	normal 					( 2),
+	messageLost 				( 3),
+	disabled 				( 4),
+	partiallyDisabled 			( 5),
+	overloadImminent 			( 6),
+	overloadReached 			( 7),
+	overloadRelieved 			( 8) }
+
+RequestTypes ::= BIT STRING
+{ 	systemStatus 				( 0),
+	requestSystemStatus 			( 1),
+	switchingFunctionCapsChanged 		( 2),
+	switchingFunctionDevicesChanged 	( 3) }
+
+END -- of CSTA-system-register

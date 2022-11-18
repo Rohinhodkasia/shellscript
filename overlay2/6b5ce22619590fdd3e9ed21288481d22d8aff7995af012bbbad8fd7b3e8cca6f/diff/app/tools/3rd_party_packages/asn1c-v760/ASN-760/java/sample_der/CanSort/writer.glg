@@ -1,0 +1,16 @@
+Encoding was successful
+Hex dump of encoded record:
+31 14 02 01 00 02 01 02 02 02 01 a9 02 02 a0 35  1..............5
+02 04 05 53 08 1d                                ...S..
+Binary dump:
+0000 : 31 14                               : C [UNIVERSAL 17] 20
+0002 : 02 01                               : P [UNIVERSAL 2] 1
+0004 : 00                                  : .
+0005 : 02 01                               : P [UNIVERSAL 2] 1
+0007 : 02                                  : .
+0008 : 02 02                               : P [UNIVERSAL 2] 2
+0010 : 01 a9                               : ..
+0012 : 02 02                               : P [UNIVERSAL 2] 2
+0014 : a0 35                               : .5
+0016 : 02 04                               : P [UNIVERSAL 2] 4
+0018 : 05 53 08 1d                         : .S..

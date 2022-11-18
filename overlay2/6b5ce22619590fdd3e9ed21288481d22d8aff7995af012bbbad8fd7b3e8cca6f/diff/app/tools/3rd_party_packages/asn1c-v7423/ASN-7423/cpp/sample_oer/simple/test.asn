@@ -1,0 +1,7 @@
+Test DEFINITIONS ::= BEGIN
+
+B ::= BOOLEAN
+
+I ::= INTEGER
+
+END

@@ -1,0 +1,24 @@
+Encoding was successful
+Hex dump of encoded record:
+30 26 02 01 00 04 06 70 75 62 6c 69 63 a0 19 02  0&.....public...
+01 01 02 01 00 02 01 00 30 0e 30 0c 06 08 2b 06  ........0.0...+.
+01 02 01 01 01 00 05 00                          ........
+Binary dump:
+0000 : 30 26                               : C [UNIVERSAL 16] 38
+0002 : 02 01                               : P [UNIVERSAL 2] 1
+0004 : 00                                  : .
+0005 : 04 06                               : P [UNIVERSAL 4] 6
+0007 : 70 75 62 6c 69 63                   : public
+0013 : a0 19                               : C [0] 25
+0015 : 02 01                               : P [UNIVERSAL 2] 1
+0017 : 01                                  : .
+0018 : 02 01                               : P [UNIVERSAL 2] 1
+0020 : 00                                  : .
+0021 : 02 01                               : P [UNIVERSAL 2] 1
+0023 : 00                                  : .
+0024 : 30 0e                               : C [UNIVERSAL 16] 14
+0026 : 30 0c                               : C [UNIVERSAL 16] 12
+0028 : 06 08                               : P [UNIVERSAL 6] 8
+0030 : 2b 06 01 02 01 01 01 00             : +.......
+0038 : 05 00                               : P [UNIVERSAL 5] 0
+---

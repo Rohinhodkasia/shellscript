@@ -1,0 +1,27 @@
+CSTA-microphone-gain-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) microphone-gain-event( 288) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+AuditoryApparatusID, MicrophoneGain FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+MicrophoneGainEvent ::= SEQUENCE
+{	invokingDevice			SubjectDeviceID,
+	auditoryApparatus		AuditoryApparatusID,
+	microphoneGain			MicrophoneGain,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-microphone-gain-event

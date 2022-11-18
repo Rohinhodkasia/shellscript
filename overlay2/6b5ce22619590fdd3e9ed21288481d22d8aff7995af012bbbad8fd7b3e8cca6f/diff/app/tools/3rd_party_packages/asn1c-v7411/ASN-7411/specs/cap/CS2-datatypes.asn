@@ -1,0 +1,24 @@
+-- Subset of CS2-datatypes module needed to compile CAP
+
+CS2-datatypes DEFINITIONS IMPLICIT TAGS ::=
+BEGIN
+
+BothwayThroughConnectionInd ::= ENUMERATED {
+bothwayPathRequired (0),
+bothwayPathNotRequired (1)
+}
+
+CriticalityType ::= ENUMERATED {
+ignore (0),
+abort (1)
+}
+
+MiscCallInfo ::= SEQUENCE {
+messageType [0] ENUMERATED {
+request (0),
+notification (1),
+...
+}
+}
+
+END

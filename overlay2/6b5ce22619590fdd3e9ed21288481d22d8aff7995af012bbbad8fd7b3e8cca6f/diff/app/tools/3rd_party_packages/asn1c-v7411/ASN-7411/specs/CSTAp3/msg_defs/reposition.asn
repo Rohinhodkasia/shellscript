@@ -1,0 +1,49 @@
+CSTA-reposition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) reposition( 504) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ResourceID, MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+reposition OPERATION ::=
+{	ARGUMENT		RepositionArgument
+	RESULT			RepositionResult
+	ERRORS			{universalFailure }
+	CODE			local: 504 }
+
+RepositionArgument ::= SEQUENCE
+{	connection			ConnectionID,
+	periodOfReposition		Period,
+	messageToReposition		MessageID				OPTIONAL,   --corrected 06/2001
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+RepositionResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+Period ::= CHOICE
+{	absolutePosition		ENUMERATED
+	{	startOfMessage		(0),
+		endOfMessage		(1) },
+	relativePosition		INTEGER }
+
+END  -- of CSTA-reposition

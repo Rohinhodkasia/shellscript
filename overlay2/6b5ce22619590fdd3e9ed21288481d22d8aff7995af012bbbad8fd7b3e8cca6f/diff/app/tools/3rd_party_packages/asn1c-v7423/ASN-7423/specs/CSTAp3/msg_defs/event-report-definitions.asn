@@ -1,0 +1,347 @@
+CSTA-event-report-definitions
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-report-definitions( 21) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+CallClearedEvent FROM CSTA-call-cleared-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-cleared-event( 22) }
+ConferencedEvent FROM CSTA-conferenced-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) conferenced-event( 23) }
+ConnectionClearedEvent FROM CSTA-connection-cleared-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-cleared-event( 24) }
+DeliveredEvent FROM CSTA-delivered-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) delivered-event( 25) }
+DivertedEvent FROM CSTA-diverted-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) diverted-event( 26) }
+EstablishedEvent FROM CSTA-established-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) established-event( 27) }
+FailedEvent FROM CSTA-failed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) failed-event( 28) }
+HeldEvent FROM CSTA-held-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) held-event( 29) }
+NetworkReachedEvent FROM CSTA-network-reached-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) network-reached-event( 30) }
+OriginatedEvent FROM CSTA-originated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) originated-event( 31) }
+QueuedEvent FROM CSTA-queued-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) queued-event( 32) }
+RetrievedEvent FROM CSTA-retrieved-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) retrieved-event( 33) }
+ServiceInitiatedEvent FROM CSTA-service-initiated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) service-initiated-event( 34) }
+TransferredEvent FROM CSTA-transferred-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) transferred-event( 35) }
+AutoAnswerEvent FROM CSTA-auto-answer-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) auto-answer-event( 40) }
+CallInformationEvent FROM CSTA-call-information-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-information-event( 41) }
+DoNotDisturbEvent FROM CSTA-do-not-disturb-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) do-not-disturb-event( 42) }
+ForwardingEvent FROM CSTA-forwarding-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) forwarding-event( 43) }
+MessageWaitingEvent FROM CSTA-message-waiting-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) message-waiting-event( 44) }
+MicrophoneMuteEvent FROM CSTA-microphone-mute-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) microphone-mute-event( 45) }
+SpeakerMuteEvent FROM CSTA-speaker-mute-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) speaker-mute-event( 46) }
+SpeakerVolumeEvent FROM CSTA-speaker-volume-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) speaker-volume-event( 47) }
+AgentBusyEvent FROM CSTA-agent-busy-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-busy-event( 319) }
+AgentLoggedOnEvent FROM CSTA-agent-logged-on-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)  --corrected 12/2000
+		standard( 0) csta3( 285) agent-logged-on-event( 321) }
+AgentLoggedOffEvent FROM CSTA-agent-logged-off-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-logged-off-event( 320) }
+AgentNotReadyEvent FROM CSTA-agent-not-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-not-ready-event( 322) }
+AgentReadyEvent FROM CSTA-agent-ready-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-ready-event( 323) }
+AgentWorkingAfterCallEvent FROM CSTA-agent-working-after-call-event
+   	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+      		standard( 0) csta3( 285) agent-working-after-call-event( 324) }
+BackInServiceEvent FROM CSTA-back-in-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) back-in-service-event( 333) }
+OutOfServiceEvent FROM CSTA-out-of-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) out-of-service-event( 335) }
+PrivateEvent FROM CSTA-private-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) private-event( 71) }
+PresenceStateEvent FROM CSTA-presence-state-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) presence-state-event( 552) }
+PlayEvent FROM CSTA-play-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) play( 75) }
+RecordEvent FROM CSTA-record-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) record( 76) }
+ReviewEvent FROM CSTA-review-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) review( 77) }
+StopEvent FROM CSTA-stop-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) stop( 78) }
+SuspendPlayEvent FROM CSTA-suspend-play-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) suspend-play( 79) }
+SuspendRecordEvent FROM CSTA-suspend-record-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) suspend-record( 80) }
+VoiceAttributesChangeEvent FROM CSTA-voice-attributes-change-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) voice-attributes-change-event( 74) }
+MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+BridgedEvent FROM CSTA-bridged-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) bridged-event( 224) }
+DigitsDialedEvent FROM CSTA-digits-dialed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) digits-dialed-event( 225) }
+NetworkCapabilitiesChangedEvent FROM CSTA-network-capabilities-changed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	  standard( 0) csta3( 285) network-capabilities-changed-event( 226) }
+OfferedEvent FROM CSTA-offered-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) offered-event( 227) }
+ChargingEvent FROM CSTA-charging-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) charging-event( 240) }
+DigitsGeneratedEvent FROM CSTA-digits-generated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) digits-generated-event( 241) }
+TelephonyTonesGeneratedEvent FROM CSTA-telephony-tones-generated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) telephony-tones-generated-event( 242) }
+ServiceCompletionFailureEvent FROM CSTA-service-completion-failure-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) service-completion-failure-event( 243) }
+MediaAttachedEvent FROM CSTA-media-attached-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-attached-event( 246) }
+MediaDetachedEvent FROM CSTA-media-detached-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-detached-event( 247) }
+ButtonInformationEvent FROM CSTA-button-information-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) button-information-event( 283) }
+ButtonPressEvent FROM CSTA-button-press-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) button-press-event( 284) }
+DisplayUpdatedEvent FROM CSTA-display-updated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) display-updated-event( 285) }
+HookswitchEvent FROM CSTA-hookswitch-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) hookswitch-event( 286) }
+LampModeEvent FROM CSTA-lamp-mode-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) lamp-mode-event( 287) }
+MicrophoneGainEvent FROM CSTA-microphone-gain-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) microphone-gain-event( 288) }
+RingerStatusEvent FROM CSTA-ringer-status-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) ringer-status-event( 289) }
+AutoWorkModeEvent FROM CSTA-auto-work-mode-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) auto-work-mode-event( 326) }
+CallBackEvent FROM CSTA-call-back-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-back-event( 327) }
+CallBackMessageEvent FROM CSTA-call-back-message-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-back-message-event( 328) }
+CallerIDStatusEvent FROM CSTA-caller-id-status-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) caller-id-status-event( 329) }
+RouteingModeEvent FROM CSTA-routeing-mode-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) routeing-mode-event( 332) }
+PartiallyInServiceEvent FROM CSTA-partially-in-service-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) partially-in-service ( 379) }
+BookmarkReachedEvent FROM CSTA-bookmark-reached-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) bookmark-reached-event(517) }
+CompletedEvent FROM CSTA-completed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) completed-event(518) }
+DtmfDetectedEvent FROM CSTA-dtmf-detected-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) dtmf-detected-event(519) }
+EmptiedEvent FROM CSTA-emptied-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) emptied-event(520) }
+InterruptionDetectedEvent FROM CSTA-interruption-detected-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) interruption-detected-event(521) }
+NotRecognizedEvent FROM CSTA-not-recognized-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) not-recognized-event(522) }
+RecognizedEvent FROM CSTA-recognized-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) recognized-event(523) }
+SilenceTimeoutExpiredEvent FROM CSTA-silence-timeout-expired-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) silence-timeout-expired-event(524) }
+SpeechDetectedEvent FROM CSTA-speech-detected-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) speech-detected-event (525) }
+StartedEvent FROM CSTA-started-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) started-event (526) }
+VoiceErrorOccuredEvent FROM CSTA-voice-error-occured-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) voice-error-occured-event (527) }
+DeviceCapsChangedEvent FROM CSTA-device-capabilities-changed-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-capabilities-changed-event( 334) };
+
+cSTAEventReport OPERATION ::=
+{	ARGUMENT		CSTAEventReportArgument
+	ALWAYS RESPONDS		FALSE
+	CODE			local:21 }
+
+CSTAEventReportArgument ::= SEQUENCE
+{	crossRefIdentifier		MonitorCrossRefID,
+	eventSpecificInfo		EventSpecificInfo }
+
+EventSpecificInfo ::= CHOICE
+{	callControlEvents		[ 0] CallControlEvents,
+	callAssociatedEvents		[ 1] CallAssociatedEvents,
+	mediaAttachmentEvents		[ 2] MediaAttachmentEvents,
+	physicalDeviceFeatureEvents	[ 3] PhysicalDeviceFeatureEvents,
+	logicalDeviceFeatureEvents	[ 4] LogicalDeviceFeatureEvents,
+	deviceMaintenanceEvents		[ 5] DeviceMaintenanceEvents,
+	voiceUnitEvents			[ 6] VoiceUnitEvents,
+	vendorSpecEvents		[ 7] VendorSpecEvents }
+
+CallControlEvents ::= CHOICE
+{	bridged 			[ 0] IMPLICIT BridgedEvent,
+	callCleared 			[ 1] IMPLICIT CallClearedEvent,
+	conferenced 			[ 2] IMPLICIT ConferencedEvent,
+	connectionCleared 		[ 3] IMPLICIT ConnectionClearedEvent,
+	delivered 			[ 4] IMPLICIT DeliveredEvent,
+	digitsDialed 			[ 5] IMPLICIT DigitsDialedEvent,
+	diverted 			[ 6] IMPLICIT DivertedEvent,
+	established			[ 7] IMPLICIT EstablishedEvent,
+	failed				[ 8] IMPLICIT FailedEvent,
+	held				[ 9] IMPLICIT HeldEvent,
+	networkCapabilitiesChanged	[10] IMPLICIT NetworkCapabilitiesChangedEvent,
+	networkReached 			[11] IMPLICIT NetworkReachedEvent,
+	offered 			[12] IMPLICIT OfferedEvent,
+	originated 			[13] IMPLICIT OriginatedEvent,
+	queued 				[14] IMPLICIT QueuedEvent,
+	retrieved 			[15] IMPLICIT RetrievedEvent,
+	serviceInitiated 		[16] IMPLICIT ServiceInitiatedEvent,
+	transferred 			[17] IMPLICIT TransferredEvent }
+
+CallAssociatedEvents ::= CHOICE
+{	callInformation			[ 0] IMPLICIT CallInformationEvent,
+	charging			[ 1] IMPLICIT ChargingEvent,
+	digitsGeneratedEvent		[ 2] IMPLICIT DigitsGeneratedEvent,
+	telephonyTonesGeneratedEvent	[ 3] IMPLICIT TelephonyTonesGeneratedEvent,
+	serviceCompletionFailure	[ 4] IMPLICIT ServiceCompletionFailureEvent }
+
+MediaAttachmentEvents ::= CHOICE
+{	mediaAttached 			[ 0] IMPLICIT MediaAttachedEvent,
+	mediaDetached 			[ 1] IMPLICIT MediaDetachedEvent }
+
+PhysicalDeviceFeatureEvents ::= CHOICE
+{	buttonInformation 		[ 0] IMPLICIT ButtonInformationEvent,
+	buttonPress			[ 1] IMPLICIT ButtonPressEvent,
+	displayUpdated			[ 2] IMPLICIT DisplayUpdatedEvent,
+	hookswitch			[ 3] IMPLICIT HookswitchEvent,
+	lampMode			[ 4] IMPLICIT LampModeEvent,
+	messageWaiting			[ 5] IMPLICIT MessageWaitingEvent,
+	microphoneGain			[ 6] IMPLICIT MicrophoneGainEvent,
+	microphoneMute			[ 7] IMPLICIT MicrophoneMuteEvent,
+	ringerStatus			[ 8] IMPLICIT RingerStatusEvent,
+	speakerMute			[ 9] IMPLICIT SpeakerMuteEvent,
+	speakerVolume			[10] IMPLICIT SpeakerVolumeEvent }
+
+LogicalDeviceFeatureEvents ::= CHOICE
+{	agentBusy			[ 0] IMPLICIT AgentBusyEvent,
+	agentLoggedOn			[ 1] IMPLICIT AgentLoggedOnEvent,
+	agentLoggedOff			[ 2] IMPLICIT AgentLoggedOffEvent,
+	agentNotReady			[ 3] IMPLICIT AgentNotReadyEvent,
+	agentReady			[ 4] IMPLICIT AgentReadyEvent,
+	agentWorkingAfterCall		[ 5] IMPLICIT AgentWorkingAfterCallEvent,
+	autoAnswer			[ 6] IMPLICIT AutoAnswerEvent,
+	autoWorkMode			[ 7] IMPLICIT AutoWorkModeEvent,
+	callBack			[ 8] IMPLICIT CallBackEvent,
+	callBackMessage			[ 9] IMPLICIT CallBackMessageEvent,
+	callerIDStatus			[10] IMPLICIT CallerIDStatusEvent,
+	doNotDisturb			[11] IMPLICIT DoNotDisturbEvent,
+	forwarding			[12] IMPLICIT ForwardingEvent,
+	presenceState			[14] IMPLICIT PresenceStateEvent,
+	routeingMode			[13] IMPLICIT RouteingModeEvent }
+
+DeviceMaintenanceEvents ::= CHOICE
+{	backInService			[ 0] IMPLICIT BackInServiceEvent,
+	deviceCapabilityChanged 	[ 1] IMPLICIT DeviceCapsChangedEvent,
+	outOfService			[ 2] IMPLICIT OutOfServiceEvent,
+	partiallyInService		[ 3] IMPLICIT PartiallyInServiceEvent }
+
+VoiceUnitEvents ::= CHOICE
+{	bookmarkReached			[ 7] IMPLICIT BookmarkReachedEvent,
+	completed			[ 8] IMPLICIT CompletedEvent,
+	dtmfDetected			[ 9] IMPLICIT DtmfDetectedEvent,
+	emptied				[10] IMPLICIT EmptiedEvent,
+	interruptionDetected		[11] IMPLICIT InterruptionDetectedEvent,
+	notRecognized			[12] IMPLICIT NotRecognizedEvent,
+	play				[ 0] IMPLICIT PlayEvent,
+	recognized			[13] IMPLICIT RecognizedEvent,
+	record     	 		[ 1] IMPLICIT RecordEvent,
+	review     	 		[ 2] IMPLICIT ReviewEvent,
+	silenceTimeoutExpired		[14] IMPLICIT SilenceTimeoutExpiredEvent,
+	speechDetected			[15] IMPLICIT SpeechDetectedEvent,
+	started				[16] IMPLICIT StartedEvent,
+	stop       	 		[ 3] IMPLICIT StopEvent,
+	suspendPlay 	 		[ 4] IMPLICIT SuspendPlayEvent,
+	suspendRecord	 		[ 5] IMPLICIT SuspendRecordEvent,
+	voiceAttributesChange		[ 6] IMPLICIT VoiceAttributesChangeEvent,
+	voiceErrorOccured		[17] IMPLICIT VoiceErrorOccuredEvent }
+
+VendorSpecEvents::= CHOICE
+{	privateEvent			[ 0] IMPLICIT PrivateEvent }		
+
+END  -- of CSTA-event-report-definitions

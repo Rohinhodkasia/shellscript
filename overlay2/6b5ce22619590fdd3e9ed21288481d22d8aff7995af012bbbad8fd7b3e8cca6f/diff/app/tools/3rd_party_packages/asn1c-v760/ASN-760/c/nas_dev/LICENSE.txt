@@ -1,0 +1,75 @@
+        3GPP-L3-C-API EVALUATION LICENSE AGREEMENT
+
+Objective Systems, Inc. hereby grants the Licensee a thirty-day 
+evaluation license to test and evaluate the 3GPP-L3-C-API software.
+The following conditions apply to the use of this software during 
+the trial period:
+
+1.  THE SOFTWARE.  The Software to which this license applies 
+(the "Software"), is the 3GPP Layer 3 C Encode/Decode API 
+(3GPP-L3-C-API).
+
+2.  OWNERSHIP.  Objective Systems, Inc. ("OSys") is the owner of 
+the Software and all copyrights in the Software.  The Software is 
+protected by title 17 of the United States Code (the Copyright Act), 
+and you must honor all rights established by the Copyright Act with 
+respect to the Software.  The Software embodies substantial creative 
+efforts and confidential information, ideas, and structure, which 
+have not been revealed to the public.  
+
+3.  USE OF SOFTWARE.  You may use the Software on any number of 
+computers for the purpose of evaluating and testing its functionality. 
+Redistribution of value-added applications linked with the software 
+libraries (i.e. the API) for resale is prohibited with the evaluation 
+version and requires a commercial license.  You may not modify, decompile, 
+disassemble, reverse engineer, nor create derivative works from the 
+Software nor merge it into any other program, nor allow any person, 
+including employees, to do any of these things.
+
+4.  NO ASSIGNMENT.  You may not transfer, lease, assign, nor 
+sublicense this license or the Software without the prior written 
+consent of OSys.
+
+5.  REVISIONS.  Not applicable to trial version.
+
+6.  WARRANTY.  The evaluation copy of the software is not warranted.
+
+6.1 Limits of Liability.  The remedies described in this Section 
+6 are exclusive of any other remedies which you might otherwise claim.  
+
+OSys SHALL NOT BE LIABLE FOR LOSS OF DATA, LOSS 
+OF PROFITS, LOST SAVINGS, SPECIAL, INCIDENTAL, 
+CONSEQUENTIAL, INDIRECT OR OTHER SIMILAR DAMAGES 
+ARISING FROM BREACH OF WARRANTY, BREACH OF CONTRACT, 
+NEGLIGENCE, OR OTHER LEGAL THEORY EVEN IF THE 
+COMPANY OR ITS AGENT HAS BEEN ADVISED OF THE 
+POSSIBILITY OF SUCH DAMAGES, OR FOR ANY CLAIM BY 
+ANY OTHER PARTY.  EXCEPT AS EXPRESSLY SET FORTH 
+HEREIN, THE SOFTWARE IS LICENSED ON AN "AS IS" BASIS, 
+WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESSED OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE IMPLIED 
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A 
+PARTICULAR PURPOSE.
+
+Some states do not allow the exclusion or limitation of liability 
+contained herein, so the above limitations or exclusions may not 
+apply to you.
+
+7.  DEFAULT AND REMEDIES.  If you or any of your employees or agents 
+violates or attempts to violate any provision of this Agreement or any 
+copyright laws with respect to the Software, the license of the Software 
+to you shall automatically terminate.  Furthermore, OSys shall be 
+entitled to all legal and equitable remedies including an injunction of 
+any actions prohibited hereby, specific performance of your obligations 
+hereunder, remedies set forth in 17 U.S.C. 501, et seq., and recovery of 
+the costs of enforcing this Agreement including attorney's fees, 
+expert witness fees and costs.  If any provision hereof is deemed to 
+be unenforceable, then the remainder of this Agreement shall not be 
+affected, and shall be enforced as if the unenforceable provision were 
+not included herein.  This license agreement will be governed by 
+the laws of Colorado except as to matter preempted by United States law.  
+In the event of any dispute involving this license, you agree to exclusive 
+jurisdiction and venue in either state or federal courts in Colorado and 
+agree that the prevailing party shall be entitled to its attorney fees 
+and costs.
+

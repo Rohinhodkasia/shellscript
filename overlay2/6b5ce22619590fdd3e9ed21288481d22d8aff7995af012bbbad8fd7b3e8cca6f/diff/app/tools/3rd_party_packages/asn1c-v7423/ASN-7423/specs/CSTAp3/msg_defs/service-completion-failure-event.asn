@@ -1,0 +1,51 @@
+CSTA-service-completion-failure-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) service-completion-failure-event( 243) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+MediaCallCharacteristics, ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+ServiceCompletionFailureEvent ::= SEQUENCE
+{	primaryCall			PrimaryOrSecondaryCall,
+	secondaryCall			[0] IMPLICIT PrimaryOrSecondaryCall	OPTIONAL,
+	otherDevsPrimaryCallList	[1] IMPLICIT SEQUENCE OF OtherCall	OPTIONAL,
+	otherDevsSecondaryCallList	[2] IMPLICIT SEQUENCE OF OtherCall	OPTIONAL,
+	mediaCallCharacteristics	[3] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	cause				EventCause,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+PrimaryOrSecondaryCall ::= SEQUENCE
+{	deviceID 			DeviceID,
+	connectionID			ConnectionID,
+	localConnectionState		LocalConnectionState,
+	connectionInfo			ConnectionInformation			OPTIONAL }
+
+OtherCall ::= SEQUENCE
+{	deviceID 			DeviceID,
+	connectionID			ConnectionID,
+	localConnectionState		LocalConnectionState			OPTIONAL,
+	connectionInfo			ConnectionInformation			OPTIONAL }
+
+END -- of CSTA-service-completion-failure-event

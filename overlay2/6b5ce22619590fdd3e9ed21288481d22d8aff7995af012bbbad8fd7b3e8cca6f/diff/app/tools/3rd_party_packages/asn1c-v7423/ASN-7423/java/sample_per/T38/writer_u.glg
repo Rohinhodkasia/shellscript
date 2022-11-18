@@ -1,0 +1,177 @@
+Encoding was successful
+Hex dump of encoded record:
+c8 09 20 00 80 20 40 60 80 b4 00 04 22 44 67 c0  .. .. @`...."Dg.
+00 75 57 79 9b be 00 03 dd fe                    .uWy......
+Binary dump:
+ifpPacket. bitmask
+1------- -------- -------- --------     --------    ----                      
+
+ifpPacket.type_of_msg index
+-1------ -------- -------- --------     --------    ----                      
+
+ifpPacket.type_of_msg.data extbit
+--0----- -------- -------- --------     --------    ----                      
+
+ifpPacket.type_of_msg.data value
+---0100- -------- -------- --------     --------    ----                      
+
+ifpPacket.data_field length
+-------0 0000100- -------- --------     c8------    .---                      
+
+ifpPacket.data_field.element[0] bitmask
+-------- -------1 -------- --------     --09----    -.--                      
+
+ifpPacket.data_field.element[0].field_type value
+-------- -------- 001----- --------     --------    ----                      
+
+ifpPacket.data_field.element[0].field_data length
+-------- -------- ---00000 00000000     ----2000    -- .                      
+100----- -------- -------- --------     --------    ----                      
+
+ifpPacket.data_field.element[0].field_data value
+---00000 00100000 01000000 01100000     80204060    . @`                      
+10000000 101----- -------- --------     80------    .---                      
+
+ifpPacket.data_field.element[1] bitmask
+-------- ---1---- -------- --------     --------    ----                      
+
+ifpPacket.data_field.element[1].field_type value
+-------- ----010- -------- --------     --------    ----                      
+
+ifpPacket.data_field.element[1].field_data length
+-------- -------0 00000000 0000010-     --b400--    -..-                      
+
+ifpPacket.data_field.element[1].field_data value
+-------- -------- -------- -------0     ------04    ---.                      
+00100010 01000100 0110011- --------     2244----    "D--                      
+
+ifpPacket.data_field.element[2] bitmask
+-------- -------- -------1 --------     ----67--    --g-                      
+
+ifpPacket.data_field.element[2].field_type value
+-------- -------- -------- 110-----     --------    ----                      
+
+ifpPacket.data_field.element[2].field_data length
+-------- -------- -------- ---00000     ------c0    ---.                      
+00000000 011----- -------- --------     00------    .---                      
+
+ifpPacket.data_field.element[2].field_data value
+-------- ---10101 01010111 01111001     --755779    -uWy                      
+10011011 101----- -------- --------     9b------    .---                      
+
+ifpPacket.data_field.element[3] bitmask
+-------- ---1---- -------- --------     --------    ----                      
+
+ifpPacket.data_field.element[3].field_type value
+-------- ----111- -------- --------     --------    ----                      
+
+ifpPacket.data_field.element[3].field_data length
+-------- -------0 00000000 0000001-     --be00--    -..-                      
+
+ifpPacket.data_field.element[3].field_data value
+-------- -------- -------- -------1     ------03    ---.                      
+11011101 1111111- -------- --------     dd------    .---                      
+
+Encoding was successful
+Hex dump of encoded record:
+c2 03 20 00 3d df e0                             .. .=..
+Binary dump:
+secPacket1. bitmask
+1------- -------- -------- --------     --------    ----                      
+
+secPacket1.type_of_msg index
+-1------ -------- -------- --------     --------    ----                      
+
+secPacket1.type_of_msg.data extbit
+--0----- -------- -------- --------     --------    ----                      
+
+secPacket1.type_of_msg.data value
+---0001- -------- -------- --------     --------    ----                      
+
+secPacket1.data_field length
+-------0 0000001- -------- --------     c2------    .---                      
+
+secPacket1.data_field.element[0] bitmask
+-------- -------1 -------- --------     --03----    -.--                      
+
+secPacket1.data_field.element[0].field_type value
+-------- -------- 001----- --------     --------    ----                      
+
+secPacket1.data_field.element[0].field_data length
+-------- -------- ---00000 00000000     ----2000    -- .                      
+001----- -------- -------- --------     --------    ----                      
+
+secPacket1.data_field.element[0].field_data value
+---11101 11011111 111----- --------     3ddf----    =.--                      
+
+Encoding was successful
+Hex dump of encoded record:
+d0 02 20                                         .. 
+Binary dump:
+secPacket2. bitmask
+1------- -------- -------- --------     --------    ----                      
+
+secPacket2.type_of_msg index
+-1------ -------- -------- --------     --------    ----                      
+
+secPacket2.type_of_msg.data extbit
+--0----- -------- -------- --------     --------    ----                      
+
+secPacket2.type_of_msg.data value
+---1000- -------- -------- --------     --------    ----                      
+
+secPacket2.data_field length
+-------0 0000001- -------- --------     d0------    .---                      
+
+secPacket2.data_field.element[0] bitmask
+-------- -------0 -------- --------     --02----    -.--                      
+
+secPacket2.data_field.element[0].field_type value
+-------- -------- 001----- --------     --------    ----                      
+
+
+Encoding UDPTLPacket..
+
+Encoding was successful
+Hex dump of encoded record:
+00 01 1a c8 09 20 00 80 20 40 60 80 b4 00 04 22  ..... .. @`...."
+44 67 c0 00 75 57 79 9b be 00 03 dd fe 01 03 e1  Dg..uWy.........
+01 90 00 1e ef f0 01 e8 01 10 00                 ...........
+Binary dump:
+udptlPacket.seq_number value
+00000000 00000001 -------- --------     0001----    ..--                      
+
+udptlPacket.primary_ifp_packet length
+-------- -------- 00011010 --------     ----1a--    --.-                      
+
+udptlPacket.primary_ifp_packet value
+-------- -------- -------- 11001000     ------c8    ---.                      
+00001001 00100000 00000000 10000000     09200080    . ..                      
+00100000 01000000 01100000 10000000     20406080     @`.                      
+10110100 00000000 00000100 00100010     b4000422    ..."                      
+01000100 01100111 11000000 00000000     4467c000    Dg..                      
+01110101 01010111 01111001 10011011     7557799b    uWy.                      
+10111110 00000000 00000011 11011101     be0003dd    ....                      
+11111110 -------- -------- --------     fe------    .---                      
+
+udptlPacket.error_recovery index
+-------- 0------- -------- --------     --------    ----                      
+
+udptlPacket.error_recovery.secondary_ifp_packets length
+-------- -0000001 0------- --------     --01----    -.--                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.element[0] length
+-------- -------- -0000011 1-------     ----03--    --.-                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.element[0] value
+-------- -------- -------- -1100001     ------e1    ---.                      
+00000001 10010000 00000000 00011110     0190001e    ....                      
+11101111 11110000 0------- --------     eff0----    ..--                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.element[1] length
+-------- -------- -0000001 1-------     ----01--    --.-                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.element[1] value
+-------- -------- -------- -1101000     ------e8    ---.                      
+00000001 00010000 0------- --------     0110----    ..--                      
+

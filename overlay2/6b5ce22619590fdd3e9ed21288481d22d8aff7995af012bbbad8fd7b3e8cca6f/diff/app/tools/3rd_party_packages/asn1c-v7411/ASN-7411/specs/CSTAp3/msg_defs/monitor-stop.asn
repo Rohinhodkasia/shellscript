@@ -1,0 +1,37 @@
+CSTA-monitor-stop
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) monitor-stop( 103) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+MonitorCrossRefID FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+monitorStop OPERATION ::=
+{ 	ARGUMENT 		MonitorStopArgument
+	RESULT 			MonitorStopResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 73 }
+
+MonitorStopArgument ::= SEQUENCE
+{	crossRefIdentifier 		MonitorCrossRefID,
+	extensions 			CSTACommonArguments 		OPTIONAL }
+
+MonitorStopResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-monitor-stop

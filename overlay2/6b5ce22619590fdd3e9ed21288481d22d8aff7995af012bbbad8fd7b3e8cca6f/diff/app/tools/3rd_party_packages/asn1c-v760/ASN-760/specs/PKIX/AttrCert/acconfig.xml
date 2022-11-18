@@ -1,0 +1,12 @@
+<asn1config>
+  <includedir>../../CryptoMsgSyntax</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <module name="AttributeCertificateVersion1-2009">
+    <production name="AttributeCertificateV1"><isPDU/></production>
+  </module>
+  <module name="PKIXAttributeCertificate-2009">
+    <production name="AttributeCertificate"><isPDU/></production>
+  </module>
+</asn1config>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/PKIX/Certificate/PKIX1Explicit-2009.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <der/>
+   </ruleset>
+   <basicOptions>
+      <config>../../../specs/PKIX/Certificate/acconfig.xml</config>
+      <depends/>
+      <importDirs>
+         <UTF8String>../../../specs/PKIX/Certificate</UTF8String>
+         <UTF8String>../../../specs/PKIX/Common</UTF8String>
+      </importDirs>
+      <printOut/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp/>
+   </languageOpts>
+</ASN1COptions>

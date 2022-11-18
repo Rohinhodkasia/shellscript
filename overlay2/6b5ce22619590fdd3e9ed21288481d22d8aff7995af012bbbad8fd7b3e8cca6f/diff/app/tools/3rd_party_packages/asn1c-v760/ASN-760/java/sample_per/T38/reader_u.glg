@@ -1,0 +1,157 @@
+UDPTL packet decode was successful
+udptlPacket {
+   seq_number = 1
+   primary_ifp_packet = c80920008020406080b40004224467c0007557799bbe0003ddfe
+   error_recovery {
+      secondary_ifp_packets [0] = c20320003ddfe0
+      secondary_ifp_packets [1] = d00220
+   }
+}
+
+Binary trace:
+udptlPacket.seq_number value
+00000000 00000001 -------- --------     0001----    ..--                      
+
+udptlPacket.primary_ifp_packet len >= 128
+-------- -------- 0------- --------     --------    ----                      
+
+udptlPacket.primary_ifp_packet length
+-------- -------- -0011010 --------     ----1a--    --.-                      
+
+udptlPacket.primary_ifp_packet value
+-------- -------- -------- 11001000     ------c8    ---.                      
+00001001 00100000 00000000 10000000     09200080    . ..                      
+00100000 01000000 01100000 10000000     20406080     @`.                      
+10110100 00000000 00000100 00100010     b4000422    ..."                      
+01000100 01100111 11000000 00000000     4467c000    Dg..                      
+01110101 01010111 01111001 10011011     7557799b    uWy.                      
+10111110 00000000 00000011 11011101     be0003dd    ....                      
+11111110 -------- -------- --------     fe------    .---                      
+
+udptlPacket.error_recovery index
+-------- 0------- -------- --------     --------    ----                      
+
+udptlPacket.error_recovery.secondary_ifp_packets len >= 128
+-------- -0------ -------- --------     --------    ----                      
+
+udptlPacket.error_recovery.secondary_ifp_packets length
+-------- --000001 0------- --------     --01----    -.--                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[0] len >= 128
+-------- -------- -0------ --------     --------    ----                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[0] length
+-------- -------- --000011 1-------     ----03--    --.-                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[0] value
+-------- -------- -------- -1100001     ------e1    ---.                      
+00000001 10010000 00000000 00011110     0190001e    ....                      
+11101111 11110000 0------- --------     eff0----    ..--                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[1] len >= 128
+-------- -------- -0------ --------     --------    ----                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[1] length
+-------- -------- --000001 1-------     ----01--    --.-                      
+
+udptlPacket.error_recovery.secondary_ifp_packets.elements[1] value
+-------- -------- -------- -1101000     ------e8    ---.                      
+00000001 00010000 0------- --------     0110----    ..--                      
+
+
+Primary packet decode was successful
+primaryPacket {
+   type_of_msg {
+      data = v29-9600
+   }
+   data_field [0] {
+      field_type = hdlc-sig-end
+      field_data = 0102030405
+   }
+   data_field [1] {
+      field_type = hdlc-fcs-OK
+      field_data = 112233
+   }
+   data_field [2] {
+      field_type = t4-non-ecm-data
+      field_data = aabbccdd
+   }
+   data_field [3] {
+      field_type = t4-non-ecm-sig-end
+      field_data = eeff
+   }
+}
+
+Binary trace:
+primaryPacket. data_fieldPresent
+1------- -------- -------- --------     --------    ----                      
+
+primaryPacket.type_of_msg index
+-1------ -------- -------- --------     --------    ----                      
+
+primaryPacket.type_of_msg.data extbit
+--0----- -------- -------- --------     --------    ----                      
+
+primaryPacket.type_of_msg.data value
+---0100- -------- -------- --------     --------    ----                      
+
+primaryPacket.data_field len >= 128
+-------0 -------- -------- --------     c8------    .---                      
+
+primaryPacket.data_field length
+-------- 0000100- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[0] field_dataPresent
+-------- -------1 -------- --------     --09----    -.--                      
+
+primaryPacket.data_field.elements[0].field_type value
+-------- -------- 001----- --------     --------    ----                      
+
+primaryPacket.data_field.elements[0].field_data length
+-------- -------- ---00000 00000000     ----2000    -- .                      
+100----- -------- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[0].field_data value
+---00000 00100000 01000000 01100000     80204060    . @`                      
+10000000 101----- -------- --------     80------    .---                      
+
+primaryPacket.data_field.elements[1] field_dataPresent
+-------- ---1---- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[1].field_type value
+-------- ----010- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[1].field_data length
+-------- -------0 00000000 0000010-     --b400--    -..-                      
+
+primaryPacket.data_field.elements[1].field_data value
+-------- -------- -------- -------0     ------04    ---.                      
+00100010 01000100 0110011- --------     2244----    "D--                      
+
+primaryPacket.data_field.elements[2] field_dataPresent
+-------- -------- -------1 --------     ----67--    --g-                      
+
+primaryPacket.data_field.elements[2].field_type value
+-------- -------- -------- 110-----     --------    ----                      
+
+primaryPacket.data_field.elements[2].field_data length
+-------- -------- -------- ---00000     ------c0    ---.                      
+00000000 011----- -------- --------     00------    .---                      
+
+primaryPacket.data_field.elements[2].field_data value
+-------- ---10101 01010111 01111001     --755779    -uWy                      
+10011011 101----- -------- --------     9b------    .---                      
+
+primaryPacket.data_field.elements[3] field_dataPresent
+-------- ---1---- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[3].field_type value
+-------- ----111- -------- --------     --------    ----                      
+
+primaryPacket.data_field.elements[3].field_data length
+-------- -------0 00000000 0000001-     --be00--    -..-                      
+
+primaryPacket.data_field.elements[3].field_data value
+-------- -------- -------- -------1     ------03    ---.                      
+11011101 1111111- -------- --------     dd------    .---                      
+

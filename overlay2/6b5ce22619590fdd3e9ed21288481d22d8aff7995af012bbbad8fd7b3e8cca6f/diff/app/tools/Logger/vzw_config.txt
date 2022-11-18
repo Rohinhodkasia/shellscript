@@ -1,0 +1,9 @@
+# Configuration file.
+LogPath= "./log"
+LogFileName ="Decoding_Logs"
+# Setting the Max Number of Logs to 250 
+VZW_SetNumOfLogFiles=250
+#Setting the per Logs File Size Limit to 1MB
+VZW_SetLogFileSizeLimit=1
+# bit position 0->LOG_ALWAYS, 1->LOG_FATAL, 2->LOG_WARNING, 3->LOG_EVENT, 4->LOG_INFO, 5->LOG_DEBUG, 6->LOG_UNUSED, 7-> LOG_ALWAYS,
+LogMask="6"

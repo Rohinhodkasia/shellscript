@@ -1,0 +1,13 @@
+Test DEFINITIONS ::= BEGIN
+
+TestChoice ::= CHOICE {
+   a        INTEGER, 
+   b        BOOLEAN,
+   c        OCTET STRING,
+   nest     CHOICE {
+      bitstr BIT STRING,
+      bw-color ENUMERATED { bw, color }
+   }
+}
+
+END

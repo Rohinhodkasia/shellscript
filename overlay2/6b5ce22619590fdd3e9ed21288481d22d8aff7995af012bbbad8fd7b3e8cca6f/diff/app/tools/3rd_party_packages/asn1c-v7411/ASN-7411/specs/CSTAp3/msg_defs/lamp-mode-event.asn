@@ -1,0 +1,31 @@
+CSTA-lamp-mode-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) lamp-mode-event( 287) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+LampID, LampMode, LampBrightness, LampColor 
+	FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+LampModeEvent ::= SEQUENCE
+{	device				SubjectDeviceID,
+	lamp				LampID,
+	lampLabel			OCTET STRING				OPTIONAL,
+	lampMode			LampMode,
+	lampBrightness			LampBrightness				OPTIONAL,
+	lampColor			LampColor				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-lamp-mode-event

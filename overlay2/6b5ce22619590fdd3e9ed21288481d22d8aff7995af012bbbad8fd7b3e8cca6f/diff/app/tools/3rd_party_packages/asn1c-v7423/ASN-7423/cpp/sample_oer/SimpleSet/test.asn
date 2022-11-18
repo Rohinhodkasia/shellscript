@@ -1,0 +1,9 @@
+Test DEFINITIONS ::= BEGIN
+
+TestSet ::= SET {
+   a        INTEGER, 
+   b        BOOLEAN,
+   c        OCTET STRING
+}
+
+END

@@ -1,0 +1,1 @@
+/* sendSeqNum is decoded as part of the id.msgType element */

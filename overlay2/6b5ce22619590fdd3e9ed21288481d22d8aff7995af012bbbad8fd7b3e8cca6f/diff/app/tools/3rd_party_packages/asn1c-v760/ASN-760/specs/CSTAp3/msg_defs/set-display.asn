@@ -1,0 +1,46 @@
+CSTA-set-display
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) set-display( 274) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DisplayID, CharacterSet FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) physical-device-feature( 137) };
+
+setDisplay OPERATION ::=
+{	ARGUMENT 		SetDisplayArgument
+	RESULT			SetDisplayResult
+	ERRORS			{universalFailure }
+	CODE			local: 274 }	
+
+SetDisplayArgument ::= SEQUENCE
+{	device 				DeviceID,
+	display 			DisplayID				OPTIONAL,
+	physicalBaseRowNumber		[0] IMPLICIT INTEGER		 	OPTIONAL,
+	physicalBaseColumnNumber	[1] IMPLICIT INTEGER		 	OPTIONAL,
+	contentsOfDisplay		IA5String (SIZE(0..240)),
+	offset				[2] IMPLICIT INTEGER			OPTIONAL,
+	characterSet			[3] IMPLICIT CharacterSet		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+SetDisplayResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+END -- of CSTA-set-display

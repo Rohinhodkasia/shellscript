@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/3GPP-MAP/SS-Protocol.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <ber/>
+   </ruleset>
+   <basicOptions>
+      <config>../../../specs/3GPP-MAP/acconfig.xml</config>
+      <depends/>
+      <importDirs>
+         <UTF8String>../../../specs/3GPP-MAP</UTF8String>
+      </importDirs>
+      <printStrm/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <strictSize/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

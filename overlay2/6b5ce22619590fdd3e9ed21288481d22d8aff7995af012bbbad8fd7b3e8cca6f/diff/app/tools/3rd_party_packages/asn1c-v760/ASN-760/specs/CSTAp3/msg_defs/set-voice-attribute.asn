@@ -1,0 +1,68 @@
+CSTA-set-voice-attribute
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) set-voice-attribute( 507) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ResourceID, MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+Volume FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+setVoiceAttribute OPERATION ::=
+{	ARGUMENT		SetVoiceAttributeArgument
+	RESULT			SetVoiceAttributeResult
+	ERRORS			{universalFailure }
+	CODE			local: 507 }
+
+SetVoiceAttributeArgument ::= SEQUENCE
+{	connection			ConnectionID,
+	attributeToSet			AttributeToSet,
+	message				MessageID				OPTIONAL,
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+SetVoiceAttributeResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+AttributeToSet ::= CHOICE
+{	currentSpeed			[ 0] IMPLICIT INTEGER,
+	currentVolume	 		[ 1] Volume,
+	currentGain	 		[ 2] IMPLICIT INTEGER (0 .. 100),
+	grammars			[ 3] IMPLICIT IA5String,
+	language			[ 4] IMPLICIT IA5String,
+	mode				[ 5] IMPLICIT ENUMERATED
+					{	automatic	(0),
+						single		(1),
+						multiple	(2) },
+	retainAudio			[ 6] IMPLICIT BOOLEAN,
+	silenceTimeout			[ 7] IMPLICIT INTEGER,
+	maxTimeout			[ 8] IMPLICIT INTEGER,
+	babbleTimeout			[ 9] IMPLICIT INTEGER,
+	endSilence			[10] IMPLICIT INTEGER,
+	rejectionThreshold		[11] IMPLICIT INTEGER,
+	autoInterruptible		[12] IMPLICIT BOOLEAN,
+	innerXML			[13] IMPLICIT IA5String,
+	interDigitTimeout		[14] IMPLICIT INTEGER,
+	preflush			[15] IMPLICIT BOOLEAN }
+
+
+END  -- of CSTA-set-voice-attribute

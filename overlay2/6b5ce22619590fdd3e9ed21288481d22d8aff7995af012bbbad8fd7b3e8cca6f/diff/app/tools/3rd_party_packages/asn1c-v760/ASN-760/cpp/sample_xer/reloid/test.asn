@@ -1,0 +1,49 @@
+Test DEFINITIONS EXPLICIT TAGS ::= BEGIN
+
+DateTime ::= RELATIVE-OID
+
+date  DateTime  ::=  { 
+   year(2001)  month(1)  day(1) 
+   hours(0)  minutes(0)  seconds(0)  z(0) 
+   }
+
+
+
+SocialSecurity  ::= RELATIVE-OID
+
+number  SocialSecurity  ::=  { 233  21  1022 }
+
+
+
+Telephone  ::= RELATIVE-OID
+
+phone  Telephone  ::=  { 1  800  687  5309 }
+
+
+
+PaymentCard  ::= RELATIVE-OID
+
+account  PaymentCard  ::=  { 5424  9000  8811  1079 }
+
+
+
+Elapsed  ::=  RELATIVE-OID
+
+time  Elapsed  ::=  { hours(0)  minutes(2)  seconds(3) }
+
+
+
+Color  ::= RELATIVE-OID
+
+white  Color  ::=  { red(255)  green(255)  blue(255) }
+
+TestSeq ::= SEQUENCE {
+   date    DateTime,
+   number  SocialSecurity,
+   phone   Telephone,
+   account PaymentCard,
+   time    Elapsed,
+   white   Color
+}
+
+END

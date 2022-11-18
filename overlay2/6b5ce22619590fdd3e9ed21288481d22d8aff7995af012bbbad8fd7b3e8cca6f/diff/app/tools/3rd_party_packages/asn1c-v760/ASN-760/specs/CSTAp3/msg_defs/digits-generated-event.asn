@@ -1,0 +1,29 @@
+CSTA-digits-generated-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) digits-generated-event( 241) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+DigitsGeneratedEvent ::= SEQUENCE
+{	connection			ConnectionID,
+	digitGeneratedList		IA5String,
+	digitDurationList		[0] IMPLICIT SEQUENCE OF INTEGER	OPTIONAL,
+	pauseDurationList		[1] IMPLICIT SEQUENCE OF INTEGER	OPTIONAL,
+	connectionInfo			ConnectionInformation			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-digits-generated-event

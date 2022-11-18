@@ -1,0 +1,11 @@
+Test DEFINITIONS ::= BEGIN
+
+TestSeq ::= SEQUENCE {
+   a        INTEGER, 
+   b        BOOLEAN,
+   c        OCTET STRING,
+   ...,
+   d        INTEGER
+}
+
+END

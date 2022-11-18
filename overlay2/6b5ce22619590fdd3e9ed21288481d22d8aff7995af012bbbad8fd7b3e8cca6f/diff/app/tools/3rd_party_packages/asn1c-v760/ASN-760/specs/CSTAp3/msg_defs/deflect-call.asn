@@ -1,0 +1,62 @@
+CSTA-deflect-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) deflect-call( 218) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CorrelatorData, UserData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+CallCharacteristics FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+deflectCall OPERATION ::=
+{ 	ARGUMENT 		DeflectCallArgument
+	RESULT 			DeflectCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 218 }
+
+DeflectCallArgument ::= SEQUENCE
+{ 	callToBeDiverted 		ConnectionID,
+	newDestination 			DeviceID,
+	addNewDestinationsList		DeviceIDList				OPTIONAL,
+					          -- List of additional new Destinations
+	correlatorData 			CorrelatorData 				OPTIONAL,
+	userData 			UserData 				OPTIONAL,
+	callCharacteristics		[0] IMPLICIT CallCharacteristics	OPTIONAL,
+	subjectOfCall			[1] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[2] IMPLICIT LanguagePreferences	OPTIONAL,
+	reason				[3] IMPLICIT EventCause			OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+DeflectCallResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+DeviceIDList ::= SEQUENCE OF DeviceID
+
+END -- of CSTA-deflect-call

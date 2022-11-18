@@ -1,0 +1,9 @@
+Test DEFINITIONS ::= BEGIN
+
+TestChoice ::= CHOICE {
+   a        INTEGER, 
+   b        BOOLEAN,
+   c        OCTET STRING
+}
+
+END

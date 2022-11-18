@@ -1,0 +1,165 @@
+CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+MonitorObject, MonitorCrossRefID, MonitorFilter, MonitorType,
+MonitorMediaClass,SnapshotCallData, SnapshotDeviceData,RegistrationTypeList,RegistrationList,
+MonitorList,LocationSessionInfoList;
+
+IMPORTS
+CallControlEvents, CallAssociatedEvents, MediaAttachmentEvents,
+PhysicalDeviceFeatureEvents, LogicalDeviceFeatureEvents,
+DeviceMaintenanceEvents, VoiceUnitEvents, VendorSpecEvents
+FROM CSTA-application-context-information-csta3
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+ 		standard( 0) csta3( 285) application-context-information( 200) }
+ServicesPermitted, LocationInfoList, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control(130) }
+CSTAObject FROM CSTA-switching-function-objects
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) switching-function-objects( 122) }
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+LocalConnectionState FROM CSTA-connection-states
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) connection-states( 125) }
+ConnectionInformation, MediaCallCharacteristics, MediaServiceType,
+MediaServiceInstanceID, MediaStreamID FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) }
+LocCrossRefID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) };
+
+MonitorObject ::= CSTAObject
+
+MonitorCrossRefID ::= [APPLICATION 21] IMPLICIT OCTET STRING
+
+MonitorFilter ::= SEQUENCE-- default is no filter (i.e. all events)
+{	callControl 			[0] IMPLICIT CallControlEvents 			DEFAULT { },
+	callAssociated 			[6] IMPLICIT CallAssociatedEvents 		DEFAULT { },
+	mediaAttachment 		[7] IMPLICIT MediaAttachmentEvents 		DEFAULT { },
+	physicalDeviceFeature 		[8] IMPLICIT PhysicalDeviceFeatureEvents 	DEFAULT { },
+	logicalDeviceFeature 		[9] IMPLICIT LogicalDeviceFeatureEvents 	DEFAULT { },
+	maintenance 			[3] IMPLICIT DeviceMaintenanceEvents 		DEFAULT { },
+	voiceUnit 			[5] IMPLICIT VoiceUnitEvents 			DEFAULT { },
+	private 			[4] IMPLICIT VendorSpecEvents 			DEFAULT { } }
+
+-- setting the relevant bit requests the filter for the appropriate events
+
+MonitorType ::= ENUMERATED
+{	 call 				(0),
+	 device 			(1) }
+
+MonitorList ::= SEQUENCE OF MonitorListEntry
+
+MonitorListEntry ::= SEQUENCE
+{	monitorCrossRefID		MonitorCrossRefID,
+	monitorObject			DeviceID }
+
+RegistrationTypeList ::= SEQUENCE OF RegistrationType
+
+RegistrationType ::= ENUMERATED
+{	escapeRegister			(1),
+	ioRegister			(2),
+	routeRegister			(3),
+	sysStatRegister			(4) }
+
+RegistrationList ::= SEQUENCE OF RegistrationListEntry
+
+RegistrationListEntry ::= SEQUENCE
+{	registrationType		RegistrationType,
+	registrationID			IA5String,
+	registrationObject		DeviceID		OPTIONAL }
+
+LocationSessionInfoList ::= SEQUENCE OF LocationSessionListEntry
+
+LocationSessionListEntry ::= SEQUENCE
+{	locCrossRefID			LocCrossRefID,
+	locDevice			DeviceID }
+
+MonitorMediaClass ::= BIT STRING
+{ 	voice 				( 0),
+	data 				( 1),
+	image 				( 2),
+	audio 				( 4),
+	other 				( 3),
+	notKnown 			( 5),
+	chat				( 6),
+	email				( 7),
+	message				( 8),
+	im				( 9),
+	sms				(10),
+	mms				(11) }
+
+SnapshotDeviceData ::= [APPLICATION 22] IMPLICIT SEQUENCE OF SnapshotDeviceResponseInfo
+
+SnapshotDeviceResponseInfo ::= SEQUENCE
+{	connectionIdentifier		ConnectionID,
+	endpointDevice			[3] IMPLICIT SubjectDeviceID 		OPTIONAL,
+	localCallState			CallState,
+	servicesPermitted 		[0] IMPLICIT ServicesPermitted 		OPTIONAL,
+	mediaServiceInfoList 		[1] IMPLICIT DeviceMediaInfoList 	OPTIONAL,
+	mediaCallCharacteristics	[2] IMPLICIT MediaCallCharacteristics 	OPTIONAL,
+	callLinkageData 		[4] IMPLICIT CallLinkageData 		OPTIONAL }
+
+DeviceMediaInfoList ::= SEQUENCE OF SEQUENCE
+{ 	mediaStreamID			MediaStreamID				OPTIONAL,
+	connectionInformation 		ConnectionInformation 			OPTIONAL }
+
+SnapshotCallData ::= [APPLICATION 23] IMPLICIT SEQUENCE OF SnapshotCallResponseInfo
+
+SnapshotCallResponseInfo ::= SEQUENCE
+{ 	deviceOnCall 			SubjectDeviceID,
+	callIdentifier 			ConnectionID 				OPTIONAL,
+	localConnectionState 		LocalConnectionState 			OPTIONAL,
+	servicesPermitted 		[0] IMPLICIT ServicesPermitted 		OPTIONAL,
+	mediaServiceInfoList 		[1] IMPLICIT CallMediaInfoList		OPTIONAL,
+	locationInfo	 		[2] IMPLICIT LocationInfoList		OPTIONAL }
+
+CallMediaInfoList ::= SEQUENCE OF SEQUENCE
+{ 	mediaServiceType 		[0] IMPLICIT MediaServiceType,
+	mediaServiceVersion 		[1] IMPLICIT INTEGER 			OPTIONAL,
+	mediaServiceInstance 		[2] IMPLICIT MediaServiceInstanceID	OPTIONAL,
+	mediaStreamID 			[3] IMPLICIT MediaStreamID 		OPTIONAL,
+	connectionInformation 		[4] IMPLICIT ConnectionInformation 	OPTIONAL }
+
+CallState ::= CHOICE
+{	compoundCallState 		[0] IMPLICIT CompoundCallState,
+	simpleCallState 		[1] IMPLICIT SimpleCallState,
+	unknown 			[2] IMPLICIT NULL }
+
+CompoundCallState ::= SEQUENCE OF LocalConnectionState
+
+SimpleCallState ::= ENUMERATED
+{ 	callNull 			(  0), 	-- ‘00’H 		- null-null
+	callPending 			(  1), 	-- ‘01’H 		- null-initiate
+	callOriginated 			(  3), 	-- ‘03’H 		- null-connect
+	callDelivered 			( 35), 	-- ‘23’H 		- alerting-connect
+	callDeliveredHeld 		( 36), 	-- ‘24’H 		- alerting-held
+	callReceived 			( 50), 	-- ‘32’H 		- connect-alerting
+	callEstablished 		( 51), 	-- ‘33’H 		- connect-connect
+	callEstablishedHeld 		( 52), 	-- ‘34’H 		- connected-held
+	callReceivedOnHold 		( 66), 	-- ‘42’H 		- held-alerting
+	callEstablishedOnHold 		( 67), 	-- ‘43’H 		- held-connect
+	callQueued 			( 83), 	-- ‘53’H 		- queued-connect
+	callQueuedHeld 			( 84), 	-- ‘54’H 		- queued-held
+	callFailed 			( 99), 	-- ‘63’H 		- failed-connect
+	callFailedHeld 			(100), 	-- ‘64’H 		- failed-held
+	callBlocked 			( 96) }	-- ‘60’H 		- failed-null }
+
+
+-- This represents the main call states in a simplified encoding. The semantics
+-- are identical to the sequence of connection states but they are represented by
+-- an item from an enumerated list.
+
+END -- of CSTA-status-reporting

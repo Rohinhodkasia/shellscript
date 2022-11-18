@@ -1,0 +1,3 @@
+<asn1config>
+  <includedir>../../PKIX/Certificate</includedir>
+</asn1config>

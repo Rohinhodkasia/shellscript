@@ -1,0 +1,58 @@
+CSTA-start-data-path
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) start-data-path( 110) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTAObject FROM CSTA-switching-function-objects
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) switching-function-objects( 122) }
+DataPathType, IOCrossRefID, IORegisterReqID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DisplayID FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+startDataPath	OPERATION ::=
+{	ARGUMENT		StartDataPathArgument
+	RESULT			StartDataPathResult
+	ERRORS			{universalFailure }
+	CODE			local: 110 }
+
+StartDataPathArgument ::= SEQUENCE
+{	ioRegisterReqID			IORegisterReqID				OPTIONAL,
+	object				CSTAObject,
+	dataPathDirection		[0] IMPLICIT DataPathDirection		OPTIONAL,
+	dataPathType			[1] IMPLICIT DataPathType		OPTIONAL,
+	displayID			DisplayID				OPTIONAL,
+	numberOfCharactersToCollect	[2] IMPLICIT INTEGER			OPTIONAL,
+	terminationCharacter		IA5String (SIZE(1..1))			OPTIONAL,
+	timeout				[3] IMPLICIT INTEGER			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+StartDataPathResult ::= SEQUENCE
+{	ioCrossRefID			IOCrossRefID,
+	numberOfCharactersToCollect	[0] IMPLICIT INTEGER			OPTIONAL,
+	terminationCharacter		IA5String(SIZE(1..1))			OPTIONAL,
+	timeout				[1] IMPLICIT INTEGER			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+DataPathDirection ::= ENUMERATED
+{	computeFunctionToObject		(0),
+	objectToComputeFunction		(1),
+	bidirectional			(2) }
+
+END  -- of CSTA-start-data-path

@@ -1,0 +1,38 @@
+CSTA-send-stored-call-detail-records
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) send-stored-call-detail-records( 362) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+CDRCrossRefID, CDRTimePeriod FROM CSTA-call-detail-record
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-detail-record( 132) };
+
+sendStoredCDR OPERATION ::=
+{	ARGUMENT		SendStoredCDRArgument
+	RESULT			SendStoredCDRResult
+	ERRORS			{universalFailure }
+	CODE			local: 362 }
+
+SendStoredCDRArgument ::= SEQUENCE
+{	cdrCrossRefID			CDRCrossRefID, 		     --corrected 06/2001
+	timePeriod			CDRTimePeriod				OPTIONAL,
+	extensions			CSTACommonArguments		 	OPTIONAL }
+
+SendStoredCDRResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+END  -- of CSTA-send-stored-call-detail-records

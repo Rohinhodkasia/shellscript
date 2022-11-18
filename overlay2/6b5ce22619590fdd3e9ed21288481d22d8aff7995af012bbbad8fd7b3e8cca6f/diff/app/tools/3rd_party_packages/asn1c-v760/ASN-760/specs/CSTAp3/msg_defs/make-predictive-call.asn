@@ -1,0 +1,95 @@
+CSTA-make-predictive-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) make-predictive-call( 11) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+AccountInfo, AuthCode, CorrelatorData, UserData FROM
+CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+AutoOriginate, CallCharacteristics, CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+ 		standard( 0) csta3( 285) device-feature-types( 127) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) };
+
+makePredictiveCall OPERATION ::=
+{ 	ARGUMENT 		MakePredictiveCallArgument
+	RESULT 			MakePredictiveCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 11 }
+
+MakePredictiveCallArgument ::= SEQUENCE
+{ 	callingDevice 			DeviceID,
+	calledDirectoryNumber 		DeviceID,
+	signallingDetection 		[ 0] IMPLICIT SignallingDetection 		OPTIONAL,
+	destinationDetection 		[ 1] IMPLICIT DestinationDetection		OPTIONAL,
+	defaultAction 			[ 2] IMPLICIT DefaultAction 			OPTIONAL,
+	accountCode 			[ 3] IMPLICIT AccountInfo 			OPTIONAL,
+	authCode 			[ 4] IMPLICIT AuthCode 				OPTIONAL,
+	autoOriginate 			[ 5] IMPLICIT AutoOriginate 			DEFAULT prompt,
+	alertTime 			[ 6] IMPLICIT INTEGER 				OPTIONAL,
+	correlatorData 			[ 7] IMPLICIT CorrelatorData 			OPTIONAL,
+	callCharacteristics 		[ 8] IMPLICIT CallCharacteristics 		OPTIONAL,
+	userData 			UserData 					OPTIONAL, 
+	subjectOfCall			[ 9] IMPLICIT SubjectOfCall			OPTIONAL,
+	languagePreferences		[10] IMPLICIT LanguagePreferences		OPTIONAL,
+	extensions 			CSTACommonArguments 				OPTIONAL }
+
+MakePredictiveCallResult ::= SEQUENCE
+{ 	initiatedCall 			ConnectionID,
+	initiatedCallInfo 		ConnectionInformation 				OPTIONAL,
+	callLinkageData 		[1] IMPLICIT CallLinkageData 			OPTIONAL,
+	extensions 			CSTACommonArguments 				OPTIONAL }
+
+SignallingDetection ::= SEQUENCE
+{ 	signallingCondition 		SignallingCondition,
+	signallingConditionsAction 	SignallingConditionsAction }
+
+SignallingCondition ::= ENUMERATED
+{ 	callDelivered 			(0),
+	callEstablished 		(1) }
+
+SignallingConditionsAction ::= ENUMERATED
+{ 	destinationDetection 		(0),
+	remainConnected 		(1) }
+
+DestinationDetection ::= SEQUENCE OF SEQUENCE
+{ 	destinationCondition 		DestinationCondition,
+	detectionAction 		DetectionAction }
+
+DestinationCondition ::= ENUMERATED
+{ 	humanVoice 			(0),
+	answeringMachine 		(1),
+	facsimileMachine 		(2) }
+
+DefaultAction ::= DetectionAction
+
+DetectionAction ::= ENUMERATED
+{ 	clearCalledConnection 		(0),
+	remainConnected 		(1) }
+
+END -- of CSTA-make-predictive-call

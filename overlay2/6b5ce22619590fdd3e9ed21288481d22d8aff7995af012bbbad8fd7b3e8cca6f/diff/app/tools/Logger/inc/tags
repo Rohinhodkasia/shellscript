@@ -1,0 +1,149 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.9~svn20110310	//
+ARG4DATA	vzw_log.h	/^}  __attribute__ ((__packed__)) ARG4DATA;$/;"	t	typeref:struct:__anon8
+Bool	vzwCommonDef.h	/^typedef bool            Bool;     \/* boolean *\/$/;"	t
+CmInetCmnSockAddr	vzw_log.h	/^}CmInetCmnSockAddr;$/;"	t	typeref:struct:cmInetCmnSockAddr
+END_MARKER	vzw_log.h	/^        U16                     END_MARKER;$/;"	m	struct:__anon3
+EXTERN	vzwCommonDef.h	27;"	d
+EndianType	vzw_log.h	/^typedef enum _endian {little_endian, big_endian} EndianType;$/;"	t	typeref:enum:_endian
+FALSE	vzwCommonDef.h	16;"	d
+FILE_HEADER	vzw_log.h	/^} __attribute__ ((__packed__)) FILE_HEADER;$/;"	t	typeref:struct:__anon3
+FMTSTR	vzw_log_interface.h	62;"	d
+FMTSTR_S	vzw_log_interface.h	63;"	d
+L2LOG_BUFF_BLOCK_SIZE	vzw_log_soc.h	11;"	d
+L2LOG_BUFF_SIZE	vzw_log_soc.h	8;"	d
+LOGDATA	vzw_log.h	/^} __attribute__ ((__packed__)) LOGDATA;$/;"	t	typeref:struct:__anon7
+LOGID_TYPE	vzw_log.h	/^} LOGID_TYPE;$/;"	t	typeref:enum:__anon2
+LOGTIME	vzw_log.h	/^} __attribute__ ((__packed__)) LOGTIME;$/;"	t	typeref:struct:__anon6
+LOG_ARG0	vzw_log_interface.h	69;"	d
+LOG_ARGN	vzw_log_interface.h	75;"	d
+LOG_ARG_HEX	vzw_log.h	/^	LOG_ARG_HEX,$/;"	e	enum:__anon1
+LOG_ARG_INT	vzw_log.h	/^	LOG_ARG_INT,$/;"	e	enum:__anon1
+LOG_ARG_SPL	vzw_log.h	/^	LOG_ARG_SPL$/;"	e	enum:__anon1
+LOG_ARG_STR	vzw_log.h	/^	LOG_ARG_STR,$/;"	e	enum:__anon1
+LOG_ARG_TYPE	vzw_log.h	/^} LOG_ARG_TYPE;$/;"	t	typeref:enum:__anon1
+LOG_CFG_PATH	vzw_log_common.h	11;"	d
+LOG_SIGSEGV	vzw_log.h	/^        LOG_SIGSEGV,$/;"	e	enum:__anon2
+LOG_TIME_DELIMITER	vzw_log.h	/^        LOG_TIME_DELIMITER,$/;"	e	enum:__anon2
+LOG_TIME_REFERENCE	vzw_log.h	/^        LOG_TIME_REFERENCE=0,$/;"	e	enum:__anon2
+LOG_TIME_TTI_UPDT	vzw_log.h	/^        LOG_TIME_TTI_UPDT$/;"	e	enum:__anon2
+MAX_FILENAME_LEN	vzw_log.h	26;"	d
+MAX_FILE_SIZE	vzw_log.h	23;"	d
+MAX_LOG_BUF_SIZE	vzw_log.h	24;"	d
+MAX_LOG_LEN	vzw_log.h	25;"	d
+MEM_ALLOC_DB_FILE	vzwCommonDef.h	63;"	d
+MEM_FREE_DB_FILE	vzwCommonDef.h	64;"	d
+NULLP	vzwCommonDef.h	24;"	d
+PRIVATE	vzwCommonDef.h	53;"	d
+PRIVATE	vzwCommonDef.h	54;"	d
+PRIVATE	vzwCommonDef.h	56;"	d
+PUBLIC	vzwCommonDef.h	25;"	d
+PUBLIC	vzwCommonDef.h	47;"	d
+PUBLIC	vzwCommonDef.h	48;"	d
+PUBLIC	vzwCommonDef.h	50;"	d
+RETURN	vzwCommonDef.h	23;"	d
+RLOG_LIMIT_L3_COUNT	vzw_log_soc.h	12;"	d
+S16	vzwCommonDef.h	/^typedef short int             S16;      \/* signed - 16 bits *\/$/;"	t
+S32	vzwCommonDef.h	/^typedef int            S32;      \/* signed - 32 bits *\/$/;"	t
+S64	vzwCommonDef.h	/^typedef long long 	S64;   \/* unsigned - 64 bits *\/$/;"	t
+S8	vzwCommonDef.h	/^typedef char            S8;       \/* signed - 8 bits *\/$/;"	t
+SAGT_LOG	vzw_log_interface.h	65;"	d
+STATIC	vzwCommonDef.h	26;"	d
+TENB_L2_PROC_ID	vzw_log_soc.h	9;"	d
+THREAD_DATA	vzw_log.h	/^} THREAD_DATA;$/;"	t	typeref:struct:__anon4
+TRUE	vzwCommonDef.h	15;"	d
+U16	vzwCommonDef.h	/^typedef unsigned short int    U16;      \/* unsigned - 16 bits *\/$/;"	t
+U32	vzwCommonDef.h	/^typedef unsigned int   U32;      \/* unsigned - 32 bits *\/$/;"	t
+U64	vzwCommonDef.h	/^typedef unsigned long long U64;   \/* unsigned - 64 bits *\/$/;"	t
+U8	vzwCommonDef.h	/^typedef unsigned char   U8;       \/* unsigned - 8 bits *\/$/;"	t
+VZW_ALLOC	vzwCommonDef.h	70;"	d
+VZW_ALLOC	vzwCommonDef.h	78;"	d
+VZW_FAILURE	vzwCommonDef.h	18;"	d
+VZW_FREE	vzwCommonDef.h	127;"	d
+VZW_FREE	vzwCommonDef.h	132;"	d
+VZW_GET_MEM	vzwCommonDef.h	171;"	d
+VZW_GET_MEM	vzwCommonDef.h	179;"	d
+VZW_INVAL	vzwCommonDef.h	20;"	d
+VZW_LOG0	vzw_log_interface.h	81;"	d
+VZW_LOG1	vzw_log_interface.h	82;"	d
+VZW_LOG2	vzw_log_interface.h	83;"	d
+VZW_LOG3	vzw_log_interface.h	84;"	d
+VZW_LOG4	vzw_log_interface.h	85;"	d
+VZW_LOG_CIRBUF_READ_INTERVAL	vzw_log.h	30;"	d
+VZW_LOG_COUNT_LIMIT_START	vzw_log.h	/^   VZW_LOG_COUNT_LIMIT_START = 1,$/;"	e	enum:vzw_LogCntLmt
+VZW_LOG_COUNT_LIMIT_STOP	vzw_log.h	/^   VZW_LOG_COUNT_LIMIT_STOP$/;"	e	enum:vzw_LogCntLmt
+VZW_LOG_FILE_ID	vzw_log_interface.h	/^STATIC S32 VZW_LOG_FILE_ID = 6;$/;"	v
+VZW_LOG_FIXED_LENGTH_BUFFER_SIZE	vzw_log.h	34;"	d
+VZW_LOG_LIMIT_L3_COUNT	vzw_log_soc.h	10;"	d
+VZW_LOG_MAX_CIRBUF_SIZE	vzw_log.h	31;"	d
+VZW_LOG_MAX_STACK_DEPTH	vzw_log.h	37;"	d
+VZW_LOG_MAX_TAX_NAME	vzw_log.h	28;"	d
+VZW_LOG_MAX_THREADS	vzw_log.h	29;"	d
+VZW_LOG_MAX_TIME_STAMP	vzw_log.h	32;"	d
+VZW_LOG_MAX_TIME_STAMP	vzw_log.h	38;"	d
+VZW_LOG_MODULE_ID	vzw_log_interface.h	/^STATIC S32 VZW_LOG_MODULE_ID = 16;$/;"	v
+VZW_LOG_MODULE_NAME	vzw_log_interface.h	/^STATIC const char* VZW_LOG_MODULE_NAME = "VZW_AGENT";$/;"	v
+VZW_LOG_READ_POS_THRESHOLD	vzw_log.h	35;"	d
+VZW_LOG_REMOTE_LOGGING_PORT	vzw_log.h	36;"	d
+VZW_LOG_SEGFAULT_STR	vzw_log_common.h	70;"	d
+VZW_LOG_TIME_ZONE_LEN	vzw_log.h	33;"	d
+VZW_LogCntLmt	vzw_log.h	/^}VZW_LogCntLmt;$/;"	t	typeref:enum:vzw_LogCntLmt
+VZW_MAX_LOG_FILES	vzw_log.h	27;"	d
+VZW_MEM_CPY	vzwCommonDef.h	159;"	d
+VZW_MEM_FAILED	vzwCommonDef.h	21;"	d
+VZW_SET_ZERO	vzwCommonDef.h	121;"	d
+VZW_SKIP	vzwCommonDef.h	19;"	d
+VZW_SUCCESS	vzwCommonDef.h	17;"	d
+Void	vzwCommonDef.h	/^typedef void            Void;$/;"	t
+__FILENAME__	vzw_log_interface.h	61;"	d
+__VZW_COMMON_DEFINITIONS_H__	vzwCommonDef.h	2;"	d
+__VZW_COMMON_H__	vzw_log_common.h	3;"	d
+__VZW_H__	vzw_log.h	8;"	d
+__VZW_LOG_INTERFACE_H__	vzw_log_interface.h	8;"	d
+__VZW_LOG_PLATFORM_H__	vzw_log_platform.h	2;"	d
+__VZW_LOG_SOC_H__	vzw_log_soc.h	6;"	d
+__VZW_READ_CONFIG_H__	vzw_read_config.h	2;"	d
+_endian	vzw_log.h	/^typedef enum _endian {little_endian, big_endian} EndianType;$/;"	g
+addr	vzw_log.h	/^      struct sockaddr_in addr;$/;"	m	union:cmInetCmnSockAddr::__anon5	typeref:struct:cmInetCmnSockAddr::__anon5::sockaddr_in
+addr6	vzw_log.h	/^      struct sockaddr_in6 addr6;$/;"	m	union:cmInetCmnSockAddr::__anon5	typeref:struct:cmInetCmnSockAddr::__anon5::sockaddr_in6
+arg1	vzw_log.h	/^        U32 arg1;$/;"	m	struct:__anon8
+arg2	vzw_log.h	/^        U32 arg2;$/;"	m	struct:__anon8
+arg3	vzw_log.h	/^        U32 arg3;$/;"	m	struct:__anon8
+arg4	vzw_log.h	/^        U32 arg4;$/;"	m	struct:__anon8
+argType	vzw_log.h	/^        U16 argType    :2;$/;"	m	struct:__anon7
+big_endian	vzw_log.h	/^typedef enum _endian {little_endian, big_endian} EndianType;$/;"	e	enum:_endian
+cmInetCmnSockAddr	vzw_log.h	/^typedef struct cmInetCmnSockAddr$/;"	s
+dummy32	vzw_log.h	/^        U32                     dummy32;$/;"	m	struct:__anon3
+endianType	vzw_log.h	/^        U8                      endianType;$/;"	m	struct:__anon3
+len	vzw_log.h	/^        U16                     len;$/;"	m	struct:__anon7
+len	vzw_log.h	/^   U32 len;$/;"	m	struct:cmInetCmnSockAddr
+listIndex	vzw_log.h	/^        U8      listIndex;      		\/* Index to global list *\/$/;"	m	struct:__anon4
+little_endian	vzw_log.h	/^typedef enum _endian {little_endian, big_endian} EndianType;$/;"	e	enum:_endian
+logBufLen	vzw_log.h	/^        U32     logBufLen;  			\/* Data Written till now *\/$/;"	m	struct:__anon4
+logBuff	vzw_log.h	/^        U8*     logBuff;                	\/* LOG Buffer *\/$/;"	m	struct:__anon4
+logData	vzw_log.h	/^        LOGDATA logData;$/;"	m	struct:__anon8
+logId	vzw_log.h	/^        LOGID                   logId;          \/* 4 bytes | 32 bits *\/$/;"	m	struct:__anon7
+logLevel	vzw_log.h	/^        U16 logLevel   :3;$/;"	m	struct:__anon7
+logReadPos	vzw_log.h	/^        U32     logReadPos; 			\/* Reader thread position *\/$/;"	m	struct:__anon4
+logTime	vzw_log.h	/^        LOGTIME         logTime;                \/* 8 bytes *\/$/;"	m	struct:__anon7
+ms_tti	vzw_log.h	/^        U32     ms_tti;$/;"	m	struct:__anon6
+numOfArgs	vzw_log.h	/^        U16 numOfArgs  :3;$/;"	m	struct:__anon7
+szTaskName	vzw_log.h	/^        S8    szTaskName[VZW_LOG_MAX_TAX_NAME];$/;"	m	struct:__anon4
+szTimeZone	vzw_log.h	/^	S8                      szTimeZone[VZW_LOG_TIME_ZONE_LEN+1];$/;"	m	struct:__anon3
+time_sec	vzw_log.h	/^   time_t      time_sec;$/;"	m	struct:__anon3
+tv_sec	vzw_log.h	/^        time_t tv_sec;$/;"	m	struct:__anon6
+type	vzw_log.h	/^   U32 type;$/;"	m	struct:cmInetCmnSockAddr
+u	vzw_log.h	/^   }u;$/;"	m	struct:cmInetCmnSockAddr	typeref:union:cmInetCmnSockAddr::__anon5
+unusedByte	vzw_log.h	/^        S8 unusedByte[19]; \/* To make it as 50 byte *\/$/;"	m	struct:__anon8
+version	vzw_log.h	/^        U16                     version;$/;"	m	struct:__anon3
+vzwGlblMemAllocFilePtr	vzwCommonDef.h	/^EXTERN FILE *vzwGlblMemAllocFilePtr, *vzwGlblMemFreeFilePtr;$/;"	v
+vzwGlblMemAllocIndx	vzwCommonDef.h	/^EXTERN U32 vzwGlblMemAllocIndx, vzwGlblMemFreeIndx;$/;"	v
+vzwGlblMemFreeFilePtr	vzwCommonDef.h	/^EXTERN FILE *vzwGlblMemAllocFilePtr, *vzwGlblMemFreeFilePtr;$/;"	v
+vzwGlblMemFreeIndx	vzwCommonDef.h	/^EXTERN U32 vzwGlblMemAllocIndx, vzwGlblMemFreeIndx;$/;"	v
+vzw_LogCntLmt	vzw_log.h	/^typedef enum vzw_LogCntLmt$/;"	g
+vzw_logLevel	vzw_log.h	/^EXTERN S32 vzw_logLevel;           \/\/L_MAX_LOG_LEVEL;$/;"	v
+vzw_modMask	vzw_log.h	/^EXTERN U32 vzw_modMask;$/;"	v

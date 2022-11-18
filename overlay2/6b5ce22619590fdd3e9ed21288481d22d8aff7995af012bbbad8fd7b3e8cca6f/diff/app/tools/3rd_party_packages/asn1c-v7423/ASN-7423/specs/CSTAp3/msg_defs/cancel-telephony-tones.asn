@@ -1,0 +1,37 @@
+CSTA-cancel-telephony-tones
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) cancel-telephony-tones( 231) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CSTACommonArguments FROM CSTA-extension-types 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+cancelTelephonyTones OPERATION ::=
+{	ARGUMENT		CancelTelephonyTonesArgument
+	RESULT			CancelTelephonyTonesResult
+	ERRORS			{universalFailure }
+	CODE			local: 231 }
+
+CancelTelephonyTonesArgument ::= SEQUENCE
+{	connectionToStopTone		ConnectionID,
+	extensions			CSTACommonArguments		OPTIONAL } 
+
+CancelTelephonyTonesResult ::= CHOICE
+{	extensions			CSTACommonArguments,
+	noData				NULL }
+
+END  -- of CSTA-cancel-telephony-tones

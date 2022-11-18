@@ -1,0 +1,27 @@
+Extensions DEFINITIONS 
+AUTOMATIC TAGS
+::= 
+
+BEGIN
+
+
+PersonnelRecord ::= SET {
+	name		BIT STRING (CONTAINING Name),
+   title	   IA5String,   
+   number		EmployeeNumber,
+   dateOfHire  Date,
+   nameOfSpouse OCTET STRING (CONTAINING Name)
+}
+
+
+Name ::= SEQUENCE {
+   givenName	IA5String,
+   initial	IA5String,
+   familyName	IA5String
+}
+
+EmployeeNumber ::= INTEGER
+
+Date ::= IA5String
+
+END

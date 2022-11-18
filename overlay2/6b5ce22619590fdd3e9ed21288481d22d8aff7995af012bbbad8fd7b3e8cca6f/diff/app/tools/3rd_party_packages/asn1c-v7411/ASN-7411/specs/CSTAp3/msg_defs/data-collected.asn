@@ -1,0 +1,84 @@
+CSTA-data-collected
+{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) data-collected( 343) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+ConnectionInformation FROM CSTA-media-services
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) media-services( 136) }
+DcollCrossRefID FROM CSTA-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+	standard( 0) csta3( 285) data-collection( 138) };
+
+dataCollected OPERATION ::=
+{	ARGUMENT 		DataCollectedArgument
+	RESULT 			DataCollectedResult
+	ERRORS 			{universalFailure }
+	CODE			local: 343 }
+
+DataCollectedArgument ::= SEQUENCE
+{	dcollCrossRefID			DcollCrossRefID,
+	digitsData			[0] IMPLICIT DigitsData			OPTIONAL,
+	telTonesData			[1] IMPLICIT TelTonesData		OPTIONAL,
+	connectionInformation		[2] IMPLICIT ConnectionInformation	OPTIONAL,
+	dcollCause			DcollCause				OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+DataCollectedResult ::= CHOICE
+{	extensions 			CSTACommonArguments,
+	noData 				NULL }
+
+DigitsData ::= SEQUENCE
+{	digitsDetected			IA5String (SIZE(0..64)),
+	digitsDuration			[0] IMPLICIT SEQUENCE OF INTEGER	OPTIONAL,
+	digitsPauseDuration		[1] IMPLICIT SEQUENCE OF INTEGER	OPTIONAL }
+
+TelTonesData ::= SEQUENCE
+{	toneDetected			ToneDetected,
+	toneFrequency			[0] IMPLICIT INTEGER			OPTIONAL,
+	toneDuration			[1] IMPLICIT INTEGER			OPTIONAL,
+	tonePauseDuration		[2] IMPLICIT INTEGER			OPTIONAL }
+
+ToneDetected ::= ENUMERATED
+{	beep				( 0),
+	billing				( 1),
+	busy				( 2),
+	carrier				( 3),
+	confirmation			( 4),
+	dial				( 5),
+	faxCNG				( 6),
+	hold				( 7),
+	howler				( 8),
+	intrusion			( 9),
+	modemCNG			(10),
+	park				(11),
+	recordWarning			(12),
+	reorder				(13),
+	ringback			(14),
+	silence				(15),
+	sitVC				(16),
+	sitIC				(17),
+	sitRO				(18),
+	sitNC				(19),
+	other				(20) }
+
+DcollCause ::= ENUMERATED
+{	flushCharReceived		( 0),
+	charCountReached		( 1),
+	timeout				( 2),
+	sfTerminated			( 3) }
+
+END -- of CSTA-data-collected

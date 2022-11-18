@@ -1,0 +1,54 @@
+CSTA-park-call
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) park-call( 18) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types –-
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+CorrelatorData FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+SubjectOfCall,LanguagePreferences FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CallLinkageData FROM CSTA-call-control
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-control( 130) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+parkCall OPERATION ::=
+{ 	ARGUMENT 		ParkCallArgument
+	RESULT 			ParkCallResult
+	ERRORS 			{universalFailure }
+	CODE 			local: 18 }
+
+ParkCallArgument ::= SEQUENCE
+{ 	parking				ConnectionID,
+	parkTo				DeviceID,
+	correlatorData 			CorrelatorData 				OPTIONAL, 
+	subjectOfCall			[0] IMPLICIT SubjectOfCall		OPTIONAL,
+	languagePreferences		[1] IMPLICIT LanguagePreferences	OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+ParkCallResult ::= SEQUENCE
+{ 	parkedTo 			ConnectionID 				OPTIONAL,
+	callLinkageData 		[1] IMPLICIT CallLinkageData 		OPTIONAL,
+	extensions 			CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-park-call

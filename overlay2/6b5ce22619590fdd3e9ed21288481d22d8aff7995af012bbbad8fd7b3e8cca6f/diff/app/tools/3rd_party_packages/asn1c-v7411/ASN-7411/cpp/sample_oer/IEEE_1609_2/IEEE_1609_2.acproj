@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>../../../specs/IEEE_1609_2/1609dot2-P2P.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/1609dot2-base-types.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/1609dot2-schema.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/crl-base-types.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/crl-protocol.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/crl-ssp.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/wsa-protocol.asn</UTF8String>
+      <UTF8String>../../../specs/IEEE_1609_2/wsa-ssp.asn</UTF8String>
+   </schemas>
+   <language>
+      <cpp/>
+   </language>
+   <ruleset>
+      <oer/>
+   </ruleset>
+   <basicOptions>
+      <importDirs>
+         <UTF8String>../../../specs/IEEE_1609_2</UTF8String>
+      </importDirs>
+      <pdu>Certificate</pdu>
+      <printOut/>
+      <trace/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp>
+         <free/>
+      </ccpp>
+   </languageOpts>
+</ASN1COptions>

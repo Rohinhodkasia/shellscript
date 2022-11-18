@@ -1,0 +1,59 @@
+CSTA-get-physical-device-information
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-physical-device-information( 202) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+MonitorFilter FROM CSTA-status-reporting
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) status-reporting( 126) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+DeviceCategory, GroupDeviceAttributes, NamedDeviceTypes, PhysDevServList, PhysDevEvtsList
+FROM CSTA-capability-exchange
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) capability-exchange( 131) };
+
+getPhysicalDeviceInformation OPERATION ::=
+{ 	ARGUMENT 		GetPhysicalDeviceInformationArgument
+	RESULT 			GetPhysicalDeviceInformationResult
+	ERRORS 			{universalFailure }
+	CODE 			local:202 }
+
+GetPhysicalDeviceInformationArgument ::= SEQUENCE
+{ 	device 					DeviceID,
+	extensions 				CSTACommonArguments 			OPTIONAL }
+
+GetPhysicalDeviceInformationResult ::= SEQUENCE
+{ 	deviceCategory 				[ 0] IMPLICIT DeviceCategory 		DEFAULT station,
+	groupDeviceAttributes 			[ 1] IMPLICIT GroupDeviceAttributes 	OPTIONAL,
+	namedDeviceTypes 			[ 2] IMPLICIT NamedDeviceTypes 		OPTIONAL,
+	hasLogicalElement 			BOOLEAN,
+	otherLogicalDeviceList 			[ 3] IMPLICIT SEQUENCE OF DeviceID 	OPTIONAL,
+	deviceModelName 			[ 4] IMPLICIT IA5String (SIZE(0..64))	OPTIONAL,
+	deviceOnDeviceMonitorFilter 		[ 5] IMPLICIT MonitorFilter 		OPTIONAL,
+	deviceOnConnectionMonitorFilter 	[ 6] IMPLICIT MonitorFilter 		OPTIONAL,
+	callOnDeviceMonitorFilter 		[ 7] IMPLICIT MonitorFilter 		OPTIONAL,
+	callOnConnectionMonitorFilter 		[ 8] IMPLICIT MonitorFilter 		OPTIONAL,
+	maxDisplays 				[ 9] IMPLICIT INTEGER 			OPTIONAL,
+	maxButtons 				[10] IMPLICIT INTEGER 			OPTIONAL,
+	maxLamps 				[11] IMPLICIT INTEGER 			OPTIONAL,
+	maxRingPatterns 			[12] IMPLICIT INTEGER 			OPTIONAL,
+	physDevServList 			[13] IMPLICIT PhysDevServList 		OPTIONAL,
+	physDevEvtsList 			[14] IMPLICIT PhysDevEvtsList 		OPTIONAL,
+	extensions 				CSTACommonArguments 			OPTIONAL }
+
+END -- of CSTA-get-physical-device-information

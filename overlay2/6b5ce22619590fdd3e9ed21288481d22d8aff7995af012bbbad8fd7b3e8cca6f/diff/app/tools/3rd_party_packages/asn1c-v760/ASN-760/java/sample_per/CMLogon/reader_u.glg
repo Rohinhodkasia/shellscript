@@ -1,0 +1,223 @@
+ACSE decode was successful
+acse {
+   aarq {
+      protocol_version = (version1(1))
+      application_context_name = { 1 3 27 3 1 }
+      calling_AP_title {
+         ap_title_form2 = { 1 3 27 1 500 0 }
+      }
+      calling_AE_qualifier {
+         ae_qualifier_form2 = 1
+      }
+      user_information [0] {
+         encoding {
+            arbitrary = 
+0x04 0x3A 0xB0 0x5C 0xB0 0x62 0x82 0x84 0x72 0x60 0x62 0x1A 0x1A 0x1A 0x18 0x1C
+0x98 0x18 0x1C 0x98 0x18 0xC9 0x72 0x60 0xC4 0x93 0x6A 0x25 0011xxxx
+         }
+      }
+   }
+}
+
+Binary trace:
+acse.extbit
+0------- -------- -------- --------     --------    ----                      
+
+acse.index
+-000---- -------- -------- --------     --------    ----                      
+
+acse.aarq extbit
+----0--- -------- -------- --------     --------    ----                      
+
+acse.aarq protocol_versionPresent
+-----0-- -------- -------- --------     --------    ----                      
+
+acse.aarq called_AP_titlePresent
+------0- -------- -------- --------     --------    ----                      
+
+acse.aarq called_AE_qualifierPresent
+-------0 -------- -------- --------     00------    .---                      
+
+acse.aarq called_AP_invocation_identifierPresent
+-------- 0------- -------- --------     --------    ----                      
+
+acse.aarq called_AE_invocation_identifierPresent
+-------- -0------ -------- --------     --------    ----                      
+
+acse.aarq calling_AP_titlePresent
+-------- --1----- -------- --------     --------    ----                      
+
+acse.aarq calling_AE_qualifierPresent
+-------- ---1---- -------- --------     --------    ----                      
+
+acse.aarq calling_AP_invocation_identifierPresent
+-------- ----0--- -------- --------     --------    ----                      
+
+acse.aarq calling_AE_invocation_identifierPresent
+-------- -----0-- -------- --------     --------    ----                      
+
+acse.aarq sender_acse_requirementsPresent
+-------- ------0- -------- --------     --------    ----                      
+
+acse.aarq mechanism_namePresent
+-------- -------0 -------- --------     --30----    -0--                      
+
+acse.aarq calling_authentication_valuePresent
+-------- -------- 0------- --------     --------    ----                      
+
+acse.aarq application_context_name_listPresent
+-------- -------- -0------ --------     --------    ----                      
+
+acse.aarq implementation_informationPresent
+-------- -------- --0----- --------     --------    ----                      
+
+acse.aarq user_informationPresent
+-------- -------- ---1---- --------     --------    ----                      
+
+acse.aarq.application_context_name len >= 128
+-------- -------- ----0--- --------     --------    ----                      
+
+acse.aarq.application_context_name length
+-------- -------- -----000 0100----     ----10--    --.-                      
+
+acse.aarq.application_context_name value
+-------- -------- -------- ----0010     ------42    ---B                      
+10110001 10110000 00110000 0001----     b1b030--    ..0-                      
+
+acse.aarq.calling_AP_title extbit
+-------- -------- -------- ----0---     --------    ----                      
+
+acse.aarq.calling_AP_title index
+-------- -------- -------- -----0--     --------    ----                      
+
+acse.aarq.calling_AP_title.ap_title_form2 len >= 128
+-------- -------- -------- ------0-     --------    ----                      
+
+acse.aarq.calling_AP_title.ap_title_form2 length
+-------- -------- -------- -------0     ------10    ---.                      
+000110-- -------- -------- --------     --------    ----                      
+
+acse.aarq.calling_AP_title.ap_title_form2 value
+------00 10101100 01101100 00000110     18ac6c06    ..l.                      
+00001101 11010000 000000-- --------     0dd0----    ..--                      
+
+acse.aarq.calling_AE_qualifier extbit
+-------- -------- ------0- --------     --------    ----                      
+
+acse.aarq.calling_AE_qualifier index
+-------- -------- -------0 --------     ----00--    --.-                      
+
+acse.aarq.calling_AE_qualifier.ae_qualifier_form2 len >= 128
+-------- -------- -------- 0-------     --------    ----                      
+
+acse.aarq.calling_AE_qualifier.ae_qualifier_form2 length
+-------- -------- -------- -0000001     ------01    ---.                      
+
+acse.aarq.calling_AE_qualifier.ae_qualifier_form2 value
+00000001 -------- -------- --------     01------    .---                      
+
+acse.aarq.user_information extbit
+-------- 0------- -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0] direct_referencePresent
+-------- -0------ -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0] indirect_referencePresent
+-------- --0----- -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0] data_value_descriptorPresent
+-------- ---0---- -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0].encoding index
+-------- ----10-- -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0].encoding.arbitrary len >= 128
+-------- ------1- -------- --------     --------    ----                      
+
+acse.aarq.user_information.elements[0].encoding.arbitrary len >= 16k
+-------- -------0 -------- --------     --0a----    -.--                      
+
+acse.aarq.user_information.elements[0].encoding.arbitrary length
+-------- -------- 00000011 100100--     ----03--    --.-                      
+
+acse.aarq.user_information.elements[0].encoding.arbitrary value
+-------- -------- -------- ------00     ------90    ---.                      
+00010000 11101010 11000001 01110010     10eac172    ...r                      
+11000001 10001010 00001010 00010001     c18a0a11    ....                      
+11001001 10000001 10001000 01101000     c9818868    ...h                      
+01101000 01101000 01100000 01110010     68686072    hh`r                      
+01100000 01100000 01110010 01100000     60607260    ``r`                      
+01100011 00100101 11001001 10000011     6325c983    c%..                      
+00010010 01001101 10101000 10010100     124da894    .M..                      
+11------ -------- -------- --------     --------    ----                      
+
+CMAircraftMessage decode was successful
+cmAircraftMessage {
+   cmLogonRequest {
+      aircraftFlightIdentification = UA901
+      cMLongTSAP {
+         rDP = 4142393031
+         shortTsap {
+            locSysNselTsel = 34343430393030393031
+         }
+      }
+      facilityDesignation = KIADIZDS
+   }
+}
+
+Binary trace:
+cmAircraftMessage.extbit
+0------- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.index
+-00----- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest groundInitiatedApplicationsPresent
+---0---- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest airOnlyInitiatedApplicationsPresent
+----0--- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest facilityDesignationPresent
+-----1-- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest airportDeparturePresent
+------0- -------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest airportDestinationPresent
+-------0 -------- -------- --------     04------    .---                      
+
+cmAircraftMessage.cmLogonRequest dateTimeDepartureETDPresent
+-------- 0------- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.aircraftFlightIdentification length
+-------- -011---- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.aircraftFlightIdentification value
+-------- ----1010 10110000 01011100     --3ab05c    -:.\                      
+10110000 0110001- -------- --------     b0------    .---                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.rDP value
+-------- -------0 10000010 10000100     --628284    -b..                      
+01110010 01100000 0110001- --------     7260----    r`--                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap aRSPresent
+-------- -------- -------0 --------     ----62--    --b-                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap.locSysNselTsel length
+-------- -------- -------- 0-------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.cMLongTSAP.shortTsap.locSysNselTsel value
+-------- -------- -------- -0011010     ------1a    ---.                      
+00011010 00011010 00011000 00011100     1a1a181c    ....                      
+10011000 00011000 00011100 10011000     98181c98    ....                      
+00011000 1------- -------- --------     18------    .---                      
+
+cmAircraftMessage.cmLogonRequest.facilityDesignation length
+-------- -100---- -------- --------     --------    ----                      
+
+cmAircraftMessage.cmLogonRequest.facilityDesignation value
+-------- ----1001 01110010 01100000     --c97260    -.r`                      
+11000100 10010011 01101010 00100101     c4936a25    ..j%                      
+0011---- -------- -------- --------     --------    ----                      
+

@@ -1,0 +1,21 @@
+SkipElements DEFINITIONS AUTOMATIC TAGS
+
+::=
+
+
+BEGIN
+
+PDU ::= SEQUENCE {
+   firstName UTF8String,
+   lastName UTF8String,
+   details Details
+}
+
+Details ::= SEQUENCE
+{
+   birthYear INTEGER,
+   numChildren INTEGER,
+   favoriteColor UTF8String
+}
+
+END

@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Test:testType xmlns:asn1="http://www.obj-sys.com/v1.0/XMLSchema/asn1.xsd" xmlns:Test="http://www.obj-sys.com/Test">
+      <Test:utc>2003-09-22T19:05:38-04:00</Test:utc>
+      <Test:utc1>2004-02-29T19:05:38Z</Test:utc1>
+      <Test:gtc>2004-09-22T19:05:38.3141+04:30</Test:gtc>
+      <Test:gtc1>2004-02-29T19:05:38.3141Z</Test:gtc1>
+      <Test:nullval/>
+      <Test:bs3>zero a b c</Test:bs3>
+      <Test:bs1>zero a b c</Test:bs1>
+      <Test:bs0>101010100101010011111110101010000101001011111100101001100101000011111010101001</Test:bs0>
+      <Test:bs2/>
+      <Test:val1>21</Test:val1>
+      <Test:val2>22</Test:val2>
+      <Test:enum>yes</Test:enum>
+      <Test:real>3.14159E0</Test:real>
+      <Test:nan>NaN</Test:nan>
+      <Test:boolean>true</Test:boolean>
+      <Test:Name>
+            <Test:givenName>John</Test:givenName>
+            <Test:initial>P</Test:initial>
+            <Test:familyName>Smith</Test:familyName>
+      </Test:Name>
+      <Test:seqofEnum>married single divorced children</Test:seqofEnum>
+      <Test:bsseqof1>110011001001100001100100001100001111110 100110000011000011001000011000001111100 011001001100100000101100100100001111010 001100000110000010010000110000001111000</Test:bsseqof1>
+      <Test:bsseqof2>
+            <Test:BIT_STRING>zero1 a1 c1</Test:BIT_STRING>
+            <Test:BIT_STRING>zero1 b1</Test:BIT_STRING>
+            <Test:BIT_STRING>a1 c1</Test:BIT_STRING>
+            <Test:BIT_STRING>b1</Test:BIT_STRING>
+      </Test:bsseqof2>
+      <Test:osseqof1>CC986430FC 9830C860F8 64C82C90F4 306090C0F0</Test:osseqof1>
+      <Test:csseqof1>
+            <Test:IA5String>Objective</Test:IA5String>
+            <Test:IA5String>Systems</Test:IA5String>
+            <Test:IA5String>Inc.</Test:IA5String>
+      </Test:csseqof1>
+      <Test:rseqof>1.0E0 3.14159E0 2.0E-2 0 -INF NaN INF 0</Test:rseqof>
+      <Test:bseqof>false true true false true</Test:bseqof>
+      <Test:iseqof>0 1 2 3 4</Test:iseqof>
+      <Test:iseqof1>0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19</Test:iseqof1>
+      <Test:iseqof2>1 2 3 4 5</Test:iseqof2>
+      <Test:seqofChoice>
+            <Test:ChoiceType>
+                  <Test:e1>1</Test:e1>
+            </Test:ChoiceType>
+            <Test:ChoiceType>
+                  <Test:e2>String data</Test:e2>
+            </Test:ChoiceType>
+            <Test:ChoiceType>
+                  <Test:e3>
+                        <Test:givenName>Art</Test:givenName>
+                        <Test:initial>S</Test:initial>
+                        <Test:familyName>Bolgar</Test:familyName>
+                  </Test:e3>
+            </Test:ChoiceType>
+      </Test:seqofChoice>
+      <Test:children>
+            <Test:ChildInformation>
+                  <Test:Name>
+                        <Test:givenName>Ralph</Test:givenName>
+                        <Test:initial>T</Test:initial>
+                        <Test:familyName>Smith</Test:familyName>
+                  </Test:Name>
+                  <Test:dateOfBirth>19571111</Test:dateOfBirth>
+            </Test:ChildInformation>
+            <Test:ChildInformation>
+                  <Test:Name>
+                        <Test:givenName>Susan</Test:givenName>
+                        <Test:initial>B</Test:initial>
+                        <Test:familyName>Jones</Test:familyName>
+                  </Test:Name>
+                  <Test:dateOfBirth>19590717</Test:dateOfBirth>
+            </Test:ChildInformation>
+      </Test:children>
+</Test:testType>

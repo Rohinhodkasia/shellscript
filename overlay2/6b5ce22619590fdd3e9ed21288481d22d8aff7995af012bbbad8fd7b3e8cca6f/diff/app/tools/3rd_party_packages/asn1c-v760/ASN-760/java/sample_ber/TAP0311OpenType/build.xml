@@ -1,0 +1,63 @@
+<project>
+
+   <!-- Build classpath -->
+   <path id="compile.classpath">
+      <pathelement location="..\..\asn1rt.jar"/>
+      <pathelement location="..\..\xmlpull\kxml2-2.3.0.tiny.jar"/>
+      <pathelement location="..\..\.."/>
+      <pathelement location="..\.."/>
+      <pathelement location="."/>
+   </path>
+
+   <!-- Code generation -->
+   <target name="generate">
+      <exec executable="..\..\..\bin\asn1c" failonerror="true">
+         <arg value="TAP-0311.asn"/>
+         <arg value="-java"/>
+         <arg value="-ber"/>
+         <arg value="-xer"/>
+         <arg value="-print"/>
+         <arg value="-noUniqueNames"/>
+         <arg line="-pkgname sample_ber.TAP0311OpenType"/>
+         <arg value="-config"/>
+         <arg value="TAP3.cfg"/>
+      </exec>
+   </target>
+   
+   <target name="build" depends="generate,compile"/>
+   
+   <target name="compile">
+      <mkdir dir="..\TAP0311OpenType"/>
+      <javac includeantruntime="false" srcdir="..\TAP0311OpenType" destdir="..\TAP0311OpenType">
+         <classpath refid="compile.classpath"/>
+      </javac>
+   </target>
+
+   <target name="reader">
+      <java classname="sample_ber.TAP0311OpenType.Reader" output="reader.log" failonerror="true">
+         <classpath>
+            <path refid="compile.classpath"/>
+            <pathelement path="..\TAP0311OpenType"/>
+         </classpath>
+      </java>
+   </target>
+
+   
+   <target name="clean">
+      <delete includeemptydirs="true">
+         <fileset dir="..\TAP0311OpenType" defaultexcludes="false">
+            <include name="**/*.java"/>
+            <include name="**/*.class"/>
+            <exclude name="Reader.java"/>
+         </fileset>
+         <!-- delete any empty directories -->
+         <fileset dir="..\TAP0311OpenType" defaultexcludes="false">
+            <and>
+               <size value="0"/>
+               <type type="dir"/>
+            </and>
+         </fileset>
+      </delete>
+   </target>
+   
+</project>

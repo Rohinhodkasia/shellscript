@@ -1,0 +1,703 @@
+{
+    "transferBatch" : {
+        "batchControlInfo" : {
+            "sender" : "USA27",
+            "recipient" : "DEUD2",
+            "fileSequenceNumber" : "00272",
+            "fileCreationTimeStamp" : {
+                "localTimeStamp" : "20000307080756",
+                "utcTimeOffset" : "-0500"
+            },
+            "transferCutOffTimeStamp" : {
+                "localTimeStamp" : "20000307080751",
+                "utcTimeOffset" : "-0500"
+            },
+            "fileAvailableTimeStamp" : {
+                "localTimeStamp" : "20000307080756",
+                "utcTimeOffset" : "-0500"
+            },
+            "specificationVersionNumber" : 3,
+            "releaseVersionNumber" : 10
+        },
+        "accountingInfo" : {
+            "taxation" : [
+                {
+                    "taxCode" : 0,
+                    "taxType" : "03",
+                    "taxRate" : "0225343"
+                },
+                {
+                    "taxCode" : 1,
+                    "taxType" : "02",
+                    "taxRate" : "0600343"
+                }
+            ],
+            "localCurrency" : "USD",
+            "tapCurrency" : "USD",
+            "currencyConversionInfo" : [
+                {
+                    "exchangeRateCode" : 0,
+                    "numberOfDecimalPlaces" : 6,
+                    "exchangeRate" : 1000000
+                }
+            ],
+            "tapDecimalPlaces" : 2
+        },
+        "networkInfo" : {
+            "utcTimeOffsetInfo" : [
+                {
+                    "utcTimeOffsetCode" : 0,
+                    "utcTimeOffset" : "-0500"
+                }
+            ],
+            "recEntityInfo" : [
+                {
+                    "recEntityCode" : 0,
+                    "recEntityType" : 1,
+                    "recEntityId" : {
+                        "msisdn" : "0859426140"
+                    }
+                },
+                {
+                    "recEntityCode" : 1,
+                    "recEntityType" : 1,
+                    "recEntityId" : {
+                        "msisdn" : "0859426140"
+                    }
+                },
+                {
+                    "recEntityCode" : 2,
+                    "recEntityType" : 1,
+                    "recEntityId" : {
+                        "msisdn" : "0859426140"
+                    }
+                }
+            ],
+            "networkType" : 1,
+            "calledNumAnalysis" : [
+                {
+                    "countryCodeTable" : [
+                        "1"
+                    ],
+                    "iacTable" : [
+                        "011"
+                    ]
+                }
+            ]
+        },
+        "vasInfo" : [
+            {
+                "vasCode" : 1,
+                "vasShortDesc" : "Short",
+                "vasDesc" : "Description"
+            }
+        ],
+        "messageDescriptionInfo" : [
+            {
+                "messageDescriptionCode" : 1,
+                "messageDescription" : "Description"
+            }
+        ],
+        "callEventDetails" : [
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "31323334353637383930",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305203647",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 75
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 0,
+                            "locationArea" : 50020,
+                            "cellId" : 1751
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40100",
+                            "servingLocationDescription" : "Atlanta,GA"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 138,
+                                            "chargeableUnits" : 75,
+                                            "chargedUnits" : 120,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "03",
+                                            "charge" : 60,
+                                            "chargeableUnits" : 75,
+                                            "chargedUnits" : 75,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 198,
+                                            "chargeableUnits" : 75,
+                                            "chargedUnits" : 120,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "31313132323233333333",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305204005",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 22
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 0,
+                            "locationArea" : 50020,
+                            "cellId" : 1751
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40100",
+                            "servingLocationDescription" : "Atlanta,GA"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 69,
+                                            "chargeableUnits" : 22,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "03",
+                                            "charge" : 30,
+                                            "chargeableUnits" : 22,
+                                            "chargedUnits" : 22,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 99,
+                                            "chargeableUnits" : 22,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "34343435353536363636",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305204213",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 10
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 0,
+                            "locationArea" : 50020,
+                            "cellId" : 1752
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40100",
+                            "servingLocationDescription" : "Atlanta,GA"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 69,
+                                            "chargeableUnits" : 10,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "03",
+                                            "charge" : 30,
+                                            "chargeableUnits" : 10,
+                                            "chargedUnits" : 10,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 99,
+                                            "chargeableUnits" : 10,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "37373738383839393939",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305204411",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 7
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 0,
+                            "locationArea" : 50020,
+                            "cellId" : 1752
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40100",
+                            "servingLocationDescription" : "Atlanta,GA"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 69,
+                                            "chargeableUnits" : 7,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "03",
+                                            "charge" : 30,
+                                            "chargeableUnits" : 7,
+                                            "chargedUnits" : 7,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 99,
+                                            "chargeableUnits" : 7,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "30303031313132323232",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305212639",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 60
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 0,
+                            "locationArea" : 50030,
+                            "cellId" : 8542
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40110",
+                            "servingLocationDescription" : "Dalton,GA"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 69,
+                                            "chargeableUnits" : 60,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "03",
+                                            "charge" : 30,
+                                            "chargeableUnits" : 60,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 99,
+                                            "chargeableUnits" : 60,
+                                            "chargedUnits" : 60,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "33333334343435353535",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305222654",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 1
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 1,
+                            "locationArea" : 10510,
+                            "cellId" : 103
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "04756",
+                            "servingLocationDescription" : "Louisville,KY"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "22"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 5,
+                                            "chargeableUnits" : 1,
+                                            "chargedUnits" : 1,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 5,
+                                            "chargeableUnits" : 1,
+                                            "chargedUnits" : 1,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            },
+            {
+                "mobileOriginatedCall" : {
+                    "basicCallInformation" : {
+                        "chargeableSubscriber" : {
+                            "simChargeableSubscriber" : {
+                                "imsi" : "52103200103100",
+                                "msisdn" : "9720143100"
+                            }
+                        },
+                        "destination" : {
+                            "calledNumber" : "36363637373738383838",
+                            "dialledDigits" : "1100254876",
+                            "calledPlace" : "GERMANY"
+                        },
+                        "callEventStartTimeStamp" : {
+                            "localTimeStamp" : "20000305213334",
+                            "utcTimeOffsetCode" : 0
+                        },
+                        "totalCallEventDuration" : 617
+                    },
+                    "locationInformation" : {
+                        "networkLocation" : {
+                            "recEntityCode" : 2,
+                            "locationArea" : 30020,
+                            "cellId" : 1042
+                        },
+                        "geographicalLocation" : {
+                            "servingBid" : "40057",
+                            "servingLocationDescription" : "Jackson,MS"
+                        }
+                    },
+                    "equipmentInformation" : {
+                        "imeiOrEsn" : {
+                            "imei" : "94108301113465"
+                        }
+                    },
+                    "basicServiceUsedList" : [
+                        {
+                            "basicService" : {
+                                "serviceCode" : {
+                                    "teleServiceCode" : "11"
+                                },
+                                "radioChannelRequested" : 1,
+                                "radioChannelUsed" : 1
+                            },
+                            "chargeInformationList" : [
+                                {
+                                    "chargedItem" : "D",
+                                    "exchangeRateCode" : 0,
+                                    "callTypeGroup" : {
+                                        "calledCountryCode" : "I"
+                                    },
+                                    "chargeDetailList" : [
+                                        {
+                                            "chargeType" : "01",
+                                            "charge" : 759,
+                                            "chargeableUnits" : 617,
+                                            "chargedUnits" : 660,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        },
+                                        {
+                                            "chargeType" : "00",
+                                            "charge" : 759,
+                                            "chargeableUnits" : 617,
+                                            "chargedUnits" : 660,
+                                            "dayCategory" : "I",
+                                            "timeBand" : "I"
+                                        }
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                }
+            }
+        ],
+        "auditControlInfo" : {
+            "earliestCallTimeStamp" : {
+                "localTimeStamp" : "20000305203647",
+                "utcTimeOffset" : "-0500"
+            },
+            "latestCallTimeStamp" : {
+                "localTimeStamp" : "20000305222654",
+                "utcTimeOffset" : "-0500"
+            },
+            "totalChargeValueList" : [
+                {
+                    "chargeType" : "00",
+                    "totalCharge" : 1358
+                },
+                {
+                    "chargeType" : "01",
+                    "totalCharge" : 1178
+                },
+                {
+                    "chargeType" : "03",
+                    "totalCharge" : 180
+                }
+            ],
+            "totalTaxValue" : 63,
+            "totalDiscountValue" : 0,
+            "callEventDetailsCount" : 7
+        }
+    }
+}

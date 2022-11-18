@@ -1,0 +1,24 @@
+CSTA-auto-work-mode-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) auto-work-mode-event( 326) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+AutoWorkModeEvent ::= SEQUENCE
+{	invokingDevice 			SubjectDeviceID,
+	autoWorkOn			BOOLEAN,
+	autoWorkInterval		INTEGER,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-auto-work-mode-event

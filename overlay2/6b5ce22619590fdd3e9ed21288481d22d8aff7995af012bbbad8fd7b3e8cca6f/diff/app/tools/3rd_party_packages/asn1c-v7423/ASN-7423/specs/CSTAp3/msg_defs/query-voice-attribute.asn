@@ -1,0 +1,68 @@
+CSTA-query-voice-attribute
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) query-voice-attribute( 503) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ResourceID, AttributeInfo, MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+queryVoiceAttribute OPERATION ::=
+{	ARGUMENT		QueryVoiceAttributeArgument
+	RESULT			QueryVoiceAttributeResult
+	ERRORS			{universalFailure }
+	CODE			local: 503 }
+
+QueryVoiceAttributeArgument ::= SEQUENCE
+{	messageToQuery			MessageID,
+	attributeToQuery		AttributeToQuery, 
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	connection			ConnectionID				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+QueryVoiceAttributeResult ::= SEQUENCE
+{	attribute			AttributeInfo,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+
+AttributeToQuery ::= ENUMERATED
+{	encodingAlgorithm		( 0),
+	samplingRate			( 1),
+	duration			( 2),
+	fileName			( 3),
+	currentPosition			( 4),
+	currentSpeed			( 5),
+	currentVolume			( 6),
+	currentLevel			( 7),
+	currentState			( 8),
+	grammars			( 9),
+	language			(10),
+	mode				(11),
+	retainAudio			(12),
+	silenceTimeout			(13),
+	maxTimeout			(14),
+	babbleTimeout			(15),
+	endSilence			(16),
+	rejectionThreshold		(17),
+	autoInterruptible		(18),
+	innerXml			(19),
+	interDigitTimeout		(20),
+	preflush			(21) }
+
+END  -- of CSTA-query-voice-attribute

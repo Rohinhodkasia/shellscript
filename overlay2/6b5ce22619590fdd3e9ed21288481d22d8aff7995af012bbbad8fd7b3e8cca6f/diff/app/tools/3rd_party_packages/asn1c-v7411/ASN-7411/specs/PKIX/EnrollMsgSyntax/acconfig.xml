@@ -1,0 +1,8 @@
+<asn1config>
+  <includedir>../../cms2009</includedir>
+  <includedir>../../CMS</includedir>
+  <includedir>../../PKIX/AttrCert</includedir>
+  <includedir>../../PKIX/Common</includedir>
+  <includedir>../../PKIX/Certificate</includedir>
+  <includedir>../../PKIX/CRMF</includedir>
+</asn1config>

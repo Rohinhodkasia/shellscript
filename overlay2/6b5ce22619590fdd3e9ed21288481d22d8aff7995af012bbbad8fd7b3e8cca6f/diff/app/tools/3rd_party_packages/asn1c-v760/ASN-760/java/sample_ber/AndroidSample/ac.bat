@@ -1,0 +1,2 @@
+..\..\..\bin\asn1c asn1/employee.asn -o app/src/main/java/gen/Employee -java -ber -stream -print -pkgname gen.Employee
+..\..\..\bin\asn1c asn1/nbapSample.asn -dirs -o app/src/main/java/gen/nbap -java -tables -per -print -pkgpfx gen.nbap

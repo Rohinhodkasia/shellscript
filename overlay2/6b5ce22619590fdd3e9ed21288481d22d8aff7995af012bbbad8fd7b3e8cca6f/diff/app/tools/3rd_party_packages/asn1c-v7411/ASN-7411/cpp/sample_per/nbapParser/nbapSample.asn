@@ -1,0 +1,768 @@
+-- NOTE: This is a cut-down version of the NBAP ASN.1 specifications 
+-- for demonstration purposes only..
+-- **************************************************************
+--
+-- Elementary Procedure definitions
+--
+-- **************************************************************
+
+NBAP-PDU-Descriptions {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-PDU-Descriptions (0) }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+-- **************************************************************
+--
+-- IE parameter types from other modules.
+--
+-- **************************************************************
+
+IMPORTS
+	Criticality,
+	ProcedureID,
+	MessageDiscriminator,
+	TransactionID
+FROM NBAP-CommonDataTypes
+
+	RadioLinkSetupRequestFDD,
+	RadioLinkSetupRequestTDD,
+	RadioLinkSetupResponseFDD,
+	RadioLinkSetupResponseTDD,
+	RadioLinkSetupFailureFDD,
+	RadioLinkSetupFailureTDD
+FROM NBAP-PDU-Contents
+
+	id-radioLinkSetup
+FROM NBAP-Constants;
+
+-- **************************************************************
+--
+-- Interface Elementary Procedure Class
+--
+-- **************************************************************
+
+NBAP-ELEMENTARY-PROCEDURE ::= CLASS {
+    &InitiatingMessage					,
+    &SuccessfulOutcome					OPTIONAL,
+    &UnsuccessfulOutcome				OPTIONAL,
+    &Outcome						OPTIONAL,
+    &messageDiscriminator	MessageDiscriminator,
+    &procedureID		ProcedureID             UNIQUE,
+    &criticality		Criticality             DEFAULT ignore
+}
+WITH SYNTAX {
+    INITIATING MESSAGE		&InitiatingMessage
+    [SUCCESSFUL OUTCOME		&SuccessfulOutcome]
+    [UNSUCCESSFUL OUTCOME	&UnsuccessfulOutcome]
+    [OUTCOME			&Outcome]
+    MESSAGE DISCRIMINATOR	&messageDiscriminator
+    PROCEDURE ID		&procedureID
+    [CRITICALITY		&criticality]
+}
+
+-- **************************************************************
+--
+-- Interface PDU Definition
+--
+-- **************************************************************
+
+NBAP-PDU ::= CHOICE {
+    initiatingMessage		InitiatingMessage,
+    succesfulOutcome		SuccessfulOutcome,
+    unsuccesfulOutcome		UnsuccessfulOutcome,
+    outcome			Outcome,
+    ...
+}
+
+InitiatingMessage ::= SEQUENCE {
+    procedureID	NBAP-ELEMENTARY-PROCEDURE.&procedureID 
+    ({NBAP-ELEMENTARY-PROCEDURES}),
+
+    criticality	NBAP-ELEMENTARY-PROCEDURE.&criticality
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    messageDiscriminator NBAP-ELEMENTARY-PROCEDURE.&messageDiscriminator
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    transactionID TransactionID,
+
+    value NBAP-ELEMENTARY-PROCEDURE.&InitiatingMessage
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID})
+}
+
+SuccessfulOutcome ::= SEQUENCE {
+    procedureID NBAP-ELEMENTARY-PROCEDURE.&procedureID
+    ({NBAP-ELEMENTARY-PROCEDURES}),
+
+    criticality NBAP-ELEMENTARY-PROCEDURE.&criticality
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    messageDiscriminator NBAP-ELEMENTARY-PROCEDURE.&messageDiscriminator
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    transactionID TransactionID,
+
+    value NBAP-ELEMENTARY-PROCEDURE.&SuccessfulOutcome
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID})
+}
+
+UnsuccessfulOutcome ::= SEQUENCE {
+    procedureID NBAP-ELEMENTARY-PROCEDURE.&procedureID
+    ({NBAP-ELEMENTARY-PROCEDURES}),
+
+    criticality NBAP-ELEMENTARY-PROCEDURE.&criticality
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    messageDiscriminator NBAP-ELEMENTARY-PROCEDURE.&messageDiscriminator
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    transactionID TransactionID,
+
+    value NBAP-ELEMENTARY-PROCEDURE.&UnsuccessfulOutcome
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID})
+}
+
+Outcome ::= SEQUENCE {
+    procedureID NBAP-ELEMENTARY-PROCEDURE.&procedureID
+    ({NBAP-ELEMENTARY-PROCEDURES}),
+
+    criticality NBAP-ELEMENTARY-PROCEDURE.&criticality
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    messageDiscriminator NBAP-ELEMENTARY-PROCEDURE.&messageDiscriminator
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID}),
+
+    transactionID TransactionID,
+
+    value NBAP-ELEMENTARY-PROCEDURE.&Outcome
+    ({NBAP-ELEMENTARY-PROCEDURES}{@procedureID})
+}
+
+-- **************************************************************
+--
+-- Interface Elementary Procedure List
+--
+-- **************************************************************
+
+NBAP-ELEMENTARY-PROCEDURES NBAP-ELEMENTARY-PROCEDURE ::= {
+	NBAP-ELEMENTARY-PROCEDURES-CLASS-1			|
+	NBAP-ELEMENTARY-PROCEDURES-CLASS-2			,
+	...
+}
+
+NBAP-ELEMENTARY-PROCEDURES-CLASS-1 NBAP-ELEMENTARY-PROCEDURE ::= {
+	radioLinkSetupFDD					|
+	radioLinkSetupTDD					,
+	...
+}
+
+NBAP-ELEMENTARY-PROCEDURES-CLASS-2 NBAP-ELEMENTARY-PROCEDURE ::= {
+	...
+}
+
+-- **************************************************************
+--
+-- Interface Elementary Procedures
+--
+-- **************************************************************
+
+-- Class 1
+
+-- *** RadioLinkSetup (FDD) ***
+radioLinkSetupFDD NBAP-ELEMENTARY-PROCEDURE ::= {
+    INITIATING MESSAGE          RadioLinkSetupRequestFDD
+    SUCCESSFUL OUTCOME          RadioLinkSetupResponseFDD
+    UNSUCCESSFUL OUTCOME	RadioLinkSetupFailureFDD
+    MESSAGE DISCRIMINATOR	common
+    PROCEDURE ID 		{ procedureCode id-radioLinkSetup, ddMode fdd }
+    CRITICALITY 		reject
+}
+
+-- *** RadioLinkSetup (TDD) ***
+radioLinkSetupTDD NBAP-ELEMENTARY-PROCEDURE ::= {
+    INITIATING MESSAGE		RadioLinkSetupRequestTDD
+    SUCCESSFUL OUTCOME		RadioLinkSetupResponseTDD
+    UNSUCCESSFUL OUTCOME	RadioLinkSetupFailureTDD
+    MESSAGE DISCRIMINATOR	common
+    PROCEDURE ID 		{ procedureCode id-radioLinkSetup, ddMode tdd }
+    CRITICALITY 		reject
+}
+
+END
+	
+
+-- **************************************************************
+--
+-- PDU definitions for NBAP.
+--
+-- **************************************************************
+
+NBAP-PDU-Contents {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-PDU-Contents (1) }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+-- **************************************************************
+--
+-- IE parameter types from other modules.
+--
+-- **************************************************************
+
+IMPORTS
+	Cause,
+	ChipOffset,
+	C-ID,
+   RL-ID,
+   FirstRLS-Indicator,
+   ChipOffset,
+   DiversityControlField,
+   DL-Power,
+   SSDT-Cell-Identity,
+   TransmitDiversityIndicator,
+   FrameOffset,
+   PropagationDelay,
+   DL-ScramblingCode,
+   FDD-DL-ChannelisationCodeNumber,
+   TransmissionGapPatternSequenceCodeInformation
+FROM NBAP-IEs
+
+	PrivateIE-Container{},
+	ProtocolExtensionContainer{},
+	ProtocolIE-Container{},
+	ProtocolIE-Single-Container{},
+	ProtocolIE-ContainerList{},
+	NBAP-PRIVATE-IES,
+	NBAP-PROTOCOL-IES,
+	NBAP-PROTOCOL-EXTENSION
+FROM NBAP-Containers
+
+	id-RL-InformationItem-RL-SetupRqstFDD,
+	id-RL-InformationList-RL-SetupRqstFDD,
+	maxNrOfCodes, 
+        maxNrOfRLs
+FROM NBAP-Constants;
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP REQUEST FDD
+--
+-- **************************************************************
+
+RadioLinkSetupRequestFDD ::= SEQUENCE {
+    protocolIEs	ProtocolIE-Container {{RadioLinkSetupRequestFDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupRequestFDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupRequestFDD-IEs NBAP-PROTOCOL-IES ::= {
+{   ID                  id-RL-InformationList-RL-SetupRqstFDD
+    CRITICALITY         notify
+    TYPE                RL-InformationList-RL-SetupRqstFDD
+    PRESENCE            mandatory	} ,
+    ...
+}
+
+RadioLinkSetupRequestFDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+RL-InformationList-RL-SetupRqstFDD ::= SEQUENCE (SIZE (1..maxNrOfRLs)) OF
+    ProtocolIE-Single-Container{{ RL-InformationItemIE-RL-SetupRqstFDD }}
+
+RL-InformationItemIE-RL-SetupRqstFDD NBAP-PROTOCOL-IES ::= {
+    { ID                id-RL-InformationItem-RL-SetupRqstFDD
+    CRITICALITY         notify
+    TYPE                RL-InformationItem-RL-SetupRqstFDD
+    PRESENCE            mandatory }
+}
+
+RL-InformationItem-RL-SetupRqstFDD ::= SEQUENCE {
+    rL-ID		RL-ID,
+    c-ID		C-ID,
+    firstRLS-indicator	FirstRLS-Indicator,
+    frameOffset		FrameOffset,
+    chipOffset		ChipOffset,
+    propagationDelay	PropagationDelay			OPTIONAL,
+    diversityControlField  DiversityControlField		OPTIONAL,
+
+    -- This IE is present only if the RL is not the first one in the 
+    -- RL Information
+    dl-CodeInformationList  DL-CodeInformationList-RL-SetupRqstFDD,
+
+    initialDL-transmissionPower  DL-Power,
+    maximumDL-power	DL-Power,
+    minimumDL-power	DL-Power,
+    sSDT-Cell-Identity	SSDT-Cell-Identity			OPTIONAL,
+    transmitDiversityIndicator TransmitDiversityIndicator	OPTIONAL,
+
+    -- This IE is present unless Diversity Mode IE in UL DPCH 
+    -- Information group is "none"
+    iE-Extensions	ProtocolExtensionContainer 
+       { { RL-InformationItem-RL-SetupRqstFDD-ExtIEs} }		OPTIONAL,
+
+    ...
+}
+
+RL-InformationItem-RL-SetupRqstFDD-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+DL-CodeInformationList-RL-SetupRqstFDD ::= 
+SEQUENCE (SIZE (1..maxNrOfCodes)) OF DL-CodeInformationItem-RL-SetupRqstFDD
+
+DL-CodeInformationItem-RL-SetupRqstFDD ::= SEQUENCE {
+    dl-ScramblingCode	DL-ScramblingCode,
+    fdd-DL-ChannelisationCodeNumber FDD-DL-ChannelisationCodeNumber,
+    transmissionGapPatternSequenceCodeInformation
+       TransmissionGapPatternSequenceCodeInformation		OPTIONAL,
+    -- This IE is present only if Downlink compressed mode method is 
+    -- set to "SF/2'"in the Transmission Gap Pattern Sequence Information IE.
+    iE-Extensions ProtocolExtensionContainer 
+       { { DL-CodeInformationItem-RL-SetupRqstFDD-ExtIEs} }	OPTIONAL,
+    ...
+}
+
+DL-CodeInformationItem-RL-SetupRqstFDD-ExtIEs NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP REQUEST TDD
+--
+-- **************************************************************
+
+RadioLinkSetupRequestTDD ::= SEQUENCE {
+    protocolIEs	ProtocolIE-Container {{RadioLinkSetupRequestTDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupRequestTDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupRequestTDD-IEs NBAP-PROTOCOL-IES ::= {
+    ...
+}
+
+RadioLinkSetupRequestTDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP RESPONSE FDD
+--
+-- **************************************************************
+
+RadioLinkSetupResponseFDD ::= SEQUENCE {
+    protocolIEs ProtocolIE-Container {{RadioLinkSetupResponseFDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupResponseFDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupResponseFDD-IEs NBAP-PROTOCOL-IES ::= {
+    ...
+}
+
+RadioLinkSetupResponseFDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP RESPONSE TDD
+--
+-- **************************************************************
+
+RadioLinkSetupResponseTDD ::= SEQUENCE {
+    protocolIEs ProtocolIE-Container {{RadioLinkSetupResponseTDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupResponseTDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupResponseTDD-IEs NBAP-PROTOCOL-IES ::= {
+    ...
+}
+
+RadioLinkSetupResponseTDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP FAILURE FDD
+--
+-- **************************************************************
+
+RadioLinkSetupFailureFDD ::= SEQUENCE {
+    protocolIEs ProtocolIE-Container {{RadioLinkSetupFailureFDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupFailureFDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupFailureFDD-IEs NBAP-PROTOCOL-IES ::= {
+    ...
+}
+
+RadioLinkSetupFailureFDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+-- **************************************************************
+--
+-- RADIO LINK SETUP FAILURE TDD
+--
+-- **************************************************************
+
+RadioLinkSetupFailureTDD ::= SEQUENCE {
+    protocolIEs ProtocolIE-Container {{RadioLinkSetupFailureTDD-IEs}},
+
+    protocolExtensions ProtocolExtensionContainer
+    {{RadioLinkSetupFailureTDD-Extensions}} OPTIONAL,
+
+    ...
+}
+
+RadioLinkSetupFailureTDD-IEs NBAP-PROTOCOL-IES ::= {
+    ...
+}
+
+RadioLinkSetupFailureTDD-Extensions NBAP-PROTOCOL-EXTENSION ::= {
+    ...
+}
+
+END
+
+--*****************************************************************************
+--
+-- Information Element Definitions
+--
+--*****************************************************************************
+
+NBAP-IEs {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-IEs (2) }
+
+DEFINITIONS AUTOMATIC TAGS ::=
+BEGIN
+
+ChipOffset ::= INTEGER (0..38399)
+-- Unit Chip
+
+C-ID ::= INTEGER (0..65535)
+
+DL-Power ::= INTEGER (-350..150)
+-- DL-Power = power * 10
+-- If Power <=-35 DL-Power shall be set to -350
+-- if Power >=15 DL-Power shall be set to 150
+-- Unit dB, Range -35dB .. +15dB, Step +0.1dB
+
+DL-ScramblingCode ::= INTEGER (0..15)
+
+DiversityControlField ::= ENUMERATED {
+	may,
+	must,
+	must-not,
+	...
+}
+
+FDD-DL-ChannelisationCodeNumber ::= INTEGER(0.. 511)
+
+FirstRLS-Indicator ::= ENUMERATED {
+	first-RLS,
+	not-first-RLS,
+	...
+}
+
+FrameOffset ::= INTEGER (0..255)
+
+PropagationDelay ::= INTEGER (0..255)
+-- Unit: chips, step size 3 chips
+-- example: 0 = 0chip, 1 = 3chips
+
+RL-ID ::= INTEGER (0..31)
+
+SSDT-Cell-Identity ::= ENUMERATED {a, b, c, d, e, f, g, h}
+
+TransmitDiversityIndicator ::= ENUMERATED {
+	active,
+	inactive
+}
+
+TransmissionGapPatternSequenceCodeInformation	::= ENUMERATED {
+        code-change,
+        nocode-change
+}
+
+END
+
+-- **************************************************************
+--
+-- Common definitions
+--
+-- **************************************************************
+
+NBAP-CommonDataTypes {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-CommonDataTypes (3)  }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+Criticality		::= ENUMERATED { reject, ignore, notify }
+
+MessageDiscriminator	::= ENUMERATED { common, dedicated }
+
+Presence		::= ENUMERATED { optional, conditional, mandatory }
+
+PrivateIE-ID	::= CHOICE {
+	local				INTEGER (0..65535),
+	global				OBJECT IDENTIFIER
+}
+
+ProcedureCode	::= INTEGER (0..255)
+
+ProcedureID		::= SEQUENCE {
+	procedureCode	INTEGER (0..255),
+	ddMode		ENUMERATED { tdd, fdd, common }
+}
+
+ProtocolExtensionID	::= INTEGER (0..65535)
+
+ProtocolIE-ID		::= INTEGER (0..65535)
+
+TransactionID 		::= CHOICE {
+	shortTransActionId		INTEGER (0..127),
+	longTransActionId		INTEGER (0..32767)
+}
+
+TriggeringMessage	::= ENUMERATED { initiating-message, successful-outcome, unsuccessfull-outcome, outcome }
+
+END
+
+-- **************************************************************
+--
+-- Constant definitions
+--
+-- **************************************************************
+
+NBAP-Constants {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-Constants (4)}
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+-- **************************************************************
+--
+-- Elementary Procedures
+--
+-- **************************************************************
+
+id-radioLinkSetup INTEGER ::= 27
+
+-- **************************************************************
+--
+-- Extension constants
+--
+-- **************************************************************
+
+maxPrivateIEs 		INTEGER ::= 65535
+maxProtocolExtensions 	INTEGER ::= 65535
+maxProtocolIEs		INTEGER ::= 65535
+
+-- **************************************************************
+--
+-- Lists
+--
+-- **************************************************************
+
+maxNrOfCodes		INTEGER ::= 10
+maxNrOfRLs		INTEGER ::= 16
+
+-- **************************************************************
+--
+-- IEs
+--
+-- **************************************************************
+
+id-RL-InformationItem-RL-SetupRqstFDD	INTEGER ::= 211
+id-RL-InformationList-RL-SetupRqstFDD	INTEGER ::= 216
+
+
+END
+
+
+-- **************************************************************
+--
+-- Container definitions
+--
+-- **************************************************************
+
+NBAP-Containers {
+itu-t (0) identified-organization (4) etsi (0) mobileDomain (0) 
+umts-Access (20) modules (3) nbap (2) version1 (1) nbap-Containers (5) }
+
+DEFINITIONS AUTOMATIC TAGS ::= 
+
+BEGIN
+
+-- **************************************************************
+--
+-- IE parameter types from other modules.
+--
+-- **************************************************************
+
+IMPORTS
+	Criticality,
+	Presence,
+	PrivateIE-ID,
+	ProtocolExtensionID,
+	ProtocolIE-ID
+FROM NBAP-CommonDataTypes
+
+	maxProtocolExtensions,
+	maxPrivateIEs,
+	maxProtocolIEs
+FROM NBAP-Constants;
+
+-- **************************************************************
+--
+-- Class Definition for Protocol IEs
+--
+-- **************************************************************
+
+NBAP-PROTOCOL-IES ::= CLASS {
+	&id		ProtocolIE-ID 			UNIQUE,
+	&criticality	Criticality,
+	&Value,
+	&presence	Presence
+}
+WITH SYNTAX {
+	ID		&id
+	CRITICALITY	&criticality
+	TYPE		&Value
+	PRESENCE	&presence
+}
+
+-- **************************************************************
+--
+-- Class Definition for Protocol IEs
+--
+-- **************************************************************
+
+NBAP-PROTOCOL-IES-PAIR ::= CLASS {
+	&id			ProtocolIE-ID 		UNIQUE,
+	&firstCriticality	Criticality,
+	&FirstValue,
+	&secondCriticality	Criticality,
+	&SecondValue,
+	&presence		Presence
+}
+WITH SYNTAX {
+	ID			&id
+	FIRST CRITICALITY	&firstCriticality
+	FIRST TYPE		&FirstValue
+	SECOND CRITICALITY 	&secondCriticality
+	SECOND TYPE		&SecondValue
+	PRESENCE		&presence
+}
+
+-- **************************************************************
+--
+-- Class Definition for Protocol Extensions
+--
+-- **************************************************************
+
+NBAP-PROTOCOL-EXTENSION ::= CLASS {
+	&id		ProtocolExtensionID 		UNIQUE,
+	&criticality	Criticality,
+	&Extension,
+	&presence	Presence
+}
+WITH SYNTAX {
+	ID		&id
+	CRITICALITY	&criticality
+	EXTENSION	&Extension
+	PRESENCE	&presence
+}
+
+-- **************************************************************
+--
+-- Class Definition for Private IEs
+--
+-- **************************************************************
+
+NBAP-PRIVATE-IES ::= CLASS {
+	&id		PrivateIE-ID,
+	&criticality	Criticality,
+	&Value,
+	&presence		Presence
+}
+WITH SYNTAX {
+	ID		&id
+	CRITICALITY	&criticality
+	TYPE	&Value
+	PRESENCE	&presence
+}
+
+-- **************************************************************
+--
+-- Container for Protocol IEs
+--
+-- **************************************************************
+
+ProtocolIE-Container {NBAP-PROTOCOL-IES : IEsSetParam} ::= 
+	SEQUENCE (SIZE (0..maxProtocolIEs)) OF
+	ProtocolIE-Field {{IEsSetParam}}
+
+ProtocolIE-Single-Container {NBAP-PROTOCOL-IES : IEsSetParam} ::=
+	ProtocolIE-Field {{IEsSetParam}}
+
+ProtocolIE-Field {NBAP-PROTOCOL-IES : IEsSetParam} ::= SEQUENCE {
+	id		NBAP-PROTOCOL-IES.&id		({IEsSetParam}),
+	criticality	NBAP-PROTOCOL-IES.&criticality	({IEsSetParam}{@id}),
+	value		NBAP-PROTOCOL-IES.&Value	({IEsSetParam}{@id})
+}
+
+-- **************************************************************
+--
+-- Container for Protocol Extensions
+--
+-- **************************************************************
+
+ProtocolExtensionContainer {NBAP-PROTOCOL-EXTENSION : ExtensionSetParam} ::= 
+	SEQUENCE (SIZE (1..maxProtocolExtensions)) OF
+	ProtocolExtensionField {{ExtensionSetParam}}
+
+ProtocolExtensionField {NBAP-PROTOCOL-EXTENSION : ExtensionSetParam} ::= 
+SEQUENCE {
+	id		NBAP-PROTOCOL-EXTENSION.&id ({ExtensionSetParam}),
+	criticality	NBAP-PROTOCOL-EXTENSION.&criticality
+                            ({ExtensionSetParam}{@id}),
+	extensionValue	NBAP-PROTOCOL-EXTENSION.&Extension
+                            ({ExtensionSetParam}{@id})
+}
+
+END

@@ -1,0 +1,33 @@
+Employee
+DEFINITIONS 
+AUTOMATIC TAGS
+::= BEGIN
+
+EXPORTS;
+
+PersonnelRecord ::= SET {
+			Name,
+   title	[XER:ATTRIBUTE]	IA5String (FROM(" ".."z") ),
+   number		EmployeeNumber,
+   dateOfHire	Date,
+   nameOfSpouse Name,
+   children	SEQUENCE OF ChildInformation,
+   privateData [XER:BASE64] OCTET STRING
+}
+
+ChildInformation ::= SET {
+   Name,
+   dateOfBirth Date
+}
+
+Name ::= SEQUENCE {
+   givenName	IA5String,
+   initial	IA5String,
+   familyName	IA5String
+}
+
+EmployeeNumber ::= INTEGER
+
+Date ::= IA5String
+
+END

@@ -1,0 +1,47 @@
+RawEvents DEFINITIONS
+AUTOMATIC TAGS ::=
+BEGIN
+
+ARGUMENT ::= CLASS {
+   &id INTEGER,
+   &Data
+}
+
+Arguments ARGUMENT ::= {
+   {&id 100, &Data Record} |
+   {&id 200, &Data Record2} |
+   {&id 300, &Data INTEGER (0..10)}
+}
+
+
+PDU ::= SEQUENCE {
+   aseq SEQUENCE {
+      eeny BOOLEAN,
+      meeny BOOLEAN,
+      mineymoe CHOICE {
+         jane BOOLEAN,
+         john BOOLEAN
+      }
+   },
+   record Record,
+   values SEQUENCE OF ValueTable
+}
+
+
+ValueTable ::= SEQUENCE {
+   id ARGUMENT.&id ({Arguments}),
+   data ARGUMENT.&Data ({Arguments}{@id})
+}
+
+
+Record ::= SEQUENCE {
+   a BOOLEAN,
+   b BOOLEAN
+}
+
+Record2::= SEQUENCE {
+   a INTEGER,
+   b INTEGER
+}
+
+END

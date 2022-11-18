@@ -1,0 +1,817 @@
+0000 : 61 80                               : C [APPLICATION 1] -9999
+0002 : 64 80                               : C [APPLICATION 4] -9999
+0004 : 5f 81 44 05                         : P [APPLICATION 196] 5
+0008 : 55 53 41 32 37                      : USA27
+0013 : 5f 81 36 05                         : P [APPLICATION 182] 5
+0017 : 44 45 55 44 32                      : DEUD2
+0022 : 5f 6d 05                            : P [APPLICATION 109] 5
+0025 : 30 30 32 37 32                      : 00272
+0030 : 7f 6c 80                            : C [APPLICATION 108] -9999
+0033 : 50 0e                               : P [APPLICATION 16] 14
+0035 : 32 30 30 30 30 33 30 37 30 38 30 37 : 200003070807
+     : 35 36                               : 56
+0049 : 5f 81 67 05                         : P [APPLICATION 231] 5
+0053 : 2d 30 35 30 30                      : -0500
+0058 : 00 00                               : EOC
+0060 : 7f 81 63 80                         : C [APPLICATION 227] -9999
+0064 : 50 0e                               : P [APPLICATION 16] 14
+0066 : 32 30 30 30 30 33 30 37 30 38 30 37 : 200003070807
+     : 35 31                               : 51
+0080 : 5f 81 67 05                         : P [APPLICATION 231] 5
+0084 : 2d 30 35 30 30                      : -0500
+0089 : 00 00                               : EOC
+0091 : 7f 6b 80                            : C [APPLICATION 107] -9999
+0094 : 50 0e                               : P [APPLICATION 16] 14
+0096 : 32 30 30 30 30 33 30 37 30 38 30 37 : 200003070807
+     : 35 36                               : 56
+0110 : 5f 81 67 05                         : P [APPLICATION 231] 5
+0114 : 2d 30 35 30 30                      : -0500
+0119 : 00 00                               : EOC
+0121 : 5f 81 49 01                         : P [APPLICATION 201] 1
+0125 : 03                                  : .
+0126 : 5f 81 3d 01                         : P [APPLICATION 189] 1
+0130 : 0b                                  : .
+0131 : 00 00                               : EOC
+0133 : 65 80                               : C [APPLICATION 5] -9999
+0135 : 7f 81 53 80                         : C [APPLICATION 211] -9999
+0139 : 7f 81 58 80                         : C [APPLICATION 216] -9999
+0143 : 5f 81 54 01                         : P [APPLICATION 212] 1
+0147 : 00                                  : .
+0148 : 5f 81 59 02                         : P [APPLICATION 217] 2
+0152 : 30 33                               : 03
+0154 : 5f 81 57 07                         : P [APPLICATION 215] 7
+0158 : 30 32 32 35 33 34 33                : 0225343
+0165 : 5f 47 01                            : P [APPLICATION 71] 1
+0168 : 30                                  : 0
+0169 : 00 00                               : EOC
+0171 : 7f 81 58 80                         : C [APPLICATION 216] -9999
+0175 : 5f 81 54 01                         : P [APPLICATION 212] 1
+0179 : 01                                  : .
+0180 : 5f 81 59 02                         : P [APPLICATION 217] 2
+0184 : 30 32                               : 02
+0186 : 5f 81 57 07                         : P [APPLICATION 215] 7
+0190 : 30 36 30 30 33 34 33                : 0600343
+0197 : 5f 47 01                            : P [APPLICATION 71] 1
+0200 : 30                                  : 0
+0201 : 00 00                               : EOC
+0203 : 00 00                               : EOC
+0205 : 5f 81 07 03                         : P [APPLICATION 135] 3
+0209 : 55 53 44                            : USD
+0212 : 5f 81 52 03                         : P [APPLICATION 210] 3
+0216 : 55 53 44                            : USD
+0219 : 7f 50 80                            : C [APPLICATION 80] -9999
+0222 : 7f 6a 80                            : C [APPLICATION 106] -9999
+0225 : 5f 69 01                            : P [APPLICATION 105] 1
+0228 : 00                                  : .
+0229 : 5f 81 1f 01                         : P [APPLICATION 159] 1
+0233 : 06                                  : .
+0234 : 5f 68 03                            : P [APPLICATION 104] 3
+0237 : 0f 42 40                            : .B@
+0240 : 00 00                               : EOC
+0242 : 00 00                               : EOC
+0244 : 5f 81 74 01                         : P [APPLICATION 244] 1
+0248 : 02                                  : .
+0249 : 00 00                               : EOC
+0251 : 66 80                               : C [APPLICATION 6] -9999
+0253 : 7f 81 6a 80                         : C [APPLICATION 234] -9999
+0257 : 7f 81 69 80                         : C [APPLICATION 233] -9999
+0261 : 5f 81 68 01                         : P [APPLICATION 232] 1
+0265 : 00                                  : .
+0266 : 5f 81 67 05                         : P [APPLICATION 231] 5
+0270 : 2d 30 35 30 30                      : -0500
+0275 : 00 00                               : EOC
+0277 : 00 00                               : EOC
+0279 : 7f 81 3c 80                         : C [APPLICATION 188] -9999
+0283 : 7f 81 37 80                         : C [APPLICATION 183] -9999
+0287 : 5f 81 38 01                         : P [APPLICATION 184] 1
+0291 : 00                                  : .
+0292 : 5f 81 3a 01                         : P [APPLICATION 186] 1
+0296 : 01                                  : .
+0297 : 5f 83 10 01                         : P [APPLICATION 400] 1
+0301 : 33                                  : 3
+0302 : 00 00                               : EOC
+0304 : 7f 81 37 80                         : C [APPLICATION 183] -9999
+0308 : 5f 81 38 01                         : P [APPLICATION 184] 1
+0312 : 01                                  : .
+0313 : 5f 81 3a 01                         : P [APPLICATION 186] 1
+0317 : 01                                  : .
+0318 : 5f 83 10 01                         : P [APPLICATION 400] 1
+0322 : 33                                  : 3
+0323 : 00 00                               : EOC
+0325 : 7f 81 37 80                         : C [APPLICATION 183] -9999
+0329 : 5f 81 38 01                         : P [APPLICATION 184] 1
+0333 : 02                                  : .
+0334 : 5f 81 3a 01                         : P [APPLICATION 186] 1
+0338 : 01                                  : .
+0339 : 5f 83 10 01                         : P [APPLICATION 400] 1
+0343 : 33                                  : 3
+0344 : 00 00                               : EOC
+0346 : 00 00                               : EOC
+0348 : 00 00                               : EOC
+0350 : 68 80                               : C [APPLICATION 8] -9999
+0352 : 7f 81 0f 80                         : C [APPLICATION 143] -9999
+0356 : 5f 81 0d 01                         : P [APPLICATION 141] 1
+0360 : 01                                  : .
+0361 : 5f 81 0e 0b                         : P [APPLICATION 142] 11
+0365 : 44 65 73 63 72 69 70 74 69 6f 6e    : Description
+0376 : 00 00                               : EOC
+0378 : 00 00                               : EOC
+0380 : 63 80                               : C [APPLICATION 3] -9999
+0382 : 69 80                               : C [APPLICATION 9] -9999
+0384 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+0388 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+0392 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+0396 : 5f 81 01 08                         : P [APPLICATION 129] 8
+0400 : 25 01 23 00 01 13 00 3f             : %.#....?
+0408 : 5f 81 18 06                         : P [APPLICATION 152] 6
+0412 : 79 02 41 13 00 0f                   : y.A...
+0418 : 00 00                               : EOC
+0420 : 00 00                               : EOC
+0422 : 7f 59 80                            : C [APPLICATION 89] -9999
+0425 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+0429 : 31 32 33 34 35 36 37 38 39 30       : 1234567890
+0439 : 5f 2a 07                            : P [APPLICATION 42] 7
+0442 : 47 45 52 4d 41 4e 59                : GERMANY
+0449 : 00 00                               : EOC
+0451 : 7f 2c 80                            : C [APPLICATION 44] -9999
+0454 : 50 0e                               : P [APPLICATION 16] 14
+0456 : 32 30 30 30 30 33 30 35 32 30 33 36 : 200003052036
+     : 34 37                               : 47
+0470 : 5f 81 68 01                         : P [APPLICATION 232] 1
+0474 : 00                                  : .
+0475 : 00 00                               : EOC
+0477 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+0481 : 4b                                  : K
+0482 : 00 00                               : EOC
+0484 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+0488 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+0492 : 5f 81 38 01                         : P [APPLICATION 184] 1
+0496 : 00                                  : .
+0497 : 5f 81 08 03                         : P [APPLICATION 136] 3
+0501 : 00 c3 64                            : ..d
+0504 : 5f 3b 02                            : P [APPLICATION 59] 2
+0507 : 06 d7                               : ..
+0509 : 00 00                               : EOC
+0511 : 7f 71 80                            : C [APPLICATION 113] -9999
+0514 : 5f 81 46 05                         : P [APPLICATION 198] 5
+0518 : 34 30 31 30 30                      : 40100
+0523 : 5f 83 1e 0a                         : P [APPLICATION 414] 10
+0527 : 41 74 6c 61 6e 74 61 2c 47 41       : Atlanta,GA
+0537 : 00 00                               : EOC
+0539 : 00 00                               : EOC
+0541 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+0545 : 5f 81 00 07                         : P [APPLICATION 128] 7
+0549 : 49 01 38 10 11 43 56                : I.8..CV
+0556 : 00 00                               : EOC
+0558 : 7f 26 80                            : C [APPLICATION 38] -9999
+0561 : 7f 27 80                            : C [APPLICATION 39] -9999
+0564 : 7f 24 80                            : C [APPLICATION 36] -9999
+0567 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+0571 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+0575 : 31 31                               : 11
+0577 : 00 00                               : EOC
+0579 : 00 00                               : EOC
+0581 : 7f 46 80                            : C [APPLICATION 70] -9999
+0584 : 7f 45 80                            : C [APPLICATION 69] -9999
+0587 : 5f 42 01                            : P [APPLICATION 66] 1
+0590 : 44                                  : D
+0591 : 5f 69 01                            : P [APPLICATION 105] 1
+0594 : 00                                  : .
+0595 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+0599 : 00 00                               : EOC
+0601 : 7f 40 80                            : C [APPLICATION 64] -9999
+0604 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0607 : 5f 47 02                            : P [APPLICATION 71] 2
+0610 : 30 31                               : 01
+0612 : 5f 3e 02                            : P [APPLICATION 62] 2
+0615 : 00 8a                               : ..
+0617 : 5f 41 01                            : P [APPLICATION 65] 1
+0620 : 4b                                  : K
+0621 : 5f 44 01                            : P [APPLICATION 68] 1
+0624 : 78                                  : x
+0625 : 00 00                               : EOC
+0627 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0630 : 5f 47 02                            : P [APPLICATION 71] 2
+0633 : 30 33                               : 03
+0635 : 5f 3e 01                            : P [APPLICATION 62] 1
+0638 : 3c                                  : <
+0639 : 5f 41 01                            : P [APPLICATION 65] 1
+0642 : 4b                                  : K
+0643 : 5f 44 01                            : P [APPLICATION 68] 1
+0646 : 4b                                  : K
+0647 : 00 00                               : EOC
+0649 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0652 : 5f 47 02                            : P [APPLICATION 71] 2
+0655 : 30 30                               : 00
+0657 : 5f 3e 02                            : P [APPLICATION 62] 2
+0660 : 00 c6                               : ..
+0662 : 5f 41 01                            : P [APPLICATION 65] 1
+0665 : 4b                                  : K
+0666 : 5f 44 01                            : P [APPLICATION 68] 1
+0669 : 78                                  : x
+0670 : 00 00                               : EOC
+0672 : 00 00                               : EOC
+0674 : 00 00                               : EOC
+0676 : 00 00                               : EOC
+0678 : 00 00                               : EOC
+0680 : 00 00                               : EOC
+0682 : 00 00                               : EOC
+0684 : 69 80                               : C [APPLICATION 9] -9999
+0686 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+0690 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+0694 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+0698 : 5f 81 01 08                         : P [APPLICATION 129] 8
+0702 : 25 01 23 00 01 13 00 3f             : %.#....?
+0710 : 5f 81 18 06                         : P [APPLICATION 152] 6
+0714 : 79 02 41 13 00 0f                   : y.A...
+0720 : 00 00                               : EOC
+0722 : 00 00                               : EOC
+0724 : 7f 59 80                            : C [APPLICATION 89] -9999
+0727 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+0731 : 31 31 31 32 32 32 33 33 33 33       : 1112223333
+0741 : 5f 2a 07                            : P [APPLICATION 42] 7
+0744 : 47 45 52 4d 41 4e 59                : GERMANY
+0751 : 00 00                               : EOC
+0753 : 7f 2c 80                            : C [APPLICATION 44] -9999
+0756 : 50 0e                               : P [APPLICATION 16] 14
+0758 : 32 30 30 30 30 33 30 35 32 30 34 30 : 200003052040
+     : 30 35                               : 05
+0772 : 5f 81 68 01                         : P [APPLICATION 232] 1
+0776 : 00                                  : .
+0777 : 00 00                               : EOC
+0779 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+0783 : 16                                  : .
+0784 : 00 00                               : EOC
+0786 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+0790 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+0794 : 5f 81 38 01                         : P [APPLICATION 184] 1
+0798 : 00                                  : .
+0799 : 5f 81 08 03                         : P [APPLICATION 136] 3
+0803 : 00 c3 64                            : ..d
+0806 : 5f 3b 02                            : P [APPLICATION 59] 2
+0809 : 06 d7                               : ..
+0811 : 00 00                               : EOC
+0813 : 7f 71 80                            : C [APPLICATION 113] -9999
+0816 : 5f 81 46 05                         : P [APPLICATION 198] 5
+0820 : 34 30 31 30 30                      : 40100
+0825 : 5f 83 1e 0a                         : P [APPLICATION 414] 10
+0829 : 41 74 6c 61 6e 74 61 2c 47 41       : Atlanta,GA
+0839 : 00 00                               : EOC
+0841 : 00 00                               : EOC
+0843 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+0847 : 5f 81 00 07                         : P [APPLICATION 128] 7
+0851 : 49 01 38 10 11 43 56                : I.8..CV
+0858 : 00 00                               : EOC
+0860 : 7f 26 80                            : C [APPLICATION 38] -9999
+0863 : 7f 27 80                            : C [APPLICATION 39] -9999
+0866 : 7f 24 80                            : C [APPLICATION 36] -9999
+0869 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+0873 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+0877 : 31 31                               : 11
+0879 : 00 00                               : EOC
+0881 : 00 00                               : EOC
+0883 : 7f 46 80                            : C [APPLICATION 70] -9999
+0886 : 7f 45 80                            : C [APPLICATION 69] -9999
+0889 : 5f 42 01                            : P [APPLICATION 66] 1
+0892 : 44                                  : D
+0893 : 5f 69 01                            : P [APPLICATION 105] 1
+0896 : 00                                  : .
+0897 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+0901 : 00 00                               : EOC
+0903 : 7f 40 80                            : C [APPLICATION 64] -9999
+0906 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0909 : 5f 47 02                            : P [APPLICATION 71] 2
+0912 : 30 31                               : 01
+0914 : 5f 3e 01                            : P [APPLICATION 62] 1
+0917 : 45                                  : E
+0918 : 5f 41 01                            : P [APPLICATION 65] 1
+0921 : 16                                  : .
+0922 : 5f 44 01                            : P [APPLICATION 68] 1
+0925 : 3c                                  : <
+0926 : 00 00                               : EOC
+0928 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0931 : 5f 47 02                            : P [APPLICATION 71] 2
+0934 : 30 33                               : 03
+0936 : 5f 3e 01                            : P [APPLICATION 62] 1
+0939 : 1e                                  : .
+0940 : 5f 41 01                            : P [APPLICATION 65] 1
+0943 : 16                                  : .
+0944 : 5f 44 01                            : P [APPLICATION 68] 1
+0947 : 16                                  : .
+0948 : 00 00                               : EOC
+0950 : 7f 3f 80                            : C [APPLICATION 63] -9999
+0953 : 5f 47 02                            : P [APPLICATION 71] 2
+0956 : 30 30                               : 00
+0958 : 5f 3e 01                            : P [APPLICATION 62] 1
+0961 : 63                                  : c
+0962 : 5f 41 01                            : P [APPLICATION 65] 1
+0965 : 16                                  : .
+0966 : 5f 44 01                            : P [APPLICATION 68] 1
+0969 : 3c                                  : <
+0970 : 00 00                               : EOC
+0972 : 00 00                               : EOC
+0974 : 00 00                               : EOC
+0976 : 00 00                               : EOC
+0978 : 00 00                               : EOC
+0980 : 00 00                               : EOC
+0982 : 00 00                               : EOC
+0984 : 69 80                               : C [APPLICATION 9] -9999
+0986 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+0990 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+0994 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+0998 : 5f 81 01 08                         : P [APPLICATION 129] 8
+1002 : 25 01 23 00 01 13 00 3f             : %.#....?
+1010 : 5f 81 18 06                         : P [APPLICATION 152] 6
+1014 : 79 02 41 13 00 0f                   : y.A...
+1020 : 00 00                               : EOC
+1022 : 00 00                               : EOC
+1024 : 7f 59 80                            : C [APPLICATION 89] -9999
+1027 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+1031 : 34 34 34 35 35 35 36 36 36 36       : 4445556666
+1041 : 5f 2a 07                            : P [APPLICATION 42] 7
+1044 : 47 45 52 4d 41 4e 59                : GERMANY
+1051 : 00 00                               : EOC
+1053 : 7f 2c 80                            : C [APPLICATION 44] -9999
+1056 : 50 0e                               : P [APPLICATION 16] 14
+1058 : 32 30 30 30 30 33 30 35 32 30 34 32 : 200003052042
+     : 31 33                               : 13
+1072 : 5f 81 68 01                         : P [APPLICATION 232] 1
+1076 : 00                                  : .
+1077 : 00 00                               : EOC
+1079 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+1083 : 0a                                  : .
+1084 : 00 00                               : EOC
+1086 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+1090 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+1094 : 5f 81 38 01                         : P [APPLICATION 184] 1
+1098 : 00                                  : .
+1099 : 5f 81 08 03                         : P [APPLICATION 136] 3
+1103 : 00 c3 64                            : ..d
+1106 : 5f 3b 02                            : P [APPLICATION 59] 2
+1109 : 06 d8                               : ..
+1111 : 00 00                               : EOC
+1113 : 7f 71 80                            : C [APPLICATION 113] -9999
+1116 : 5f 81 46 05                         : P [APPLICATION 198] 5
+1120 : 34 30 31 30 30                      : 40100
+1125 : 5f 83 1e 0a                         : P [APPLICATION 414] 10
+1129 : 41 74 6c 61 6e 74 61 2c 47 41       : Atlanta,GA
+1139 : 00 00                               : EOC
+1141 : 00 00                               : EOC
+1143 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+1147 : 5f 81 00 07                         : P [APPLICATION 128] 7
+1151 : 49 01 38 10 11 43 56                : I.8..CV
+1158 : 00 00                               : EOC
+1160 : 7f 26 80                            : C [APPLICATION 38] -9999
+1163 : 7f 27 80                            : C [APPLICATION 39] -9999
+1166 : 7f 24 80                            : C [APPLICATION 36] -9999
+1169 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+1173 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+1177 : 31 31                               : 11
+1179 : 00 00                               : EOC
+1181 : 00 00                               : EOC
+1183 : 7f 46 80                            : C [APPLICATION 70] -9999
+1186 : 7f 45 80                            : C [APPLICATION 69] -9999
+1189 : 5f 42 01                            : P [APPLICATION 66] 1
+1192 : 44                                  : D
+1193 : 5f 69 01                            : P [APPLICATION 105] 1
+1196 : 00                                  : .
+1197 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+1201 : 00 00                               : EOC
+1203 : 7f 40 80                            : C [APPLICATION 64] -9999
+1206 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1209 : 5f 47 02                            : P [APPLICATION 71] 2
+1212 : 30 31                               : 01
+1214 : 5f 3e 01                            : P [APPLICATION 62] 1
+1217 : 45                                  : E
+1218 : 5f 41 01                            : P [APPLICATION 65] 1
+1221 : 0a                                  : .
+1222 : 5f 44 01                            : P [APPLICATION 68] 1
+1225 : 3c                                  : <
+1226 : 00 00                               : EOC
+1228 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1231 : 5f 47 02                            : P [APPLICATION 71] 2
+1234 : 30 33                               : 03
+1236 : 5f 3e 01                            : P [APPLICATION 62] 1
+1239 : 1e                                  : .
+1240 : 5f 41 01                            : P [APPLICATION 65] 1
+1243 : 0a                                  : .
+1244 : 5f 44 01                            : P [APPLICATION 68] 1
+1247 : 0a                                  : .
+1248 : 00 00                               : EOC
+1250 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1253 : 5f 47 02                            : P [APPLICATION 71] 2
+1256 : 30 30                               : 00
+1258 : 5f 3e 01                            : P [APPLICATION 62] 1
+1261 : 63                                  : c
+1262 : 5f 41 01                            : P [APPLICATION 65] 1
+1265 : 0a                                  : .
+1266 : 5f 44 01                            : P [APPLICATION 68] 1
+1269 : 3c                                  : <
+1270 : 00 00                               : EOC
+1272 : 00 00                               : EOC
+1274 : 00 00                               : EOC
+1276 : 00 00                               : EOC
+1278 : 00 00                               : EOC
+1280 : 00 00                               : EOC
+1282 : 00 00                               : EOC
+1284 : 69 80                               : C [APPLICATION 9] -9999
+1286 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+1290 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+1294 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+1298 : 5f 81 01 08                         : P [APPLICATION 129] 8
+1302 : 25 01 23 00 01 13 00 3f             : %.#....?
+1310 : 5f 81 18 06                         : P [APPLICATION 152] 6
+1314 : 79 02 41 13 00 0f                   : y.A...
+1320 : 00 00                               : EOC
+1322 : 00 00                               : EOC
+1324 : 7f 59 80                            : C [APPLICATION 89] -9999
+1327 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+1331 : 37 37 37 38 38 38 39 39 39 39       : 7778889999
+1341 : 5f 2a 07                            : P [APPLICATION 42] 7
+1344 : 47 45 52 4d 41 4e 59                : GERMANY
+1351 : 00 00                               : EOC
+1353 : 7f 2c 80                            : C [APPLICATION 44] -9999
+1356 : 50 0e                               : P [APPLICATION 16] 14
+1358 : 32 30 30 30 30 33 30 35 32 30 34 34 : 200003052044
+     : 31 31                               : 11
+1372 : 5f 81 68 01                         : P [APPLICATION 232] 1
+1376 : 00                                  : .
+1377 : 00 00                               : EOC
+1379 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+1383 : 07                                  : .
+1384 : 00 00                               : EOC
+1386 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+1390 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+1394 : 5f 81 38 01                         : P [APPLICATION 184] 1
+1398 : 00                                  : .
+1399 : 5f 81 08 03                         : P [APPLICATION 136] 3
+1403 : 00 c3 64                            : ..d
+1406 : 5f 3b 02                            : P [APPLICATION 59] 2
+1409 : 06 d8                               : ..
+1411 : 00 00                               : EOC
+1413 : 7f 71 80                            : C [APPLICATION 113] -9999
+1416 : 5f 81 46 05                         : P [APPLICATION 198] 5
+1420 : 34 30 31 30 30                      : 40100
+1425 : 5f 83 1e 0a                         : P [APPLICATION 414] 10
+1429 : 41 74 6c 61 6e 74 61 2c 47 41       : Atlanta,GA
+1439 : 00 00                               : EOC
+1441 : 00 00                               : EOC
+1443 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+1447 : 5f 81 00 07                         : P [APPLICATION 128] 7
+1451 : 49 01 38 10 11 43 56                : I.8..CV
+1458 : 00 00                               : EOC
+1460 : 7f 26 80                            : C [APPLICATION 38] -9999
+1463 : 7f 27 80                            : C [APPLICATION 39] -9999
+1466 : 7f 24 80                            : C [APPLICATION 36] -9999
+1469 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+1473 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+1477 : 31 31                               : 11
+1479 : 00 00                               : EOC
+1481 : 00 00                               : EOC
+1483 : 7f 46 80                            : C [APPLICATION 70] -9999
+1486 : 7f 45 80                            : C [APPLICATION 69] -9999
+1489 : 5f 42 01                            : P [APPLICATION 66] 1
+1492 : 44                                  : D
+1493 : 5f 69 01                            : P [APPLICATION 105] 1
+1496 : 00                                  : .
+1497 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+1501 : 00 00                               : EOC
+1503 : 7f 40 80                            : C [APPLICATION 64] -9999
+1506 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1509 : 5f 47 02                            : P [APPLICATION 71] 2
+1512 : 30 31                               : 01
+1514 : 5f 3e 01                            : P [APPLICATION 62] 1
+1517 : 45                                  : E
+1518 : 5f 41 01                            : P [APPLICATION 65] 1
+1521 : 07                                  : .
+1522 : 5f 44 01                            : P [APPLICATION 68] 1
+1525 : 3c                                  : <
+1526 : 00 00                               : EOC
+1528 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1531 : 5f 47 02                            : P [APPLICATION 71] 2
+1534 : 30 33                               : 03
+1536 : 5f 3e 01                            : P [APPLICATION 62] 1
+1539 : 1e                                  : .
+1540 : 5f 41 01                            : P [APPLICATION 65] 1
+1543 : 07                                  : .
+1544 : 5f 44 01                            : P [APPLICATION 68] 1
+1547 : 07                                  : .
+1548 : 00 00                               : EOC
+1550 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1553 : 5f 47 02                            : P [APPLICATION 71] 2
+1556 : 30 30                               : 00
+1558 : 5f 3e 01                            : P [APPLICATION 62] 1
+1561 : 63                                  : c
+1562 : 5f 41 01                            : P [APPLICATION 65] 1
+1565 : 07                                  : .
+1566 : 5f 44 01                            : P [APPLICATION 68] 1
+1569 : 3c                                  : <
+1570 : 00 00                               : EOC
+1572 : 00 00                               : EOC
+1574 : 00 00                               : EOC
+1576 : 00 00                               : EOC
+1578 : 00 00                               : EOC
+1580 : 00 00                               : EOC
+1582 : 00 00                               : EOC
+1584 : 69 80                               : C [APPLICATION 9] -9999
+1586 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+1590 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+1594 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+1598 : 5f 81 01 08                         : P [APPLICATION 129] 8
+1602 : 25 01 23 00 01 13 00 3f             : %.#....?
+1610 : 5f 81 18 06                         : P [APPLICATION 152] 6
+1614 : 79 02 41 13 00 0f                   : y.A...
+1620 : 00 00                               : EOC
+1622 : 00 00                               : EOC
+1624 : 7f 59 80                            : C [APPLICATION 89] -9999
+1627 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+1631 : 30 30 30 31 31 31 32 32 32 32       : 0001112222
+1641 : 5f 2a 07                            : P [APPLICATION 42] 7
+1644 : 47 45 52 4d 41 4e 59                : GERMANY
+1651 : 00 00                               : EOC
+1653 : 7f 2c 80                            : C [APPLICATION 44] -9999
+1656 : 50 0e                               : P [APPLICATION 16] 14
+1658 : 32 30 30 30 30 33 30 35 32 31 32 36 : 200003052126
+     : 33 39                               : 39
+1672 : 5f 81 68 01                         : P [APPLICATION 232] 1
+1676 : 00                                  : .
+1677 : 00 00                               : EOC
+1679 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+1683 : 3c                                  : <
+1684 : 00 00                               : EOC
+1686 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+1690 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+1694 : 5f 81 38 01                         : P [APPLICATION 184] 1
+1698 : 00                                  : .
+1699 : 5f 81 08 03                         : P [APPLICATION 136] 3
+1703 : 00 c3 6e                            : ..n
+1706 : 5f 3b 02                            : P [APPLICATION 59] 2
+1709 : 21 5e                               : !^
+1711 : 00 00                               : EOC
+1713 : 7f 71 80                            : C [APPLICATION 113] -9999
+1716 : 5f 81 46 05                         : P [APPLICATION 198] 5
+1720 : 34 30 31 31 30                      : 40110
+1725 : 5f 83 1e 09                         : P [APPLICATION 414] 9
+1729 : 44 61 6c 74 6f 6e 2c 47 41          : Dalton,GA
+1738 : 00 00                               : EOC
+1740 : 00 00                               : EOC
+1742 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+1746 : 5f 81 00 07                         : P [APPLICATION 128] 7
+1750 : 49 01 38 10 11 43 56                : I.8..CV
+1757 : 00 00                               : EOC
+1759 : 7f 26 80                            : C [APPLICATION 38] -9999
+1762 : 7f 27 80                            : C [APPLICATION 39] -9999
+1765 : 7f 24 80                            : C [APPLICATION 36] -9999
+1768 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+1772 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+1776 : 31 31                               : 11
+1778 : 00 00                               : EOC
+1780 : 00 00                               : EOC
+1782 : 7f 46 80                            : C [APPLICATION 70] -9999
+1785 : 7f 45 80                            : C [APPLICATION 69] -9999
+1788 : 5f 42 01                            : P [APPLICATION 66] 1
+1791 : 44                                  : D
+1792 : 5f 69 01                            : P [APPLICATION 105] 1
+1795 : 00                                  : .
+1796 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+1800 : 00 00                               : EOC
+1802 : 7f 40 80                            : C [APPLICATION 64] -9999
+1805 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1808 : 5f 47 02                            : P [APPLICATION 71] 2
+1811 : 30 31                               : 01
+1813 : 5f 3e 01                            : P [APPLICATION 62] 1
+1816 : 45                                  : E
+1817 : 5f 41 01                            : P [APPLICATION 65] 1
+1820 : 3c                                  : <
+1821 : 5f 44 01                            : P [APPLICATION 68] 1
+1824 : 3c                                  : <
+1825 : 00 00                               : EOC
+1827 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1830 : 5f 47 02                            : P [APPLICATION 71] 2
+1833 : 30 33                               : 03
+1835 : 5f 3e 01                            : P [APPLICATION 62] 1
+1838 : 1e                                  : .
+1839 : 5f 41 01                            : P [APPLICATION 65] 1
+1842 : 3c                                  : <
+1843 : 5f 44 01                            : P [APPLICATION 68] 1
+1846 : 3c                                  : <
+1847 : 00 00                               : EOC
+1849 : 7f 3f 80                            : C [APPLICATION 63] -9999
+1852 : 5f 47 02                            : P [APPLICATION 71] 2
+1855 : 30 30                               : 00
+1857 : 5f 3e 01                            : P [APPLICATION 62] 1
+1860 : 63                                  : c
+1861 : 5f 41 01                            : P [APPLICATION 65] 1
+1864 : 3c                                  : <
+1865 : 5f 44 01                            : P [APPLICATION 68] 1
+1868 : 3c                                  : <
+1869 : 00 00                               : EOC
+1871 : 00 00                               : EOC
+1873 : 00 00                               : EOC
+1875 : 00 00                               : EOC
+1877 : 00 00                               : EOC
+1879 : 00 00                               : EOC
+1881 : 00 00                               : EOC
+1883 : 69 80                               : C [APPLICATION 9] -9999
+1885 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+1889 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+1893 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+1897 : 5f 81 01 08                         : P [APPLICATION 129] 8
+1901 : 25 01 23 00 01 13 00 3f             : %.#....?
+1909 : 5f 81 18 06                         : P [APPLICATION 152] 6
+1913 : 79 02 41 13 00 0f                   : y.A...
+1919 : 00 00                               : EOC
+1921 : 00 00                               : EOC
+1923 : 7f 59 80                            : C [APPLICATION 89] -9999
+1926 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+1930 : 33 33 33 34 34 34 35 35 35 35       : 3334445555
+1940 : 5f 2a 07                            : P [APPLICATION 42] 7
+1943 : 47 45 52 4d 41 4e 59                : GERMANY
+1950 : 00 00                               : EOC
+1952 : 7f 2c 80                            : C [APPLICATION 44] -9999
+1955 : 50 0e                               : P [APPLICATION 16] 14
+1957 : 32 30 30 30 30 33 30 35 32 32 32 36 : 200003052226
+     : 35 34                               : 54
+1971 : 5f 81 68 01                         : P [APPLICATION 232] 1
+1975 : 00                                  : .
+1976 : 00 00                               : EOC
+1978 : 5f 81 5f 01                         : P [APPLICATION 223] 1
+1982 : 01                                  : .
+1983 : 00 00                               : EOC
+1985 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+1989 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+1993 : 5f 81 38 01                         : P [APPLICATION 184] 1
+1997 : 01                                  : .
+1998 : 5f 81 08 02                         : P [APPLICATION 136] 2
+2002 : 29 0e                               : ).
+2004 : 5f 3b 01                            : P [APPLICATION 59] 1
+2007 : 67                                  : g
+2008 : 00 00                               : EOC
+2010 : 7f 71 80                            : C [APPLICATION 113] -9999
+2013 : 5f 81 46 05                         : P [APPLICATION 198] 5
+2017 : 30 34 37 35 36                      : 04756
+2022 : 5f 83 1e 0d                         : P [APPLICATION 414] 13
+2026 : 4c 6f 75 69 73 76 69 6c 6c 65 2c 4b : Louisville,K
+     : 59                                  : Y
+2039 : 00 00                               : EOC
+2041 : 00 00                               : EOC
+2043 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+2047 : 5f 81 00 07                         : P [APPLICATION 128] 7
+2051 : 49 01 38 10 11 43 56                : I.8..CV
+2058 : 00 00                               : EOC
+2060 : 7f 26 80                            : C [APPLICATION 38] -9999
+2063 : 7f 27 80                            : C [APPLICATION 39] -9999
+2066 : 7f 24 80                            : C [APPLICATION 36] -9999
+2069 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+2073 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+2077 : 32 32                               : 22
+2079 : 00 00                               : EOC
+2081 : 00 00                               : EOC
+2083 : 7f 46 80                            : C [APPLICATION 70] -9999
+2086 : 7f 45 80                            : C [APPLICATION 69] -9999
+2089 : 5f 42 01                            : P [APPLICATION 66] 1
+2092 : 44                                  : D
+2093 : 5f 69 01                            : P [APPLICATION 105] 1
+2096 : 00                                  : .
+2097 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+2101 : 00 00                               : EOC
+2103 : 7f 40 80                            : C [APPLICATION 64] -9999
+2106 : 7f 3f 80                            : C [APPLICATION 63] -9999
+2109 : 5f 47 02                            : P [APPLICATION 71] 2
+2112 : 30 31                               : 01
+2114 : 5f 3e 01                            : P [APPLICATION 62] 1
+2117 : 05                                  : .
+2118 : 5f 41 01                            : P [APPLICATION 65] 1
+2121 : 01                                  : .
+2122 : 5f 44 01                            : P [APPLICATION 68] 1
+2125 : 01                                  : .
+2126 : 00 00                               : EOC
+2128 : 7f 3f 80                            : C [APPLICATION 63] -9999
+2131 : 5f 47 02                            : P [APPLICATION 71] 2
+2134 : 30 30                               : 00
+2136 : 5f 3e 01                            : P [APPLICATION 62] 1
+2139 : 05                                  : .
+2140 : 5f 41 01                            : P [APPLICATION 65] 1
+2143 : 01                                  : .
+2144 : 5f 44 01                            : P [APPLICATION 68] 1
+2147 : 01                                  : .
+2148 : 00 00                               : EOC
+2150 : 00 00                               : EOC
+2152 : 00 00                               : EOC
+2154 : 00 00                               : EOC
+2156 : 00 00                               : EOC
+2158 : 00 00                               : EOC
+2160 : 00 00                               : EOC
+2162 : 69 80                               : C [APPLICATION 9] -9999
+2164 : 7f 81 13 80                         : C [APPLICATION 147] -9999
+2168 : 7f 83 2b 80                         : C [APPLICATION 427] -9999
+2172 : 7f 81 47 80                         : C [APPLICATION 199] -9999
+2176 : 5f 81 01 08                         : P [APPLICATION 129] 8
+2180 : 25 01 23 00 01 13 00 3f             : %.#....?
+2188 : 5f 81 18 06                         : P [APPLICATION 152] 6
+2192 : 79 02 41 13 00 0f                   : y.A...
+2198 : 00 00                               : EOC
+2200 : 00 00                               : EOC
+2202 : 7f 59 80                            : C [APPLICATION 89] -9999
+2205 : 5f 83 17 0a                         : P [APPLICATION 407] 10
+2209 : 36 36 36 37 37 37 38 38 38 38       : 6667778888
+2219 : 5f 2a 07                            : P [APPLICATION 42] 7
+2222 : 47 45 52 4d 41 4e 59                : GERMANY
+2229 : 00 00                               : EOC
+2231 : 7f 2c 80                            : C [APPLICATION 44] -9999
+2234 : 50 0e                               : P [APPLICATION 16] 14
+2236 : 32 30 30 30 30 33 30 35 32 31 33 33 : 200003052133
+     : 33 34                               : 34
+2250 : 5f 81 68 01                         : P [APPLICATION 232] 1
+2254 : 00                                  : .
+2255 : 00 00                               : EOC
+2257 : 5f 81 5f 02                         : P [APPLICATION 223] 2
+2261 : 02 69                               : .i
+2263 : 00 00                               : EOC
+2265 : 7f 81 0a 80                         : C [APPLICATION 138] -9999
+2269 : 7f 81 1c 80                         : C [APPLICATION 156] -9999
+2273 : 5f 81 38 01                         : P [APPLICATION 184] 1
+2277 : 02                                  : .
+2278 : 5f 81 08 02                         : P [APPLICATION 136] 2
+2282 : 75 44                               : uD
+2284 : 5f 3b 02                            : P [APPLICATION 59] 2
+2287 : 04 12                               : ..
+2289 : 00 00                               : EOC
+2291 : 7f 71 80                            : C [APPLICATION 113] -9999
+2294 : 5f 81 46 05                         : P [APPLICATION 198] 5
+2298 : 34 30 30 35 37                      : 40057
+2303 : 5f 83 1e 0a                         : P [APPLICATION 414] 10
+2307 : 4a 61 63 6b 73 6f 6e 2c 4d 53       : Jackson,MS
+2317 : 00 00                               : EOC
+2319 : 00 00                               : EOC
+2321 : 7f 83 2d 80                         : C [APPLICATION 429] -9999
+2325 : 5f 81 00 07                         : P [APPLICATION 128] 7
+2329 : 49 01 38 10 11 43 56                : I.8..CV
+2336 : 00 00                               : EOC
+2338 : 7f 26 80                            : C [APPLICATION 38] -9999
+2341 : 7f 27 80                            : C [APPLICATION 39] -9999
+2344 : 7f 24 80                            : C [APPLICATION 36] -9999
+2347 : 7f 83 2a 80                         : C [APPLICATION 426] -9999
+2351 : 5f 81 5a 02                         : P [APPLICATION 218] 2
+2355 : 31 31                               : 11
+2357 : 00 00                               : EOC
+2359 : 00 00                               : EOC
+2361 : 7f 46 80                            : C [APPLICATION 70] -9999
+2364 : 7f 45 80                            : C [APPLICATION 69] -9999
+2367 : 5f 42 01                            : P [APPLICATION 66] 1
+2370 : 44                                  : D
+2371 : 5f 69 01                            : P [APPLICATION 105] 1
+2374 : 00                                  : .
+2375 : 7f 82 02 80                         : C [APPLICATION 258] -9999
+2379 : 00 00                               : EOC
+2381 : 7f 40 80                            : C [APPLICATION 64] -9999
+2384 : 7f 3f 80                            : C [APPLICATION 63] -9999
+2387 : 5f 47 02                            : P [APPLICATION 71] 2
+2390 : 30 31                               : 01
+2392 : 5f 3e 02                            : P [APPLICATION 62] 2
+2395 : 02 f7                               : ..
+2397 : 5f 41 02                            : P [APPLICATION 65] 2
+2400 : 02 69                               : .i
+2402 : 5f 44 02                            : P [APPLICATION 68] 2
+2405 : 02 94                               : ..
+2407 : 00 00                               : EOC
+2409 : 7f 3f 80                            : C [APPLICATION 63] -9999
+2412 : 5f 47 02                            : P [APPLICATION 71] 2
+2415 : 30 30                               : 00
+2417 : 5f 3e 02                            : P [APPLICATION 62] 2
+2420 : 02 f7                               : ..
+2422 : 5f 41 02                            : P [APPLICATION 65] 2
+2425 : 02 69                               : .i
+2427 : 5f 44 02                            : P [APPLICATION 68] 2
+2430 : 02 94                               : ..
+2432 : 00 00                               : EOC
+2434 : 00 00                               : EOC
+2436 : 00 00                               : EOC
+2438 : 00 00                               : EOC
+2440 : 00 00                               : EOC
+2442 : 00 00                               : EOC
+2444 : 00 00                               : EOC
+2446 : 00 00                               : EOC
+2448 : 6f 80                               : C [APPLICATION 15] -9999
+2450 : 7f 65 80                            : C [APPLICATION 101] -9999
+2453 : 50 0e                               : P [APPLICATION 16] 14
+2455 : 32 30 30 30 30 33 30 35 32 30 33 36 : 200003052036
+     : 34 37                               : 47
+2469 : 5f 81 67 05                         : P [APPLICATION 231] 5
+2473 : 2d 30 35 30 30                      : -0500
+2478 : 00 00                               : EOC
+2480 : 7f 81 05 80                         : C [APPLICATION 133] -9999
+2484 : 50 0e                               : P [APPLICATION 16] 14
+2486 : 32 30 30 30 30 33 30 35 32 32 32 36 : 200003052226
+     : 35 34                               : 54
+2500 : 5f 81 67 05                         : P [APPLICATION 231] 5
+2504 : 2d 30 35 30 30                      : -0500
+2509 : 00 00                               : EOC
+2511 : 5f 81 62 01                         : P [APPLICATION 226] 1
+2515 : 3f                                  : ?
+2516 : 5f 81 61 01                         : P [APPLICATION 225] 1
+2520 : 00                                  : .
+2521 : 5f 2b 01                            : P [APPLICATION 43] 1
+2524 : 07                                  : .
+2525 : 00 00                               : EOC
+2527 : 00 00                               : EOC

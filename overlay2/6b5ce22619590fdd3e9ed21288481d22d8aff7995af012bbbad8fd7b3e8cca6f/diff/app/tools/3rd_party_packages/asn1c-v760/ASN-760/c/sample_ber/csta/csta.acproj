@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>CSTA-ROSE-PDU-types.asn</UTF8String>
+      <UTF8String>CSTA-make-call.asn</UTF8String>
+   </schemas>
+   <language>
+      <c/>
+   </language>
+   <ruleset>
+      <ber/>
+   </ruleset>
+   <translations>
+      <html/>
+   </translations>
+   <basicOptions>
+      <depends/>
+      <importDirs>
+         <UTF8String>../csta</UTF8String>
+         <UTF8String>../rose</UTF8String>
+      </importDirs>
+      <printOut/>
+      <tables/>
+   </basicOptions>
+   <languageOpts>
+      <ccpp/>
+   </languageOpts>
+</ASN1COptions>

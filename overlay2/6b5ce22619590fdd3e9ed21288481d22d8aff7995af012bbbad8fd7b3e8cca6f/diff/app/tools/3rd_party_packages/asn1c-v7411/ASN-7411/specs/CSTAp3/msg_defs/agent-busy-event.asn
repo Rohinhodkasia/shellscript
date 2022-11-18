@@ -1,0 +1,32 @@
+CSTA-agent-busy-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) agent-busy-event( 319) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+
+-- Data Types --
+EventCause FROM CSTA-event-causes
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) event-causes( 121) }
+DeviceID, SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+AgentID, PendingAgentState FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+AgentBusyEvent ::= SEQUENCE
+{	agentDevice 			SubjectDeviceID,
+	agentID				AgentID					OPTIONAL,
+	acdGroup			DeviceID				OPTIONAL,
+	pendingAgentState		[2] IMPLICIT PendingAgentState		OPTIONAL,
+	cause				[3] IMPLICIT EventCause			OPTIONAL,
+	extensions 			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-agent-busy-event

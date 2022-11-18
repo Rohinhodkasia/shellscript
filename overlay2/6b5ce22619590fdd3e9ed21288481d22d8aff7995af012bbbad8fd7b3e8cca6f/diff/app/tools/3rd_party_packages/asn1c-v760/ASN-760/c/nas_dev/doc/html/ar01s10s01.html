@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>RR Short Protocol Discriminator</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
+    <meta name="generator" content="DocBook XSL-NS Stylesheets V1.76.1" />
+    <link rel="home" href="index.html" title="C Encode/Decode API for 3GPP Non-Access Stratum (NAS) and Radio Resource Control (RRC)" />
+    <link rel="up" href="ar01s10.html" title="Working with GERAN RRC Messages" />
+    <link rel="prev" href="ar01s10.html" title="Working with GERAN RRC Messages" />
+    <link rel="next" href="ar01s10s02.html" title="L2 Pseudo Length" />
+  </head>
+  <body>
+    <div class="navheader">
+      <table width="100%" summary="Navigation header">
+        <tr>
+          <th colspan="3" align="center">RR Short Protocol Discriminator</th>
+        </tr>
+        <tr>
+          <td width="20%" align="left"><a accesskey="p" href="ar01s10.html">Prev</a> </td>
+          <th width="60%" align="center">Working with GERAN RRC Messages</th>
+          <td width="20%" align="right"> <a accesskey="n" href="ar01s10s02.html">Next</a></td>
+        </tr>
+      </table>
+      <hr />
+    </div>
+    <div class="section" title="RR Short Protocol Discriminator">
+      <div xmlns="" class="titlepage">
+        <div>
+          <div>
+            <h3 xmlns="http://www.w3.org/1999/xhtml" class="title"><a id="idp644191868"></a>RR Short Protocol Discriminator</h3>
+          </div>
+        </div>
+      </div>
+      <p>For messages that use the RR Short Protocol Discriminator format, use the following PDU:
+            </p>
+      <pre class="screen">RR-Short-PD-PDU ::= SEQUENCE {
+    rr-short-PD INTEGER (0..1) DEFAULT 0,
+    msgType RR-SHORT-CLASS.&amp;msgType ({RR-Short-PD-Messages}),
+    short-layer-2-header INTEGER (0..3) DEFAULT 0,   
+    data RR-SHORT-CLASS.&amp;Value ({RR-Short-PD-Messages}{@msgType})
+}                
+            </pre>
+      <p>            
+        </p>
+      <p>The <code class="literal">msgType</code> field determines the type of the value in the <code class="literal">data</code> field.</p>
+    </div>
+    <div class="navfooter">
+      <hr />
+      <table width="100%" summary="Navigation footer">
+        <tr>
+          <td width="40%" align="left"><a accesskey="p" href="ar01s10.html">Prev</a> </td>
+          <td width="20%" align="center">
+            <a accesskey="u" href="ar01s10.html">Up</a>
+          </td>
+          <td width="40%" align="right"> <a accesskey="n" href="ar01s10s02.html">Next</a></td>
+        </tr>
+        <tr>
+          <td width="40%" align="left" valign="top">Working with GERAN RRC Messages </td>
+          <td width="20%" align="center">
+            <a accesskey="h" href="index.html">Home</a>
+          </td>
+          <td width="40%" align="right" valign="top"> L2 Pseudo Length</td>
+        </tr>
+      </table>
+    </div>
+  </body>
+</html>

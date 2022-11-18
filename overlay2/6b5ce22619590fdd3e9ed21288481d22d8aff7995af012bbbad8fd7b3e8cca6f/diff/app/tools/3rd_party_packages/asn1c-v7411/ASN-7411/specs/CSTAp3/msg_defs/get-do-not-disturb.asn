@@ -1,0 +1,42 @@
+CSTA-get-do-not-disturb
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) get-do-not-disturb( 308) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+DeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CallOrigination FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+getDoNotDisturb OPERATION ::=
+{	ARGUMENT 		GetDoNotDisturbArgument
+	RESULT 			GetDoNotDisturbResult
+	ERRORS 			{universalFailure }
+	CODE			local: 308 }
+
+GetDoNotDisturbArgument ::= SEQUENCE
+{	device 				DeviceID,
+	extensions			CSTACommonArguments 			OPTIONAL }
+
+GetDoNotDisturbResult ::= SEQUENCE
+{	doNotDisturbOn			BOOLEAN,
+	callOrigination			CallOrigination				OPTIONAL,
+	callingDeviceList		SEQUENCE OF DeviceID			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END -- of CSTA-get-do-not-disturb

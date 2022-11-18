@@ -1,0 +1,66 @@
+# makefile to build generated files
+
+include ../../platform.mk
+
+# include directories
+OSROOTDIR = ..$(PS)..$(PS)..
+LIBDIR  = $(OSROOTDIR)$(PS)cpp$(RTDIRSFX)$(PS)lib
+RTSRCDIR = $(OSROOTDIR)$(PS)rtsrc
+PERSRCDIR = $(OSROOTDIR)$(PS)rtpersrc
+SRCDIR = .
+HFILESDIR = .
+HFILES = $(RTSRCDIR)$(PS)asn1type.h $(RTSRCDIR)$(PS)asn1CppTypes.h  \
+$(PERSRCDIR)$(PS)asn1per.h $(PERSRCDIR)$(PS)asn1PerCppTypes.h 
+# compiler defs
+CFLAGS = -c $(CVARS_) $(CFLAGS_) $(CBLDTYPE_)
+CCFLAGS = -c $(CVARS_) $(CCFLAGS_) $(CBLDTYPE_)
+IPATHS = -I$(SRCDIR) -I$(OSROOTDIR) -I$(RTSRCDIR) -I$(PERSRCDIR) $(IPATHS_)
+LINKOPT = $(LINKOPT_)
+
+# run-time libraries
+LIBS = $(LIBDIR)/$(LIBPFX)asn1per$(A) $(LIBDIR)/$(LIBPFX)asn1rt$(A)
+LLIBS = $(LLPFX)asn1per$(LLAEXT) $(LLPFX)asn1rt$(LLAEXT) $(LLSYS)
+LPATHS = $(LPPFX)$(LIBDIR)
+
+OBJECTS =  \
+wr$(OBJ)
+
+ENCOBJECTS = 
+
+DECOBJECTS = 
+
+PRTOBJECTS = 
+
+all : $(OBJECTS) $(ENCOBJECTS) $(DECOBJECTS) $(PRTOBJECTS)  \
+writer$(EXE)
+
+WRITEROBJ = writer$(OBJ) $(OBJECTS) $(ENCOBJECTS) $(DECOBJECTS) \
+ $(PRTOBJECTS)
+
+writer$(EXE) : $(WRITEROBJ) $(LIBS)
+	$(LINK) $(WRITEROBJ) $(LINKOPT) $(LPATHS) $(LLIBS)
+
+RWHFILES = $(HFILESDIR)$(PS)rtkey.h $(HFILESDIR)$(PS)wr.h $(HFILES)
+
+writer$(OBJ) : $(SRCDIR)$(PS)writer.cpp $(RWHFILES)
+	$(CCC) -c $(CCFLAGS) $(IPATHS) $(SRCDIR)$(PS)writer.cpp
+
+# .cpp -> .obj rules
+# common file rules
+wr$(OBJ) : $(SRCDIR)$(PS)wr.cpp \
+$(HFILESDIR)$(PS)rtkey.h $(HFILESDIR)$(PS)wr.h $(HFILES)
+	$(CCC) $(CCFLAGS) -c $(IPATHS) $(SRCDIR)$(PS)wr.cpp
+
+# .asn -> .cpp .h rules
+$(SRCDIR)/wr.cpp \
+$(HFILESDIR)$(PS)rtkey.h \
+$(HFILESDIR)$(PS)wr.h \
+: ./test.asn $(OSROOTDIR)$(PS)bin$(PS)asn1c$(EXE)
+	$(OSROOTDIR)$(PS)bin$(PS)asn1c ./test.asn -cpp -per -cfile wr.cpp -hfile wr.h -print -table-unions
+
+clean:
+	$(RM) wr.cpp
+	$(RM) $(HFILESDIR)$(PS)rtkey.h 
+	$(RM) $(HFILESDIR)$(PS)wr.h 
+	$(RM) *$(OBJ)
+	$(RM) *~

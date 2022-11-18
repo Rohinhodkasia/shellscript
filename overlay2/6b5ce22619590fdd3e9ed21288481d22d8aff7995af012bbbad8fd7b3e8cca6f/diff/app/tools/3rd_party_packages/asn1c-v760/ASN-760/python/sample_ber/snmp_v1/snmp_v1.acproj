@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ASN1COptions>
+   <schemas>
+      <UTF8String>RFC1155-SMI.asn</UTF8String>
+      <UTF8String>RFC1157-SNMP.asn</UTF8String>
+      <UTF8String>RFC1213-MIB2.asn</UTF8String>
+   </schemas>
+   <language>
+      <python/>
+   </language>
+   <ruleset>
+      <ber/>
+   </ruleset>
+   <basicOptions>
+      <asnstd>
+         <x208/>
+      </asnstd>
+      <printOut/>
+      <reader/>
+      <writer/>
+      <warnings/>
+   </basicOptions>
+   <languageOpts>
+      <python>
+         <build/>
+      </python>
+   </languageOpts>
+</ASN1COptions>

@@ -1,0 +1,13 @@
+CSTA-data-collection
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) data-collection( 138) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+DcollCrossRefID;
+
+DcollCrossRefID ::= OCTET STRING
+
+END -- of CSTA-data-collection

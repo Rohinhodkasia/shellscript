@@ -1,0 +1,35 @@
+[
+   {
+      "e164":"#111,222"
+   },
+   {
+      "h323-ID":"TESTSTRING"
+   },
+   {
+      "aNull":null
+   },
+   {
+      "url-ID":"http://www.obj-sys.com"
+   },
+   {
+      "transportID":{
+         "transportAddress":"Truck",
+         "aINTEGER":111
+      }
+   },
+   {
+      "email-ID":"objective@obj-sys.com"
+   },
+   {
+      "partyNumber":555
+   },
+   {
+      "boolVal":true
+   },
+   {
+      "enumVal":"two"
+   },
+   {
+      "extension":"This is an extension element."
+   }
+]

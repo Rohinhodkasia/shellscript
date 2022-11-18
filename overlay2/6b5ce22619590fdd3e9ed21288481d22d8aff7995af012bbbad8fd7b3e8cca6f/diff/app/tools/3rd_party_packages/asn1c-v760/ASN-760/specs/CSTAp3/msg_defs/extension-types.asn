@@ -1,0 +1,29 @@
+CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+CSTACommonArguments, CSTAPrivateData;
+
+IMPORTS
+CSTASecurityData FROM CSTA-security
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) security( 128) };
+
+CSTACommonArguments ::= [APPLICATION 30] IMPLICIT SEQUENCE
+{	security 		[0] IMPLICIT 	CSTASecurityData 		OPTIONAL,
+	privateData 		[1] IMPLICIT 	SEQUENCE OF CSTAPrivateData 	OPTIONAL }
+
+--CSTAPrivateData ::= CHOICE
+--{ 	string 			OCTET STRING,
+-- 	private 		NULL } 	The actual encoding is added here,
+					-- replacing NULL with another valid ASN.1 type.
+					
+-- This definition of CSTAPrivateData allows the private data to be
+-- any sequence of octets without regard to how they're tagged.
+CSTAPrivateData ::= TYPE-IDENTIFIER.&Type
+
+END -- of CSTA-extension-types

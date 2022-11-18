@@ -1,0 +1,110 @@
+-- This file contains two modules, WRITE and READ.
+-- The WRITE module is used by the sample writer to create an input file that
+-- will produce certain errors when read by sample reader, which uses the
+-- READ module.  The sammple reader includes an error handler designed to
+-- ignore those errors.
+
+READ DEFINITIONS
+AUTOMATIC TAGS ::=
+BEGIN
+
+PDU ::= SEQUENCE {
+   missme [0] INTEGER,
+   a [1] INTEGER,
+   b [2] INTEGER,
+   extras [3] Extras,
+   allreq [4] AllReq,
+   myset [5] MySet,
+   mychoice [6] MyChoice,
+   color [8] Color
+   
+}
+
+AllReq ::= SEQUENCE {
+   a [1] INTEGER,
+   b [1] INTEGER,
+   c [1] INTEGER
+}
+
+Extras ::= SEQUENCE {
+   a [1] INTEGER,
+   b [2] INTEGER OPTIONAL,
+   c [3] INTEGER
+   --d wil be treated as out of order
+   --e will be treated as unexpected
+}
+
+MySet ::= SET {
+   a [1] INTEGER,
+   d [4] INTEGER  -- added to trigger missing-required
+}
+
+Color ::= ENUMERATED { red(0), green(1), blue(2) }
+
+
+MyChoice ::= CHOICE {
+   a INTEGER,
+   b INTEGER
+}
+
+END
+
+WRITE DEFINITIONS
+AUTOMATIC TAGS ::=
+BEGIN
+
+PDU ::= SEQUENCE {
+   -- missme is ommitted to trigger a missing required element error
+   a [1] INTEGER,
+   b [2] INTEGER,
+   extras [3] Extras,
+   allreq [4] AllReq,
+   myset [5] MySet,
+   mychoice [6] MyChoice,
+   color [8] Color,
+   -- z is added to trigger a not-in-sequence error at the end of the content
+   z [10] INTEGER
+}
+
+
+-- This adds d at the end of a SEQ w/o optional elements.
+-- d will trigger an unexpected-element exception
+AllReq ::= SEQUENCE {
+   a [1] INTEGER,
+   b [1] INTEGER,
+   c [1] INTEGER,
+   d [1] INTEGER
+}
+
+-- This adds d, e at the end of a SEQ w/ optional elements, where d
+-- matches the tag for b, and e does not match any tag.
+-- d will trigger an out-of-order exception.
+-- e will trigger an unexpected-element exception.
+Extras ::= SEQUENCE {
+   a [1] INTEGER,
+   b [2] INTEGER OPTIONAL,
+   c [3] INTEGER,
+   d [2] INTEGER,
+   e [4] INTEGER
+}
+
+-- In READ, this is a SET.  Here it's a SEQUENCE so we can have duplicates.
+-- a and b are duplicates
+-- c is added to trigger not-in-set
+MySet ::= SEQUENCE {
+   a [1] INTEGER,
+   b [1] INTEGER,
+   c [2] INTEGER
+}
+
+--adds black to trigger invalid-enum
+Color ::= ENUMERATED { red(0), green(1), blue(2), black(3) }
+
+MyChoice ::= CHOICE {
+   a INTEGER,
+   b INTEGER,
+   c INTEGER   -- c is removed
+}
+
+
+END

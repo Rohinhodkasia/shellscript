@@ -1,0 +1,29 @@
+EmployeeStream DEFINITIONS ::= BEGIN
+EXPORTS;
+
+PersonnelRecord ::= [APPLICATION 0] IMPLICIT SET {
+			Name,
+   title	[0]	IA5String,
+   number		EmployeeNumber,
+   dateOfHire	[1]	Date,
+   dateOfFire	[2]	Date OPTIONAL,
+   nameOfSpouse [3]	Name OPTIONAL,
+   children	[4]	IMPLICIT SEQUENCE OF ChildInformation OPTIONAL
+}
+
+ChildInformation ::= SET {
+   Name,
+   dateOfBirth [0] Date
+}
+
+Name ::= [APPLICATION 1] IMPLICIT SEQUENCE {
+   givenName	[0] IA5String,
+   initial	[1] IA5String OPTIONAL,
+   familyName	[2] IA5String
+}
+
+EmployeeNumber ::= [APPLICATION 2] IMPLICIT INTEGER
+
+Date ::= IA5String
+
+END

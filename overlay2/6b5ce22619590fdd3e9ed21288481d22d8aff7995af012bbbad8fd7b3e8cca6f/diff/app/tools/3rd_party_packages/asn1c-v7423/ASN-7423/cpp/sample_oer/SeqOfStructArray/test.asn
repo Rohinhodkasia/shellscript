@@ -1,0 +1,9 @@
+Test DEFINITIONS ::= BEGIN
+
+TestSeq ::= SEQUENCE (SIZE (5..10)) OF SEQUENCE {
+   a        INTEGER, 
+   b        BOOLEAN,
+   c        OCTET STRING
+}
+
+END

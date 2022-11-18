@@ -1,0 +1,30 @@
+CSTA-ringer-status-event
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) ringer-status-event( 289) }
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+
+-- Data Types --
+SubjectDeviceID FROM CSTA-device-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-identifiers( 123) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) }
+RingerID, RingMode, Volume FROM CSTA-physical-device-feature 
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) };
+
+RingerStatusEvent ::= SEQUENCE
+{	device				SubjectDeviceID,
+	ringer 				RingerID,
+	ringMode	 		RingMode				OPTIONAL,
+	ringCount 			[0] IMPLICIT INTEGER (0..1000) 		OPTIONAL,
+	ringDuration			[3] IMPLICIT INTEGER			OPTIONAL,
+	ringPattern	 		[1] IMPLICIT INTEGER 			OPTIONAL,
+	ringVolume 			[2] Volume				OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-ringer-status-event

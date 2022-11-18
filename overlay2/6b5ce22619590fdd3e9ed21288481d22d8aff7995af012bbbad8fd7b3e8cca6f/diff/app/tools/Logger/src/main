@@ -1,0 +1,17 @@
+#include <stdio.h>
+#include <string.h>
+#include <stdbool.h>
+#include "vzw_log.h"
+#include "vzw_log_interface.h"
+#include "vzw_read_config.h"
+#include "vzw_log_common.h"
+
+int main(){
+	
+	read_config(LOG_CFG_PATH);	
+	printf("PATH = %s\n", LOG_CFG_PATH);
+	
+   	vzwInitLog(4);
+	
+ 	SAGT_LOG(LOG_INFO, "LOGGING DONE SUCCESSFULLY");
+}

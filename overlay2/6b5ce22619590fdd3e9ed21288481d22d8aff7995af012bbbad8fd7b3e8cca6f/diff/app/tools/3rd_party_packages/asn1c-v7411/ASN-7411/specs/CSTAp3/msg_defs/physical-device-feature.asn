@@ -1,0 +1,106 @@
+CSTA-physical-device-feature
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) physical-device-feature( 137) }
+
+DEFINITIONS ::=
+BEGIN
+
+EXPORTS
+AuditoryApparatusID, AuditoryApparatusList, ButtonID, CharacterSet,DisplayID, LampBrightness,
+LampColor, LampID, LampMode, MicGainAbs, MicrophoneGain, RingerID, RingMode,
+VolAbs, Volume, HookswitchID;
+
+AuditoryApparatusList ::= SEQUENCE OF SEQUENCE 
+{	auditoryApparatus 	AuditoryApparatusID,
+	auditoryApparatusType 	ENUMERATED 
+	{	speakerphone 			(0),
+		handset 			(1),
+		headset 			(2),
+		speakerOnlyPhone 		(3),
+		other 				(4) },
+
+	speaker 		BIT STRING 
+	{	present 			(0),
+		volumeSettable 			(1),
+		volumeReadable 			(2),
+		muteSettable 			(3),
+		muteReadable 			(4) },
+
+	microphone 		BIT STRING 
+	{	present 			(0),
+		gainSettable 			(1),
+		gainReadable 			(2),
+		muteSettable 			(3),
+		muteReadable 			(4) },
+
+	hookswitch 		BIT STRING 
+	{	hookswitchSettable 		(0),
+		hookswitchOnHook 		(1) },
+
+	hookswitchID 		HookswitchID }
+
+AuditoryApparatusID ::= OCTET STRING 
+
+ButtonID ::= OCTET STRING
+
+CharacterSet ::= ENUMERATED
+{ 	ascii 					(0),
+	unicode 				(1),
+	proprietary 				(2) }
+
+DisplayID ::= OCTET STRING
+
+HookswitchID ::= OCTET STRING
+
+LampBrightness ::= ENUMERATED
+{ 	unspecified 				(0),
+	dim 					(1),
+	bright 					(2) }
+
+LampColor ::= INTEGER
+{ 	noColor 				(0),
+	red 					(1),
+	yellow 					(2),
+	green 					(3),
+	blue 					(4),
+	unknown 				(5) } (0..100)
+
+LampID ::= OCTET STRING
+
+LampMode ::= INTEGER
+{ 	brokenFlutter 				(0),
+	flutter 				(1),
+	off 					(2),
+	steady 					(3),
+	wink 					(4),
+	unknown 				(5) } (0..100)
+
+
+MicrophoneGain ::= CHOICE
+{ 	micGainAbs 				MicGainAbs,
+	micGainInc 				MicGainInc }
+
+MicGainInc ::= ENUMERATED
+{ 	increment 				(0),
+	decrement 				(1) }
+
+MicGainAbs ::= INTEGER (0..100)
+
+RingerID ::= OCTET STRING
+
+RingMode ::= ENUMERATED
+{ 	ringing 				(0),
+	notRinging 				(1) }
+
+Volume ::= CHOICE
+{ 	volAbs 					VolAbs,
+	volInc 					VolInc }
+
+VolInc ::= ENUMERATED
+{ 	increment 				(0),
+	decrement 				(1) }
+
+
+VolAbs ::= INTEGER (0..100)
+
+END -- of CSTA-physical-device-feature

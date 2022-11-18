@@ -1,0 +1,42 @@
+CSTA-queue
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) queue (515) }
+
+DEFINITIONS ::=
+BEGIN
+
+IMPORTS	
+OPERATION, ERROR FROM Remote-Operations-Information-Objects 
+	{joint-iso-itu-t remote-operations(4) informationObjects(5) version1(0) }
+
+-- Data Types --
+universalFailure FROM CSTA-error-definition
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) error-definition( 120) }
+ConnectionID FROM CSTA-call-connection-identifiers
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) call-connection-identifiers( 124) }
+ResourceID, MessageID FROM CSTA-device-feature-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) device-feature-types( 127) }
+CSTACommonArguments FROM CSTA-extension-types
+	{ iso( 1) identified-organization( 3) icd-ecma( 12)
+		standard( 0) csta3( 285) extension-types( 129) };
+
+queue OPERATION ::=
+{	ARGUMENT		QueueArgument
+	RESULT			QueueResult
+	ERRORS			{universalFailure }
+	CODE			local: 515 }
+
+QueueArgument ::= SEQUENCE
+{	overConnection			ConnectionID,
+	message				MessageID,
+	resource			[0] IMPLICIT ResourceID			OPTIONAL,
+	text				[1] IMPLICIT IA5String			OPTIONAL,
+	extensions			CSTACommonArguments			OPTIONAL } 
+
+QueueResult ::= SEQUENCE
+{	extensions			CSTACommonArguments			OPTIONAL }
+
+END  -- of CSTA-queue
